@@ -587,6 +587,11 @@ Route::POST    ('/g_album_photo/store'            ,'G_album_photoController@stor
 Route::POST    ('/g_album_photo/update'           ,'G_album_photoController@update');
 Route::resource('g_album_photo', 'G_album_photoController');
 
+
+//v_album
+Route::POST    ('/v_album/store'          , array('as' => 'addv_album','uses' => 'V_albumController@store'));
+Route::resource('/v_album'                , 'V_albumController');
+
 Route::controllers([
 	'auth'      => 'Auth\AuthController',
 	'password'  => 'Auth\PasswordController'

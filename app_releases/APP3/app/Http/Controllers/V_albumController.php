@@ -2,7 +2,7 @@
 
 
 use App\Http\Requests;
-use App\Models\G_album;
+use App\Models\V_album;
 use App\Http\Controllers\Controller;
 use yajra\Datatables\Datatables as Datatables;
 use Illuminate\Http\Request;
@@ -11,7 +11,7 @@ use App\Services\DatatablePresenter;
 use Auth;
 use Input;
 
-class G_albumController extends Controller {
+class V_albumController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -22,21 +22,25 @@ class G_albumController extends Controller {
 	 {
             $this->middleware('auth');
 	 }
-	public function index(G_album $album , Request $request)
+	public function index(V_album $album , Request $request)
 	{
-            $g_albums = $album
-			->select(array('id', 'title','meta'))
+            $v_albums = $album
+			->select(array('id', 'title','meta','vedio_url'))
                         ->orderBy('title')->get();
-            $tableData = Datatables::of($g_albums)
+            $tableData = Datatables::of($v_albums)
+						->editColumn('vedio_url', ' <iframe width="50" height="50"
+																								src="{{ $vedio_url }}" frameborder="0" allowfullscreen></iframe> ')
                         ->addColumn('actions', function ($data)
+
+
             {
-                return view('partials.actionBtns')->with('controller','g_album')->with('id', $data->id)->render();
+                return view('partials.actionBtns')->with('controller','v_album')->with('id', $data->id)->render();
 
             });
 
             if($request->ajax())
 		return DatatablePresenter::make($tableData, 'index');
-		return view('g_album.index')
+		return view('v_album.index')
 			->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	}
 
@@ -57,10 +61,11 @@ class G_albumController extends Controller {
 	public function store(Request $request)
 	{
 
-            $g_album = new G_album;
-            $g_album->title    =$request->title;			  
-            $g_album->meta    =$request->meta;
-            $g_album->save();
+            $v_album = new V_album;
+            $v_album->title    =$request->title;
+						$v_album->meta    =$request->meta;
+            $v_album->vedio_url    =$request->vedio_url;
+            $v_album->save();
             if($request->ajax())
                 {
                     return response(array('msg' => 'adding Successfull'), 200)
@@ -88,10 +93,10 @@ class G_albumController extends Controller {
 	 */
 	public function edit(Request $request , $id)
 	{
-            $g_album = G_album::find($id);
+            $v_album = V_album::find($id);
             if($request->ajax())
                 {
-                    return response(array('msg' => 'Adding Successfull', 'data'=> $g_album->toJson() ), 200)
+                    return response(array('msg' => 'Adding Successfull', 'data'=> $v_album->toJson() ), 200)
                             ->header('Content-Type', 'application/json');
 		}
 	}
@@ -105,13 +110,14 @@ class G_albumController extends Controller {
 	public function update(Request $request , $id)
 	{
 
-		$g_album 	= G_album::find($id);
-		$g_album->title 	= $request->title ;
-		$g_album->meta 	= $request->meta ;
+		$v_album 	= V_album::find($id);
+		$v_album->title 	= $request->title ;
+		$v_album->meta 	= $request->meta ;
+		$v_album->vedio_url 	= $request->vedio_url ;
 
 
 
-		$g_album->save();
+		$v_album->save();
 		return response(array('msg' => 'Adding Successfull'), 200)
 							->header('Content-Type', 'application/json');
 	}
@@ -124,8 +130,8 @@ class G_albumController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		$g_album 	= G_album::find($id);
-		$g_album->delete();
+		$v_album 	= V_album::find($id);
+		$v_album->delete();
 		if($request->ajax()){
 			return response(array('msg' => 'Removing Successfull'), 200)
 								->header('Content-Type', 'application/json');

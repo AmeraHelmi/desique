@@ -83,7 +83,11 @@
 </li>
 
     <li>
-<a class="ajax-link" href="{{ url('blog') }}"><i class="glyphicon glyphicon-arrow-left"></i><span> المدونه</span></a>
+<a class="ajax-link" href="{{ url('blog') }}"><i class="glyphicon glyphicon-arrow-left"></i><span> على الناصيه</span></a>
+</li>
+
+    <li>
+<a class="ajax-link" href="{{ url('post') }}"><i class="glyphicon glyphicon-arrow-left"></i><span> المدونه</span></a>
 </li>
 
     <li>

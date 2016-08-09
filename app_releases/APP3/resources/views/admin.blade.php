@@ -111,6 +111,9 @@
 
        <li><a class="ajax-link" href="{{ url('/blog-comments') }}"><i class="glyphicon glyphicon-eye-open"></i><span> تعليقات على الناصيه</span></a>
         </li>
+
+     <li><a class="ajax-link" href="{{ url('/post-comments') }}"><i class="glyphicon glyphicon-eye-open"></i><span> تعليقات على المدونه</span></a>
+        </li>
         @include('menu')
 
         @elseif(Auth::user()->role =='Editor')

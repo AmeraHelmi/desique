@@ -21,20 +21,6 @@
 </div>
 
 <div class="form-group">
-<label for="exampleInputPassword1">رابط الفيديو</label>
-<input type="url"
-  class="form-control"
-  name="vedio_url"
-  id="vedio_url"
-  placeholder="vedio_url"
-  required
-  class="form-control"
-
-  >
-    <span class="help-block with-errors errorName"></span>
-</div>
-
-<div class="form-group">
 <label class="control-label" style="display: block;">الوقت(Year/Month/Day)</label>
 <input id="datetime12" data-format="YYYY-MM-DD" data-template="YYYY / MM / DD" name="date" value="" type="text">
 </div>

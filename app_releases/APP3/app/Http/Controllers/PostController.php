@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Models\Blog;
+use App\Models\Post;
 use App\Http\Controllers\Controller;
 use yajra\Datatables\Datatables as Datatables;
 use Illuminate\Http\Request;
@@ -10,7 +10,7 @@ use App\Services\DatatablePresenter;
 use Auth;
 use Input;
 
-class BlogController extends Controller {
+class PostController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -22,20 +22,20 @@ class BlogController extends Controller {
 	 {
  		$this->middleware('auth');
  	 }
-	public function index(Blog $blog , Request $request)
+	public function index(Post $post , Request $request)
 	{
-		$blogs = $blog
-			->select(array('id', 'title','body','vedio_url','flag','author','date','likes'))
+		$posts = $post
+			->select(array('id', 'title','body','flag','author','date','likes'))
 			->orderBy('id','desc')->get();
 
-			$tableData = Datatables::of($blogs)
+			$tableData = Datatables::of($posts)
 			->editColumn('flag', '<div class="image"><img src="images/uploads/{{ $flag }}"  width="50px" height="50px">')
 				->addColumn('actions', function ($data)
-					{return view('partials.actionBtns')->with('controller','blog')->with('id', $data->id)->render(); });
+					{return view('partials.actionBtns')->with('controller','post')->with('id', $data->id)->render(); });
 
 			if($request->ajax())
 				return DatatablePresenter::make($tableData, 'index');
-		return view('blog.index')
+		return view('post.index')
 			->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	}
 
@@ -61,15 +61,14 @@ class BlogController extends Controller {
 			$filename=time();
 		    $file->move('images/uploads', $filename);
 
-			$blog = new Blog;
-			  $blog->title             =$request->title;
-			  $blog->flag              =$filename;
-			  $blog->body              =$request->body;
-			  $blog->vedio_url         =$request->vedio_url;
-			  $blog->author            =Auth::user()->name;
-			  $blog->date              =$request->date;
+			$post = new Post;
+			  $post->title             =$request->title;
+			  $post->flag              =$filename;
+			  $post->body              =$request->body;
+			  $post->author            =Auth::user()->name;
+			  $post->date              =$request->date;
 
-			  $blog->save();
+			  $post->save();
 
 				if($request->ajax()){
 					return response(array('msg' => 'Adding Successfull'), 200)
@@ -102,12 +101,12 @@ class BlogController extends Controller {
 	 */
 	public function edit($id)
 	{
-		$blog       = Blog::find($id);
+		$post       = Post::find($id);
 
-		session(['blogid'   => $blog->id]);
-		session(['blogflag' => $blog->flag]);
+		session(['postid'   => $post->id]);
+		session(['postflag' => $post->flag]);
 
-			return response(array('msg' => 'Adding Successfull', 'data'=> $blog->toJson() ), 200)
+			return response(array('msg' => 'Adding Successfull', 'data'=> $post->toJson() ), 200)
 								->header('Content-Type', 'application/json');
 	}
 
@@ -119,28 +118,26 @@ class BlogController extends Controller {
 	 */
 	public function update(Request $request)
 	{
- $blog 	= Blog::find(session('blogid'));
+ $post 	= Post::find(session('postid'));
 
 	if(!empty($_FILES)){
 		if(Input::hasFile('flag')){
 			 $file = Input::file('flag');
 			 $filename=time();
 			 $file->move('images/uploads', $filename);
-			  $blog->title             =$request->title;
-			  $blog->flag              =$filename;
-			  $blog->body              =$request->body;
-			  $blog->vedio_url         =$request->vedio_url;
-			  $blog->date              =$request->date;
+			  $post->title             =$request->title;
+			  $post->flag              =$filename;
+			  $post->body              =$request->body;
+			  $post->date              =$request->date;
        	}
    }
 	else{
-			  $blog->title             =$request->title;
-			  $blog->body              =$request->body;
-			  $blog->vedio_url         =$request->vedio_url;
-			  $blog->date              =$request->date;
-		      $blog->flag              =session('blogflag');
+			  $post->title             =$request->title;
+			  $post->body              =$request->body;
+			  $post->date              =$request->date;
+		      $post->flag              =session('blogflag');
 	}
-	$blog->save();
+	$post->save();
 	 		if($request->ajax()){
 	 			return response(array('msg' => 'Adding Successfull'), 200)
 	 								->header('Content-Type', 'application/json');
@@ -157,8 +154,8 @@ class BlogController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		$blog 	= Blog::find($id);
-		$blog->delete();
+		$post 	= Post::find($id);
+		$post->delete();
 		if($request->ajax()){
 			return response(array('msg' => 'Removing Successfull'), 200)
 								->header('Content-Type', 'application/json');

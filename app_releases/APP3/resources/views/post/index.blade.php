@@ -61,7 +61,7 @@
 <ul class="alerts-list" style="display:none;" id="show">
   <li>
      <div class="alert alert-success alert-dismissable">
-           <i class="icon-remove-sign"></i> تم أضافة فيديو بنجــــــــــــــاح!.
+           <i class="icon-remove-sign"></i> تم أضافة مدونه بنجــــــــــــــاح!.
            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
        </div>
    </li>
@@ -75,7 +75,7 @@
    </li>
 </ul>
 <a class="btn btn-primary" data-toggle="modal" data-target="#addModal" style="margin-bottom:20px;" >
-		<i class="fa fa-plus-circle" style="font-size: 18px;"></i> أضافة فيديو
+		<i class="fa fa-plus-circle" style="font-size: 18px;"></i> أضافة مدونه
 </a>
 <div class="widget-content-white glossed">
 		<div class="padded">
@@ -85,7 +85,6 @@
                     <th class="col-md-1">العنوان</th>
                     <th class="col-md-1">المحتوى</th>
                     <th class="col-md-1">الصوره</th>
-                    <th class="col-md-1">رابط الفيديو</th>
                     <th class="col-md-1">الكاتب</th>
                     <th class="col-md-1">التاريخ</th>
                     <th class="col-md-1">الأعجاب</th>
@@ -98,12 +97,11 @@
                     <td>{{ $row->title }}</td>
 				    <td>{{ $row->body }}</td>
                     <td>{!! $row->flag !!}</div></td>
-                    <td>{{ $row->vedio_url }}</td>
                     <td>{{ $row->author }}</td>
                     <td>{{ $row->date }}</td>
                     <td>{{ $row->likes }}</td>
 					<td>{!! $row->actions !!}</td>
-								</tr>
+					</tr>
 								@endforeach
 						</tbody>
 				</table>
@@ -115,11 +113,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="addModalLabel"><i class="fa fa-plus-circle"></i> أضافة فيديو</h4>
+                <h4 class="modal-title" id="addModalLabel"><i class="fa fa-plus-circle"></i> أضافة مدونه</h4>
             </div>
-            <form role="form"  method="POST" class="addForm" action="{{ url('/blog/store') }}" data-toggle="validator"  enctype="multipart/form-data" >
+            <form role="form"  method="POST" class="addForm" action="{{ url('/post/store') }}" data-toggle="validator"  enctype="multipart/form-data" >
                 <div class="modal-body">
-                    @include('blog.form')
+                    @include('post.form')
                 </div>
                 <div class="modal-footer">
                     <button type="submit" id="submitForm" class="btn btn-primary">موافق</button>
@@ -139,9 +137,9 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="editcountryModal"><i class="fa fa-pencil"></i> تحديث</h4>
             </div>
-            <form role="form"  method="POST" class="editForm" data-id="" action="{{ url('/blog/update') }}" data-toggle="validator" enctype="multipart/form-data">
+            <form role="form"  method="POST" class="editForm" data-id="" action="{{ url('/post/update') }}" data-toggle="validator" enctype="multipart/form-data">
                 <div class="modal-body">
-                    @include('blog.form')
+                    @include('post.form')
                 </div>
                 <div class="modal-footer">
                     <button type="submit" id="submit" class="btn btn-primary">تحديث</button>
@@ -204,7 +202,7 @@
 		    var self = $(this);
 		         self.button('loading');
 		         $.ajax({
-		             url: "{{ url('blog') }}" + "/" + self.data('id') + "/edit" ,
+		             url: "{{ url('post') }}" + "/" + self.data('id') + "/edit" ,
 		             type: "GET",
 		             success: function(res){
 		                 self.button('reset');
@@ -235,7 +233,6 @@
 		{data: 'title', name: 'title'},
         {data: 'body', name: 'body'},
         {data: 'flag', name: 'flag'},
-        {data: 'vedio_url', name: 'vedio_url'},
         {data: 'author', name: 'author'},
         {data: 'date', name: 'date'},
         {data: 'likes', name: 'likes'},				

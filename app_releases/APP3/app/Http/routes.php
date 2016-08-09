@@ -570,6 +570,14 @@ Route::resource('blog', 'BlogController');
 //Blog comments
 Route::resource('blog-comments', 'Blog_commentController');
 
+//post
+Route::POST    ('/post/store'            ,'PostController@store');
+Route::POST    ('/post/update'           ,'PostController@update');
+Route::resource('post', 'PostController');
+
+//Post comments
+Route::resource('post-comments', 'Post_commentController');
+
 Route::controllers([
 	'auth'      => 'Auth\AuthController',
 	'password'  => 'Auth\PasswordController'

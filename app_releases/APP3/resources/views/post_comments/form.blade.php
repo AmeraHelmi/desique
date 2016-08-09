@@ -35,6 +35,20 @@
 </div>
 
 <div class="form-group">
+<label for="exampleInputPassword1">الكاتب</label>
+<input type="text"
+  class="form-control"
+  name="author"
+  id="author"
+  placeholder="author"
+  required
+  class="form-control"
+
+  >
+    <span class="help-block with-errors errorName"></span>
+</div>
+
+<div class="form-group">
 <label class="control-label" style="display: block;">الوقت(Year/Month/Day)</label>
 <input id="datetime12" data-format="YYYY-MM-DD" data-template="YYYY / MM / DD" name="date" value="" type="text">
 </div>

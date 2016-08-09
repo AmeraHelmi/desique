@@ -578,6 +578,11 @@ Route::resource('post', 'PostController');
 //Post comments
 Route::resource('post-comments', 'Post_commentController');
 
+//g_album
+Route::POST    ('/g_album/store'          , array('as' => 'addg_album','uses' => 'G_albumController@store'));
+Route::POST    ('/g_album/update'           ,'G_albumController@update');
+Route::resource('/g_album'                , 'G_albumController');
+
 Route::controllers([
 	'auth'      => 'Auth\AuthController',
 	'password'  => 'Auth\PasswordController'

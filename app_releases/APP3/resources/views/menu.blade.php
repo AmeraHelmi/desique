@@ -9,6 +9,11 @@
 <a class="ajax-link" href="{{ url('advert') }}"><i class="glyphicon glyphicon-arrow-left"></i><span> الاعلان</span></a>
 </li>
 
+<li>
+<a class="ajax-link" href="{{ url('g_album') }}">
+    <i class="glyphicon glyphicon-arrow-left"></i>
+    <span> الالبوم</span></a>
+</li>
         <li class="accordion">
         <a href="#"><i class="glyphicon glyphicon-plus"></i><span> الدول والبلاد</span></a>
         <ul class="nav nav-pills nav-stacked">

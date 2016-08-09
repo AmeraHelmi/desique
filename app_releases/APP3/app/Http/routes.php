@@ -580,8 +580,12 @@ Route::resource('post-comments', 'Post_commentController');
 
 //g_album
 Route::POST    ('/g_album/store'          , array('as' => 'addg_album','uses' => 'G_albumController@store'));
-Route::POST    ('/g_album/update'           ,'G_albumController@update');
 Route::resource('/g_album'                , 'G_albumController');
+
+//add images to album
+Route::POST    ('/g_album_photo/store'            ,'G_album_photoController@store');
+Route::POST    ('/g_album_photo/update'           ,'G_album_photoController@update');
+Route::resource('g_album_photo', 'G_album_photoController');
 
 Route::controllers([
 	'auth'      => 'Auth\AuthController',

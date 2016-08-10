@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 10, 2016 at 05:18 PM
+-- Generation Time: Aug 10, 2016 at 05:34 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -3257,10 +3257,10 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `creat
 CREATE TABLE `v_albums` (
   `id` int(11) NOT NULL,
   `vedio_url` text CHARACTER SET latin1 NOT NULL,
-  `meta` text CHARACTER SET utf8,
   `title` text CHARACTER SET utf8 NOT NULL,
-  `continent` text CHARACTER SET utf8,
   `category_id` int(11) NOT NULL,
+  `flag` text COLLATE utf8_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8 NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -3269,8 +3269,8 @@ CREATE TABLE `v_albums` (
 -- Dumping data for table `v_albums`
 --
 
-INSERT INTO `v_albums` (`id`, `vedio_url`, `meta`, `title`, `continent`, `category_id`, `created_at`, `updated_at`) VALUES
-(9, 'asd', 'ييي', '', NULL, 2, '2016-08-10 14:38:32', '0000-00-00 00:00:00');
+INSERT INTO `v_albums` (`id`, `vedio_url`, `title`, `category_id`, `flag`, `description`, `created_at`, `updated_at`) VALUES
+(10, 'https://www.youtube.com/watch?v=aiXbwl2RBhc', 'vvvv', 3, '', '', '2016-08-10 15:26:40', '2016-08-10 13:26:40');
 
 -- --------------------------------------------------------
 
@@ -4149,7 +4149,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `v_albums`
 --
 ALTER TABLE `v_albums`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `winners`
 --

@@ -43,10 +43,10 @@
    <div class="form-group">
    <label for="exampleInputFile">اختر الفئة</label>
    <select id="category"  class="form-control"
-    name="catwgory_id">
+    name="category_id">
     <option selected value="">اختر الفئة</option>
-    @foreach($categories as $catgegory_id => $category_name)
-     <option value="{!! $category_name !!}">{!! $catgegory_id !!}</option>
+    @foreach($categories as $category_id => $category_name)
+     <option value="{!! $category_name !!}">{!! $category_id !!}</option>
      @endforeach
    </select>
    </div>

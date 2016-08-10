@@ -18,10 +18,10 @@
 						<thead>
 								<tr>
 										<th class="col-md-2">الأسم</th>
-										<th class="col-md-3">كلمات البحث</th>
+										<th class="col-md-2">كلمات البحث</th>
 										<th class="col-md-3">رابط الفيديو</th>
-										<th class="col-md-2">القارة</th>
-										<th class="col-md-2">الفئة</th>
+										<th class="col-md-1">القارة</th>
+										<th class="col-md-1">الفئة</th>
 
 										<th class="col-md-2">خيارات</th>
 								</tr>

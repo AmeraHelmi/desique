@@ -33,14 +33,14 @@ class V_albumController extends Controller {
 			->select(array(
 				        'v_albums.id as VID',
 						'v_albums.title as title',
-						'v_albums.meta as meta',
 						'v_albums.vedio_url as vedio_url',
-						'v_albums.continent as continent',
+						'v_albums.flag as flag',
+						'v_albums.description as description',
 						'c.name as cname'))
                         ->orderBy('title')->get();
 
             $tableData = Datatables::of($v_albums)
-->editColumn('vedio_url', '<object  width="560" height="315" data="{!! $vedio_url !!}" frameborder="0" allowfullscreen></object>')
+->editColumn('vedio_url', '<object  width="50" height="50" data="{!! $vedio_url !!}" frameborder="0" allowfullscreen></object>')
              ->addColumn('actions', function ($data)
             {
                 return view('partials.actionBtns')->with('controller','v_album')->with('id', $data->VID)->render();
@@ -70,19 +70,39 @@ class V_albumController extends Controller {
 	 */
 	public function store(Request $request)
 	{
+		if(Input::hasFile('flag')){
+
+			 $file = Input::file('flag');
+
+			 $filename=time();
+
+			 $file->move('images/uploads', $filename);
+
+
 
             $v_album = new V_album;
              $v_album->title    =$request->title;
-						$v_album->meta    =$request->meta;
 						$v_album->vedio_url    =$request->vedio_url;
 						$v_album->category_id    =$request->category_id;
-						$v_album->continent    =$request->continent;
+						$v_album->flag    =$filename;
+						$v_album->description    =$request->description;
             $v_album->save();
             if($request->ajax())
                 {
                     return response(array('msg' => 'adding Successfull'), 200)
                             ->header('Content-Type', 'application/json');
-		}
+
+
+							}
+							else{
+
+									return response(false, 200)
+														->header('Content-Type', 'application/json');
+
+								}
+		 	}
+
+
 
 	}
 
@@ -106,6 +126,10 @@ class V_albumController extends Controller {
 	public function edit(Request $request , $id)
 	{
             $v_album = V_album::find($id);
+						session(['Vid'    => $v_album->id]);
+
+
+						session(['Vimage' => $v_album->flag]);
             if($request->ajax())
                 {
                     return response(array('msg' => 'Adding Successfull', 'data'=> $v_album->toJson() ), 200)
@@ -122,12 +146,29 @@ class V_albumController extends Controller {
 	public function update(Request $request , $id)
 	{
 
-		$v_album 	= V_album::find($id);
+		$v_album 	= V_album::find(session('Vid'));
+
 		$v_album->title 	= $request->title ;
-		$v_album->meta 	= $request->meta ;
 		$v_album->vedio_url 	= $request->vedio_url ;
 		$v_album->category_id    =$request->category_id;
-		$v_album->continent    =$request->continent;
+		if(!empty($_FILES)){
+
+	if(Input::hasFile('flag')){
+
+		$file = Input::file('flag');
+
+		$filename=time();
+
+		$file->move('images/uploads', $filename);
+
+
+		$v_album->flag    =$filename;
+	}
+}
+	else {
+		$v_album->flag=session('Vimage');
+	}
+		$v_album->description    =$request->description;
 
 
 		$v_album->save();

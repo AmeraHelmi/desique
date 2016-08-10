@@ -9,10 +9,6 @@
 <a class="ajax-link" href="{{ url('advert') }}"><i class="glyphicon glyphicon-arrow-left"></i><span> الاعلان</span></a>
 </li>
 
-<li>
-<a class="ajax-link" href="{{ url('v_album') }}"><i class="glyphicon glyphicon-arrow-left"></i><span> مكتبة الفيديوهات</span></a>
-</li>
-
 <li class="accordion">
 <a href="#"><i class="glyphicon glyphicon-plus"></i><span> مكتبة الصور</span></a>
 <ul class="nav nav-pills nav-stacked">

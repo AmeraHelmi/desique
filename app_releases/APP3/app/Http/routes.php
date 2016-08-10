@@ -594,6 +594,7 @@ Route::resource('/v_album'                , 'V_albumController');
 
 //category
 Route::POST    ('/category/store'          , array('as' => 'addcategory','uses' => 'CategoryController@store'));
+Route::POST    ('/category/update'           ,'CategoryController@update');
 Route::resource('/category'                , 'CategoryController');
 
 

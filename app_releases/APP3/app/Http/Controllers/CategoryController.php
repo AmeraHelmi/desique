@@ -88,6 +88,8 @@ class CategoryController extends Controller {
 	public function edit(Request $request , $id)
 	{
             $cat = Category::find($id);
+						 		session(['catid'    => $cat->id]);
+
             if($request->ajax())
                 {
                     return response(array('msg' => 'Adding Successfull', 'data'=> $cat->toJson() ), 200)
@@ -101,10 +103,10 @@ class CategoryController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(Request $request , $id)
+	public function update(Request $request )
 	{
 
-		$cat 	= Category::find($id);
+		$cat 	= Category::find(session('catid'));
 		$cat->name 	= $request->name ;
 
 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 10, 2016 at 05:00 PM
+-- Generation Time: Aug 10, 2016 at 05:18 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -180,16 +180,20 @@ CREATE TABLE `cards` (
 
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
-  `name` text CHARACTER SET utf32 NOT NULL
+  `name` text CHARACTER SET utf32 NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
 --
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `name`) VALUES
-(1, 'مصر'),
-(2, 'العالم العربى');
+INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'مصر', '2016-08-10 15:14:25', '0000-00-00 00:00:00'),
+(2, 'العالم العربى', '2016-08-10 15:14:25', '0000-00-00 00:00:00'),
+(3, 'aajj', '2016-08-10 15:17:38', '2016-08-10 13:17:38'),
+(4, 'sssasd', '2016-08-10 15:18:01', '2016-08-10 13:18:01');
 
 -- --------------------------------------------------------
 
@@ -3875,7 +3879,7 @@ ALTER TABLE `cards`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `championships`
 --

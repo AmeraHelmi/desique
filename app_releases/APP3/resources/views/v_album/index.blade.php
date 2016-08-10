@@ -20,7 +20,11 @@
 										<th class="col-md-3">الأسم</th>
 										<th class="col-md-3">كلمات البحث</th>
 										<th class="col-md-3">رابط الفيديو</th>
-
+										<th class="col-md-2">القارة</th>
+										<th class="col-md-2">الفريق</th>
+										<th class="col-md-2">المنتخب</th>
+										<th class="col-md-2">البطولة</th>
+										<th class="col-md-2">البلد</th>
 										<th class="col-md-2">خيارات</th>
 								</tr>
 						</thead>
@@ -30,6 +34,12 @@
 										<td>{{ $row->title }}</td>
 										<td>{{ $row->meta }}</td>
                   	<td>{!! $row->vedio_url !!}</td>
+										<td>{{ $row->continent }}</td>
+										<td>{{ $row->tname }}</td>
+										<td>{{ $row->nname }}</td>
+										<td>{{ $row->pname }}</td>
+										<td>{{ $row->cname }}</td>
+
 										<td>{!! $row->actions !!}</td>
 								</tr>
 								@endforeach
@@ -212,7 +222,12 @@
 		"columns": [
 				{data: 'title', name: 'title'},
 				{data: 'meta', name: 'meta'},
-        {data: 'vedio_url', name: 'vedio_url'},
+				{data: 'vedio_url', name: 'vedio_url'},
+				{data: 'continent', name: 'continent'},
+				{data: 'tname', name: 'tname'},
+				{data: 'nname', name: 'nname'},
+				{data: 'pname', name: 'pname'},
+        {data: 'cname', name: 'cname'},
 				{data: 'actions', name: 'actions', orderable: false, searchable: false}
 		]
 	});

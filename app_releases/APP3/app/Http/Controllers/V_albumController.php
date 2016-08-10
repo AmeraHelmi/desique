@@ -29,41 +29,27 @@ class V_albumController extends Controller {
 	public function index(V_album $album , Request $request)
 	{
             $v_albums = $album
-												->join('countries as c ','c.id','=','v_albums.country_id')
-												->join('teams as t ','t.id','=','v_albums.team_id')
-												->join('championships as p ','p.id','=','v_albums.championship_id')
-												->join('nations as n ','n.id','=','v_albums.nation_id')
-												->select(array('v_albums.id as VID',
-												 							'v_albums.title as title',
-																			'v_albums.meta as meta',
-																			'v_albums.vedio_url as vedio_url',
-																			'v_albums.continent as continent',
-																			'c.name as cname',
-																			't.name as tname',
-																			'n.nickname as nname',
-																			'p.name as pname'))
+		    ->join('championships as p ','p.id','=','v_albums.championship_id')
+			->select(array(
+				        'v_albums.id as VID',
+						'v_albums.title as title',
+						'v_albums.meta as meta',
+						'v_albums.vedio_url as vedio_url',
+						'v_albums.continent as continent',
+						'p.name as pname'))
                         ->orderBy('title')->get();
+
             $tableData = Datatables::of($v_albums)
-						->editColumn('vedio_url', ' <iframe width="50" height="50"
-																								src="{{ $vedio_url }}" frameborder="0" allowfullscreen></iframe> ')
-                        ->addColumn('actions', function ($data)
-
-
+->editColumn('vedio_url', '<object  width="560" height="315" data="{!! $vedio_url !!}" frameborder="0" allowfullscreen></object>')
+             ->addColumn('actions', function ($data)
             {
                 return view('partials.actionBtns')->with('controller','v_album')->with('id', $data->VID)->render();
-
             });
 
             if($request->ajax())
 		return DatatablePresenter::make($tableData, 'index');
 		$championships=Championship::lists('id','name');
-		$nations=Nation::lists('id','nickname');
-		$teams=Team::lists('id','name');
-		$countries=Country::lists('id','name');
 		return view('v_album.index')
-			->with('countries',$countries)
-			->with('teams',$teams)
-			->with('nations',$nations)
 			->with('championships',$championships)
 			->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	}
@@ -86,14 +72,11 @@ class V_albumController extends Controller {
 	{
 
             $v_album = new V_album;
-            $v_album->title    =$request->title;
+             $v_album->title    =$request->title;
 						$v_album->meta    =$request->meta;
 						$v_album->vedio_url    =$request->vedio_url;
-						$v_album->team_id    =$request->team_id;
-						$v_album->nation_id    =$request->nation_id;
 						$v_album->championship_id    =$request->championship_id;
 						$v_album->continent    =$request->continent;
-            $v_album->country_id    =$request->country_id;
             $v_album->save();
             if($request->ajax())
                 {
@@ -143,11 +126,8 @@ class V_albumController extends Controller {
 		$v_album->title 	= $request->title ;
 		$v_album->meta 	= $request->meta ;
 		$v_album->vedio_url 	= $request->vedio_url ;
-		$v_album->team_id    =$request->team_id;
-		$v_album->nation_id    =$request->nation_id;
 		$v_album->championship_id    =$request->championship_id;
 		$v_album->continent    =$request->continent;
-		$v_album->country_id    =$request->country_id;
 
 
 		$v_album->save();

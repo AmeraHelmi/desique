@@ -20,7 +20,13 @@
     <li><a href="{{ url('g_album_photo') }}">اضافة صور للالبوم</a></li>
 </ul>
 </li>
-
+<li class="accordion">
+<a href="#"><i class="glyphicon glyphicon-plus"></i><span> الفيديوهات</span></a>
+<ul class="nav nav-pills nav-stacked">
+    <li><a href="{{ url('category') }}">ااضافة فئة </a></li>
+    <li><a href="{{ url('v_album') }}">اضافة فيديو</a></li>
+</ul>
+</li>
         <li class="accordion">
         <a href="#"><i class="glyphicon glyphicon-plus"></i><span> الدول والبلاد</span></a>
         <ul class="nav nav-pills nav-stacked">

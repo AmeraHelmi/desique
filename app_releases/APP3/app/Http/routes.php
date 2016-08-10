@@ -592,6 +592,11 @@ Route::resource('g_album_photo', 'G_album_photoController');
 Route::POST    ('/v_album/store'          , array('as' => 'addv_album','uses' => 'V_albumController@store'));
 Route::resource('/v_album'                , 'V_albumController');
 
+//category
+Route::POST    ('/category/store'          , array('as' => 'addcategory','uses' => 'CategoryController@store'));
+Route::resource('/category'                , 'CategoryController');
+
+
 Route::controllers([
 	'auth'      => 'Auth\AuthController',
 	'password'  => 'Auth\PasswordController'

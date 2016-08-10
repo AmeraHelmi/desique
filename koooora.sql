@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 10, 2016 at 01:04 PM
+-- Generation Time: Aug 10, 2016 at 05:00 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -175,6 +175,25 @@ CREATE TABLE `cards` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` int(11) NOT NULL,
+  `name` text CHARACTER SET utf32 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`) VALUES
+(1, 'مصر'),
+(2, 'العالم العربى');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `championships`
 --
 
@@ -187,9 +206,18 @@ CREATE TABLE `championships` (
   `type` varchar(150) CHARACTER SET utf8 NOT NULL,
   `continent` text COLLATE utf8_unicode_ci NOT NULL,
   `no_goals` int(11) DEFAULT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `championships`
+--
+
+INSERT INTO `championships` (`id`, `name`, `addition_info`, `no_matches`, `country_id`, `type`, `continent`, `no_goals`, `start_date`, `end_date`, `updated_at`, `created_at`) VALUES
+(1, 'aa', 'nnnnnnnnnnnnnnn', 44, 81, 'world', '', NULL, '0000-00-00', '0000-00-00', '2016-08-10 08:14:27', '2016-08-10 08:11:28');
 
 -- --------------------------------------------------------
 
@@ -1325,18 +1353,10 @@ CREATE TABLE `groups` (
 CREATE TABLE `g_albums` (
   `id` int(11) NOT NULL,
   `title` text NOT NULL,
-  `meta` text,
+  `category_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `g_albums`
---
-
-INSERT INTO `g_albums` (`id`, `title`, `meta`, `created_at`, `updated_at`) VALUES
-(2, 'ss', 'dd', '2016-08-09 15:35:22', '2016-08-09 13:35:22'),
-(3, 'aa', '', '2016-08-09 11:30:01', '2016-08-09 11:30:01');
 
 -- --------------------------------------------------------
 
@@ -1352,13 +1372,6 @@ CREATE TABLE `g_album_photos` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `g_album_photos`
---
-
-INSERT INTO `g_album_photos` (`id`, `g_album_id`, `flag`, `alt`, `created_at`, `updated_at`) VALUES
-(18, 2, '1470750225', 'gh', '2016-08-09 13:53:02', '2016-08-09 11:53:02');
 
 -- --------------------------------------------------------
 
@@ -3239,24 +3252,21 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `creat
 
 CREATE TABLE `v_albums` (
   `id` int(11) NOT NULL,
-  `vedio_url` text NOT NULL,
-  `meta` text,
-  `title` text NOT NULL,
-  `country_id` int(11) DEFAULT NULL,
-  `team_id` int(11) DEFAULT NULL,
-  `nation_id` int(11) DEFAULT NULL,
-  `continent` text,
-  `championship_id` int(11) DEFAULT NULL,
+  `vedio_url` text CHARACTER SET latin1 NOT NULL,
+  `meta` text CHARACTER SET utf8,
+  `title` text CHARACTER SET utf8 NOT NULL,
+  `continent` text CHARACTER SET utf8,
+  `category_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `v_albums`
 --
 
-INSERT INTO `v_albums` (`id`, `vedio_url`, `meta`, `title`, `country_id`, `team_id`, `nation_id`, `continent`, `championship_id`, `created_at`, `updated_at`) VALUES
-(3, 'https://www.youtube.com/watch?v=aiXbwl2RBhc', 'ff', 'aa', NULL, NULL, NULL, NULL, NULL, '2016-08-09 15:38:31', '2016-08-09 13:38:31');
+INSERT INTO `v_albums` (`id`, `vedio_url`, `meta`, `title`, `continent`, `category_id`, `created_at`, `updated_at`) VALUES
+(9, 'asd', 'ييي', '', NULL, 2, '2016-08-10 14:38:32', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -3341,6 +3351,12 @@ ALTER TABLE `cards`
   ADD KEY `match_id` (`match_id`),
   ADD KEY `team_id` (`team_id`),
   ADD KEY `nation_id` (`nation_id`);
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `championships`
@@ -3454,7 +3470,8 @@ ALTER TABLE `groups`
 -- Indexes for table `g_albums`
 --
 ALTER TABLE `g_albums`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `category_id` (`category_id`);
 
 --
 -- Indexes for table `g_album_photos`
@@ -3799,10 +3816,7 @@ ALTER TABLE `users`
 --
 ALTER TABLE `v_albums`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `country_id` (`country_id`),
-  ADD KEY `team_id` (`team_id`),
-  ADD KEY `nation_id` (`nation_id`),
-  ADD KEY `championship_id` (`championship_id`);
+  ADD KEY `category_id` (`category_id`);
 
 --
 -- Indexes for table `winners`
@@ -3858,10 +3872,15 @@ ALTER TABLE `branches`
 ALTER TABLE `cards`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `championships`
 --
 ALTER TABLE `championships`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `championship_sponsors`
 --
@@ -4126,7 +4145,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `v_albums`
 --
 ALTER TABLE `v_albums`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `winners`
 --
@@ -4260,6 +4279,12 @@ ALTER TABLE `goals`
 --
 ALTER TABLE `groups`
   ADD CONSTRAINT `groups_ibfk_1` FOREIGN KEY (`championship_id`) REFERENCES `championships` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `g_albums`
+--
+ALTER TABLE `g_albums`
+  ADD CONSTRAINT `g_albums_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
 
 --
 -- Constraints for table `g_album_photos`
@@ -4523,10 +4548,7 @@ ALTER TABLE `team_sponsors`
 -- Constraints for table `v_albums`
 --
 ALTER TABLE `v_albums`
-  ADD CONSTRAINT `v_albums_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `v_albums_ibfk_2` FOREIGN KEY (`team_id`) REFERENCES `teams` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `v_albums_ibfk_3` FOREIGN KEY (`nation_id`) REFERENCES `nations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `v_albums_ibfk_4` FOREIGN KEY (`championship_id`) REFERENCES `championships` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `v_albums_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
 
 --
 -- Constraints for table `winners`

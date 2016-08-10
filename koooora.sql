@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 09, 2016 at 10:11 AM
--- Server version: 10.1.10-MariaDB
--- PHP Version: 5.6.19
+-- Generation Time: Aug 10, 2016 at 01:04 PM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 5.6.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -58,13 +58,6 @@ CREATE TABLE `agents` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `agents`
---
-
-INSERT INTO `agents` (`id`, `name`, `country_id`, `flag`, `addition_info`, `updated_at`, `created_at`) VALUES
-(1, 'alaa', NULL, NULL, NULL, '2016-07-18 09:38:19', '2016-07-18 09:38:19');
 
 -- --------------------------------------------------------
 
@@ -1337,6 +1330,14 @@ CREATE TABLE `g_albums` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `g_albums`
+--
+
+INSERT INTO `g_albums` (`id`, `title`, `meta`, `created_at`, `updated_at`) VALUES
+(2, 'ss', 'dd', '2016-08-09 15:35:22', '2016-08-09 13:35:22'),
+(3, 'aa', '', '2016-08-09 11:30:01', '2016-08-09 11:30:01');
+
 -- --------------------------------------------------------
 
 --
@@ -1345,12 +1346,19 @@ CREATE TABLE `g_albums` (
 
 CREATE TABLE `g_album_photos` (
   `id` int(11) NOT NULL,
-  `album_id` int(11) NOT NULL,
+  `g_album_id` int(11) NOT NULL,
   `flag` text NOT NULL,
   `alt` text,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `g_album_photos`
+--
+
+INSERT INTO `g_album_photos` (`id`, `g_album_id`, `flag`, `alt`, `created_at`, `updated_at`) VALUES
+(18, 2, '1470750225', 'gh', '2016-08-09 13:53:02', '2016-08-09 11:53:02');
 
 -- --------------------------------------------------------
 
@@ -3234,9 +3242,21 @@ CREATE TABLE `v_albums` (
   `vedio_url` text NOT NULL,
   `meta` text,
   `title` text NOT NULL,
+  `country_id` int(11) DEFAULT NULL,
+  `team_id` int(11) DEFAULT NULL,
+  `nation_id` int(11) DEFAULT NULL,
+  `continent` text,
+  `championship_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `v_albums`
+--
+
+INSERT INTO `v_albums` (`id`, `vedio_url`, `meta`, `title`, `country_id`, `team_id`, `nation_id`, `continent`, `championship_id`, `created_at`, `updated_at`) VALUES
+(3, 'https://www.youtube.com/watch?v=aiXbwl2RBhc', 'ff', 'aa', NULL, NULL, NULL, NULL, NULL, '2016-08-09 15:38:31', '2016-08-09 13:38:31');
 
 -- --------------------------------------------------------
 
@@ -3441,7 +3461,7 @@ ALTER TABLE `g_albums`
 --
 ALTER TABLE `g_album_photos`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `album_id` (`album_id`);
+  ADD KEY `album_id` (`g_album_id`);
 
 --
 -- Indexes for table `managers`
@@ -3778,7 +3798,11 @@ ALTER TABLE `users`
 -- Indexes for table `v_albums`
 --
 ALTER TABLE `v_albums`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `country_id` (`country_id`),
+  ADD KEY `team_id` (`team_id`),
+  ADD KEY `nation_id` (`nation_id`),
+  ADD KEY `championship_id` (`championship_id`);
 
 --
 -- Indexes for table `winners`
@@ -3802,7 +3826,7 @@ ALTER TABLE `adverts`
 -- AUTO_INCREMENT for table `agents`
 --
 ALTER TABLE `agents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `agent_histories`
 --
@@ -3902,12 +3926,12 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `g_albums`
 --
 ALTER TABLE `g_albums`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `g_album_photos`
 --
 ALTER TABLE `g_album_photos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `managers`
 --
@@ -4102,7 +4126,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `v_albums`
 --
 ALTER TABLE `v_albums`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `winners`
 --
@@ -4241,7 +4265,7 @@ ALTER TABLE `groups`
 -- Constraints for table `g_album_photos`
 --
 ALTER TABLE `g_album_photos`
-  ADD CONSTRAINT `g_album_photos_ibfk_1` FOREIGN KEY (`album_id`) REFERENCES `g_albums` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `g_album_photos_ibfk_1` FOREIGN KEY (`g_album_id`) REFERENCES `g_albums` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `managers`
@@ -4494,6 +4518,15 @@ ALTER TABLE `team_sponsors`
   ADD CONSTRAINT `team_sponsors_ibfk_1` FOREIGN KEY (`team_id`) REFERENCES `teams` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `team_sponsors_ibfk_2` FOREIGN KEY (`sponsor_id`) REFERENCES `sponsors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `team_sponsors_ibfk_3` FOREIGN KEY (`nation_id`) REFERENCES `nations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `v_albums`
+--
+ALTER TABLE `v_albums`
+  ADD CONSTRAINT `v_albums_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `v_albums_ibfk_2` FOREIGN KEY (`team_id`) REFERENCES `teams` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `v_albums_ibfk_3` FOREIGN KEY (`nation_id`) REFERENCES `nations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `v_albums_ibfk_4` FOREIGN KEY (`championship_id`) REFERENCES `championships` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `winners`

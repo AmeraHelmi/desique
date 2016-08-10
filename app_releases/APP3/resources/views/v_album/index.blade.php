@@ -39,7 +39,6 @@
 										<td>{{ $row->nname }}</td>
 										<td>{{ $row->pname }}</td>
 										<td>{{ $row->cname }}</td>
-
 										<td>{!! $row->actions !!}</td>
 								</tr>
 								@endforeach

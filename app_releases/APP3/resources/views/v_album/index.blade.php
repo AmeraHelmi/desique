@@ -187,7 +187,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="editEmployeeModalLabel"><i class="fa fa-pencil"></i> تحديث</h4>
             </div>
-            <form role="form" id="update_form" method="POST" class="editForm" data-id="" action="{{ url('/v_album/update') }}" data-toggle="validator">
+            <form role="form" id="update_form" method="POST" class="editForm" data-id="" action="{{ url('/v_album/update') }}" data-toggle="validator"  enctype="multipart/form-data">
                 <div class="modal-body">
                     @include('v_album.form')
                 </div>
@@ -235,7 +235,7 @@
 	  //Update
 	  $('.editForm').ajaxForm(function() {
 	  $('#showupdate').show(100);
-	  $('#editTclothModal').modal('hide');
+	  $('#editagentModal').modal('hide');
 	  oTable.ajax.reload();
 	  oTable.draw();
 	      });

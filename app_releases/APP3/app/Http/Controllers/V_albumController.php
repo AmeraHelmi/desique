@@ -30,7 +30,7 @@ class V_albumController extends Controller {
             $v_albums = $album
 		    ->join('categories as c ','c.id','=','v_albums.category_id')
 			->select(array(
-				        'v_albums.id as VID',
+				    'v_albums.id as VID',
 						'v_albums.title as title',
 						'v_albums.vedio_url as vedio_url',
 						'v_albums.description as description',
@@ -160,12 +160,10 @@ class V_albumController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(Request $request , $id)
+	public function update(Request $request )
 	{
 		$v_album 	= V_album::find(session('Vid'));
-		$v_album->title 	= $request->title ;
-		$v_album->vedio_url 	= $request->vedio_url ;
-		$v_album->category_id    =$request->category_id;
+
 		if(!empty($_FILES))
 		{
 			if(Input::hasFile('flag'))
@@ -174,13 +172,22 @@ class V_albumController extends Controller {
 				$filename=time();
 				$file->move('images/uploads', $filename);
 				$v_album->flag    =$filename;
+				$v_album->title 	= $request->title ;
+				$v_album->vedio_url 	= $request->vedio_url ;
+				$v_album->category_id    =$request->category_id;
+				$v_album->description    =$request->description;
+
 			}
 		}
 		else
 		{
 				$v_album->flag=session('Vimage');
+				$v_album->title 	= $request->title ;
+				$v_album->vedio_url 	= $request->vedio_url ;
+				$v_album->category_id    =$request->category_id;
+				$v_album->description    =$request->description;
+
 		}
-		$v_album->description    =$request->description;
 		$v_album->save();
 		return response(array('msg' => 'Adding Successfull'), 200)
 							->header('Content-Type', 'application/json');

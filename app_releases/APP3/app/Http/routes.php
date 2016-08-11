@@ -590,6 +590,7 @@ Route::resource('g_album_photo', 'G_album_photoController');
 
 //v_album
 Route::POST    ('/v_album/store'          , 'V_albumController@store');
+Route::POST    ('/v_album/update'          , 'V_albumController@update');
 Route::resource('/v_album'                , 'V_albumController');
 
 //category

@@ -18,16 +18,15 @@
 						<thead>
 								<tr>
 										<th class="col-md-4">الأسم</th>
-										<th class="col-md-4">كلمات البحث</th>
-
+										<th class="col-md-4">الفئه</th>
 										<th class="col-md-2">خيارات</th>
 								</tr>
 						</thead>
 						<tbody>
 								@foreach ($tableData->getData()->data as $row)
 								<tr>
-										<td>{{ $row->title }}</td>
-                                                                                <td>{{ $row->meta }}</td>
+										<td>{{ $row->G_title }}</td>
+                                        <td>{{ $row->C_name }}</td>
 										<td>{!! $row->actions !!}</td>
 								</tr>
 								@endforeach
@@ -208,8 +207,8 @@
 		"responsive": true,
 		"deferLoading": {{ $tableData->getData()->recordsFiltered }},
 		"columns": [
-				{data: 'title', name: 'title'},
-        {data: 'meta', name: 'meta'},
+				{data: 'G_title', name: 'G_title'},
+                {data: 'C_name', name: 'C_name'},
 				{data: 'actions', name: 'actions', orderable: false, searchable: false}
 		]
 	});

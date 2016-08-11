@@ -155,10 +155,8 @@
 								<tr>
 
 										<th class="col-md-4">اسم الالبوم</th>
-                    <th class="col-md-3">اسم الصورة</th>
-
                     <th class="col-md-3">الصوره</th>
-
+                    <th class="col-md-3">الوصف</th>
 										<th class="col-md-2">خيارات</th>
 
 								</tr>
@@ -172,10 +170,8 @@
 								<tr>
 
 										<td>{{ $row->title }}</td>
-                    <td>{{ $row->alt }}</div></td>
-
-                    <td>{!! $row->flag !!}</div></td>
-
+                    <td>{!! $row->flag !!}</td>
+                    <td>{{ $row->alt }}</td>
 										<td>{!! $row->actions !!}</td>
 
 								</tr>
@@ -252,7 +248,7 @@
 
                 <div class="modal-body">
 
-                    @include('g_album_photo.form')
+                    @include('g_album_photo.form_update')
 
                 </div>
 
@@ -402,9 +398,9 @@
 		"responsive": true,
 		"deferLoading": {{ $tableData->getData()->recordsFiltered }},
 		"columns": [
-      {data: 'title', name: 'title'},
+        {data: 'title', name: 'title'},
+        {data: 'flag', name: 'flag'},
 				{data: 'alt', name: 'alt'},
-     			{data: 'flag', name: 'flag'},
 				{data: 'actions', name: 'actions', orderable: false, searchable: false}
 		]
 

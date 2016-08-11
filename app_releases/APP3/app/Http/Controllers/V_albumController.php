@@ -40,7 +40,7 @@ class V_albumController extends Controller {
                         ->orderBy('title')->get();
 
             $tableData = Datatables::of($v_albums)
-->editColumn('vedio_url', '<object  width="560" height="315" data="{!! $vedio_url !!}" frameborder="0" allowfullscreen></object>')
+->editColumn('vedio_url', '<embed  width="560" height="315" src="{!! $vedio_url !!}" frameborder="0" allowfullscreen>')
              ->addColumn('actions', function ($data)
             {
                 return view('partials.actionBtns')->with('controller','v_album')->with('id', $data->VID)->render();

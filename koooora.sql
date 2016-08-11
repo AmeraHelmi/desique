@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 10, 2016 at 05:34 PM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.20
+-- Generation Time: Aug 11, 2016 at 11:42 AM
+-- Server version: 10.1.10-MariaDB
+-- PHP Version: 5.6.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -102,12 +102,12 @@ CREATE TABLE `bcomments` (
   `id` int(11) NOT NULL,
   `blog_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `comment` text NOT NULL,
+  `comment` text CHARACTER SET utf8 NOT NULL,
   `time` time NOT NULL,
   `date` date NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1356,11 +1356,18 @@ CREATE TABLE `groups` (
 
 CREATE TABLE `g_albums` (
   `id` int(11) NOT NULL,
-  `title` text NOT NULL,
+  `title` text CHARACTER SET utf8 NOT NULL,
   `category_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `g_albums`
+--
+
+INSERT INTO `g_albums` (`id`, `title`, `category_id`, `created_at`, `updated_at`) VALUES
+(3, 'bbbbbbbbbbbbbbbb', 3, '2016-08-11 07:35:46', '2016-08-11 05:35:46');
 
 -- --------------------------------------------------------
 
@@ -1371,11 +1378,27 @@ CREATE TABLE `g_albums` (
 CREATE TABLE `g_album_photos` (
   `id` int(11) NOT NULL,
   `g_album_id` int(11) NOT NULL,
-  `flag` text NOT NULL,
-  `alt` text,
+  `flag` text CHARACTER SET latin1 NOT NULL,
+  `alt` text CHARACTER SET utf8,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `g_album_photos`
+--
+
+INSERT INTO `g_album_photos` (`id`, `g_album_id`, `flag`, `alt`, `created_at`, `updated_at`) VALUES
+(18, 3, '1470907684', 'hh6h', '2016-08-11 09:28:04', '2016-08-11 07:28:04'),
+(19, 3, '1470907705', '1470907705', '2016-08-11 07:28:24', '2016-08-11 07:28:24'),
+(20, 3, '1470907706', '1470907706', '2016-08-11 07:28:24', '2016-08-11 07:28:24'),
+(21, 3, '1470907707', '1470907707', '2016-08-11 07:28:24', '2016-08-11 07:28:24'),
+(22, 3, '1470907720', 'uggugu', '2016-08-11 09:34:23', '2016-08-11 07:34:23'),
+(24, 3, '1470908048', '1470908048', '2016-08-11 07:34:07', '2016-08-11 07:34:07'),
+(25, 3, '1470908049', '1470908049', '2016-08-11 07:34:07', '2016-08-11 07:34:07'),
+(26, 3, '1470908381', '1470908381', '2016-08-11 07:39:40', '2016-08-11 07:39:40'),
+(27, 3, '1470908382', '1470908382', '2016-08-11 07:39:40', '2016-08-11 07:39:40'),
+(28, 3, '1470908383', '1470908383', '2016-08-11 07:39:40', '2016-08-11 07:39:40');
 
 -- --------------------------------------------------------
 
@@ -3949,12 +3972,12 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `g_albums`
 --
 ALTER TABLE `g_albums`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `g_album_photos`
 --
 ALTER TABLE `g_album_photos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `managers`
 --

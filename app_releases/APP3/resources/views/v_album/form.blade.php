@@ -12,17 +12,6 @@
     <span class="help-block with-errors errorName"></span>
 </div>
 <div class="form-group">
-<label for="exampleInputPassword1">كلمات البحث</label>
-<input type="text"
-  class="form-control"
-  name="meta"
-  placeholder="أدخل كلمات البحث"
-
-  class="form-control"
-  >
-    <span class="help-block with-errors errorName"></span>
-</div>
-<div class="form-group">
 
    <label for="exampleInputFile" style="float: right;">رابط الفيديو</label>
 
@@ -51,15 +40,26 @@
    </select>
    </div>
 
-
    <div class="form-group">
-   <label for="exampleInputPassword1">القارة</label>
-   <input type="text"
-     class="form-control"
-     name="continent"
-     placeholder="ادخل اسم القارة"
 
-     class="form-control"
-     >
-       <span class="help-block with-errors errorName"></span>
+   <label for="exampleInputPassword1">محتوى الفيديو</label>
+
+   <textarea rows="2" cols="30" name="description" class="form-control"></textarea>
+
+   </div>
+
+   <div class="fileupload fileupload-new" data-provides="fileupload">
+     <span class="btn btn-primary btn-file"><span class="fileupload-new">الصوره</span>
+     <span class="fileupload-exists">تغير</span>
+             <input type="file" name="flag" /></span>
+     <span class="fileupload-preview"></span>
+     <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+   </div>
+
+   <div class="form-group" style="display:none;">
+   <label for="exampleInputFile">pic path</label>
+   <input type="text"
+    name="flag"
+    id="flag"
+    >
    </div>

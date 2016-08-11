@@ -1,4 +1,105 @@
 @extends('admin')
+@section('styles')
+
+<style>
+
+.image {
+
+    width: 100%;
+
+    height: 100%;
+
+}
+
+
+
+.image img {
+
+    -webkit-transition: all 1s ease; /* Safari and Chrome */
+
+    -moz-transition: all 1s ease; /* Firefox */
+
+    -ms-transition: all 1s ease; /* IE 9 */
+
+    -o-transition: all 1s ease; /* Opera */
+
+    transition: all 1s ease;
+
+}
+
+
+
+.image img:hover  {
+
+    -webkit-transform:scale(7.5); /* Safari and Chrome */
+
+    -moz-transform:scale(7.5); /* Firefox */
+
+    -ms-transform:scale(7.5); /* IE 9 */
+
+    -o-transform:scale(7.5); /* Opera */
+
+     transform:scale(7.5);
+
+}
+
+
+
+/* leave this part out */
+
+/* leave this part out */
+
+
+
+.clearfix{*zoom:1;}.clearfix:before,.clearfix:after{display:table;content:"";line-height:0;}
+
+.clearfix:after{clear:both;}
+
+.hide-text{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0;}
+
+.input-block-level{display:block;width:100%;min-height:30px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+
+.btn-file{overflow:hidden;position:relative;vertical-align:middle;}.btn-file>input{position:absolute;top:0;right:0;margin:0;opacity:0;filter:alpha(opacity=0);transform:translate(-300px, 0) scale(4);font-size:23px;direction:ltr;cursor:pointer;}
+
+.fileupload{margin-bottom:9px;}.fileupload .uneditable-input{display:inline-block;margin-bottom:0px;vertical-align:middle;cursor:text;}
+
+.fileupload .thumbnail{overflow:hidden;display:inline-block;margin-bottom:5px;vertical-align:middle;text-align:center;}.fileupload .thumbnail>img{display:inline-block;vertical-align:middle;max-height:100%;}
+
+.fileupload .btn{vertical-align:middle;}
+
+.fileupload-exists .fileupload-new,.fileupload-new .fileupload-exists{display:none;}
+
+.fileupload-inline .fileupload-controls{display:inline;}
+
+.fileupload-new .input-append .btn-file{-webkit-border-radius:0 3px 3px 0;-moz-border-radius:0 3px 3px 0;border-radius:0 3px 3px 0;}
+
+.thumbnail-borderless .thumbnail{border:none;padding:0;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0;-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none;}
+
+.fileupload-new.thumbnail-borderless .thumbnail{border:1px solid #ddd;}
+
+.control-group.warning .fileupload .uneditable-input{color:#a47e3c;border-color:#a47e3c;}
+
+.control-group.warning .fileupload .fileupload-preview{color:#a47e3c;}
+
+.control-group.warning .fileupload .thumbnail{border-color:#a47e3c;}
+
+.control-group.error .fileupload .uneditable-input{color:#b94a48;border-color:#b94a48;}
+
+.control-group.error .fileupload .fileupload-preview{color:#b94a48;}
+
+.control-group.error .fileupload .thumbnail{border-color:#b94a48;}
+
+.control-group.success .fileupload .uneditable-input{color:#468847;border-color:#468847;}
+
+.control-group.success .fileupload .fileupload-preview{color:#468847;}
+
+.control-group.success .fileupload .thumbnail{border-color:#468847;}
+
+</style>
+
+@endsection
+
+
 @section('content')
 
 		<div class="content-wrapper">
@@ -9,6 +110,22 @@
 <br>
 
 <ul class="alerts-list delete"></ul>
+<ul class="alerts-list" style="display:none;" id="show">
+  <li>
+     <div class="alert alert-success alert-dismissable">
+           <i class="icon-remove-sign"></i> تم أضافة الزى بنجـــــــــــــاح!.
+           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+       </div>
+   </li>
+</ul>
+<ul class="alerts-list" style="display:none;" id="showupdate">
+  <li>
+     <div class="alert alert-success alert-dismissable">
+           <i class="icon-remove-sign"></i> تم تحديث البيانات  بنجـــــــــــــاح!.
+           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+       </div>
+   </li>
+</ul>
 <a class="btn btn-primary" data-toggle="modal" data-target="#addModal" style="margin-bottom:20px;" >
 		<i class="fa fa-plus-circle" style="font-size: 18px;"></i> أضافة البوم
 </a>
@@ -17,12 +134,11 @@
 				<table id="countries" class="table table-striped table-bordered table-hover datatable">
 						<thead>
 								<tr>
-										<th class="col-md-2">الأسم</th>
-										<th class="col-md-2">كلمات البحث</th>
+									<th class="col-md-2">الأسم</th>
+									<th class="col-md-2">الصورة</th>
+										<th class="col-md-2">المحتوى</th>
 										<th class="col-md-3">رابط الفيديو</th>
-										<th class="col-md-1">القارة</th>
 										<th class="col-md-1">الفئة</th>
-
 										<th class="col-md-2">خيارات</th>
 								</tr>
 						</thead>
@@ -30,11 +146,10 @@
 								@foreach ($tableData->getData()->data as $row)
 								<tr>
 										<td>{{ $row->title }}</td>
-										<td>{{ $row->meta }}</td>
+										<td>{!! $row->flag !!}</td>
+										<td>{{ $row->description }}</td>
                     <td>{!! $row->vedio_url !!}</td>
-										<td>{{ $row->continent }}</td>
 										<td>{{ $row->cname }}</td>
-
 										<td>{!! $row->actions !!}</td>
 								</tr>
 								@endforeach
@@ -50,7 +165,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="addModalLabel"><i class="fa fa-plus-circle"></i> أضافة البوم</h4>
             </div>
-            <form role="form"  method="POST" class="addForm" action="{{ url('/v_album/store') }}" data-toggle="validator">
+            <form role="form"  method="POST" class="addForm" action="{{ url('/v_album/store') }}" data-toggle="validator" enctype="multipart/form-data">
                 <div class="modal-body">
                     @include('v_album.form')
                 </div>
@@ -93,6 +208,8 @@
 
 	@section('scripts')
 	<script type="text/javascript">
+	!function(e){var t=function(t,n){this.$element=e(t),this.type=this.$element.data("uploadtype")||(this.$element.find(".thumbnail").length>0?"image":"file"),this.$input=this.$element.find(":file");if(this.$input.length===0)return;this.name=this.$input.attr("name")||n.name,this.$hidden=this.$element.find('input[type=hidden][name="'+this.name+'"]'),this.$hidden.length===0&&(this.$hidden=e('<input type="hidden" />'),this.$element.prepend(this.$hidden)),this.$preview=this.$element.find(".fileupload-preview");var r=this.$preview.css("height");this.$preview.css("display")!="inline"&&r!="0px"&&r!="none"&&this.$preview.css("line-height",r),this.original={exists:this.$element.hasClass("fileupload-exists"),preview:this.$preview.html(),hiddenVal:this.$hidden.val()},this.$remove=this.$element.find('[data-dismiss="fileupload"]'),this.$element.find('[data-trigger="fileupload"]').on("click.fileupload",e.proxy(this.trigger,this)),this.listen()};t.prototype={listen:function(){this.$input.on("change.fileupload",e.proxy(this.change,this)),e(this.$input[0].form).on("reset.fileupload",e.proxy(this.reset,this)),this.$remove&&this.$remove.on("click.fileupload",e.proxy(this.clear,this))},change:function(e,t){if(t==="clear")return;var n=e.target.files!==undefined?e.target.files[0]:e.target.value?{name:e.target.value.replace(/^.+\\/,"")}:null;if(!n){this.clear();return}this.$hidden.val(""),this.$hidden.attr("name",""),this.$input.attr("name",this.name);if(this.type==="image"&&this.$preview.length>0&&(typeof n.type!="undefined"?n.type.match("image.*"):n.name.match(/\.(gif|png|jpe?g)$/i))&&typeof FileReader!="undefined"){var r=new FileReader,i=this.$preview,s=this.$element;r.onload=function(e){i.html('<img src="'+e.target.result+'" '+(i.css("max-height")!="none"?'style="max-height: '+i.css("max-height")+';"':"")+" />"),s.addClass("fileupload-exists").removeClass("fileupload-new")},r.readAsDataURL(n)}else this.$preview.text(n.name),this.$element.addClass("fileupload-exists").removeClass("fileupload-new")},clear:function(e){this.$hidden.val(""),this.$hidden.attr("name",this.name),this.$input.attr("name","");if(navigator.userAgent.match(/msie/i)){var t=this.$input.clone(!0);this.$input.after(t),this.$input.remove(),this.$input=t}else this.$input.val("");this.$preview.html(""),this.$element.addClass("fileupload-new").removeClass("fileupload-exists"),e&&(this.$input.trigger("change",["clear"]),e.preventDefault())},reset:function(e){this.clear(),this.$hidden.val(this.original.hiddenVal),this.$preview.html(this.original.preview),this.original.exists?this.$element.addClass("fileupload-exists").removeClass("fileupload-new"):this.$element.addClass("fileupload-new").removeClass("fileupload-exists")},trigger:function(e){this.$input.trigger("click"),e.preventDefault()}},e.fn.fileupload=function(n){return this.each(function(){var r=e(this),i=r.data("fileupload");i||r.data("fileupload",i=new t(this,n)),typeof n=="string"&&i[n]()})},e.fn.fileupload.Constructor=t,e(document).on("click.fileupload.data-api",'[data-provides="fileupload"]',function(t){var n=e(this);if(n.data("fileupload"))return;n.fileupload(n.data());var r=e(t.target).closest('[data-dismiss="fileupload"],[data-trigger="fileupload"]');r.length>0&&(r.trigger("click.fileupload"),t.preventDefault())})}(window.jQuery)
+
 	$(document).ready(function() {
 		function populateForm(response, frm) {
         var i;
@@ -105,43 +222,23 @@
 		$("#submitForm").on('click', function(e){
         $('#addModal').modal('hide');
     });
-		//add country
-    $("#addModal form").on('submit', function(e){
-        if (!e.isDefaultPrevented())
-        {
-            var self = $(this);
-            $.ajax({
-                url: '{!!URL::route('addv_album')!!}',
-                type: "POST",
-                data: self.serialize(),
-                success: function(res){
-                    $('.addForm')[0].reset();
-                    $('.alerts-list').append(
-                        '<li>\
-                    <div class="alert alert-success alert-dismissable">\
-                                <i class="icon-check-sign"></i> تمت الأضافه بنجـــــــــــاح!\
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
-                            </div>\
-                        </li>');
-					oTable.ajax.reload();
-                    oTable.draw();
-                },
-                error: function(){
-                    $('#addModal').modal('hide')
-                    $('.alerts-list').append(
-                        '<li>\
-                            <div class="alert alert-danger alert-dismissable">\
-                                <i class="icon-remove-sign"></i> <strong>Opps!</strong> حدث خطأ.\
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
-                            </div>\
-                        </li>');
-                }
-            });
-            e.preventDefault();
-        }
-     });
 
 
+    //add
+    $('.addForm').ajaxForm(function() {
+    $('.addForm')[0].reset();
+    $('#show').show(100);
+    oTable.ajax.reload();
+    oTable.draw();
+        });
+
+	  //Update
+	  $('.editForm').ajaxForm(function() {
+	  $('#showupdate').show(100);
+	  $('#editTclothModal').modal('hide');
+	  oTable.ajax.reload();
+	  oTable.draw();
+	      });
 		     /* Edit Form */
 
 		     $(document.body).validator().on('click', '.edit', function() {
@@ -171,42 +268,6 @@
 		         });
 		     });
 
-				 /* update Form Submission */
-		     $("#editagentModal form").validator().on('submit', function(e){
-		         if (!e.isDefaultPrevented())
-		         {
-		             var self = $(this);
-		             $.ajax({
-		                 url: "{{ url('v_album') }}" + "/" +  self.attr("data-id"),
-		                 type: "POST",
-		                 data: "_method=PUT&" + self.serialize(),
-		                 success: function(res){
-		                     $('#editagentModal').modal('hide');
-		                     $('.alerts-list').append(
-		                         '<li>\
-		                             <div class="alert alert-success alert-dismissable">\
-		                                 <i class="icon-check-sign"></i> تم تعديل الالبوم بنجـــــــــاح!\
-		                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
-		                             </div>\
-		                         </li>');
-								oTable.ajax.reload();
-
-		                 },
-		                 error: function(){
-		                     $('#editagentModal').modal('hide')
-		         		 		                     $('.alerts-list').append(
-                     '<li>\
-                         <div class="alert alert-danger alert-dismissable">\
-                             <i class="icon-remove-sign"></i> <strong>Opps!</strong>حدث خطأ.\
-                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
-                         </div>\
-                     </li>');
-		                         oTable.ajax.reload();
-		                 }
-		             });
-		             e.preventDefault();
-		         }
-		      });
 
 
 	oTable = $('#countries').DataTable({
@@ -216,9 +277,9 @@
 		"deferLoading": {{ $tableData->getData()->recordsFiltered }},
 		"columns": [
 				{data: 'title', name: 'title'},
-				{data: 'meta', name: 'meta'},
+				{data: 'flag', name: 'flag'},
+				{data: 'description', name: 'description'},
 				{data: 'vedio_url', name: 'vedio_url'},
-				{data: 'continent', name: 'continent'},
 				{data: 'cname', name: 'cname'},
 				{data: 'actions', name: 'actions', orderable: false, searchable: false}
 		]

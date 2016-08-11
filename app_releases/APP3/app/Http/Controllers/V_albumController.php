@@ -1,6 +1,5 @@
 <?php namespace App\Http\Controllers;
 
-
 use App\Http\Requests;
 use App\Models\V_album;
 use App\Models\Country;
@@ -22,11 +21,12 @@ class V_albumController extends Controller {
 	 *
 	 * @return Response
 	 */
-	 public function __construct()
+	public function __construct()
 	 {
-            $this->middleware('auth');
+      $this->middleware('auth');
 	 }
 	public function index(V_album $album , Request $request)
+<<<<<<< HEAD
 	{
             $v_albums = $album
 		    ->join('categories as c ','c.id','=','v_albums.category_id')
@@ -53,36 +53,77 @@ class V_albumController extends Controller {
 			->with('categories',$categories)
 			->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	}
+=======
+	 {
+      $v_albums = $album
+		              ->join('categories as c ','c.id','=','v_albums.category_id')
+		              ->select(array(
+				                        'v_albums.id as VID',
+																'v_albums.title as title',
+																'v_albums.vedio_url as vedio_url',
+																'v_albums.flag as flag',
+																'v_albums.description as description',
+																'c.name as cname'))
+                        				->orderBy('title')->get();
+
+      $tableData = Datatables::of($v_albums)
+										->editColumn('flag', '<div class="image"><img src="images/uploads/{{ $flag }}"  width="50px" height="50px">')
+             				->addColumn('actions', function ($data)
+            				{
+                			return view('partials.actionBtns')->with('controller','v_album')->with('id', $data->VID)->render();
+            				});
+
+    	if($request->ajax())
+					return DatatablePresenter::make($tableData, 'index');
+					$categories=Category::lists('id','name');
+					return view('v_album.index')
+									->with('categories',$categories)
+									->with('tableData', DatatablePresenter::make($tableData, 'index'));
+	 }
+>>>>>>> df65834d351b0a779dd3c4699920cd1711064889
 
 	/**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Response
 	 */
-	public function create()
-	{
-	}
+	 public function create()
+	 {
+	 }
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request)
-	{
+	 public function store(Request $request)
+	 {
+		   if(Input::hasFile('flag'))
+			 {
+				 $file = Input::file('flag');
+			   $filename=time();
+			   $file->move('images/uploads', $filename);
 
-            $v_album = new V_album;
-             $v_album->title    =$request->title;
-						$v_album->meta    =$request->meta;
-						$v_album->vedio_url    =$request->vedio_url;
-						$v_album->category_id    =$request->category_id;
-						$v_album->continent    =$request->continent;
-            $v_album->save();
-            if($request->ajax())
-                {
-                    return response(array('msg' => 'adding Successfull'), 200)
-                            ->header('Content-Type', 'application/json');
-		}
+         $v_album = new V_album;
+         $v_album->title        =$request->title;
+				 $v_album->vedio_url    =$request->vedio_url;
+				 $v_album->category_id  =$request->category_id;
+				 $v_album->flag         =$filename;
+				 $v_album->description  =$request->description;
+
+         $v_album->save();
+
+			}
+			if($request->ajax())
+		 {
+				 return response(array('msg' => 'adding Successfull'), 200)
+												 ->header('Content-Type', 'application/json');
+		 }
+				else
+				{
+						return response(false, 200)
+														->header('Content-Type', 'application/json');
+				}
 
 	}
 
@@ -105,12 +146,14 @@ class V_albumController extends Controller {
 	 */
 	public function edit(Request $request , $id)
 	{
-            $v_album = V_album::find($id);
-            if($request->ajax())
-                {
-                    return response(array('msg' => 'Adding Successfull', 'data'=> $v_album->toJson() ), 200)
+			$v_album = V_album::find($id);
+			session(['Vid'    => $v_album->id]);
+			session(['Vimage' => $v_album->flag]);
+      if($request->ajax())
+      {
+					return response(array('msg' => 'Adding Successfull', 'data'=> $v_album->toJson() ), 200)
                             ->header('Content-Type', 'application/json');
-		}
+			}
 	}
 
 	/**
@@ -121,15 +164,25 @@ class V_albumController extends Controller {
 	 */
 	public function update(Request $request , $id)
 	{
-
-		$v_album 	= V_album::find($id);
+		$v_album 	= V_album::find(session('Vid'));
 		$v_album->title 	= $request->title ;
-		$v_album->meta 	= $request->meta ;
 		$v_album->vedio_url 	= $request->vedio_url ;
 		$v_album->category_id    =$request->category_id;
-		$v_album->continent    =$request->continent;
-
-
+		if(!empty($_FILES))
+		{
+			if(Input::hasFile('flag'))
+			{
+				$file = Input::file('flag');
+				$filename=time();
+				$file->move('images/uploads', $filename);
+				$v_album->flag    =$filename;
+			}
+		}
+		else
+		{
+				$v_album->flag=session('Vimage');
+		}
+		$v_album->description    =$request->description;
 		$v_album->save();
 		return response(array('msg' => 'Adding Successfull'), 200)
 							->header('Content-Type', 'application/json');
@@ -145,10 +198,11 @@ class V_albumController extends Controller {
 	{
 		$v_album 	= V_album::find($id);
 		$v_album->delete();
-		if($request->ajax()){
-			return response(array('msg' => 'Removing Successfull'), 200)
+		if($request->ajax())
+		{
+			  return response(array('msg' => 'Removing Successfull'), 200)
 								->header('Content-Type', 'application/json');
-			}
+		}
 		return redirect()->back();
 	}
 

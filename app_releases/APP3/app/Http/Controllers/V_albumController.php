@@ -26,16 +26,13 @@ class V_albumController extends Controller {
       $this->middleware('auth');
 	 }
 	public function index(V_album $album , Request $request)
-<<<<<<< HEAD
 	{
             $v_albums = $album
 		    ->join('categories as c ','c.id','=','v_albums.category_id')
 			->select(array(
 				        'v_albums.id as VID',
 						'v_albums.title as title',
-						'v_albums.meta as meta',
 						'v_albums.vedio_url as vedio_url',
-						'v_albums.continent as continent',
 						'c.name as cname'))
                         ->orderBy('title')->get();
 
@@ -52,9 +49,9 @@ class V_albumController extends Controller {
 		return view('v_album.index')
 			->with('categories',$categories)
 			->with('tableData', DatatablePresenter::make($tableData, 'index'));
-	}
-=======
-	 {
+	
+
+	 
       $v_albums = $album
 		              ->join('categories as c ','c.id','=','v_albums.category_id')
 		              ->select(array(
@@ -80,7 +77,6 @@ class V_albumController extends Controller {
 									->with('categories',$categories)
 									->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	 }
->>>>>>> df65834d351b0a779dd3c4699920cd1711064889
 
 	/**
 	 * Show the form for creating a new resource.

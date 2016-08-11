@@ -148,7 +148,7 @@
 										<td>{{ $row->title }}</td>
 										<td>{!! $row->flag !!}</td>
 										<td>{{ $row->description }}</td>
-                    <td>{!! $row->vedio_url !!}</td>
+                                        <td>{!! $row->vedio_url !!}</td>
 										<td>{{ $row->cname }}</td>
 										<td>{!! $row->actions !!}</td>
 								</tr>

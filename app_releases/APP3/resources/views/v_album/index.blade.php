@@ -110,6 +110,22 @@
 <br>
 
 <ul class="alerts-list delete"></ul>
+<ul class="alerts-list" style="display:none;" id="show">
+  <li>
+     <div class="alert alert-success alert-dismissable">
+           <i class="icon-remove-sign"></i> تم أضافة الزى بنجـــــــــــــاح!.
+           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+       </div>
+   </li>
+</ul>
+<ul class="alerts-list" style="display:none;" id="showupdate">
+  <li>
+     <div class="alert alert-success alert-dismissable">
+           <i class="icon-remove-sign"></i> تم تحديث البيانات  بنجـــــــــــــاح!.
+           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+       </div>
+   </li>
+</ul>
 <a class="btn btn-primary" data-toggle="modal" data-target="#addModal" style="margin-bottom:20px;" >
 		<i class="fa fa-plus-circle" style="font-size: 18px;"></i> أضافة البوم
 </a>
@@ -123,7 +139,6 @@
 										<th class="col-md-2">المحتوى</th>
 										<th class="col-md-3">رابط الفيديو</th>
 										<th class="col-md-1">الفئة</th>
-
 										<th class="col-md-2">خيارات</th>
 								</tr>
 						</thead>
@@ -135,7 +150,6 @@
 										<td>{{ $row->description }}</td>
                     <td>{!! $row->vedio_url !!}</td>
 										<td>{{ $row->cname }}</td>
-
 										<td>{!! $row->actions !!}</td>
 								</tr>
 								@endforeach
@@ -151,7 +165,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="addModalLabel"><i class="fa fa-plus-circle"></i> أضافة البوم</h4>
             </div>
-            <form role="form"  method="POST" class="addForm" action="{{ url('/v_album/store') }}" data-toggle="validator">
+            <form role="form"  method="POST" class="addForm" action="{{ url('/v_album/store') }}" data-toggle="validator" enctype="multipart/form-data">
                 <div class="modal-body">
                     @include('v_album.form')
                 </div>
@@ -208,43 +222,23 @@
 		$("#submitForm").on('click', function(e){
         $('#addModal').modal('hide');
     });
-		//add country
-    $("#addModal form").on('submit', function(e){
-        if (!e.isDefaultPrevented())
-        {
-            var self = $(this);
-            $.ajax({
-                url: '{!!URL::route('addv_album')!!}',
-                type: "POST",
-                data: self.serialize(),
-                success: function(res){
-                    $('.addForm')[0].reset();
-                    $('.alerts-list').append(
-                        '<li>\
-                    <div class="alert alert-success alert-dismissable">\
-                                <i class="icon-check-sign"></i> تمت الأضافه بنجـــــــــــاح!\
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
-                            </div>\
-                        </li>');
-					oTable.ajax.reload();
-                    oTable.draw();
-                },
-                error: function(){
-                    $('#addModal').modal('hide')
-                    $('.alerts-list').append(
-                        '<li>\
-                            <div class="alert alert-danger alert-dismissable">\
-                                <i class="icon-remove-sign"></i> <strong>Opps!</strong> حدث خطأ.\
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
-                            </div>\
-                        </li>');
-                }
-            });
-            e.preventDefault();
-        }
-     });
 
 
+    //add
+    $('.addForm').ajaxForm(function() {
+    $('.addForm')[0].reset();
+    $('#show').show(100);
+    oTable.ajax.reload();
+    oTable.draw();
+        });
+
+	  //Update
+	  $('.editForm').ajaxForm(function() {
+	  $('#showupdate').show(100);
+	  $('#editTclothModal').modal('hide');
+	  oTable.ajax.reload();
+	  oTable.draw();
+	      });
 		     /* Edit Form */
 
 		     $(document.body).validator().on('click', '.edit', function() {
@@ -274,42 +268,6 @@
 		         });
 		     });
 
-				 /* update Form Submission */
-		     $("#editagentModal form").validator().on('submit', function(e){
-		         if (!e.isDefaultPrevented())
-		         {
-		             var self = $(this);
-		             $.ajax({
-		                 url: "{{ url('v_album') }}" + "/" +  self.attr("data-id"),
-		                 type: "POST",
-		                 data: "_method=PUT&" + self.serialize(),
-		                 success: function(res){
-		                     $('#editagentModal').modal('hide');
-		                     $('.alerts-list').append(
-		                         '<li>\
-		                             <div class="alert alert-success alert-dismissable">\
-		                                 <i class="icon-check-sign"></i> تم تعديل الالبوم بنجـــــــــاح!\
-		                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
-		                             </div>\
-		                         </li>');
-								oTable.ajax.reload();
-
-		                 },
-		                 error: function(){
-		                     $('#editagentModal').modal('hide')
-		         		 		                     $('.alerts-list').append(
-                     '<li>\
-                         <div class="alert alert-danger alert-dismissable">\
-                             <i class="icon-remove-sign"></i> <strong>Opps!</strong>حدث خطأ.\
-                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
-                         </div>\
-                     </li>');
-		                         oTable.ajax.reload();
-		                 }
-		             });
-		             e.preventDefault();
-		         }
-		      });
 
 
 	oTable = $('#countries').DataTable({

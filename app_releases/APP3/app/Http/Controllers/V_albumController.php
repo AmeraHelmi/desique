@@ -53,7 +53,6 @@ class V_albumController extends Controller {
 			->with('categories',$categories)
 			->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	}
-=======
 	 {
       $v_albums = $album
 		              ->join('categories as c ','c.id','=','v_albums.category_id')
@@ -80,7 +79,6 @@ class V_albumController extends Controller {
 									->with('categories',$categories)
 									->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	 }
->>>>>>> df65834d351b0a779dd3c4699920cd1711064889
 
 	/**
 	 * Show the form for creating a new resource.

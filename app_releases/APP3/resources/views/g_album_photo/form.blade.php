@@ -22,6 +22,5 @@
 <div class="fileupload fileupload-new" data-provides="fileupload">
   <span class="btn btn-primary btn-file"><span class="fileupload-new">الصور</span>
   <span class="fileupload-exists">Change</span>         <input type="file" name="flag[]" multiple /></span>
-  <span class="fileupload-preview"></span>
-  <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+ 
 </div>

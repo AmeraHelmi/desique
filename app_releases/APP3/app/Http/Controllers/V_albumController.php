@@ -33,11 +33,13 @@ class V_albumController extends Controller {
 				        'v_albums.id as VID',
 						'v_albums.title as title',
 						'v_albums.vedio_url as vedio_url',
+						'v_albums.description as description',
+						'v_albums.flag as flag',
 						'c.name as cname'))
                         ->orderBy('title')->get();
 
             $tableData = Datatables::of($v_albums)
-->editColumn('vedio_url', '<embed  width="560" height="315" src="{!! $vedio_url !!}" frameborder="0" allowfullscreen>')
+						->editColumn('flag', '<div class="image"><img src="images/uploads/{{ $flag }}"  width="50px" height="50px">')
              ->addColumn('actions', function ($data)
             {
                 return view('partials.actionBtns')->with('controller','v_album')->with('id', $data->VID)->render();
@@ -49,9 +51,9 @@ class V_albumController extends Controller {
 		return view('v_album.index')
 			->with('categories',$categories)
 			->with('tableData', DatatablePresenter::make($tableData, 'index'));
-	
 
-	 
+
+
       $v_albums = $album
 		              ->join('categories as c ','c.id','=','v_albums.category_id')
 		              ->select(array(

@@ -30,35 +30,36 @@ class BranchController extends Controller {
 	 public function index(Branch $branch , Request $request)
 	 {
 		 $branches = $branch
-			 ->join('countries as country', 'country.id', '=', 'branches.country_id')
-			 ->join('cities as city','city.id','=','branches.city_id')
-			 ->join('teams as team','team.id','=','branches.team_id')
-			 ->select(array(
-				 'branches.id as BranchID',
-			     'branches.name as name',
-				 'country.name as countryname',
-				 'branches.flag as flag',
-				 'team.name as teamname',
-			     'city.name as cityname'
-		 ))
-		 ->orderBy('country.name')->get();
+										 ->join('countries as country', 'country.id', '=', 'branches.country_id')
+										 ->join('cities as city','city.id','=','branches.city_id')
+										 ->join('teams as team','team.id','=','branches.team_id')
+										 ->select(array(
+															 'branches.id as BranchID',
+														   'branches.name as name',
+															 'country.name as countryname',
+															 'branches.flag as flag',
+															 'team.name as teamname',
+														   'city.name as cityname'
+													 ))
+										  ->orderBy('country.name')->get();
 
-			 $tableData = Datatables::of($branches)
-			 	 ->editColumn('flag', '<div class="image"><img src="images/uploads/{{ $flag }}"  width="50px" height="50px">')
-				 ->addColumn('actions', function ($data)
-					 {return view('partials.actionBtns')->with('controller','branch')->with('id', $data->BranchID)->render(); })
-				 ;
+		 $tableData = Datatables::of($branches)
+			 	 							->editColumn('flag', '<div class="image"><img src="images/uploads/{{ $flag }}"  width="50px" height="50px">')
+				 							->addColumn('actions', function ($data)
+					 						{
+													return view('partials.actionBtns')->with('controller','branch')->with('id', $data->BranchID)->render();
+												});
 
-			 if($request->ajax())
+		if($request->ajax())
 				 return DatatablePresenter::make($tableData, 'index');
 				 $countries=Country::lists('name','id');
 				 $cities=City ::lists('name','id');
 				 $teams=Team ::lists('name','id');
-		 return view('branch.index')
-			 ->with('countries',$countries)
-			 ->with('cities',$cities)
-			 ->with('teams',$teams)
-			 ->with('tableData', DatatablePresenter::make($tableData, 'index'));
+		 	 	 return view('branch.index')
+			 						->with('countries',$countries)
+			 						->with('cities',$cities)
+			 						->with('teams',$teams)
+			 						->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	 }
 
 
@@ -77,31 +78,31 @@ class BranchController extends Controller {
 	 *
 	 * @return Response
 	 */
-	 public function store(Request $request)
+	public function store(Request $request)
  	{
- 		 if(Input::hasFile('flag')){
-			 $file = Input::file('flag');
-			 $filename=time();
-			 $file->move('images/uploads', $filename);
-
- 		$branch = new Branch;
- 			$branch->name          =$request->name;
- 			$branch->country_id    =$request->country_id;
-			$branch->flag          =$filename;
-			$branch->city_id       =$request->city_id;
-			$branch->team_id       =$request->team_id;
-
- 			$branch->save();
-
-            if($request->ajax()){
-					return response(array('msg' => 'Adding Successfull'), 200)
+ 		 	if(Input::hasFile('flag'))
+			{
+			 		$file = Input::file('flag');
+			 		$filename=time();
+			 		$file->move('images/uploads', $filename);
+					$branch = new Branch;
+ 					$branch->name          =$request->name;
+ 					$branch->country_id    =$request->country_id;
+					$branch->flag          =$filename;
+					$branch->city_id       =$request->city_id;
+					$branch->team_id       =$request->team_id;
+ 					$branch->save();
+					if($request->ajax())
+					{
+						return response(array('msg' => 'Adding Successfull'), 200)
 										->header('Content-Type', 'application/json');
 					}
 			}
-			else{
+			else
+			{
 					return response(false, 200)
 										->header('Content-Type', 'application/json');
-				}
+			}
  	}
 
 
@@ -122,8 +123,8 @@ class BranchController extends Controller {
 		$country_id = $request->country_id;
 		echo $country_id;
 		$city = City::where('country_id',$country_id)->get();
-
-		foreach($city as $row){
+		foreach($city as $row)
+		{
 			echo'<option value='.$row->id.'> '.$row->name.' </option>';
 		}
 
@@ -135,10 +136,9 @@ class BranchController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	 public function edit(Request $request , $id)
+	public function edit(Request $request , $id)
  	{
  		$branch 	= Branch::find($id);
-
  		session(['branchid'    => $branch->id]);
  		session(['branchcity_id'    => $branch->city_id]);
 		session(['branchimage' => $branch->flag]);
@@ -155,48 +155,51 @@ class BranchController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	 public function update(Request $request)
+	public function update(Request $request)
 	{
 		$branch 	= Branch::find(session('branchid'));
-
-		if(!empty($_FILES)){
-     	if(Input::hasFile('flag')){
-		$file = Input::file('flag');
-		$filename=time();
-		$file->move('images/uploads', $filename);
-
-	 if($request->city_id == 0){
-	  $branch->city_id       =session('branchcity_id');
-       	}
-       	else{
-       $branch->city_id       =$request->city_id;
-       	}
-		$branch->name          =$request->name;
-		$branch->country_id    =$request->country_id;
-		$branch->flag          =$filename;
-		$branch->team_id       =$request->team_id;
-	}
-}
-   else{
-   		 if($request->city_id == 0){
-	  $branch->city_id       =session('branchcity_id');
-       	}
-       	else{
-       $branch->city_id       =$request->city_id;
-       	}
-   		$branch->name          =$request->name;
-		$branch->country_id    =$request->country_id;
-		$branch->flag          =session('branchimage');
-		$branch->team_id       =$request->team_id;
+		if(!empty($_FILES))
+		{
+     	if(Input::hasFile('flag'))
+			{
+					$file = Input::file('flag');
+					$filename=time();
+					$file->move('images/uploads', $filename);
+					if($request->city_id == 0)
+					{
+	  						$branch->city_id       =session('branchcity_id');
+       		}
+       		else
+					{
+       					$branch->city_id       =$request->city_id;
+       		}
+					$branch->name          =$request->name;
+					$branch->country_id    =$request->country_id;
+					$branch->flag          =$filename;
+					$branch->team_id       =$request->team_id;
+			}
+		}
+   	else
+		{
+   		 		if($request->city_id == 0)
+					{
+	  					$branch->city_id       =session('branchcity_id');
+       		}
+       		else
+					{
+       				$branch->city_id       =$request->city_id;
+       		}
+   				$branch->name          =$request->name;
+					$branch->country_id    =$request->country_id;
+					$branch->flag          =session('branchimage');
+					$branch->team_id       =$request->team_id;
    }
-
-		$branch->save();
-
-		if($request->ajax()){
+	 $branch->save();
+	 if($request->ajax())
+	 {
 			return response(array('msg' => 'Adding Successfull'), 200)
 								->header('Content-Type', 'application/json');
-			}
-
+		}
 	}
 
 	/**
@@ -207,16 +210,15 @@ class BranchController extends Controller {
 	 */
 
 
-	 public function destroy($id)
+	public function destroy($id)
  	{
- 		$branch	= Branch::find($id);
- 		$branch->delete();
- 		if($request->ajax()){
- 			return response(array('msg' => 'Removing Successfull'), 200)
+ 			$branch	= Branch::find($id);
+ 			$branch->delete();
+ 			if($request->ajax())
+			{
+ 					return response(array('msg' => 'Removing Successfull'), 200)
  								->header('Content-Type', 'application/json');
  			}
- 		return redirect()->back();
+ 			return redirect()->back();
  	}
-
-
 }

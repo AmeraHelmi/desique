@@ -25,13 +25,15 @@ class G_albumController extends Controller {
 	 }
 	public function index(G_album $album , Request $request)
 	{
-            $g_albums = $album
-            ->join('categories as c ','c.id','=','g_albums.category_id')
-			->select(array('g_albums.id as G_id', 'g_albums.title as G_title','c.name as C_name'))
-                        ->orderBy('G_title')->get();
+      $g_albums = $album
+            				->join('categories as c ','c.id','=','g_albums.category_id')
+										->select(array('g_albums.id as G_id',
+										              'g_albums.title as G_title',
+																	'c.name as C_name'))
+                    ->orderBy('G_title')->get();
 
-            $tableData = Datatables::of($g_albums)
-                        ->addColumn('actions', function ($data)
+      $tableData = Datatables::of($g_albums)
+                    ->addColumn('actions', function ($data)
             {
                 return view('partials.actionBtns')->with('controller','g_album')->with('id', $data->G_id)->render();
 
@@ -63,8 +65,8 @@ class G_albumController extends Controller {
 	{
 
             $g_album = new G_album;
-            $g_album->title          =$request->title;			  
-            $g_album->category_id    =$request->category_id;			  
+            $g_album->title          =$request->title;
+            $g_album->category_id    =$request->category_id;
             $g_album->save();
             if($request->ajax())
                 {
@@ -112,7 +114,7 @@ class G_albumController extends Controller {
 
 		$g_album 	= G_album::find($id);
 		$g_album->title 	= $request->title ;
-        $g_album->category_id    =$request->category_id;	
+        $g_album->category_id    =$request->category_id;
 
 
 		$g_album->save();

@@ -1,6 +1,5 @@
 <?php namespace App\Http\Controllers;
 
-
 use App\Http\Requests;
 use App\Models\Agent;
 use App\Http\Controllers\Controller;
@@ -18,21 +17,22 @@ class AgentController extends Controller {
 	 *
 	 * @return Response
 	 */
-	 public function __construct()
-	 {
+	public function __construct()
+	{
 		 $this->middleware('auth');
-	 }
+	}
 	public function index(Agent $agent , Request $request)
 	{
 		$agents = $agent
-			->select(array('id', 'name'))
-->orderBy('name')->get();
+								->select(array('id', 'name'))
+                ->orderBy('name')->get();
+		$tableData = Datatables::of($agents)
+								->addColumn('actions', function ($data)
+								{
+									return view('partials.actionBtns')->with('controller','agent')->with('id', $data->id)->render();
+								});
 
-			$tableData = Datatables::of($agents)
-				->addColumn('actions', function ($data)
-					{return view('partials.actionBtns')->with('controller','agent')->with('id', $data->id)->render(); });
-
-			if($request->ajax())
+		if($request->ajax())
 				return DatatablePresenter::make($tableData, 'index');
 		return view('agent.index')
 			->with('tableData', DatatablePresenter::make($tableData, 'index'));
@@ -54,16 +54,14 @@ class AgentController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-
 		  	$agent = new Agent;
 			  $agent->name    =$request->name;
-
 			  $agent->save();
-				if($request->ajax()){
+				if($request->ajax())
+				{
 					return response(array('msg' => 'adding Successfull'), 200)
 										->header('Content-Type', 'application/json');
-					}
-
+				}
 	}
 
 
@@ -85,10 +83,10 @@ class AgentController extends Controller {
 	 */
 	public function edit(Request $request , $id)
 	{
-		$agent 	      = Agent::find($id);
-	//	$country_name   = Country::where('id',$id)->get(['name','flag']);
-		if($request->ajax()){
-			return response(array('msg' => 'Adding Successfull', 'data'=> $agent->toJson() ), 200)
+		  $agent= Agent::find($id);
+			if($request->ajax())
+			{
+			     return response(array('msg' => 'Adding Successfull', 'data'=> $agent->toJson() ), 200)
 								->header('Content-Type', 'application/json');
 			}
 	}
@@ -101,13 +99,10 @@ class AgentController extends Controller {
 	 */
 	public function update(Request $request , $id)
 	{
-
-		$agent 	= Agent::find($id);
-		$agent->name 	= $request->name ;
-
-
-		$agent->save();
-		return response(array('msg' => 'Adding Successfull'), 200)
+		 $agent 	= Agent::find($id);
+		 $agent->name 	= $request->name ;
+		 $agent->save();
+		 return response(array('msg' => 'Adding Successfull'), 200)
 							->header('Content-Type', 'application/json');
 	}
 
@@ -121,10 +116,11 @@ class AgentController extends Controller {
 	{
 		$agent 	= Agent::find($id);
 		$agent->delete();
-		if($request->ajax()){
+		if($request->ajax())
+		{
 			return response(array('msg' => 'Removing Successfull'), 200)
 								->header('Content-Type', 'application/json');
-			}
+		}
 		return redirect()->back();
 	}
 

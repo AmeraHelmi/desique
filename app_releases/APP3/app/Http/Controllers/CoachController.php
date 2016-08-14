@@ -21,39 +21,39 @@ class CoachController extends Controller {
 	 *
 	 * @return Response
 	 */
-	 	 public function __construct()
+	public function __construct()
  	{
- 		$this->middleware('auth');
+ 			$this->middleware('auth');
  	}
 	 public function index(Coach $coach , Request $request)
 	 {
-		 $coaches = $coach
-			 ->join('countries as country', 'country.id', '=', 'coaches.country_id')
-			 ->join('cities as city','city.id','=','coaches.city_id')
-			 ->select(array(
-				 'coaches.id as coachID',
-			     'coaches.name as name',
-				 'country.name as countryname',
-				 'coaches.nickname as nickname',
-				 'coaches.flag as flag',
+		 	$coaches = $coach
+			 						->join('countries as country', 'country.id', '=', 'coaches.country_id')
+			 						->join('cities as city','city.id','=','coaches.city_id')
+			 						->select(array(
+				 									'coaches.id as coachID',
+			     								'coaches.name as name',
+				 									'country.name as countryname',
+				 									'coaches.nickname as nickname',
+				 									'coaches.flag as flag',
+													'city.name as cityname'
+		 										))
+		 							 ->orderBy('coachID','desc')->get();
 
-			   'city.name as cityname'
-		 ))
-		 ->orderBy('coachID','desc')->get();
-
-			 $tableData = Datatables::of($coaches)
-				 ->editColumn('flag', '<div class="image"><img src="images/uploads/{{ $flag }}"  width="50px" height="50px">')
-				 ->addColumn('actions', function ($data)
-					 {return view('partials.actionBtns')->with('controller','coach')->with('id', $data->coachID)->render(); })
-				 ;
+				$tableData = Datatables::of($coaches)
+				 					->editColumn('flag', '<div class="image"><img src="images/uploads/{{ $flag }}"  width="50px" height="50px">')
+				 					->addColumn('actions', function ($data)
+					 				{
+										return view('partials.actionBtns')->with('controller','coach')->with('id', $data->coachID)->render();
+									});
 
 			 if($request->ajax())
 				 return DatatablePresenter::make($tableData, 'index');
 				 $countries=Country::lists('name','id');
 				 $cities=City ::lists('name','id');
-		 return view('coach.index')
-			 ->with('countries',$countries)->with('cities',$cities)
-			 ->with('tableData', DatatablePresenter::make($tableData, 'index'));
+		 	 	 return view('coach.index')
+			 					->with('countries',$countries)->with('cities',$cities)
+			 					->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	 }
 
 
@@ -72,26 +72,24 @@ class CoachController extends Controller {
 	 *
 	 * @return Response
 	 */
-	 public function store(Request $request)
+	public function store(Request $request)
  	{
- 			if(Input::hasFile('flag')){
-			 $file = Input::file('flag');
-			 $filename=time();
-			 $file->move('images/uploads', $filename);
-
- 		$coach = new Coach;
- 			$coach->name          =$request->name;
- 			$coach->country_id    =$request->country_id;
-			$coach->nickname      =$request->nickname;
-			$coach->city_id       =$request->city_id;
-			$coach->flag          =$filename;
-			$coach->role          =$request->role;
-			$coach->birth_date    =$request->birth_date;
-			$coach->additional_info    =$request->additional_info;
-
- 			$coach->save();
-
-if($request->ajax()){
+ 			if(Input::hasFile('flag'))
+			{
+			 		$file = Input::file('flag');
+			 		$filename=time();
+			 		$file->move('images/uploads', $filename);
+ 					$coach = new Coach;
+ 					$coach->name          =$request->name;
+ 					$coach->country_id    =$request->country_id;
+					$coach->nickname      =$request->nickname;
+					$coach->city_id       =$request->city_id;
+					$coach->flag          =$filename;
+					$coach->role          =$request->role;
+					$coach->birth_date    =$request->birth_date;
+					$coach->additional_info    =$request->additional_info;
+					$coach->save();
+					if($request->ajax()){
 					return response(array('msg' => 'Adding Successfull'), 200)
 										->header('Content-Type', 'application/json');
 					}
@@ -120,8 +118,8 @@ if($request->ajax()){
 		$country_id = $request->country_id;
 		echo $country_id;
 		$city = City::where('country_id',$country_id)->get();
-
-		foreach($city as $row){
+		foreach($city as $row)
+		{
 			echo'<option value='.$row->id.'> '.$row->name.' </option>';
 		}
 
@@ -136,15 +134,14 @@ if($request->ajax()){
 	 public function edit(Request $request , $id)
  	{
  		$coach 	= Coach::find($id);
-
 		session(['coachid'    => $coach->id]);
 		session(['coachcity_id'    => $coach->city_id]);
 		session(['coachimage' => $coach->flag]);
-
- 		if($request->ajax()){
+ 		if($request->ajax())
+		{
  			return response(array('msg' => 'Adding Successfull', 'data'=> $coach->toJson() ), 200)
  								->header('Content-Type', 'application/json');
- 			}
+ 		}
  	}
 
 	/**
@@ -155,52 +152,56 @@ if($request->ajax()){
 	 */
 	 public function update(Request $request)
 	{
-				$coach 	= Coach::find(session('coachid'));
+		$coach 	= Coach::find(session('coachid'));
 
-		if(!empty($_FILES)){
-     	if(Input::hasFile('flag')){
-		$file = Input::file('flag');
-		$filename=time();
-		$file->move('images/uploads', $filename);
-       	if($request->city_id == 0){
-	  $coach->city_id       =session('coachcity_id');
+		if(!empty($_FILES))
+		{
+     	if(Input::hasFile('flag'))
+			{
+					$file = Input::file('flag');
+					$filename=time();
+					$file->move('images/uploads', $filename);
+       		if($request->city_id == 0)
+					{
+	  				$coach->city_id =session('coachcity_id');
+       	  }
+       	  else
+					{
+            $coach->city_id       =$request->city_id;
+       	  }
+					$coach->name          =$request->name;
+					$coach->country_id    =$request->country_id;
+					$coach->nickname      =$request->nickname;
+					$coach->flag          =$filename;
+					$coach->role          =$request->role;
+					$coach->birth_date    =$request->birth_date;
+					$coach->additional_info          =$request->additional_info;
+		 }
+	  }
+	  else
+		{
+       	if($request->city_id == 0)
+				{
+	  			$coach->city_id  =session('coachcity_id');
        	}
-       	else{
-       $coach->city_id       =$request->city_id;
+       	else
+				{
+          $coach->city_id       =$request->city_id;
        	}
-			$coach->name          =$request->name;
-			$coach->country_id    =$request->country_id;
-			$coach->nickname      =$request->nickname;
-			$coach->flag          =$filename;
-			$coach->role          =$request->role;
-			$coach->birth_date    =$request->birth_date;
-			$coach->additional_info          =$request->additional_info;
-
-		}
-	}
-	   else{
-	   	
-       	if($request->city_id == 0){
-	  $coach->city_id       =session('coachcity_id');
-       	}
-       	else{
-       $coach->city_id       =$request->city_id;
-       	}
-	   	$coach->name          =$request->name;
-			$coach->country_id    =$request->country_id;
-			$coach->nickname      =$request->nickname;
-			$coach->flag          =session('coachimage');
-			$coach->role          =$request->role;
-			$coach->birth_date    =$request->birth_date;
-			$coach->additional_info          =$request->additional_info;
+	   		$coach->name          =$request->name;
+				$coach->country_id    =$request->country_id;
+				$coach->nickname      =$request->nickname;
+				$coach->flag          =session('coachimage');
+				$coach->role          =$request->role;
+				$coach->birth_date    =$request->birth_date;
+				$coach->additional_info          =$request->additional_info;
 	   }
-
-			$coach->save();
-
-		if($request->ajax()){
+		 $coach->save();
+		if($request->ajax())
+		{
 			return response(array('msg' => 'Adding Successfull'), 200)
 								->header('Content-Type', 'application/json');
-			}
+		}
 	}
 
 	/**
@@ -211,7 +212,7 @@ if($request->ajax()){
 	 */
 
 
-	 public function destroy($id)
+	public function destroy($id)
  	{
  		$coach	= Coach::find($id);
  		$coach->delete();
@@ -221,6 +222,4 @@ if($request->ajax()){
  			}
  		return redirect()->back();
  	}
-
-
 }

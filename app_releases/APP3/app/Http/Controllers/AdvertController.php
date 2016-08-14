@@ -18,7 +18,7 @@ class AdvertController extends Controller {
 	 *
 	 * @return Response
 	 */
-	 public function __construct()
+	public function __construct()
  	{
  		$this->middleware('auth');
  	}
@@ -28,10 +28,12 @@ class AdvertController extends Controller {
 			->select(array('id', 'name', 'flag'))
 			->orderBy('id','desc')->get();
 
-			$tableData = Datatables::of($adverts)
+		$tableData = Datatables::of($adverts)
 			->editColumn('flag', '<div class="image"><img src="images/uploads/{{ $flag }}"  width="50px" height="50px">')
-				->addColumn('actions', function ($data)
-					{return view('partials.actionBtns')->with('controller','advert')->with('id', $data->id)->render(); });
+			->addColumn('actions', function ($data)
+					{
+						return view('partials.actionBtns')->with('controller','advert')->with('id', $data->id)->render();
+				  });
 
 			if($request->ajax())
 				return DatatablePresenter::make($tableData, 'index');
@@ -55,29 +57,29 @@ class AdvertController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-		 if(Input::hasFile('flag')){
+		 if(Input::hasFile('flag'))
+		 {
 		    $file = Input::file('flag');
 			  $filename=time();
 		    $file->move('images/uploads', $filename);
-
-			$advert = new Advert;
-			if($request->name)
-			{
-			  $advert->name    =$request->name;
-			  $advert->flag    =$filename;
-			  $advert->save();
-
-				if($request->ajax()){
-					return response(array('msg' => 'Adding Successfull'), 200)
+				$advert = new Advert;
+				if($request->name)
+				{
+			  	$advert->name    =$request->name;
+			  	$advert->flag    =$filename;
+			  	$advert->save();
+					if($request->ajax())
+					{
+						return response(array('msg' => 'Adding Successfull'), 200)
 										->header('Content-Type', 'application/json');
 					}
 				}
     }
-		else{
-			return response(false, 200)
+		else
+		{
+				return response(false, 200)
 								->header('Content-Type', 'application/json');
 		}
-
 	}
 
 	public function checkname(Country $country,Request $request, $country_name = null)
@@ -85,11 +87,10 @@ class AdvertController extends Controller {
 
 		if($country_name == $request->name)
 			return;
-
 			$countryname = $country
 			->where('name',$request->name)
 			->lists('name', 'id');
-		if($countryname)
+			if($countryname)
 			return response(null, 406);
 		return;
 	}
@@ -99,7 +100,6 @@ class AdvertController extends Controller {
 
 		if($country_pic == $request->flag)
 			return;
-
 			$countrypic = $country
 			->where('flag',$request->flag)
 			->lists('name', 'id');
@@ -126,15 +126,11 @@ class AdvertController extends Controller {
 	 */
 	public function edit(Advert $advert , Request $request , $id)
 	{
-
 		$advert       = $advert->find($id);
-
 		session(['advertid'   => $advert->id]);
 		session(['advertflag' => $advert->flag]);
-
-			return response(array('msg' => 'Adding Successfull', 'data'=> $advert->toJson() ), 200)
+		return response(array('msg' => 'Adding Successfull', 'data'=> $advert->toJson() ), 200)
 								->header('Content-Type', 'application/json');
-
 	}
 
 	/**
@@ -145,27 +141,29 @@ class AdvertController extends Controller {
 	 */
 	public function update(Request $request)
 	{
- $advert 	= Advert::find(session('advertid'));
-
-	if(!empty($_FILES)){
-		if(Input::hasFile('flag')){
-			 $file = Input::file('flag');
-			 $filename=time();
-			 $file->move('images/uploads', $filename);
-			 $advert->name    =$request->name;
-			 $advert->flag    =$filename;
+      $advert 	= Advert::find(session('advertid'));
+			if(!empty($_FILES))
+			{
+				if(Input::hasFile('flag'))
+				{
+			 		$file = Input::file('flag');
+			 		$filename=time();
+			 		$file->move('images/uploads', $filename);
+			 		$advert->name    =$request->name;
+			 		$advert->flag    =$filename;
        	}
-   }
-	else{
-			$advert->name    =$request->name;
-			$advert->flag    =session('countryflag');
-	}
-	$advert->save();
-	 		if($request->ajax()){
-	 			return response(array('msg' => 'Adding Successfull'), 200)
+   		}
+			else
+			{
+					$advert->name    =$request->name;
+					$advert->flag    =session('countryflag');
+			}
+			$advert->save();
+	 		if($request->ajax())
+			{
+	 					return response(array('msg' => 'Adding Successfull'), 200)
 	 								->header('Content-Type', 'application/json');
-	 			}
-
+	 		}
 	}
 
 	/**
@@ -178,11 +176,11 @@ class AdvertController extends Controller {
 	{
 		$advert 	= Advert::find($id);
 		$advert->delete();
-		if($request->ajax()){
+		if($request->ajax())
+		{
 			return response(array('msg' => 'Removing Successfull'), 200)
 								->header('Content-Type', 'application/json');
 			}
 		return redirect()->back();
 	}
-
 }

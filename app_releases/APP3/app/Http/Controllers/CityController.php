@@ -1,4 +1,5 @@
 <?php namespace App\Http\Controllers;
+
 use App\Http\Requests;
 use App\Models\User;
 use App\Models\Country;
@@ -24,21 +25,24 @@ class CityController extends Controller {
 	public function index(City $city , Request $request)
 	{
 		$cities = $city
-		  ->join('countries as country', 'country.id', '=', 'cities.country_id')
-			->select(array('cities.id as cityID', 'cities.name as cityname', 'country.name as countryname'))
-			->orderBy('cities.id','desc')->get();
+					  ->join('countries as country', 'country.id', '=', 'cities.country_id')
+						->select(array('cities.id as cityID',
+						 							'cities.name as cityname',
+													'country.name as countryname'))
+						->orderBy('cities.id','desc')->get();
 
-			$tableData = Datatables::of($cities)
-				->addColumn('actions', function ($data)
-					{return view('partials.actionBtns')->with('controller','city')->with('id', $data->cityID)->render(); })
-				;
+		$tableData = Datatables::of($cities)
+				    ->addColumn('actions', function ($data)
+						{
+							return view('partials.actionBtns')->with('controller','city')->with('id', $data->cityID)->render();
+						});
 
-			if($request->ajax())
+		if($request->ajax())
 				return DatatablePresenter::make($tableData, 'index');
 				$countries=Country::lists('name','id');
-		return view('city.index')
-		  ->with('countries',$countries)
-			->with('tableData', DatatablePresenter::make($tableData, 'index'));
+				return view('city.index')
+		  					->with('countries',$countries)
+								->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	}
 
 	/**
@@ -64,17 +68,15 @@ class CityController extends Controller {
 			$city->name          =$request->name;
 			$city->country_id    =$request->country_id;
 			$city->save();
-
 			return response(array('msg' => 'Adding Successfull'), 200)
 								->header('Content-Type', 'application/json');
-							}
-							else{
-		return response(array('msg' => 'Adding Successfull'), 404)
+		}
+		else
+		{
+			return response(array('msg' => 'Adding Successfull'), 404)
 								->header('Content-Type', 'application/json');
-							}
-	
-
-	}
+		}
+}
 
 	/**
 	 * Display the specified resource.
@@ -96,10 +98,11 @@ class CityController extends Controller {
 	public function edit(Request $request , $id)
 	{
 		$city 	= City::find($id);
-		if($request->ajax()){
+		if($request->ajax())
+		{
 			return response(array('msg' => 'Adding Successfull', 'data'=> $city->toJson() ), 200)
 								->header('Content-Type', 'application/json');
-			}
+		}
 	}
 
 	/**
@@ -113,12 +116,12 @@ class CityController extends Controller {
 		$city 	= City::find($id);
  		$city->name 	      = $request->name ;
  		$city->country_id 	= $request->country_id ;
-
  		$city->save();
- 		if($request->ajax()){
+ 		if($request->ajax())
+		{
  			return response(array('msg' => 'Adding Successfull'), 200)
  								->header('Content-Type', 'application/json');
- 			}
+ 		}
  	}
 
 	/**
@@ -131,11 +134,11 @@ class CityController extends Controller {
 	{
 		$city 	= City::find($id);
 		$city->delete();
-		if($request->ajax()){
+		if($request->ajax())
+		{
 			return response(array('msg' => 'Removing Successfull'), 200)
 								->header('Content-Type', 'application/json');
-			}
+		}
 		return redirect()->back();
 	}
-
 }

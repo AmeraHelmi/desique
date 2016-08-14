@@ -1,4 +1,5 @@
 <?php namespace App\Http\Controllers;
+
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -35,26 +36,31 @@ class ErrorController extends Controller {
 	 public function index(Error $error , Request $request)
 	{
 	 $errors = $error
-		 ->join('players as player', 'player.id', '=', 'errors.player_id')
-		 ->join('teams as team', 'team.id', '=', 'errors.team_id')
-		 ->join('referees as referee', 'referee.id', '=', 'errors.referee_id')
-		 ->select(array('errors.id as errorID','player.name as player_id',
-		 'team.name as team_name', 'referee.name as referee_id','errors.comment as comment','errors.time as time'))
-		->orderBy('errorID')->get();
+							 ->join('players as player', 'player.id', '=', 'errors.player_id')
+							 ->join('teams as team', 'team.id', '=', 'errors.team_id')
+							 ->join('referees as referee', 'referee.id', '=', 'errors.referee_id')
+							 ->select(array('errors.id as errorID',
+							 								'player.name as player_id',
+							 								'team.name as team_name',
+															'referee.name as referee_id',
+															'errors.comment as comment',
+															'errors.time as time'))
+							->orderBy('errorID')->get();
 
 		 $tableData = Datatables::of($errors)
-			 ->addColumn('actions', function ($data)
-				 {return view('partials.actionBtns')->with('controller','error')->with('id', $data->errorID)->render(); })
-			 ;
+			         ->addColumn('actions', function ($data)
+				       {
+								 return view('partials.actionBtns')->with('controller','error')->with('id', $data->errorID)->render();
+							 });
 
 		 if($request->ajax())
 			 return DatatablePresenter::make($tableData, 'index');
 			 $players=Player::lists('name','id');
 			 $teams=Team::lists('name','id');
 			 $referees=Referee::lists('name','id');
-	 return view('error.index')
-		->with('players',$players)->with('teams',$teams)->with('referees',$referees)
-		 ->with('tableData', DatatablePresenter::make($tableData, 'index'));
+	 	 	 return view('error.index')
+		          ->with('players',$players)->with('teams',$teams)->with('referees',$referees)
+		          ->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	}
 	/**
 	 * Show the form for creating a new resource.
@@ -73,16 +79,16 @@ class ErrorController extends Controller {
 	 */
 	 public function store(Request $request)
 	 {
-	 	$error = new Error;
-	 	$error->player_id          =$request->player_id;
-	 	$error->team_id           =$request->team_id;
-	 	$error->referee_id         =$request->referee_id;
-	 	$error->time               =$request->time;
-		$error->comment            =$request->comment;
-	 	$error->save();
+			 	$error = new Error;
+			 	$error->player_id          =$request->player_id;
+			 	$error->team_id           =$request->team_id;
+			 	$error->referee_id         =$request->referee_id;
+			 	$error->time               =$request->time;
+				$error->comment            =$request->comment;
+			 	$error->save();
 
-	 	return response(array('msg' => 'Adding Successfull'), 200)
-	 						->header('Content-Type', 'application/json');
+			 	return response(array('msg' => 'Adding Successfull'), 200)
+			 						->header('Content-Type', 'application/json');
 	 }
 
 	/**
@@ -105,10 +111,11 @@ class ErrorController extends Controller {
 	 public function edit(Request $request , $id)
 	{
 		$error= Error::find($id);
-		if($request->ajax()){
+		if($request->ajax())
+		{
 			return response(array('msg' => 'Adding Successfull', 'data'=> $error->toJson() ), 200)
 								->header('Content-Type', 'application/json');
-			}
+		}
 	}
 
 	/**
@@ -119,17 +126,17 @@ class ErrorController extends Controller {
 	 */
 	 public function update(Request $request , $id)
 	{
-	 $error= Error::find($id);
-	 $error->player_id          =$request->player_id;
- 	 $error->team_id           =$request->team_id;
- 	 $error->referee_id         =$request->referee_id;
- 	 $error->time               =$request->time;
- 	 $error->comment            =$request->comment;
- 	 $error->save();
-	if($request->ajax()){
-	 return response(array('msg' => 'Adding Successfull'), 200)
-						 ->header('Content-Type', 'application/json');
-	 }
+			 $error= Error::find($id);
+			 $error->player_id          =$request->player_id;
+		 	 $error->team_id           =$request->team_id;
+		 	 $error->referee_id         =$request->referee_id;
+		 	 $error->time               =$request->time;
+		 	 $error->comment            =$request->comment;
+		 	 $error->save();
+			if($request->ajax()){
+			 return response(array('msg' => 'Adding Successfull'), 200)
+								 ->header('Content-Type', 'application/json');
+			 }
 	}
 	/**
 	 * Remove the specified resource from storage.
@@ -139,13 +146,13 @@ class ErrorController extends Controller {
 	 */
 	 public function destroy($id)
   {
-	 $error= Error::find($id);
- 	 $error->delete();
- 	 if($request->ajax()){
- 		 return response(array('msg' => 'Removing Successfull'), 200)
- 							 ->header('Content-Type', 'application/json');
- 		 }
- 	 return redirect()->back();
+		 $error= Error::find($id);
+	 	 $error->delete();
+	 	 if($request->ajax()){
+	 		 return response(array('msg' => 'Removing Successfull'), 200)
+	 							 ->header('Content-Type', 'application/json');
+	 		 }
+	 	 return redirect()->back();
   }
 
 }

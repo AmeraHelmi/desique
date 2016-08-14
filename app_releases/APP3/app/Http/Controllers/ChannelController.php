@@ -1,6 +1,5 @@
 <?php namespace App\Http\Controllers;
 
-
 use App\Http\Requests;
 use App\Models\User;
 use App\Models\Country;
@@ -25,21 +24,22 @@ class ChannelController extends Controller {
 	 {
 		 $this->middleware('auth');
 	 }
-	public function index(Channel $channel , Request $request)
-	{
-		$channels = $channel
-			->select(array('id', 'name','frequency','flag'))
-			->orderBy('id','desc')->get();
-
+	 public function index(Channel $channel , Request $request)
+	 {
+		 $channels = $channel
+			           ->select(array('id', 'name','frequency','flag'))
+			           ->orderBy('id','desc')->get();
 			$tableData = Datatables::of($channels)
-			->editColumn('flag', '<div class="image"><img src="images/uploads/{{ $flag }}"  width="50px" height="50px">')
-				->addColumn('actions', function ($data)
-					{return view('partials.actionBtns')->with('controller','channel')->with('id', $data->id)->render(); });
+			           ->editColumn('flag', '<div class="image"><img src="images/uploads/{{ $flag }}"  width="50px" height="50px">')
+				         ->addColumn('actions', function ($data)
+					      {
+										return view('partials.actionBtns')->with('controller','channel')->with('id', $data->id)->render();
+								});
 
 			if($request->ajax())
 				return DatatablePresenter::make($tableData, 'index');
-		return view('channel.index')
-			->with('tableData', DatatablePresenter::make($tableData, 'index'));
+				return view('channel.index')
+			        ->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	}
 
 	/**
@@ -58,22 +58,21 @@ class ChannelController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-		if(Input::hasFile('flag')){
+		if(Input::hasFile('flag'))
+		{
 			 $file = Input::file('flag');
 			 $filename=time();
 			 $file->move('images/uploads', $filename);
-
-			$channel = new Channel;
-			  $channel->name        =$request->name;
-				$channel->frequency   =$request->frequency;
-				$channel->flag        =$filename;
-
-			  $channel->save();
-
-				if($request->ajax()){
+			 $channel = new Channel;
+			 $channel->name        =$request->name;
+		   $channel->frequency   =$request->frequency;
+			 $channel->flag        =$filename;
+			 $channel->save();
+       if($request->ajax())
+			 {
 					return response(array('msg' => 'Adding Successfull'), 200)
 										->header('Content-Type', 'application/json');
-					}
+			 }
 			}
 			else{
 			return response(false, 200)
@@ -101,10 +100,8 @@ class ChannelController extends Controller {
 	public function edit(Request $request , $id)
 	{
 		$channel 	      = Channel::find($id);
-
 		session(['channelid'    => $channel->id]);
 		session(['channelimage' => $channel->flag]);
-
 		if($request->ajax()){
 			return response(array('msg' => 'Adding Successfull', 'data'=> $channel->toJson() ), 200)
 								->header('Content-Type', 'application/json');
@@ -120,26 +117,25 @@ class ChannelController extends Controller {
 	public function update(Request $request)
 	{
 		$channel 	= Channel::find(session('channelid'));
-
-		if(!empty($_FILES)){
-     	if(Input::hasFile('flag')){
-		$file = Input::file('flag');
-		$filename=time();
-		$file->move('images/uploads', $filename);
-
-		$channel->name 	     = $request->name ;
-		$channel->frequency  =$request->frequency;
-		$channel->flag       =$filename;
-	}
-}
-else{
-	$channel->name 	     = $request->name ;
-	$channel->frequency  =$request->frequency;
-	$channel->flag       =session('channelimage');
-}
-
-		$channel->save();
-		if($request->ajax()){
+		if(!empty($_FILES))
+		{
+     	if(Input::hasFile('flag'))
+			{
+		      $file = Input::file('flag');
+		      $filename=time();
+		      $file->move('images/uploads', $filename);
+		      $channel->name 	     = $request->name ;
+		      $channel->frequency  =$request->frequency;
+		      $channel->flag       =$filename;
+	    }
+   }
+   else{
+	        $channel->name 	     = $request->name ;
+	        $channel->frequency  =$request->frequency;
+	        $channel->flag       =session('channelimage');
+   }
+   $channel->save();
+	 if($request->ajax()){
 			return response(array('msg' => 'Adding Successfull'), 200)
 								->header('Content-Type', 'application/json');
 			}
@@ -155,10 +151,11 @@ else{
 	{
 		$channel 	= Channel::find($id);
 		$channel->delete();
-		if($request->ajax()){
+		if($request->ajax())
+		{
 			return response(array('msg' => 'Removing Successfull'), 200)
 								->header('Content-Type', 'application/json');
-			}
+    }
 		return redirect()->back();
 	}
 

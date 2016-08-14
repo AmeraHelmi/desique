@@ -36,19 +36,24 @@ class CornerController extends Controller {
 	 }
 	 public function index(Corner $corner , Request $request)
 	{
-	 $corners = $corner
-	   ->join('teams as team', 'team.id', '=', 'corners.team_id')
-		 ->join('players as player', 'player.id', '=', 'corners.player_id')
-		 ->join('matches as match', 'match.id', '=', 'corners.match_id')
-		 ->join('referees as referee', 'referee.id', '=', 'corners.referee_id')
-		 ->select(array('corners.id as cornerID','team.name as team_name','player.name as player_name',
-		 'match.id as match_id','referee.name as referee_name','corners.time as time'))
-		->orderBy('cornerID')->get();
+			 $corners = $corner
+								   ->join('teams as team', 'team.id', '=', 'corners.team_id')
+									 ->join('players as player', 'player.id', '=', 'corners.player_id')
+									 ->join('matches as match', 'match.id', '=', 'corners.match_id')
+									 ->join('referees as referee', 'referee.id', '=', 'corners.referee_id')
+									 ->select(array('corners.id as cornerID',
+									 								'team.name as team_name',
+																	'player.name as player_name',
+									 								'match.id as match_id',
+																	'referee.name as referee_name',
+																	'corners.time as time'))
+									->orderBy('cornerID')->get();
 
 		 $tableData = Datatables::of($corners)
-			 ->addColumn('actions', function ($data)
-				 {return view('partials.actionBtns')->with('controller','corner')->with('id', $data->cornerID)->render(); })
-			 ;
+			 						->addColumn('actions', function ($data)
+				 					{
+										return view('partials.actionBtns')->with('controller','corner')->with('id', $data->cornerID)->render();
+									});
 
 		 if($request->ajax())
 			 return DatatablePresenter::make($tableData, 'index');
@@ -58,14 +63,14 @@ class CornerController extends Controller {
 			 $referees=Referee::lists('name','id');
 			 $match= new Match;
 			 $matches  = $match
-					 ->join('teams as team1', 'team1.id', '=', 'matches.team1_id')
-					 ->join('teams as team2', 'team2.id', '=', 'matches.team2_id')
-					 ->select(array('team1.name as team1_name','team2.name as team2_name','matches.id as matchid'))
-					 ->get();
-	 return view('corner.index')
-		->with('teams',$teams)->with('players',$players)
-		->with('matches',$matches)->with('referees',$referees)
-		 ->with('tableData', DatatablePresenter::make($tableData, 'index'));
+							 ->join('teams as team1', 'team1.id', '=', 'matches.team1_id')
+							 ->join('teams as team2', 'team2.id', '=', 'matches.team2_id')
+							 ->select(array('team1.name as team1_name','team2.name as team2_name','matches.id as matchid'))
+							 ->get();
+	 		return view('corner.index')
+							 ->with('teams',$teams)->with('players',$players)
+						   ->with('matches',$matches)->with('referees',$referees)
+		 				 	 ->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	}
 
 	/**
@@ -85,16 +90,16 @@ class CornerController extends Controller {
 	 */
 	 public function store(Request $request)
 	 {
-	  $corner = new Corner;
-		$corner->team_id           =$request->team_id;
-	  $corner->player_id          =$request->player_id;
-		$corner->match_id          =$request->match_id;
-	  $corner->referee_id         =$request->referee_id;
-	  $corner->time               =$request->time;
-	  $corner->save();
+			  $corner = new Corner;
+				$corner->team_id           =$request->team_id;
+			  $corner->player_id          =$request->player_id;
+				$corner->match_id          =$request->match_id;
+			  $corner->referee_id         =$request->referee_id;
+			  $corner->time               =$request->time;
+			  $corner->save();
 
-	  return response(array('msg' => 'Adding Successfull'), 200)
-	 					 ->header('Content-Type', 'application/json');
+			  return response(array('msg' => 'Adding Successfull'), 200)
+			 					 ->header('Content-Type', 'application/json');
 	 }
 	/**
 	 * Display the specified resource.
@@ -115,11 +120,12 @@ class CornerController extends Controller {
 	 */
 	 public function edit(Request $request , $id)
 	{
-		$corner= Corner::find($id);
-		if($request->ajax()){
-			return response(array('msg' => 'Adding Successfull', 'data'=> $corner->toJson() ), 200)
+				$corner= Corner::find($id);
+				if($request->ajax())
+				{
+					return response(array('msg' => 'Adding Successfull', 'data'=> $corner->toJson() ), 200)
 								->header('Content-Type', 'application/json');
-			}
+			  }
 	}
 
 	/**
@@ -130,17 +136,18 @@ class CornerController extends Controller {
 	 */
 	 public function update(Request $request , $id)
 	{
-	 $corner= Corner::find($id);
-	 $corner->team_id           =$request->team_id;
-	 $corner->player_id          =$request->player_id;
-	 $corner->match_id          =$request->match_id;
-	 $corner->referee_id         =$request->referee_id;
-	 $corner->time               =$request->time;
- 	 $corner->save();
-	if($request->ajax()){
-	 return response(array('msg' => 'Adding Successfull'), 200)
-						 ->header('Content-Type', 'application/json');
-	 }
+	 			 $corner= Corner::find($id);
+				 $corner->team_id           =$request->team_id;
+				 $corner->player_id          =$request->player_id;
+				 $corner->match_id          =$request->match_id;
+				 $corner->referee_id         =$request->referee_id;
+				 $corner->time               =$request->time;
+			 	 $corner->save();
+				 if($request->ajax())
+				 {
+	 			 		return response(array('msg' => 'Adding Successfull'), 200)
+						 				->header('Content-Type', 'application/json');
+	 				}
 	}
 
 	/**
@@ -151,13 +158,14 @@ class CornerController extends Controller {
 	 */
 	 public function destroy($id)
   {
-	 $corner= Corner::find($id);
- 	 $corner->delete();
- 	 if($request->ajax()){
- 		 return response(array('msg' => 'Removing Successfull'), 200)
- 							 ->header('Content-Type', 'application/json');
- 		 }
- 	 return redirect()->back();
-  }
+		 $corner= Corner::find($id);
+	 	 $corner->delete();
+	 	 if($request->ajax())
+		 {
+	 		 return response(array('msg' => 'Removing Successfull'), 200)
+	 							 ->header('Content-Type', 'application/json');
+	 		 }
+	 	 return redirect()->back();
+	  }
 
 }

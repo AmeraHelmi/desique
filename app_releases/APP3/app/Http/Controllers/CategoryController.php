@@ -1,6 +1,5 @@
 <?php namespace App\Http\Controllers;
 
-
 use App\Http\Requests;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
@@ -20,25 +19,24 @@ class CategoryController extends Controller {
 	 */
 	 public function __construct()
 	 {
-            $this->middleware('auth');
+        $this->middleware('auth');
 	 }
-	public function index(Category $cat , Request $request)
-	{
-            $categories = $cat
-			->select(array('id', 'name'))
+	 public function index(Category $cat , Request $request)
+	 {
+        $categories = $cat
+												->select(array('id', 'name'))
                         ->orderBy('name')->get();
-            $tableData = Datatables::of($categories)
+        $tableData = Datatables::of($categories)
                         ->addColumn('actions', function ($data)
-            {
-                return view('partials.actionBtns')->with('controller','Category')->with('id', $data->id)->render();
+            						{
+                					return view('partials.actionBtns')->with('controller','Category')->with('id', $data->id)->render();
+												});
 
-            });
-
-            if($request->ajax())
-		return DatatablePresenter::make($tableData, 'index');
-		return view('category.index')
-			->with('tableData', DatatablePresenter::make($tableData, 'index'));
-	}
+        if($request->ajax())
+				return DatatablePresenter::make($tableData, 'index');
+				return view('category.index')
+							->with('tableData', DatatablePresenter::make($tableData, 'index'));
+		}
 
 	/**
 	 * Show the form for creating a new resource.
@@ -56,16 +54,14 @@ class CategoryController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-
-            $cat = new Category;
-            $cat->name    =$request->name;
-            $cat->save();
-            if($request->ajax())
-                {
-                    return response(array('msg' => 'adding Successfull'), 200)
+			$cat = new Category;
+      $cat->name    =$request->name;
+      $cat->save();
+      if($request->ajax())
+      {
+				    return response(array('msg' => 'adding Successfull'), 200)
                             ->header('Content-Type', 'application/json');
-		}
-
+			}
 	}
 
 
@@ -87,14 +83,13 @@ class CategoryController extends Controller {
 	 */
 	public function edit(Request $request , $id)
 	{
-            $cat = Category::find($id);
-						 		session(['catid'    => $cat->id]);
-
-            if($request->ajax())
-                {
-                    return response(array('msg' => 'Adding Successfull', 'data'=> $cat->toJson() ), 200)
+    	$cat = Category::find($id);
+			session(['catid'    => $cat->id]);
+			if($request->ajax())
+      {
+        return response(array('msg' => 'Adding Successfull', 'data'=> $cat->toJson() ), 200)
                             ->header('Content-Type', 'application/json');
-		}
+		  }
 	}
 
 	/**
@@ -108,9 +103,6 @@ class CategoryController extends Controller {
 
 		$cat 	= Category::find(session('catid'));
 		$cat->name 	= $request->name ;
-
-
-
 		$cat->save();
 		return response(array('msg' => 'Adding Successfull'), 200)
 							->header('Content-Type', 'application/json');

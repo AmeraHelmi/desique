@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Router as Route;
 use App\Services\DatatablePresenter;
 use Auth;
-
 use Clockwork\Support\Laravel\Facade as Clockwork ;
 
 
-class AdminController extends Controller {
+class AdminController extends Controller
+ {
 
 	public function __construct()
 	{
@@ -25,12 +25,13 @@ class AdminController extends Controller {
 		$employees = User
 			::select(array('id', 'name', 'email', 'role'))
 			->where('role','!=',Auth::user()->role);
-			$tableData = Datatables::of($employees)
+		$tableData = Datatables::of($employees)
 			->setRowId(function ($data){	return 'employee_' . $data->id;	})
-				->addColumn('actions', function ($data)
-					{return view('partials.actionBtns')->with('controller','users')->with('id', $data->id)->render(); })
-				;
-$admin=User
+			->addColumn('actions', function ($data)
+					{
+						return view('partials.actionBtns')->with('controller','users')->with('id', $data->id)->render();
+					});
+		$admin=User
      ::select(array('id', 'name', 'email', 'role'))
 		 	->where('id','=',Auth::user()->id)->get();
 
@@ -39,8 +40,7 @@ $admin=User
 
 		return view('admin.index')
 		  ->with('admin',$admin)
-			->with('tableData', DatatablePresenter::make($tableData, 'admin.index'))
-			;
+			->with('tableData', DatatablePresenter::make($tableData, 'admin.index'));
 	}
 
 	public function store(EmployeeRequest $request)
@@ -51,7 +51,6 @@ $admin=User
 	public function edit(Request $request, $id)
 	{
 		$employee 	= User::find($id);
-
  		if($request->ajax()){
  			return response(array('msg' => 'Adding Successfull', 'data'=> $employee->toJson() ), 200)
  								->header('Content-Type', 'application/json');
@@ -60,44 +59,40 @@ $admin=User
 
 	public function update(Request $request, $id)
 	{
-		$employee = User::find($id);
-
+			$employee = User::find($id);
 			$employee->name 	      = $request->name ;
 			$employee->email 	      = $request->email ;
 			$employee->role 	      = $request->role ;
-
 			$employee->save();
-			if($request->ajax()){
+			if($request->ajax())
+			{
 				return response(array('msg' => 'Adding Successfull'), 200)
 									->header('Content-Type', 'application/json');
-				}
+			}
 	}
 
 	public function update_admin(Request $request)
 	{
-		$employee = User::find(Auth::user()->id);
-
+			$employee = User::find(Auth::user()->id);
 			$employee->name 	      = $request->name ;
 			$employee->email 	      = $request->email ;
 			$employee->role 	      = $request->role ;
-
 			$employee->save();
-       return redirect()->back();
+      return redirect()->back();
 	}
 
 	public function destroy($id)
 	{
-		$employee = User::find($id);
-		if(!$employee)
+			$employee = User::find($id);
+			if(!$employee)
 			return 'not found';
-		$employee->delete();
-		if($request->ajax()){
-			return response(array('msg' => 'Removing Successfull'), 200)
+			$employee->delete();
+			if($request->ajax())
+			{
+				return response(array('msg' => 'Removing Successfull'), 200)
           			->header('Content-Type', 'application/json');
 	    }
 		return redirect()->back();
 	}
-
-
 
 }

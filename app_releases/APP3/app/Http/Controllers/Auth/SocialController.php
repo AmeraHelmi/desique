@@ -19,17 +19,17 @@ class SocialController extends Controller {
 	}
 
 	public function getCallback($media)
-	{	
+	{
 	    $userData = Socialize::driver($media)->user();
-		$social = SocialAccount::where('email', $userData->getEmail())->where('provider', $media)->first();
-		$user = User::where('email', $userData->getEmail())->first();
+			$social = SocialAccount::where('email', $userData->getEmail())->where('provider', $media)->first();
+			$user = User::where('email', $userData->getEmail())->first();
     	if($social)
     	{
     		// TODO: update the user social media data
     		if($social->user_id)
     		{
 	        	Auth::loginUsingId($social->user_id);
-    			return redirect('/');
+    				return redirect('/');
     		}
     	}
     	else
@@ -61,13 +61,16 @@ class SocialController extends Controller {
 	}
 
 	public function postCompleteRegister(Request $request)
-	{	
-		try {
+	{
+		try
+		{
 		    $sid = Crypt::decrypt($request->sid);
-		} catch (DecryptException $e) {
+		}
+		catch (DecryptException $e)
+		{
 		    return 'social data error';
 		}
-	    $social = SocialAccount::find($sid);
+	  $social = SocialAccount::find($sid);
 		$user_array = [
 			'name'					=> $request->name,
 			'username' 				=> $request->username,
@@ -89,11 +92,10 @@ class SocialController extends Controller {
 					->with('data', $user_array);
 
 		$user_array['password'] = bcrypt( $user_array['password'] );
-        $user = User::registerNewUser($user_array);
-        $social->user_id = $user->id;
-        $social->save();
-        Auth::login($user);
+    $user = User::registerNewUser($user_array);
+    $social->user_id = $user->id;
+    $social->save();
+    Auth::login($user);
 		return redirect('/');
 	}
 }
-

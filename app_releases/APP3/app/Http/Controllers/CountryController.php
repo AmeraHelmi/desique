@@ -25,18 +25,20 @@ class CountryController extends Controller {
 	public function index(Country $country , Request $request)
 	{
 		$countries = $country
-			->select(array('id', 'name', 'flag'))
-			->orderBy('id','desc')->get();
+									->select(array('id', 'name', 'flag'))
+									->orderBy('id','desc')->get();
 
-			$tableData = Datatables::of($countries)
-			->editColumn('flag', '<div class="image"><img src="images/uploads/{{ $flag }}"  width="50px" height="50px">')
-				->addColumn('actions', function ($data)
-					{return view('partials.actionBtns')->with('controller','country')->with('id', $data->id)->render(); });
+		$tableData = Datatables::of($countries)
+								  ->editColumn('flag', '<div class="image"><img src="images/uploads/{{ $flag }}"  width="50px" height="50px">')
+				          ->addColumn('actions', function ($data)
+									{
+										return view('partials.actionBtns')->with('controller','country')->with('id', $data->id)->render();
+									});
 
-			if($request->ajax())
-				return DatatablePresenter::make($tableData, 'index');
+		if($request->ajax())
+		return DatatablePresenter::make($tableData, 'index');
 		return view('country.index')
-			->with('tableData', DatatablePresenter::make($tableData, 'index'));
+						->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	}
 
 	/**
@@ -55,22 +57,22 @@ class CountryController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-		 if(Input::hasFile('flag')){
+		 if(Input::hasFile('flag'))
+		 {
 		    $file = Input::file('flag');
 			  $filename=time();
 		    $file->move('images/uploads', $filename);
+				$country = new Country;
+				if($request->name)
+				{
+					  $country->name    =$request->name;
+					  $country->flag    =$filename;
+					  $country->save();
 
-			$country = new Country;
-			if($request->name)
-			{
-			  $country->name    =$request->name;
-			  $country->flag    =$filename;
-			  $country->save();
-
-				if($request->ajax()){
-					return response(array('msg' => 'Adding Successfull'), 200)
-										->header('Content-Type', 'application/json');
-					}
+						if($request->ajax()){
+							return response(array('msg' => 'Adding Successfull'), 200)
+												->header('Content-Type', 'application/json');
+							}
 				}
     }
 		else{
@@ -85,11 +87,10 @@ class CountryController extends Controller {
 
 		if($country_name == $request->name)
 			return;
-
 			$countryname = $country
-			->where('name',$request->name)
-			->lists('name', 'id');
-		if($countryname)
+										->where('name',$request->name)
+										->lists('name', 'id');
+		  if($countryname)
 			return response(null, 406);
 		return;
 	}
@@ -99,10 +100,9 @@ class CountryController extends Controller {
 
 		if($country_pic == $request->flag)
 			return;
-
 			$countrypic = $country
-			->where('flag',$request->flag)
-			->lists('name', 'id');
+										->where('flag',$request->flag)
+										->lists('name', 'id');
 		if($countrypic)
 			return response(null, 406);
 		return;
@@ -128,11 +128,9 @@ class CountryController extends Controller {
 	{
 
 		$country       = $country->find($id);
-
 		session(['countryid'   => $country->id]);
 		session(['countryflag' => $country->flag]);
-
-			return response(array('msg' => 'Adding Successfull', 'data'=> $country->toJson() ), 200)
+		return response(array('msg' => 'Adding Successfull', 'data'=> $country->toJson() ), 200)
 								->header('Content-Type', 'application/json');
 
 	}
@@ -145,22 +143,24 @@ class CountryController extends Controller {
 	 */
 	public function update(Request $request)
 	{
- $country 	= Country::find(session('countryid'));
-
-	if(!empty($_FILES)){
-		if(Input::hasFile('flag')){
-			 $file = Input::file('flag');
-			 $filename=time();
-			 $file->move('images/uploads', $filename);
-			 $country->name    =$request->name;
-			 $country->flag    =$filename;
-       	}
+     $country 	= Country::find(session('countryid'));
+     if(!empty($_FILES))
+		 {
+			 if(Input::hasFile('flag'))
+			 {
+					 $file = Input::file('flag');
+					 $filename=time();
+					 $file->move('images/uploads', $filename);
+					 $country->name    =$request->name;
+					 $country->flag    =$filename;
+       }
    }
-	else{
+	 else
+	 {
 			$country->name    =$request->name;
 			$country->flag    =session('countryflag');
-	}
-	$country->save();
+	 }
+	 $country->save();
 	 		if($request->ajax()){
 	 			return response(array('msg' => 'Adding Successfull'), 200)
 	 								->header('Content-Type', 'application/json');

@@ -149,7 +149,7 @@ public function index(Discussion $Discussion , Request $request)
 	public function destroy($id)
 	{
 		$Discussion 	= Discussion::find($id);
-		Discussion->delete();
+		$Discussion->delete();
 		if($request->ajax())
 		{
 			return response(array('msg' => 'Removing Successfull'), 200)

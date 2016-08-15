@@ -46,7 +46,7 @@ public function index(Player $player , Request $request){
 									->addColumn('actions', function ($data)
 									{
 										return view('partials.actionBtns')->with('controller','player')->with('id', $data->playerID)->render(); });
-	  if($request->ajax())				 return DatatablePresenter::make($tableData, 'index');				 $countries=Country::lists('name','id');				 $cities=City ::lists('name','id');				 $teams=Team::lists('name','id');
+	  if($request->ajax())				 return DatatablePresenter::make($tableData, 'index');				 $countries=Country::lists('name','id');				 $cities=City ::lists('name','id');				 $teams=Team::where('is_team','like','منتحب%')->lists('name','id');
 				 return view('player.index')
 				 ->with('countries',$countries)
 				 ->with('cities',$cities)

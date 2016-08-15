@@ -185,7 +185,7 @@ $Allmatch= new Match;
 
 		 ->orderBy('matches.match_date','ASC')->get();
 
-      
+
 
      $team_championship = new Team_championship;
 
@@ -599,7 +599,7 @@ public function displayplan(Match $match,$id){
 
 	->where('matches.id',$id)->get();
 
-	
+
 
 //$count=count($playersteam1);
 
@@ -645,7 +645,7 @@ public function displayplan(Match $match,$id){
 
 
 
-	//coaches  
+	//coaches
 
 	public function coache_profile(Coach $coach , $id)
 
@@ -653,7 +653,7 @@ public function displayplan(Match $match,$id){
 
 		$coach_id = $coach->find($id);
 
-		$coache_details = $coach 
+		$coache_details = $coach
 
 		                  ->join('teams as T','T.coach_id','=','coaches.id')
 
@@ -737,7 +737,7 @@ public function displayplan(Match $match,$id){
 
 		$referee_id = $referee->find($id);
 
-		$referee_details = $referee 
+		$referee_details = $referee
 
 		                  ->join('countries as country','country.id','=','referees.country_id')
 

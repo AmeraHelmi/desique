@@ -58,7 +58,7 @@
 
 
 
-<tr>
+<!-- <tr>
 
 <td style="width: 48%;">
 
@@ -70,7 +70,6 @@
 
    name="match_period"
 
-   required
 
    placeholder="match_period"
 
@@ -88,7 +87,7 @@
 
 </td>
 
-</tr>
+</tr> -->
 
 <tr>
 
@@ -102,7 +101,7 @@
 
  name="group_id">
 
- <option selected>أختيار المجموعه</option>
+ <option value="Null" selected>أختيار المجموعه</option>
 
  @foreach($groups as $group_id => $group_name)
 
@@ -126,7 +125,7 @@
 
    name="champion_id">
 
-   <option selected>أختيار البطوله</option>
+   <option value="Null" selected>أختيار البطوله</option>
 
    @foreach($championships as $championship_id => $championship_name)
 
@@ -198,7 +197,7 @@
 
    name="channel_id">
 
-   <option selected>أختيار القناه</option>
+   <option value="Null" selected>أختيار القناه</option>
 
    @foreach($channels as $channel_id => $channel_name)
 
@@ -224,7 +223,7 @@
 
  name="role">
 
-  <option value="1">دور المجموعات</option>
+  <option value="Null">دور المجموعات</option>
 
   <option value="16">دور ال 16</option>
 

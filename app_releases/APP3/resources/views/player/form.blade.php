@@ -33,21 +33,12 @@
 </td>
 
 <td style="width: 48%; padding-left: 2%;">
-
 <div class="form-group">
-
-<label for="exampleInputPassword1">أسم اللاعب</label>
-
+<label for="exampleInputPassword1">اللقب</label>
 <input type="text"
-
  name="nickname"
-
-
-
  placeholder="player nickname"
-
  class="form-control"
-
 >
 
 

@@ -1,13 +1,23 @@
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 <table>
   <tr>
-  <td style="width: 48%">
+    <td  style="width: 48%">
+  <div class="form-group">
+  <label for="exampleInputFile">نادى / منتخب</label>
+  <select id="is_team"  class="form-control"
+   name="is_team">
+   <option selected value="نادى">نادى</option>
+   <option  value="منتخب">منتخب</option>
+  </select>
+  </div>
+  </td>
+  <td style="width: 48% ;padding-left: 2%;">
 <div class="form-group">
-<label for="exampleInputPassword1">أسم النادى</label>
+<label for="exampleInputPassword1">الاسم</label>
 <input type="text"
  name="name"
  required
- placeholder="team name"
+ placeholder=" ادخل اسم الفريق"
  class="form-control"
 >
 
@@ -15,13 +25,14 @@
 
 </div>
 </td>
-<td style="width: 48%; padding-left: 2%;">
+</tr><tr>
+<td style="width: 48%">
 <div class="form-group">
 <label for="exampleInputPassword1">لقب النادى</label>
 <input type="text"
  name="slogan"
- required
- placeholder="Team Slogan"
+
+ placeholder="لقب النادى"
  class="form-control"
 >
 
@@ -29,9 +40,8 @@
 
 </div>
 </td>
-</tr>
-<tr>
-  <td  style="width: 48%">
+
+  <td  style="width: 48% ;padding-left: 2%;">
 <div class="form-group">
 <label for="exampleInputFile">أختيار الدوله</label>
 <select id="country"  class="form-control"
@@ -43,7 +53,8 @@
 </select>
 </div>
 </td>
-<td style="width: 48%;padding-left: 2%;">
+</tr><tr>
+<td style="width: 48%">
 <div class="form-group">
 <label for="exampleInputFile">أختيار الأستاد</label>
 <select id="stadium"  class="form-control"
@@ -55,9 +66,8 @@ name="stadium_id">
 </select>
 </div>
 </td>
-</tr>
-<tr>
-  <td style="width: 48%;">
+
+  <td style="width: 48%;padding-left: 2%;">
     <div class="form-group">
   <label for="exampleInputPassword1">القاره</label>
   <input type="text"
@@ -69,7 +79,8 @@ name="stadium_id">
   <span class="help-block with-errors errorName"></span>
   </div>
   </td>
-  <td style="width: 48%;padding-left: 2%;">
+</tr><tr>
+  <td style="width: 48%">
   <div class="form-group">
   <label for="exampleInputFile">أختيار المدرب</label>
   <select   class="form-control"name="coach_id">

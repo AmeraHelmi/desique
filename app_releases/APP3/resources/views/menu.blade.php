@@ -68,13 +68,13 @@
         </ul>
     </li>
 
-                            <li class="accordion">
+                            <!-- <li class="accordion">
         <a href="#"><i class="glyphicon glyphicon-plus"></i><span> المنتخب</span></a>
         <ul class="nav nav-pills nav-stacked">
             <li><a href="{{ url('nation') }}">اضافة منتخب</a></li>
             <li><a href="{{ url('nationcloth') }}">ملابس النتخبات</a></li>
         </ul>
-    </li>
+    </li> -->
 
                                 <li class="accordion">
         <a href="#"><i class="glyphicon glyphicon-plus"></i><span> الوكلاء</span></a>

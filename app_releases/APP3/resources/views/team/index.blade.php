@@ -82,11 +82,12 @@
 						<thead>
 								<tr>
 										<th class="col-md-1">الأسم</th>
-										<th class="col-md-1">اللفب</th>
+                    <th class="col-md-1">اللفب</th>
+										<th class="col-md-1">نوع الفريق</th>
 										<th class="col-md-1">صورة النادى</th>
 										<th class="col-md-1">صورة للفريق</th>
 										<th class="col-md-1">أسم الدوله</th>
-                                        <th class="col-md-1">أسم الأستاد</th>
+                    <th class="col-md-1">أسم الأستاد</th>
 										<th class="col-md-1">خيارات</th>
 								</tr>
 						</thead>
@@ -94,7 +95,8 @@
 								@foreach ($tableData->getData()->data as $row)
 								<tr>
 										<td>{{ $row->name }}</td>
-										<td>{{ $row->slogan }}</td>
+                    <td>{{ $row->slogan }}</td>
+										<td>{{ $row->is_team }}</td>
 										<td>{!! $row->team_image !!}</td>
 										<td>{!! $row->team_image2 !!}</td>
 										<td>{{ $row->countryname }}</td>
@@ -244,7 +246,8 @@
 								"deferLoading": {{ $tableData->getData()->recordsFiltered }},
 								"columns": [
 										{data: 'name', name: 'name'},
-										{data: 'slogan', name: 'slogan'},
+                    {data: 'slogan', name: 'slogan'},
+										{data: 'is_team', name: 'is_team'},
                     {data: 'team_image',  name: 'team_image'},
                     {data: 'team_image2',  name: 'team_image2'},
 										{data: 'countryname', name: 'countryname'},

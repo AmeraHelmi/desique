@@ -71,11 +71,17 @@ public function store(Request $request){
 				$team->flag                  =$filename;
 				$team->flag2                 =$filename2;
 				$team->country_id            =$request->country_id;
-				$team->stadium_id            =$request->stadium_id;
+				if(isset($request->stadium_id))
+				{
+						$team->stadium_id            =$request->stadium_id;
+				}
 				$team->history               =$request->history;
 				$team->continent             =$request->continent;
 				$team->is_team               =$request->is_team;
-				$team->coach_id              =$request->coach_id;
+				if(isset($request->coach_id))
+				{
+						$team->coach_id              =$request->coach_id;
+				}
 				$team->start_date            =$request->start_date;
 				$team->save();
 				if($request->ajax())
@@ -146,10 +152,16 @@ public function update(Request $request){
 				$team->flag       =$filename;
 				$team->flag2      =session('teamimage2');
 				$team->country_id =$request->country_id;
-				$team->stadium_id =$request->stadium_id;
+				if(isset($request->stadium_id))
+				{
+						$team->stadium_id     =$request->stadium_id;
+				}
 				$team->history    =$request->history;
 				$team->continent  =$request->continent;
-				$team->coach_id   =$request->coach_id;
+				if(isset($request->coach_id))
+				{
+						$team->coach_id              =$request->coach_id;
+				}
 				$team->start_date =$request->start_date;
 				$team->is_team    =$request->is_team;
 			}
@@ -163,10 +175,16 @@ public function update(Request $request){
 				$team->flag       =session('teamimage');
 				$team->flag2      =$filename2;
 				$team->country_id =$request->country_id;
-				$team->stadium_id =$request->stadium_id;
+				if(isset($request->stadium_id))
+				{
+						$team->stadium_id     =$request->stadium_id;
+				}
 				$team->history    =$request->history;
 				$team->continent  =$request->continent;
-				$team->coach_id   =$request->coach_id;
+				if(isset($request->coach_id))
+				{
+						$team->coach_id              =$request->coach_id;
+				}
 				$team->start_date =$request->start_date;
 				$team->is_team    =$request->is_team;
        	}
@@ -175,10 +193,16 @@ public function update(Request $request){
 				$team->name          =$request->name;
 				$team->slogan        =$request->slogan;
 				$team->country_id    =$request->country_id;
-				$team->stadium_id    =$request->stadium_id;
+				if(isset($request->stadium_id))
+				{
+						$team->stadium_id     =$request->stadium_id;
+				}
 				$team->history       =$request->history;
 				$team->continent     =$request->continent;
-				$team->coach_id      =$request->coach_id;
+				if(isset($request->coach_id))
+				{
+						$team->coach_id              =$request->coach_id;
+				}
 				$team->start_date    =$request->start_date;
 				$team->is_team       =$request->is_team;
 				$team->flag          =session('teamimage');

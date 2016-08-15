@@ -25,42 +25,6 @@
 </td>
 </tr>
 <tr>
-  <td style="width: 48%;">
-  <div class="form-group">
-  <label for="exampleInputPassword1">الدور</label>
-  <select  class="form-control"
-   name="role">
-
-    <option value="referee 1">حكم 1</option>
-
-    <option value="referee 2">حكم 2</option>
-
-    <option value="referee 3">حكم 3</option>
-
-    <option value="referee 4">حكم 4</option>
-
-    <option value="referee 5">حكم 5</option>
-
-  </select>
-
-  </div>
-  </td>
-  <td style="width: 48%; padding-left: 2%;">
-<div class="form-group" >
-<label for="exampleInputFile">العمر</label>
-<input type="number"
- name="age"
- min= '20'
-
- required
- placeholder="referee age"
- class="form-control"
->
-</div>
-</td>
-</tr>
-
-<tr>
 <td style="width: 48%; ">
   <div class="form-group">
   <label for="exampleInputFile">أختيار الدوله</label>
@@ -72,6 +36,13 @@
   </select>
   </div>
 </td>
+
+
+
+</tr>
+
+<tr>
+
 
   <td style="width: 48%;padding-left: 2%;">
     <div class="form-group" id="show-city">

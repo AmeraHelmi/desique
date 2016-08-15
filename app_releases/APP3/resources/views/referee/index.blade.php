@@ -86,8 +86,6 @@
 										<th class="col-md-1">المدينه</th>
 										<th class="col-md-1">الصوره</th>
 										<th class="col-md-1">الوظيفه</th>
-										<th class="col-md-1">الدور</th>
-
 										<th class="col-md-1">خيارات</th>
 								</tr>
 						</thead>
@@ -99,8 +97,6 @@
 										<td>{{ $row->cityname }}</td>
 										<td>{!! $row->referee_image !!}</td>
 										<td>{{ $row->referee_job }}</td>
-										<td>{{ $row->referee_role }}</td>
-
 										<td>{!!$row->actions !!}</td>
 								</tr>
 								@endforeach
@@ -267,7 +263,6 @@ $(document).ready(function() {
 										{data: 'cityname', name: 'cityname'},
 										{data: 'referee_image', name: 'referee_image'},
 										{data: 'referee_job', name: 'referee_job'},
-										{data: 'referee_role', name: 'referee_role'},
 
 										{data: 'actions', name: 'actions', orderable: false, searchable: false}
 								]

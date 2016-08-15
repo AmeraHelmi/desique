@@ -78,7 +78,6 @@ class MatchController extends Controller {
 
 			 ->join('groups as group','group.id','=','matches.group_id')
 
-			 ->join('channels as channel','channel.id','=','matches.channel_id')
 
 			 ->select(array(
 
@@ -96,9 +95,7 @@ class MatchController extends Controller {
 
 				 'group.id as group_id',
 
-				 'group.name as group_name',
-
-				 'channel.frequency as frequency'
+				 'group.name as group_name'
 
 			 ))
 

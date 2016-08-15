@@ -23,7 +23,7 @@
        </div>
    </li>
 </ul>
-<a class="btn btn-primary" data-toggle="modal" data-target="#addModal" style="margin-bottom:20px;" >
+<a class="btn btn-primary add" data-toggle="modal" data-target="#addModal" style="margin-bottom:20px;" >
 		<i class="fa fa-plus-circle"  style="font-size: 18px;"></i> أضافة مباراه
 </a>
 <div class="widget-content-white glossed">
@@ -33,8 +33,8 @@
 								<tr>
 										<th class="col-md-1">النادى الأول </th>
 										<th class="col-md-1">النادى الثانى </th>
+                                        <th class="col-md-1">التارخ</th>
 										<th class="col-md-1">التارخ</th>
-										<th class="col-md-1">المجموعه</th>
 										<th class="col-md-1">خيارات</th>
 								</tr>
 						</thead>
@@ -43,8 +43,8 @@
 								<tr>
 										<td>{{ $row->team1_name }}</td>
 										<td>{{ $row->team2_name }}</td>
-										<td>{!! $row->match_date !!}</td>
-                    <td>{{ $row->group_name }}</td>
+                                        <td>{!! $row->match_date !!}</td>
+										<td>{!! $row->group_name !!}</td>
 
 
 										<td>{!!$row->actions !!}</td>
@@ -55,7 +55,7 @@
 		</div>
 </div>
 
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -76,7 +76,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="editgroupModal" tabindex="-1" role="dialog" aria-labelledby="editEmployeeModalLabel" aria-hidden="true">
+<div class="modal fade" id="editgroupModal" tabindex="-1" role="dialog" aria-labelledby="editEmployeeModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -134,9 +134,14 @@
         }
     }
 
+
+
 		$("#submitForm").on('click', function(e){
         $('#addModal').modal('hide');
     });
+
+
+
 
     $("#addModal form").on('submit', function(e){
         if (!e.isDefaultPrevented())
@@ -248,7 +253,7 @@
 										{data: 'team1_name', name: 'team1'},
 										{data: 'team2_name', name: 'team2_name'},
                     {data: 'match_date',  name: 'match_date'},
-										{data: 'group_name', name: 'group_name'},
+                    {data: 'group_name',  name: 'group_name'},
 										{data: 'actions', name: 'actions', orderable: false, searchable: false}
 								]
 							});

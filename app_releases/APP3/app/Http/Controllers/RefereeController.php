@@ -38,7 +38,6 @@ class RefereeController extends Controller {
 			    'referees.name as refereename',
 				 'country.name as countryname',
 				 'referees.job as referee_job',
-				 'referees.role as referee_role',
 				 'referees.birth_date as referees_birth_date',
 			     'city.name as cityname',
 			     'referees.flag as referee_image'
@@ -91,9 +90,7 @@ class RefereeController extends Controller {
 			$referee->country_id    =$request->country_id;
 			$referee->job           =$request->job;
 			$referee->city_id       =$request->city_id;
-			$referee->role          =$request->role;
 			$referee->additional_info          =$request->additional_info;
-		   $referee->age          =$request->age;
 
 			$referee->flag          =$filename;
 
@@ -181,9 +178,7 @@ else{
 		$referee->name          =$request->name;
 		$referee->country_id    =$request->country_id;
 		$referee->job           =$request->job;
-		$referee->role          =$request->role;
 		$referee->flag          =$filename;
-		$referee->age          =$request->age;
 
 		$referee->additional_info          =$request->additional_info;
 
@@ -199,8 +194,6 @@ else{
 		$referee->name          =$request->name;
 		$referee->country_id    =$request->country_id;
 		$referee->job           =$request->job;
-		$referee->role          =$request->role;
-		$referee->age          =$request->age;
 
 	    $referee->additional_info          =$request->additional_info;
 

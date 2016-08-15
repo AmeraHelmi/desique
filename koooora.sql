@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 14, 2016 at 01:13 PM
+-- Generation Time: Aug 15, 2016 at 11:10 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -1288,6 +1288,13 @@ CREATE TABLE `discussions` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `discussions`
+--
+
+INSERT INTO `discussions` (`id`, `match_id`, `analysis`, `Author`, `analysis_date`, `flag`, `vedio_url`, `updated_at`, `created_at`) VALUES
+(1, 3, '', 'alaa', '0000-00-00 00:00:00', NULL, NULL, '2016-08-14 09:26:54', '2016-08-14 09:26:54');
+
 -- --------------------------------------------------------
 
 --
@@ -1363,7 +1370,8 @@ CREATE TABLE `g_albums` (
 
 INSERT INTO `g_albums` (`id`, `title`, `category_id`, `created_at`, `updated_at`) VALUES
 (1, 'asd', 3, '2016-08-11 08:39:11', '0000-00-00 00:00:00'),
-(2, 'ss', 4, '2016-08-11 08:39:30', '0000-00-00 00:00:00');
+(2, 'ss', 4, '2016-08-11 08:39:30', '0000-00-00 00:00:00'),
+(3, 'aa', 1, '2016-08-14 11:27:44', '2016-08-14 09:27:44');
 
 -- --------------------------------------------------------
 
@@ -1385,8 +1393,10 @@ CREATE TABLE `g_album_photos` (
 --
 
 INSERT INTO `g_album_photos` (`id`, `g_album_id`, `flag`, `alt`, `created_at`, `updated_at`) VALUES
-(1, 1, '1470913204', '1470913204', '2016-08-11 09:00:03', '2016-08-11 09:00:03'),
-(2, 1, '1470913205', '1470913205', '2016-08-11 09:00:03', '2016-08-11 09:00:03');
+(1, 1, '1471174517', '1470913204', '2016-08-14 11:35:17', '2016-08-14 09:35:17'),
+(2, 1, '1470913205', '1470913205', '2016-08-11 09:00:03', '2016-08-11 09:00:03'),
+(3, 2, '1471174505', '1471174505', '2016-08-14 09:35:04', '2016-08-14 09:35:04'),
+(4, 2, '1471174506', '1471174506', '2016-08-14 09:35:04', '2016-08-14 09:35:04');
 
 -- --------------------------------------------------------
 
@@ -1463,9 +1473,17 @@ CREATE TABLE `matches` (
   `addition_info` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
   `channel_id` int(11) DEFAULT NULL,
   `role` int(11) DEFAULT NULL,
+  `type` text COLLATE utf8_unicode_ci,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `matches`
+--
+
+INSERT INTO `matches` (`id`, `team1_id`, `team2_id`, `match_date`, `date`, `match_period`, `team1_goals`, `team2_goals`, `team1_corners`, `team2_corners`, `team1_offsides`, `team2_offsides`, `team1_errors`, `team2_errors`, `team1_cards`, `team2_cards`, `team1_psessions`, `team2_psessions`, `team1_penalties`, `team2_penalties`, `group_id`, `champion_id`, `stadium_id`, `addition_info`, `channel_id`, `role`, `type`, `updated_at`, `created_at`) VALUES
+(3, 8, 4, '2016-08-09 12:18:13', '2016-08-17', 90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, 26, NULL, NULL, NULL, NULL, '2016-08-14 11:26:29', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -3268,7 +3286,7 @@ CREATE TABLE `v_albums` (
 
 INSERT INTO `v_albums` (`id`, `vedio_url`, `title`, `category_id`, `flag`, `description`, `created_at`, `updated_at`) VALUES
 (13, 'https://www.youtube.com/watch?v=aiXbwl2RBhc', 'dd', 2, '1470908733', 'ddd', '2016-08-11 07:45:33', '2016-08-11 07:45:33'),
-(14, 'https://www.youtube.com/watch?v=aiXbwl2RBhc', 'dd', 2, '1470908948', 'wsww', '2016-08-11 07:49:08', '2016-08-11 07:49:08'),
+(14, 'https://www.youtube.com/watch?v=aiXbwl2RBhc', 'dd', 1, '1470908948', 'wsww', '2016-08-14 11:36:10', '2016-08-14 09:36:10'),
 (15, 'https://www.youtube.com/watch?v=aiXbwl2RBhc', 'gggg', 2, '1470913641', 'aa', '2016-08-11 11:07:21', '2016-08-11 09:07:21');
 
 -- --------------------------------------------------------
@@ -3907,7 +3925,7 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT for table `discussions`
 --
 ALTER TABLE `discussions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `errors`
 --
@@ -3927,12 +3945,12 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `g_albums`
 --
 ALTER TABLE `g_albums`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `g_album_photos`
 --
 ALTER TABLE `g_album_photos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `managers`
 --
@@ -3947,7 +3965,7 @@ ALTER TABLE `managment_championships`
 -- AUTO_INCREMENT for table `matches`
 --
 ALTER TABLE `matches`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `match_channels`
 --

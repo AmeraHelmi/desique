@@ -1,16 +1,23 @@
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 <table>
   <tr>
-<div class="form-group">
-<label for="exampleInputFile">النادى</label>
-<select  class="form-control"
- name="team_id">
- @foreach($teams as $team_id => $team_name)
-  <option value="{!! $team_id !!}">{!! $team_name !!}</option>
-  @endforeach
-</select>
-</div>
-</tr>
+    <div class="form-group">
+    <label for="exampleInputFile">أختيار الفريق</label>
+    <select id="team_type"  class="form-control" onchange="select_team()">
+      <option selected><bdi>أختر الفريق</bdi></option>
+     <option value="نادى"><bdi>نادى</bdi></option>
+     <option value="منتخب"><bdi>منتخب</bdi></option>
+    </select>
+    </div>
+  </tr>
+  <tr>
+    <div class="form-group" id="showteam"  style="display:none;">
+    <label for="exampleInputFile">اختيار الفريق</label>
+    <select  class="form-control"name="team_id" id="team_id" >
+    </select>
+    </div>
+  </tr>
+
 <label for="exampleInputFile">الزى الرياضى للنادى</label>
 
 <tr>

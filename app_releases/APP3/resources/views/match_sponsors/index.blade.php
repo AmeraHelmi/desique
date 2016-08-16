@@ -59,24 +59,22 @@
 <ul class="alerts-list delete">
 </ul>
 <a class="btn btn-primary" data-toggle="modal" data-target="#addModal" style="margin-bottom:20px;" >
-		<i class="fa fa-plus-circle"  style="font-size: 18px;"></i> Add Match sponsor
+		<i class="fa fa-plus-circle"  style="font-size: 18px;"></i> أضافة راعى للمباراه
 </a>
 <div class="widget-content-white glossed">
 		<div class="padded">
 				<table id="Msponsor" class="table table-striped table-bordered table-hover datatable">
 						<thead>
 								<tr>
-                    <th class="col-md-2">Match name</th>
-                    <th class="col-md-2">ٍSponsor Image</th>
-                    <th class="col-md-2">Sponsor</th>
-										<th class="col-md-2">Actions</th>
+                    <th class="col-md-2">أسم المباراه</th>
+                    <th class="col-md-2">الراعى</th>
+										<th class="col-md-2">خيارات</th>
 								</tr>
 						</thead>
 						<tbody>
 								@foreach ($tableData->getData()->data as $row)
 								<tr>
                     <td>{{ $row->T1name }}</td>
-                    <td>{!! $row->Sflag !!}</td>
                     <td>{{ $row->Sname }}</td>
 										<td>{!!$row->actions !!}</td>
 								</tr>
@@ -91,15 +89,15 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="addModalLabel"><i class="fa fa-plus-circle"></i> Add city</h4>
+                <h4 class="modal-title" id="addModalLabel"><i class="fa fa-plus-circle"></i> أضافة راعى للمباراه</h4>
             </div>
             <form role="form" method="POST" class="addForm" action="{{ url('/msponsors/store') }}" data-toggle="validator">
                 <div class="modal-body">
                     @include('match_sponsors.form')
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" id="submitForm" class="btn btn-primary">Submit</button>
-                    <button type="submit" class="btn btn-primary" id="addNew">Submit and Add New</button>
+                  <button type="submit" id="submitForm" class="btn btn-primary">موافق</button>
+                  <button type="submit" class="btn btn-primary" id="addNew">موافق وأضافة جديد</button>
 
                 </div>
             </form>
@@ -112,7 +110,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="editEmployeeModalLabel"><i class="fa fa-pencil"></i> Update</h4>
+                <h4 class="modal-title" id="editEmployeeModalLabel"><i class="fa fa-pencil"></i> تحديث</h4>
             </div>
             <form role="form" id="update_form" method="POST" class="editForm" data-id="" action="{{ url('/msponsors/update') }}" data-toggle="validator">
                 <div class="modal-body">
@@ -162,7 +160,7 @@
 										$('.alerts-list').append(
 												'<li>\
 														<div class="alert alert-success alert-dismissable">\
-																<i class="icon-check-sign"></i> Match sponsor has been successfully added!\
+																<i class="icon-check-sign"></i>تم أضافة راعى جديد!\
 																<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
 														</div>\
 												</li>');
@@ -228,7 +226,7 @@
 		 		                     $('.alerts-list').append(
 		 		                         '<li>\
 		 		                             <div class="alert alert-success alert-dismissable">\
-		 		                                 <i class="icon-check-sign"></i> Match sponsor has been successfully updated!\
+		 		                                 <i class="icon-check-sign"></i> تم تحديث البيانات بنجــــــاح!\
 		 		                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
 		 		                             </div>\
 		 		                         </li>');
@@ -258,11 +256,24 @@
 								"deferLoading": {{ $tableData->getData()->recordsFiltered }},
 								"columns": [
                     {data: 'T1name',      name: 'T1name'},
-                    {data: 'Sflag',       name: 'Sflag'},
 										{data: 'Sname',       name: 'Sname'},
 										{data: 'actions',     name: 'actions', orderable: false, searchable: false}
 								]
 							});
+              $('#addModal').on('shown.bs.modal', function () {
+                    $('.addForm')[0].reset();
+                    $('.chosen-select-it', this).chosen({disable_search_threshold: 10});
+                    $('.chosen-select-multiple', this).chosen({disable_search_threshold: 10}).trigger("chosen:updated");
+                });
+                $('#editMSponsorModal').on('shown.bs.modal', function () {
+                    $('.chosen-select-it', this).chosen({disable_search_threshold: 10});
+                    $('.chosen-select-multiple', this).chosen({disable_search_threshold: 10}).trigger("chosen:updated");
+                });
+                $('#groupModal').on('shown.bs.modal', function () {
+                    $('.chosen-select-it', this).chosen({disable_search_threshold: 10});
+                    $('.chosen-select-multiple', this).chosen({disable_search_threshold: 10});
+                });
+                $('.group-search').chosen({disable_search_threshold: 10});
 });
 </script>
 <script src="{{ asset('/admin-ui/js/for_pages/table.js') }}"></script>

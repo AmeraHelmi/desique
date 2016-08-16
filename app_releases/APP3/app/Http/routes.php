@@ -154,41 +154,13 @@ Route::resource('/match'                ,'MatchController');
 
 
 Route::POST    ('/psession/store'          , array('as' => 'addpsession','uses' => 'PsessionController@store'));
-
-
-
 Route::resource('/psession'                ,'PsessionController');
-
-
-
-
-
-
-
 //teamcloth
-
-
-
 Route::POST    ('/teamcloth/store'              ,'TeamclothController@store');
-
-
-
 Route::POST    ('/teamcloth/update'             ,'TeamclothController@update');
-
-
-
+Route::POST    ('/teamcloth/get_teams'          ,'TeamclothController@select_team');
 Route::resource('/teamcloth'                    ,'TeamclothController');
-
-
-
-
-
-
-
 //nationcloth
-
-
-
 Route::POST    ('/nationcloth/store'              ,'NationclothController@store');
 
 

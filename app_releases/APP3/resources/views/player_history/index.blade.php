@@ -96,103 +96,11 @@
 
 	@section('scripts')
 </script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
 	<script>
-	$('#datePicker')
-	    .datepicker({
-	        format: 'yyyy/mm/dd'
-	    })
-	    .on('changeDate', function(e) {
-	        // Revalidate the date field
-	        $('.addForm').formValidation('revalidateField', 'date');
-	    });
-
-	    $('#datePicker2')
-	        .datepicker({
-	            format: 'yyyy/mm/dd'
-	        })
-	        .on('changeDate', function(e) {
-	            // Revalidate the date field
-	            $('.addForm').formValidation('revalidateField', 'date');
-	        });
-
-		$('.addForm').formValidation({
-				framework: 'bootstrap',
-				fields: {
-						from_date: {
-								validators: {
-										notEmpty: {
-												message: 'The date is required'
-										},
-										from_date: {
-												format: 'yyyy/mm/dd',
-												message: 'The date is not a valid'
-										}
-								}
-						},
-						to_date: {
-								validators: {
-										notEmpty: {
-												message: 'The date is required'
-										},
-										to_date: {
-												format: 'yyyy/mm/dd',
-												message: 'The date is not a valid'
-										}
-								}
-						}
-			}
-
-		});
-</script>
-
-<script>
-$('#datePicker3')
-		.datepicker({
-			format: 'yyyy/mm/dd'
-		})
-		.on('changeDate', function(e) {
-				// Revalidate the date field
-				$('.addForm').formValidation('revalidateField', 'date');
-		});
-
-		$('#datePicker4')
-				.datepicker({
-				format: 'yyyy/mm/dd'
-				})
-				.on('changeDate', function(e) {
-						// Revalidate the date field
-						$('.addForm').formValidation('revalidateField', 'dateupdate');
-				});
-
-	$('.addForm').formValidation({
-			framework: 'bootstrap',
-			fields: {
-					from_date: {
-							validators: {
-									notEmpty: {
-											message: 'The date is required'
-									},
-									from_date: {
-										format: 'yyyy/mm/dd',
-											message: 'The date is not a valid'
-									}
-							}
-					},
-					to_date: {
-							validators: {
-									notEmpty: {
-											message: 'The date is required'
-									},
-									to_date: {
-										format: 'yyyy/mm/dd',
-											message: 'The date is not a valid'
-									}
-							}
-					}
-		}
-
-	});
+$(function(){
+		$('#datetime1').combodate();
+		$('#datetime2').combodate();
+});
 </script>
 
 	<script type="text/javascript">
@@ -223,7 +131,7 @@ $('#datePicker3')
 										$('.alerts-list').append(
 												'<li>\
 														<div class="alert alert-success alert-dismissable">\
-																<i class="icon-check-sign"></i> history has been successfully added!\
+																<i class="icon-check-sign"></i>تم أضافة تاريخ اللاعب بنجـــــــاح!\
 																<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
 														</div>\
 												</li>');
@@ -289,7 +197,7 @@ $('#datePicker3')
 		 		                     $('.alerts-list').append(
 		 		                         '<li>\
 		 		                             <div class="alert alert-success alert-dismissable">\
-		 		                                 <i class="icon-check-sign"></i> history has been successfully updated!\
+		 		                                 <i class="icon-check-sign"></i> تم تحديث البيانات بنجــــــــاح!\
 		 		                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
 		 		                             </div>\
 		 		                         </li>');

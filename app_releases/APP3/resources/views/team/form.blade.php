@@ -91,6 +91,18 @@ name="stadium_id">
   </select>
   </div>
   </td>
+
+  <td style="width: 48%;padding-left: 2%;">
+  <div class="form-group">
+  <label for="exampleInputFile">أختيار المدير</label>
+  <select   class="form-control"name="manager_id">
+  <option selected>أختيار المدير</option>
+  @foreach($managers as $manager_id => $manager_name)
+  <option value="{!! $manager_id !!}">{!! $manager_name !!}</option>
+  @endforeach
+  </select>
+  </div>
+  </td>
 </tr>
 </table>
   <div class="form-group">

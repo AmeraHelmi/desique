@@ -125,6 +125,17 @@ class TeamclothController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
+
+ public function select_team(Request $request)
+	{
+
+			$team_type = $request->team_type;
+			$teams = Team::where('is_team','like',$team_type)->get();
+			 foreach($teams as $row)
+			 {
+				 echo'<option value='.$row->id.'> '.$row->name.' </option>';
+			 }
+	}
 	public function show($id)
 	{
 		//

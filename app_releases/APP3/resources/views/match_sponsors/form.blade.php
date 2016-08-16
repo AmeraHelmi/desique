@@ -2,7 +2,7 @@
 
 <div class="form-group">
 <td style="width: 48%">
-<label for="exampleInputFile">Match</label>
+<label for="exampleInputFile">أختر مباراه</label>
 <select  class="form-control"  id="match"
  name="match_id">
  @foreach($matches as $key=>$value)
@@ -14,11 +14,6 @@
 
 
 <div class="form-group">
-<label for="exampleInputFile">Select sponsor</label>
-<select  class="form-control"
- name="sponsor_id">
- @foreach($sponsors as $sponsor_id => $sponsor_name)
-  <option value="{!! $sponsor_id !!}">{!! $sponsor_name !!}</option>
-  @endforeach
-</select>
+    <label>الرعاه</label><br />
+    {!! Form::select('sponsor_id[]',$sponsors, null, array('multiple'=> true, 'data-placeholder'=>'Select sponsors' ,'class'=> 'form-control group-select chosen-select-multiple ')) !!}
 </div>

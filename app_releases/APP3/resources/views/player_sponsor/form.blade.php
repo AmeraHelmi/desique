@@ -30,21 +30,17 @@
 
 <tr>
   <td style="width: 48%">
-    <div class="date">
-<label class="control-label">من</label>
-        <div class="input-group input-append date" id="datePicker">
-            <input type="text" class="form-control" name="from_date" required />
-            <span class="input-group-addon add-on"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-        </div>
-      </div>
+    <div class="form-group">
+    <label class="control-label" style="display: block;">من</label>
+    <input id="datetime1" data-format="YYYY-MM-DD" data-template="YYYY / MM / DD" name="from_date" value="" type="text">
+    </div>
   </td>
   <td style="width: 48%; padding-left: 2%;">
     <div class="date">
 <label class="control-label">الى</label>
-        <div class="input-group input-append date" id="datePicker2">
-            <input type="text" class="form-control" name="to_date" required />
-            <span class="input-group-addon add-on"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-        </div>
+<div class="form-group">
+<input id="datetime2" data-format="YYYY-MM-DD" data-template="YYYY / MM / DD" name="to_date" value="" type="text">
+</div>
       </div>
   </td>
 </tr>
@@ -54,8 +50,8 @@
   <label for="exampleInputPassword1">مبلغ</label>
   <input type="number"
    name="amount"
-   min='0'
-   max='250'
+   min=''
+   max=''
    required
    placeholder="amount"
    class="form-control"
@@ -67,3 +63,10 @@
   </td>
 </tr>
 </table>
+<div class="form-group">
+
+<label for="exampleInputPassword1">معلومات أضافيه</label>
+
+<textarea rows="2" cols="30" name="addition_info" class="form-control"></textarea>
+
+</div>

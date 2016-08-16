@@ -176,7 +176,7 @@
 		 		                     $('.alerts-list').append(
 		 		                         '<li>\
 		 		                             <div class="alert alert-success alert-dismissable">\
-		 		                                 <i class="icon-check-sign"></i> sponsor has been successfully updated!\
+		 		                                 <i class="icon-check-sign"></i>تم تحديث البيانات بنجــــــاح!\
 		 		                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
 		 		                             </div>\
 		 		                         </li>');
@@ -184,7 +184,7 @@
 
 		 		                 },
 		 		                 error: function(){
-		 		                     $('#editcityModal').modal('hide')
+		 		                     $('#editchampionModal').modal('hide')
 		 		                     $('.alerts-list').append(
                      '<li>\
                          <div class="alert alert-danger alert-dismissable">\
@@ -210,6 +210,21 @@
 										{data: 'actions', name: 'actions', orderable: false, searchable: false}
 								]
 							});
+
+							$('#addModal').on('shown.bs.modal', function () {
+										$('.addForm')[0].reset();
+										$('.chosen-select-it', this).chosen({disable_search_threshold: 10});
+										$('.chosen-select-multiple', this).chosen({disable_search_threshold: 10}).trigger("chosen:updated");
+								});
+								$('#editchampionModal').on('shown.bs.modal', function () {
+										$('.chosen-select-it', this).chosen({disable_search_threshold: 10});
+										$('.chosen-select-multiple', this).chosen({disable_search_threshold: 10}).trigger("chosen:updated");
+								});
+								$('#groupModal').on('shown.bs.modal', function () {
+								    $('.chosen-select-it', this).chosen({disable_search_threshold: 10});
+								    $('.chosen-select-multiple', this).chosen({disable_search_threshold: 10});
+								});
+								$('.group-search').chosen({disable_search_threshold: 10});
 });
 </script>
 <script src="{{ asset('/admin-ui/js/for_pages/table.js') }}"></script>

@@ -56,6 +56,35 @@ name="country_id">
 </div>
 </td>
 </tr>
+<tr>
+  <td style="width: 48%">
+    <div class="form-group">
+    <label class="control-label" style="display: block;">من</label>
+    <input id="datetime1" data-format="YYYY-MM-DD" data-template="YYYY / MM / DD" name="start_date" value="" type="text">
+    </div>
+  </td>
+  <td style="width: 48%; padding-left: 2%;">
+    <div class="form-group">
+    <label class="control-label" style="display: block;">االى</label>
+    <input id="datetime2" data-format="YYYY-MM-DD" data-template="YYYY / MM / DD" name="end_date" value="" type="text">
+    </div>
+  </td>
+
+</tr>
+<tr>
+  <td style="width: 48%;">
+  <div class="form-group">
+<label for="exampleInputPassword1">القاره</label>
+<input type="text"
+ name="continent"
+ required
+ placeholder="القاره"
+ class="form-control"
+>
+<span class="help-block with-errors errorName"></span>
+</div>
+</td>
+</tr>
 </table>
 
 <div class="form-group">

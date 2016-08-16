@@ -82,6 +82,9 @@ class ChampionshipController extends Controller {
 			$championship->no_matches    =$request->no_matches;
 			$championship->type          =$request->type;
 			$championship->addition_info =$request->addition_info;
+			$championship->start_date   =$request->start_date;
+			$championship->end_date     =$request->end_date;
+			$championship->continent    =$request->continent;
  			$championship->save();
 			if($request->ajax())
 			{
@@ -141,6 +144,9 @@ class ChampionshipController extends Controller {
 		$championship->no_matches    =$request->no_matches;
 		$championship->type          =$request->type;
 		$championship->addition_info =$request->addition_info;
+		$championship->start_date    =$request->start_date;
+		$championship->end_date      =$request->end_date;
+		$championship->continent     =$request->continent;
 		$championship->save();
 		if($request->ajax())
 		{

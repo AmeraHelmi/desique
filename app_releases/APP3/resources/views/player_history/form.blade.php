@@ -1,29 +1,29 @@
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 <table>
   <tr>
-  <td style="width: 48%">
-<div class="form-group">
-    <label class="control-label">من</label>
-    <div class="date">
-        <div class="input-group input-append date" id="datePicker">
-            <input type="text" class="form-control" name="from_date" required />
-            <span class="input-group-addon add-on"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-        </div>
+    <td style="width: 48%;">
+      <div class="form-group">
+      <label for="exampleInputFile">أختيار لاعب</label>
+      <select  class="form-control" name="player_id">
+        <option selected>أختيار لاعب</option>
+       @foreach($players as $player_id => $player_name)
+        <option value="{!! $player_id !!}">{!! $player_name !!}</option>
+        @endforeach
+      </select>
       </div>
-    </div>
-  </td>
-<td style="width: 48%; padding-left: 2%;">
-    <div class="form-group">
-<label class="control-label">الى</label>
-  <div class="date">
-        <div class="input-group input-append date" id="datePicker2">
-            <input type="text" class="form-control" name="to_date" required />
-            <span class="input-group-addon add-on"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-        </div>
-    </div>
+    </td>
 
-</div>
-</td>
+
+      <td style="width: 48%; padding-left: 2%;">
+        <div class="form-group">
+        <label for="exampleInputFile">نوع العقد </label>
+        <select  class="form-control"  name="contract_type">
+          <option selected>Seclect contract</option>
+          <option value="أعاره"><bdi>أعاره</bdi></option>
+          <option value="أنتقال"><bdi>أنتقال</bdi></option>
+        </select>
+        </div>
+      </td>
 </tr>
 <tr>
     <td style="width: 48%">
@@ -51,41 +51,30 @@
     </td>
   </tr>
 <tr>
-  <td style="width: 48%;">
+  <td style="width: 48%">
     <div class="form-group">
-    <label for="exampleInputFile">أختيار لاعب</label>
-    <select  class="form-control" name="player_id">
-      <option selected>أختيار لاعب</option>
-     @foreach($players as $player_id => $player_name)
-      <option value="{!! $player_id !!}">{!! $player_name !!}</option>
-      @endforeach
-    </select>
+    <label class="control-label" style="display: block;">من</label>
+    <input id="datetime1" data-format="YYYY-MM-DD" data-template="YYYY / MM / DD" name="from_date" value="" type="text">
     </div>
   </td>
-
   <td style="width: 48%; padding-left: 2%;">
     <div class="form-group">
-    <label for="exampleInputFile">نوع العقد </label>
-    <select  class="form-control"  name="contract_type">
-      <option selected>Seclect contract</option>
-      <option value="أعاره"><bdi>أعاره</bdi></option>
-      <option value="أنتقال"><bdi>أنتقال</bdi></option>
-    </select>
+    <label class="control-label" style="display: block;">االى</label>
+    <input id="datetime2" data-format="YYYY-MM-DD" data-template="YYYY / MM / DD" name="to_date" value="" type="text">
     </div>
   </td>
+
 </tr>
 <tr>
-  <td style="width: 48%;">
-      <div class="form-group">
-  <label class="control-label">بداية اللاعب</label>
-    <div class="date">
-          <div class="input-group input-append date" id="datePicker3">
-              <input type="text" class="form-control" name="start_date" required />
-              <span class="input-group-addon add-on"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-          </div>
-      </div>
-
-  </div>
+  <td style="width: 48%; ">
+    <div class="form-group">
+    <label for="exampleInputFile">نوع الفصل </label>
+    <select  class="form-control"  name="season_type">
+      <option selected>اختيار الفصل</option>
+      <option value="انتقالات صيفيه"><bdi>انتقالات صيفيه</bdi></option>
+      <option value="أنتقالات شتويه"><bdi>أنتقالات شتويه</bdi></option>
+    </select>
+    </div>
   </td>
 
   <td style="width: 48%; padding-left: 2%;">
@@ -101,16 +90,10 @@
     </div>
   </td>
 </tr>
-<tr>
-  <td style="width: 48%; ">
-    <div class="form-group">
-    <label for="exampleInputFile">نوع الفصل </label>
-    <select  class="form-control"  name="season_type">
-      <option selected>اختيار الفصل</option>
-      <option value="انتقالات صيفيه"><bdi>انتقالات صيفيه</bdi></option>
-      <option value="أنتقالات شتويه"><bdi>أنتقالات شتويه</bdi></option>
-    </select>
-    </div>
-  </td>
-</tr>
+
 </table>
+
+<div class="form-group">
+<label for="exampleInputPassword1">معلومات أضافيه</label>
+<textarea rows="2" cols="30" name="addition_info" class="form-control"></textarea>
+</div>

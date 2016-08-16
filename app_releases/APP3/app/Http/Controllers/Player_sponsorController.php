@@ -91,6 +91,7 @@ class Player_sponsorController extends Controller {
 		$p_sponsor->from_date        =$request->from_date;
 		$p_sponsor->to_date        =$request->to_date;
 		$p_sponsor->amount        =$request->amount;
+		$p_sponsor->addition_info        =$request->addition_info;
 
 		$p_sponsor->save();
 
@@ -143,6 +144,7 @@ class Player_sponsorController extends Controller {
 		$p_sponsor->from_date        =$request->from_date;
 		$p_sponsor->to_date        =$request->to_date;
 		$p_sponsor->amount        =$request->amount;
+			$p_sponsor->addition_info        =$request->addition_info;
 
 		$p_sponsor->save();
 

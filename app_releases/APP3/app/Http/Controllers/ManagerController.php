@@ -3,8 +3,8 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Country;
-use App\Models\City;
 use App\Models\Manager;
+use App\Models\City;
 use yajra\Datatables\Datatables as Datatables;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Router as Route;
@@ -52,6 +52,7 @@ class ManagerController extends Controller {
 				 return DatatablePresenter::make($tableData, 'index');
 				 $countries=Country::lists('name','id');
 				 $cities=City ::lists('name','id');
+
 		 return view('manager.index')
 			 ->with('countries',$countries)->with('cities',$cities)
 			 ->with('tableData', DatatablePresenter::make($tableData, 'index'));

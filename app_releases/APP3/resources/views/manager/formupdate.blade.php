@@ -3,7 +3,7 @@
   <tr>
   <td style="width: 48%">
 <div class="form-group">
-<label for="exampleInputPassword1"> name</label>
+<label for="exampleInputPassword1"> الأسم</label>
 <input type="text"
  name="name"
  required
@@ -16,7 +16,7 @@
 </td>
 <td style="width: 48%; padding-left: 2%;">
 <div class="form-group">
-<label for="exampleInputPassword1">Role</label>
+<label for="exampleInputPassword1">الدور</label>
 <input type="text"
  name="role"
  required
@@ -31,7 +31,7 @@
 <tr>
 <td style="width: 48%">
 <div class="form-group">
-<label for="exampleInputPassword1">Job</label>
+<label for="exampleInputPassword1">الوظيفه</label>
 <input type="text"
  name="job"
  required
@@ -44,7 +44,7 @@
 </td>
 <td style="width: 48%; padding-left: 2%;">
 <div class="form-group">
-<label for="exampleInputPassword1">salary</label>
+<label for="exampleInputPassword1">المرتب</label>
 <input type="number"
  name="salary"
  min='0'
@@ -61,7 +61,7 @@
 <tr>
 <td style="width: 48%">
 <div class="form-group">
-  <label for="exampleInputPassword1">selection type</label>
+  <label for="exampleInputPassword1">نوع التعين</label>
   <select   class="form-control" name="selection_type" required>
     <option value="Elected">منتخب</option>
     <option value="appoint">معين</option>
@@ -72,7 +72,7 @@
 </td>
 <td style="width: 48%; padding-left: 2%;">
   <div class="form-group">
-    <label for="exampleInputFile">comment</label>
+    <label for="exampleInputFile">التعليق</label>
 <textarea rows="2" cols="30" name="comment" class="form-control" required></textarea>
 <span class="help-block with-errors errorName"></span>
 
@@ -82,7 +82,7 @@
 <tr>
   <td style="width: 48%">
 <div class="form-group">
-<label for="exampleInputFile">Select country</label>
+<label for="exampleInputFile">أختيار الدوله</label>
 <select id="country-id"  class="form-control" onchange="show()"
  name="country_id">
  @foreach($countries as $country_id => $country_name)
@@ -93,7 +93,7 @@
 </td>
 <td style="width: 48%; padding-left: 2%;">
 <div class="form-group" id="show-city">
-<label for="exampleInputFile">Select city</label>
+<label for="exampleInputFile">أختيار المدينه</label>
 <select  class="form-control" name="city_id" id="city-id">
 </select>
 </div>
@@ -101,8 +101,8 @@
 </tr>
 </table>
   <div class="fileupload fileupload-new" data-provides="fileupload">
-    <span class="btn btn-primary btn-file"><span class="fileupload-new">Select Image</span>
-    <span class="fileupload-exists">Change</span>
+    <span class="btn btn-primary btn-file"><span class="fileupload-new">الصوره</span>
+    <span class="fileupload-exists">تغير</span>
             <input type="file" name="flag" /></span>
     <span class="fileupload-preview"></span>
     <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>

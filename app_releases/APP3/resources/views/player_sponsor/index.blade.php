@@ -7,22 +7,7 @@
 					<div class="col-md-12">
 <br>
 <ul class="alerts-list delete"></ul>
-<ul class="alerts-list" style="display:none;" id="show">
-  <li>
-     <div class="alert alert-success alert-dismissable">
-           <i class="icon-remove-sign"></i> تم أضافة راعى بنجـــــــاح!.
-           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-       </div>
-   </li>
-</ul>
-<ul class="alerts-list" style="display:none;" id="showupdate">
-  <li>
-     <div class="alert alert-success alert-dismissable">
-           <i class="icon-remove-sign"></i> تم تحديث بيانات راعى بنجـــــــاح!.
-           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-       </div>
-   </li>
-</ul>
+
 <a class="btn btn-primary" data-toggle="modal" data-target="#addModal" style="margin-bottom:20px;" >
 		<i class="fa fa-plus-circle"  style="font-size: 18px;"></i> أضافة راعى
 </a>
@@ -109,64 +94,13 @@
 
 	@section('scripts')
 	  <script src="http://malsup.github.com/jquery.form.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
-    <script>
-    $('#datePicker')
-        .datepicker({
-        format: 'yyyy/mm/dd'
-        })
-        .on('changeDate', function(e) {
-            // Revalidate the date field
-            $('.addForm').formValidation('revalidateField', 'date');
-        });
 
-      $('.addForm').formValidation({
-          framework: 'bootstrap',
-          fields: {
-              from_date: {
-                  validators: {
-                      notEmpty: {
-                          message: 'The date is required'
-                      },
-                      from_date: {
-                      format: 'yyyy/mm/dd',
-                          message: 'The date is not a valid'
-                      }
-                  }
-              }
-        }
-
-      });
-  </script>
-	<script>
-	$('#datePicker2')
-			.datepicker({
-			format: 'yyyy/mm/dd'
-			})
-			.on('changeDate', function(e) {
-					// Revalidate the date field
-					$('.addForm').formValidation('revalidateField', 'date');
-			});
-
-		$('.addForm').formValidation({
-				framework: 'bootstrap',
-				fields: {
-						to_date: {
-								validators: {
-										notEmpty: {
-												message: 'The date is required'
-										},
-										to_date: {
-										format: 'yyyy/mm/dd',
-												message: 'The date is not a valid'
-										}
-								}
-						}
-			}
-
-		});
-</script>
-
+		<script>
+	$(function(){
+		  $('#datetime1').combodate();
+	    $('#datetime2').combodate();
+	});
+	</script>
 
 	<script type="text/javascript">
 
@@ -208,7 +142,7 @@
                     $('.alerts-list').append(
                         '<li>\
                             <div class="alert alert-success alert-dismissable">\
-                                <i class="icon-check-sign"></i> Match has been successfully added!\
+                                <i class="icon-check-sign"></i>تم أضافة راعى بنجـــــــــــاح!\
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
                             </div>\
                         </li>');
@@ -273,7 +207,7 @@
                              $('.alerts-list').append(
                                  '<li>\
                                      <div class="alert alert-success alert-dismissable">\
-                                         <i class="icon-check-sign"></i> match has been successfully updated!\
+                                         <i class="icon-check-sign"></i>تم تحديث بيانات راعى بنجـــــــاح!.\
                                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
                                      </div>\
                                  </li>');

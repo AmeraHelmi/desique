@@ -49,7 +49,7 @@ class MatchsponsorController extends Controller {
 
 			if($request->ajax())
 				return DatatablePresenter::make($tableData, 'index');
-				$sponsors  = Sponsor::lists('name','id');
+				  $sponsors      = Sponsor::lists('name','id');
 		return view('match_sponsors.index')
 	  	->with('matches',$matches)
 	  	->with('sponsors',$sponsors)
@@ -72,11 +72,13 @@ class MatchsponsorController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-		$Msponsor = new Match_sponsor;
-			$Msponsor->match_id          =$request->match_id;
-			$Msponsor->sponsor_id        =$request->sponsor_id;
-			$Msponsor->save();
-
+		$count = count($request->sponsor_id);
+				for($i = 0 ; $i < $count ; $i++){
+					$Msponsor = new Match_sponsor;
+					$Msponsor->sponsor_id        =$request->sponsor_id[$i];
+					$Msponsor->match_id          =$request->match_id;
+			  	$Msponsor->save();
+				}
 			return response(array('msg' => 'Adding Successfull'), 200)
 								->header('Content-Type', 'application/json');
 
@@ -116,11 +118,13 @@ class MatchsponsorController extends Controller {
 	 */
 	public function update(Request $request , $id)
 	{
-    $Msponsor 	            = Match_sponsor::find($id);
-		$Msponsor->match_id 	  = $request->match_id ;
-		$Msponsor->sponsor_id 	= $request->sponsor_id ;
-
-		$Msponsor->save();
+		$count = count($request->sponsor_id);
+				for($i = 0 ; $i < $count ; $i++){
+			    $Msponsor 	                 = Match_sponsor::find($id);
+					$Msponsor->sponsor_id        =$request->sponsor_id[$i];
+					$Msponsor->match_id          =$request->match_id;
+					$Msponsor->save();
+				}
 		if($request->ajax()){
 			return response(array('msg' => 'Adding Successfull'), 200)
 								->header('Content-Type', 'application/json');

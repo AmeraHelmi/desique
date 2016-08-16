@@ -48,7 +48,7 @@ class PlayerhistoryController extends Controller {
 			 if($request->ajax())
 				 return DatatablePresenter::make($tableData, 'index');
 
-				 $teams    = Team  ::lists('name','id');
+				 $teams=Team::where('is_team','like','نادى%')->lists('name','id');
 			 	 $players  = Player::lists('name','id');
 		 return view('player_history.index')
 		   ->with('teams',$teams)
@@ -81,9 +81,9 @@ class PlayerhistoryController extends Controller {
 			$player_historie->to_team_id         =$request->to_team_id;
 			$player_historie->player_id          =$request->player_id;
 			$player_historie->contract_type      =$request->contract_type;
-			$player_historie->start_date         =$request->start_date;
 			$player_historie->contract_total     =$request->contract_total;
- 			$player_historie->season_type        =$request->season_type;
+			$player_historie->season_type        =$request->season_type;
+ 			$player_historie->addition_info        =$request->addition_info;
 
  			$player_historie->save();
  			return response(array('msg' => 'Adding Successfull'), 200)
@@ -133,9 +133,9 @@ class PlayerhistoryController extends Controller {
 	 $player_historie->to_team_id         =$request->to_team_id;
 	 $player_historie->player_id          =$request->player_id;
 	 $player_historie->contract_type      =$request->contract_type;
-	 $player_historie->start_date         =$request->start_date;
 	 $player_historie->contract_total     =$request->contract_total;
 	 $player_historie->season_type        =$request->season_type;
+	 	$player_historie->addition_info        =$request->addition_info;
 
  	 $player_historie->save();
  	 if($request->ajax()){

@@ -60,7 +60,7 @@
 <ul class="alerts-list" style="display:none;" id="show">
   <li>
      <div class="alert alert-success alert-dismissable">
-           <i class="icon-remove-sign"></i> managment_member has been successfully added!.
+           <i class="icon-remove-sign"></i> تم أضافة مدير بنجاح!.
            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
        </div>
    </li>
@@ -68,28 +68,28 @@
 <ul class="alerts-list" style="display:none;" id="showupdate">
   <li>
      <div class="alert alert-success alert-dismissable">
-           <i class="icon-remove-sign"></i> managment_member has been successfully updated!.
+           <i class="icon-remove-sign"></i>تم تحديث البيانات بنجاح!.
            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
        </div>
    </li>
 </ul>
 <a class="btn btn-primary" data-toggle="modal" data-target="#addModal" style="margin-bottom:20px;" >
-		<i class="fa fa-plus-circle"  style="font-size: 18px;"></i> Add managment_member
+		<i class="fa fa-plus-circle"  style="font-size: 18px;"></i> أضافة مدير
 </a>
 <div class="widget-content-white glossed">
 		<div class="padded">
 				<table id="managers" class="table table-striped table-bordered table-hover datatable">
 						<thead>
 								<tr>
-										<th class="col-md-1">Name</th>
-										<th class="col-md-1">Country</th>
-                    <th class="col-md-1">City</th>
-										<th class="col-md-1">Image</th>
-										<th class="col-md-1">Job</th>
-										<th class="col-md-1">Role</th>
-										<th class="col-md-1">Salary</th>
-										<th class="col-md-1">Selection </th>
-										<th class="col-md-1">Actions</th>
+										<th class="col-md-1">الاسم</th>
+										<th class="col-md-1">الدوله</th>
+                    <th class="col-md-1">المدينه</th>
+										<th class="col-md-1">الصوره</th>
+										<th class="col-md-1">الوظيفه</th>
+										<th class="col-md-1">الدور</th>
+										<th class="col-md-1">المرتب</th>
+										<th class="col-md-1">نوع التعين </th>
+										<th class="col-md-1">خيارات</th>
 								</tr>
 						</thead>
 						<tbody>
@@ -116,15 +116,15 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="addModalLabel"><i class="fa fa-plus-circle"></i> Add managment_member</h4>
+                <h4 class="modal-title" id="addModalLabel"><i class="fa fa-plus-circle"></i> أضافة مدير</h4>
             </div>
             <form role="form" method="POST" class="addForm" action="{{ url('/manager/store') }}" data-toggle="validator" enctype="multipart/form-data" >
                 <div class="modal-body">
                     @include('manager.form')
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" id="submitForm" class="btn btn-primary">Submit</button>
-                    <button type="submit" class="btn btn-primary" id="addNew">Submit and Add New</button>
+                  <button type="submit" id="submitForm" class="btn btn-primary">موافق</button>
+                  <button type="submit" class="btn btn-primary" id="addNew">موافق وأضافة جديد</button>
 
                 </div>
             </form>
@@ -137,14 +137,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="editEmployeeModalLabel"><i class="fa fa-pencil"></i> Update</h4>
+                <h4 class="modal-title" id="editEmployeeModalLabel"><i class="fa fa-pencil"></i> تحديث</h4>
             </div>
             <form role="form" id="update_form" method="POST" class="editForm" data-id="" action="{{ url('manager/update') }}" data-toggle="validator" enctype="multipart/form-data" >
                 <div class="modal-body">
                     @include('manager.formupdate')
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" id="submit" class="btn btn-primary">Update</button>
+                    <button type="submit" id="submit" class="btn btn-primary">تحديث</button>
                 </div>
             </form>
         </div>

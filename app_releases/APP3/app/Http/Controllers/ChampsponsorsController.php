@@ -64,10 +64,15 @@ class ChampsponsorsController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-			$championship_sponsor = new Championship_sponsor;
-			$championship_sponsor->sponsor_id          =$request->sponsor_id;
-			$championship_sponsor->championship_id     =$request->championship_id;
-			$championship_sponsor->save();
+		$count = count($request->sponsor_id);
+
+
+				for($i = 0 ; $i < $count ; $i++){
+					$championship_sponsor = new Championship_sponsor;
+					$championship_sponsor->sponsor_id          =$request->sponsor_id[$i];
+					$championship_sponsor->championship_id     =$request->championship_id;
+					$championship_sponsor->save();
+				}
 
 			return response(array('msg' => 'Adding Successfull'), 200)
 								->header('Content-Type', 'application/json');
@@ -107,10 +112,13 @@ class ChampsponsorsController extends Controller {
 	 */
 	 public function update(Request $request , $id)
  	{
-		$championship_sponsor 	= Championship_sponsor::find($id);
- 		$championship_sponsor->sponsor_id 	      = $request->sponsor_id ;
- 		$championship_sponsor->championship_id    = $request->championship_id ;
- 		$championship_sponsor->save();
+		$count = count($request->sponsor_id);
+				for($i = 0 ; $i < $count ; $i++){
+					$championship_sponsor 	= Championship_sponsor::find($id);
+					$championship_sponsor->sponsor_id          =$request->sponsor_id[$i];
+					$championship_sponsor->championship_id     =$request->championship_id;
+					$championship_sponsor->save();
+				}
  		if($request->ajax()){
  			return response(array('msg' => 'Adding Successfull'), 200)
  								->header('Content-Type', 'application/json');

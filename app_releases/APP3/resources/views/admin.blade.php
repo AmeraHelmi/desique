@@ -15,7 +15,7 @@
      <link href='{{ asset("/admin-ui/admin_bower/bower_components/chosen/chosen.min.css")}}' rel='stylesheet'>
      <link href='{{ asset("/admin-ui/admin_bower/bower_components/colorbox/example3/colorbox.css")}}' rel='stylesheet'>
      <link href='{{ asset("/admin-ui/admin_bower/bower_components/responsive-tables/responsive-tables.css")}}' rel='stylesheet'>
-   
+
     <link href='{{ asset("/admin-ui/admin_css/bootstrap-rtl.css")}}' rel='stylesheet'>
      <link href='{{ asset("/admin-ui/admin_bower/bower_components/bootstrap-tour/build/css/bootstrap-tour.min.css")}}' rel='stylesheet'>
     <link rel='stylesheet' href="{{ asset('/bower_components/datatables/media/css/jquery.dataTables.min.css') }}">
@@ -46,7 +46,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url('/') }}" style="float: left;"> <img alt="Charisma Logo" 
+                <a class="navbar-brand" href="{{ url('/') }}" style="float: left;"> <img alt="Charisma Logo"
                 src="{{ asset('/admin-ui/admin_images/logo20.png')}}" class="hidden-xs"/>
                     <span>Koralife</span></a>
 
@@ -93,7 +93,7 @@
         <!-- topbar ends -->
     <div class="ch-container">
         <div class="row">
-            
+
             <!-- left menu starts -->
             <div class="col-sm-2 col-lg-2">
                 <div class="sidebar-nav">
@@ -222,8 +222,8 @@
     <script src="{{ asset('/admin-ui/admin_js/jquery.noty.js')}}"></script>
     <script src="{{ asset('/admin-ui/admin_js/jquery.history.js')}}"></script>
 
-  @yield('scripts')  
-  <script src="{{ asset('/admin-ui/admin_js/charisma.js')}}"></script> 
+  @yield('scripts')
+  <script src="{{ asset('/admin-ui/admin_js/charisma.js')}}"></script>
 
      <!-- <script src="{{ asset('/bower_components/chosen.js') }}"></script> -->
     <!-- <script src="{{ asset('/admin-ui/js/application-sortable/source/js/jquery-sortable-min.js') }}"></script> -->

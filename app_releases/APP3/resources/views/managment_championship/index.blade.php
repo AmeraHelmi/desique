@@ -7,35 +7,19 @@
 					<div class="col-md-12">
 <br>
 <ul class="alerts-list delete"></ul>
-<ul class="alerts-list" style="display:none;" id="show">
-  <li>
-     <div class="alert alert-success alert-dismissable">
-           <i class="icon-remove-sign"></i> Managment_championship has been successfully added!.
-           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-       </div>
-   </li>
-</ul>
-<ul class="alerts-list" style="display:none;" id="showupdate">
-  <li>
-     <div class="alert alert-success alert-dismissable">
-           <i class="icon-remove-sign"></i> managment_championship has been successfully updated!.
-           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-       </div>
-   </li>
-</ul>
 <a class="btn btn-primary" data-toggle="modal" data-target="#addModal" style="margin-bottom:20px;" >
-		<i class="fa fa-plus-circle"  style="font-size: 18px;"></i> Add managment_championship
+		<i class="fa fa-plus-circle"  style="font-size: 18px;"></i> أضافة بطوله مدير
 </a>
 <div class="widget-content-white glossed">
 		<div class="padded">
 				<table id="matchs" class="table table-striped table-bordered table-hover datatable">
 						<thead>
 								<tr>
-										<th class="col-md-1">Manager </th>
-										<th class="col-md-1">Championship </th>
-										<th class="col-md-1">date</th>
+										<th class="col-md-1">المدير </th>
+										<th class="col-md-1">البطوله </th>
+										<th class="col-md-1">التاريخ</th>
 
-										<th class="col-md-1">Actions</th>
+										<th class="col-md-1">خيارات</th>
 								</tr>
 						</thead>
 						<tbody>
@@ -59,15 +43,15 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="addModalLabel"><i class="fa fa-plus-circle"></i> Add Managment_championship</h4>
+                <h4 class="modal-title" id="addModalLabel"><i class="fa fa-plus-circle"></i> أضافة بطولة مدير</h4>
             </div>
             <form role="form" method="POST" class="addForm" action="{{ url('/managment_championship/store') }}" data-toggle="validator" enctype="multipart/form-data" >
                 <div class="modal-body">
                     @include('managment_championship.form')
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" id="submitForm" class="btn btn-primary">Submit</button>
-                    <button type="submit" class="btn btn-primary" id="addNew">Submit and Add New</button>
+                  <button type="submit" id="submitForm" class="btn btn-primary">موافق</button>
+                  <button type="submit" class="btn btn-primary" id="addNew">موافق وأضافة جديد</button>
 
                 </div>
             </form>
@@ -80,14 +64,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="editEmployeeModalLabel"><i class="fa fa-pencil"></i> Update</h4>
+                <h4 class="modal-title" id="editEmployeeModalLabel"><i class="fa fa-pencil"></i> تحديث</h4>
             </div>
             <form role="form"  method="POST" class="editForm" data-id="" action="{{ url('/managment_championship/update') }}" data-toggle="validator" enctype="multipart/form-data">
                 <div class="modal-body">
                     @include('managment_championship.form')
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" id="submit" class="btn btn-primary">Update</button>
+                    <button type="submit" id="submit" class="btn btn-primary">تحديث</button>
                 </div>
             </form>
         </div>
@@ -104,64 +88,11 @@
 
 	@section('scripts')
 	  <script src="http://malsup.github.com/jquery.form.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
-    <script>
-    $('#datePicker')
-        .datepicker({
-        format: 'yyyy/mm/dd'
-        })
-        .on('changeDate', function(e) {
-            // Revalidate the date field
-            $('.addForm').formValidation('revalidateField', 'date');
-        });
-
-      $('.addForm').formValidation({
-          framework: 'bootstrap',
-          fields: {
-              win_date: {
-                  validators: {
-                      notEmpty: {
-                          message: 'The date is required'
-                      },
-                      win_date: {
-                      format: 'yyyy/mm/dd',
-                          message: 'The date is not a valid'
-                      }
-                  }
-              }
-        }
-
-      });
-  </script>
-	<script>
-	$('#datePicker2')
-			.datepicker({
-			format: 'yyyy/mm/dd'
-			})
-			.on('changeDate', function(e) {
-					// Revalidate the date field
-					$('.addForm').formValidation('revalidateField', 'date');
-			});
-
-		$('.addForm').formValidation({
-				framework: 'bootstrap',
-				fields: {
-						win_date: {
-								validators: {
-										notEmpty: {
-												message: 'The date is required'
-										},
-										win_date: {
-										format: 'yyyy/mm/dd',
-												message: 'The date is not a valid'
-										}
-								}
-						}
-			}
-
-		});
-</script>
-
+		<script>
+	$(function(){
+			$('#datetime1').combodate();
+	});
+	</script>
 
 	<script type="text/javascript">
 
@@ -203,7 +134,7 @@
                     $('.alerts-list').append(
                         '<li>\
                             <div class="alert alert-success alert-dismissable">\
-                                <i class="icon-check-sign"></i> Match has been successfully added!\
+                                <i class="icon-check-sign"></i> تم أضافة بطوله مدير بنجاح!\
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
                             </div>\
                         </li>');
@@ -216,7 +147,7 @@
                     $('.alerts-list').append(
                         '<li>\
                             <div class="alert alert-danger alert-dismissable">\
-                                <i class="icon-remove-sign"></i> <strong>Opps!</strong> something went wrong.\
+                                <i class="icon-remove-sign"></i> <strong>Opps!</strong> حدث خطا.\
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
                             </div>\
                         </li>');
@@ -268,7 +199,7 @@
                              $('.alerts-list').append(
                                  '<li>\
                                      <div class="alert alert-success alert-dismissable">\
-                                         <i class="icon-check-sign"></i> match has been successfully updated!\
+                                         <i class="icon-check-sign"></i> تم تحديث البيانات بنجاح!\
                                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
                                      </div>\
                                  </li>');
@@ -280,7 +211,7 @@
                              $('.alerts-list').append(
                                  '<li>\
                                      <div class="alert alert-danger alert-dismissable">\
-                                         <i class="icon-remove-sign"></i> <strong>Opps!</strong>something went wrong.\
+                                         <i class="icon-remove-sign"></i> <strong>Opps!</strong>حدث خطأ.\
                                          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
                                      </div>\
                                  </li>');

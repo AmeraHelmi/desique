@@ -3,10 +3,10 @@
   <tr>
     <td style="width: 48%">
   <div class="form-group">
-  <label for="exampleInputFile">Select manager</label>
+  <label for="exampleInputFile">أختر مدير</label>
   <select id="manager"  class="form-control"
    name="manager_id">
-   <option selected>select manager</option>
+   <option selected>أختر مدير</option>
    @foreach($managers as $manager_id => $manager_name)
     <option value="{!! $manager_id !!}">{!! $manager_name !!}</option>
     @endforeach
@@ -15,10 +15,10 @@
   </td>
 <td style="width: 48%; padding-left: 2%;">
   <div class="form-group">
-  <label for="exampleInputFile">Select championship</label>
+  <label for="exampleInputFile">أختر بطوله</label>
   <select id="championship"  class="form-control"
    name="championship_id">
-   <option selected>select championship</option>
+   <option selected>أختر بطوله</option>
    @foreach($championships as $championship_id => $championship_name)
     <option value="{!! $championship_id !!}">{!! $championship_name !!}</option>
     @endforeach
@@ -30,13 +30,10 @@
 
 <tr>
   <td style="width: 48%">
-    <div class="date">
-<label class="control-label">win date</label>
-        <div class="input-group input-append date" id="datePicker">
-            <input type="text" class="form-control" name="win_date" required />
-            <span class="input-group-addon add-on"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-        </div>
-      </div>
+    <div class="form-group">
+    <label class="control-label" style="display: block;">تاريخ الفوز</label>
+    <input id="datetime1" data-format="YYYY-MM-DD" data-template="YYYY / MM / DD" name="win_date" value="" type="text">
+    </div>
   </td>
 
 </tr>

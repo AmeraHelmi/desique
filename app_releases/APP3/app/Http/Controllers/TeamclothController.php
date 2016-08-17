@@ -83,16 +83,16 @@ class TeamclothController extends Controller {
 				$file->move('images/uploads', $filename);
 
 				$file = Input::file('reserve');
-				$filename2=time();
+				$filename2=time() + 2;
 				$file->move('images/uploads', $filename2);
 
 				$file = Input::file('practise');
-				$filename4=time();
+				$filename4=time() + 3;
 				$file->move('images/uploads', $filename4);
 
       if(Input::hasFile('reserve2')){
 				$file = Input::file('reserve2');
-				$filename3=time();
+				$filename3=time() + 4;
 				$file->move('images/uploads', $filename3);
 
 			}

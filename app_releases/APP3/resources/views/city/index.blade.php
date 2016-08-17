@@ -11,6 +11,7 @@
 <a class="btn btn-primary" data-toggle="modal" data-target="#addModal" style="margin-bottom:20px;" >
 		<i class="fa fa-plus-circle"  style="font-size: 18px;"></i> أضافة مدينه
 </a>
+
 <div class="widget-content-white glossed">
 		<div class="padded">
 				<table id="cities" class="table table-striped table-bordered table-hover datatable">

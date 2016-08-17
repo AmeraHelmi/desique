@@ -27,6 +27,22 @@ class Change_playerController  extends Controller {
 	 }
 	public function index(Change_player $change_player , Request $request)
 	{
+		$Allmatch= new Match;
+	 $Allmatch = $Allmatch
+		->join('teams as T1', 'T1.id', '=', 'matches.team1_id')
+		->join('teams as T2', 'T2.id', '=', 'matches.team2_id')
+		->select(array('T1.name as T1name','T2.name as T2name'
+		,'matches.id as match_id',
+		'matches.team1_goals as team1_goals',
+		'matches.team2_goals as team2_goals',
+		'matches.match_date as match_date',
+		'T1.flag as T1flag',
+		'T2.flag as T2flag',
+		'T1.id as T1ID',
+		'T2.id as T2ID'
+	 ))
+	 ->where('date',date('Y-m-d'))->orderBy('match_id','desc')->get();
+
 			$change_players = $change_player
 	  							->join('teams as T', 'T.id', '=', 'change_players.team_id')
 									->join('matches as M', 'M.id', '=', 'change_players.match_id')
@@ -55,6 +71,7 @@ class Change_playerController  extends Controller {
 							 		 ->get();
 				return view('change_player.index')
 				  ->with('teams',$teams)
+					->with('Allmatch',$Allmatch)
 					->with('matches',$matches)
 				  ->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	}

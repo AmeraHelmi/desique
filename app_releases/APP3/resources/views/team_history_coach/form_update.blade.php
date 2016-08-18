@@ -11,7 +11,7 @@
     </div>
   </tr>
   <tr>
-      <div class="form-group" id="showteam"  style="display:none;">
+      <div class="form-group" id="showteam">
       <label for="exampleInputFile">اختيار نادى</label>
       <select  class="form-control"name="team_id" id="team_id" >
       </select>

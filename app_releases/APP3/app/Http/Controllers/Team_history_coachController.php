@@ -90,8 +90,8 @@ class Team_history_coachController extends Controller {
 		$t_coach->team_id          =$request->team_id;
 		$t_coach->coach_id          =$request->coach_id;
 		$t_coach->from_date        =$request->from_date;
-		$t_coach->to_date      =$request->to_date;
-		$t_coach->contract       =$request->contract;
+		$t_coach->to_date         =$request->to_date;
+		$t_coach->contract        =$request->contract;
 
 		$t_coach->save();
 
@@ -102,6 +102,16 @@ class Team_history_coachController extends Controller {
 				}
 }
 
+public function select_team(Request $request)
+ {
+
+		 $team_type = $request->team_type;
+		 $teams = Team::where('is_team','like',$team_type)->get();
+			foreach($teams as $row)
+			{
+				echo'<option value='.$row->id.'> '.$row->name.' </option>';
+			}
+ }
 
 
 	/**

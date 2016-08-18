@@ -364,24 +364,9 @@ Route::resource('/agent_history'                    , 'Agent_historyController')
 
 
 //team_history_coach
-
-
-
 Route::POST    ('/team_history_coach/store'          , array('as' => 'addteam_history_coach','uses' => 'Team_history_coachController@store'));
-
-
-
+Route::POST    ('/team_history_coach/get_teams'      ,'Team_history_coachController@select_team');
 Route::resource('/team_history_coach'                ,'Team_history_coachController');
-
-
-
-
-
-
-
-
-
-
 
 //managment_championship
 

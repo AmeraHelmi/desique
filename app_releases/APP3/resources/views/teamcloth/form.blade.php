@@ -12,7 +12,7 @@
   </tr>
   <tr>
     <div class="form-group" id="showteam"  style="display:none;">
-    <label for="exampleInputFile">اختيار الفريق</label>
+    <label for="exampleInputFile">اختيار نادى</label>
     <select  class="form-control"name="team_id" id="team_id" >
     </select>
     </div>

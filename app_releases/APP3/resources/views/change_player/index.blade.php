@@ -15,17 +15,17 @@
 <ul class="alerts-list delete">
 </ul>
 <a class="btn btn-primary" data-toggle="modal" data-target="#addModal" style="margin-bottom:20px;" >
-		<i class="fa fa-plus-circle"  style="font-size: 18px;"></i> Add Change
+		<i class="fa fa-plus-circle"  style="font-size: 18px;"></i> اضافة تغيير
 </a>
 <div class="widget-content-white glossed">
 		<div class="padded">
 				<table id="playersteam" class="table table-striped table-bordered table-hover datatable">
 						<thead>
 								<tr>
-										<th class="col-md-4">Team name</th>
-										<th class="col-md-3">Player1 name</th>
-										<th class="col-md-3">Player2 name</th>
-										<th class="col-md-2">Actions</th>
+										<th class="col-md-4">الفريق</th>
+										<th class="col-md-3">اللاعب الاول</th>
+										<th class="col-md-3">اللاعب الثانى</th>
+										<th class="col-md-2">الخيارات</th>
 								</tr>
 						</thead>
 						<tbody>
@@ -47,15 +47,15 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="addModalLabel"><i class="fa fa-plus-circle"></i> Add change</h4>
+                <h4 class="modal-title" id="addModalLabel"><i class="fa fa-plus-circle"></i> اضافة تغيير</h4>
             </div>
             <form role="form" method="POST" class="addForm" action="{{ url('/change_player/store') }}" data-toggle="validator">
                 <div class="modal-body">
                     @include('change_player.form')
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" id="submitForm" class="btn btn-primary">Submit</button>
-                    <button type="submit" class="btn btn-primary" id="addNew">Submit and Add New</button>
+                    <button type="submit" id="submitForm" class="btn btn-primary">موافق</button>
+                    <button type="submit" class="btn btn-primary" id="addNew">موافق واضافة جديد</button>
 
                 </div>
             </form>
@@ -68,14 +68,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="editEmployeeModalLabel"><i class="fa fa-pencil"></i> Update</h4>
+                <h4 class="modal-title" id="editEmployeeModalLabel"><i class="fa fa-pencil"></i> تعديل</h4>
             </div>
             <form role="form" id="update_form" method="POST" class="editForm" data-id="" action="{{ url('/change_player/update') }}" data-toggle="validator">
                 <div class="modal-body">
                     @include('change_player.formupdate')
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" id="submit" class="btn btn-primary">Update</button>
+                    <button type="submit" id="submit" class="btn btn-primary">تعديل</button>
                 </div>
             </form>
         </div>

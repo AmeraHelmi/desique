@@ -15,18 +15,18 @@
 <ul class="alerts-list delete">
 </ul>
 <a class="btn btn-primary" data-toggle="modal" data-target="#addModal" style="margin-bottom:20px;" >
-		<i class="fa fa-plus-circle"  style="font-size: 18px;"></i> Add principle Players team
+		<i class="fa fa-plus-circle"  style="font-size: 18px;"></i> اضافة اللاعبيين الاساسين
 </a>
 <div class="widget-content-white glossed">
 		<div class="padded">
 				<table id="playersteam" class="table table-striped table-bordered table-hover datatable">
 						<thead>
 								<tr>
-										<th class="col-md-2">Team name</th>
-										<th class="col-md-2">Player name</th>
-										<th class="col-md-2">from time</th>
-										<th class="col-md-2">to time</th>
-										<th class="col-md-2">Actions</th>
+										<th class="col-md-2">الفريق</th>
+										<th class="col-md-2">اللاعب</th>
+										<th class="col-md-2">من تاريخ</th>
+										<th class="col-md-2">الى تاريخ</th>
+										<th class="col-md-2">الخيارات</th>
 								</tr>
 						</thead>
 						<tbody>
@@ -49,15 +49,15 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="addModalLabel"><i class="fa fa-plus-circle"></i> Add principle Players</h4>
+                <h4 class="modal-title" id="addModalLabel"><i class="fa fa-plus-circle"></i> اضافة اللاعبيين الاساسيين</h4>
             </div>
             <form role="form" method="POST" class="addForm" action="{{ url('/player_match/store') }}" data-toggle="validator">
                 <div class="modal-body">
                     @include('player_match.form')
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" id="submitForm" class="btn btn-primary">Submit</button>
-                    <button type="submit" class="btn btn-primary" id="addNew">Submit and Add New</button>
+                    <button type="submit" id="submitForm" class="btn btn-primary">موافق</button>
+                    <button type="submit" class="btn btn-primary" id="addNew">موافق واضافة جديد</button>
 
                 </div>
             </form>
@@ -70,14 +70,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="editEmployeeModalLabel"><i class="fa fa-pencil"></i> Update</h4>
+                <h4 class="modal-title" id="editEmployeeModalLabel"><i class="fa fa-pencil"></i> تعديل</h4>
             </div>
             <form role="form" id="update_form" method="POST" class="editForm" data-id="" action="{{ url('/player_match/update') }}" data-toggle="validator">
                 <div class="modal-body">
                     @include('player_match.formupdate')
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" id="submit" class="btn btn-primary">Update</button>
+                    <button type="submit" id="submit" class="btn btn-primary">تعديل</button>
                 </div>
             </form>
         </div>
@@ -202,7 +202,7 @@ $(function(){
 										$('.alerts-list').append(
 												'<li>\
 														<div class="alert alert-success alert-dismissable">\
-																<i class="icon-check-sign"></i> Player has been successfully added!\
+																<i class="icon-check-sign"></i>تم اضافة لاعب !\
 																<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
 														</div>\
 												</li>');
@@ -215,7 +215,7 @@ $(function(){
 										$('.alerts-list').append(
 												'<li>\
 														<div class="alert alert-danger alert-dismissable">\
-																<i class="icon-remove-sign"></i> <strong>Opps!</strong> something went wrong.\
+																<i class="icon-remove-sign"></i> <strong>Opps!</strong> حدث خطأ ما.\
 																<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
 														</div>\
 												</li>');
@@ -245,7 +245,7 @@ $(function(){
 	                 $('.alerts-list').append(
 	                     '<li>\
 	                         <div class="alert alert-danger alert-dismissable">\
-	                             <i class="icon-remove-sign"></i> <strong>Opps!</strong> something went wrong.\
+	                             <i class="icon-remove-sign"></i> <strong>Opps!</strong> حدث خطأ ما.\
 	                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
 	                         </div>\
 	                     </li>');
@@ -268,7 +268,7 @@ $(function(){
 		 		                     $('.alerts-list').append(
 		 		                         '<li>\
 		 		                             <div class="alert alert-success alert-dismissable">\
-		 		                                 <i class="icon-check-sign"></i> player has been successfully updated!\
+		 		                                 <i class="icon-check-sign"></i> تم تعديل اللاعب بنجاح!\
 		 		                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
 		 		                             </div>\
 		 		                         </li>');
@@ -280,7 +280,7 @@ $(function(){
 		 		                     $('.alerts-list').append(
 		 		                         '<li>\
 		 		                             <div class="alert alert-danger alert-dismissable">\
-		 		                                 <i class="icon-remove-sign"></i> <strong>Opps!</strong>something went wrong.\
+		 		                                 <i class="icon-remove-sign"></i> <strong>Opps!</strong>حدث خطا ما.\
 		 		                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
 		 		                             </div>\
 		 		                         </li>');

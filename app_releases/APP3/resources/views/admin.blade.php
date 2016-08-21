@@ -91,11 +91,11 @@
             </div>
         </div>
         <!-- topbar ends -->
-    <div class="container">
+    <div class="ch-container">
         <div class="row">
 
             <!-- left menu starts -->
-            <div class="col-sm-3 col-lg-3">
+            <div class="col-sm-2 col-lg-2">
                 <div class="sidebar-nav">
                     <div class="nav-canvas">
                         <div class="nav-sm nav nav-stacked">

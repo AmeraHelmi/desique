@@ -27,45 +27,37 @@ class Team_history_coachController extends Controller {
 	 *
 	 * @return Response
 	 */
-	 public function __construct()
- {
+public function __construct()
+{
 	 $this->middleware('auth');
- }
-	 public function index(Team_history_coach $t_coach , Request $request)
-	 {
-		 $team_history_coaches = $t_coach
-			 ->join('teams as team','team.id','=','team_history_coaches.team_id')
-			 ->join('coaches as coach','coach.id','=','team_history_coaches.coach_id')
+}
 
-			 ->select(array(
-				 'team_history_coaches.id as tcoachID',
-			   'team.name as team_name',
-				 'coach.name as coach_name',
-				 'team_history_coaches.from_date as from_date',
-				 'team_history_coaches.to_date as to_date',
-				 'team_history_coaches.contract as contract',
-
-			 ))
-
-			 ->orderBy('team_history_coaches.id','desc')->get();
-
-			 $tableData = Datatables::of($team_history_coaches)
-
-				 ->addColumn('actions', function ($data)
-					 {return view('partials.actionBtns')->with('controller','team_history_coach')->with('id', $data->tcoachID)->render(); })
-				 ;
-
-			 if($request->ajax())
-				 return DatatablePresenter::make($tableData, 'index');
-				//  $championships=Championship::lists('name','id');
-
-				 $teams= Team::lists('name','id');
-			   $coaches =Coach::lists('name','id');
-		 return view('team_history_coach.index')
-		   ->with('teams',$teams)
-			 ->with('coaches',$coaches)
-
-			 ->with('tableData', DatatablePresenter::make($tableData, 'index'));
+public function index(Team_history_coach $t_coach , Request $request)
+{
+		$team_history_coaches = $t_coach
+			 											->join('teams as team','team.id','=','team_history_coaches.team_id')
+			 											->join('coaches as coach','coach.id','=','team_history_coaches.coach_id')
+			 											->select(array(
+																 'team_history_coaches.id as tcoachID',
+															   'team.name as team_name',
+																 'coach.name as coach_name',
+																 'team_history_coaches.from_date as from_date',
+																 'team_history_coaches.to_date as to_date',
+																 'team_history_coaches.contract as contract'
+															))
+														->orderBy('team_history_coaches.id','desc')->get();
+		$tableData = Datatables::of($team_history_coaches)
+													->addColumn('actions', function ($data)
+					 								{
+															return view('partials.actionBtns')->with('controller','team_history_coach')->with('id', $data->tcoachID)->render(); });
+		if($request->ajax())
+		return DatatablePresenter::make($tableData, 'index');
+		$teams= Team::lists('name','id');
+		$coaches =Coach::lists('name','id');
+		return view('team_history_coach.index')
+		   			->with('teams',$teams)
+			 			->with('coaches',$coaches)
+			 			->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	 }
 
 
@@ -84,33 +76,30 @@ class Team_history_coachController extends Controller {
 	 *
 	 * @return Response
 	 */
-	 public function store(Request $request)
- 	{
+public function store(Request $request)
+{
 		$t_coach = new Team_history_coach;
 		$t_coach->team_id          =$request->team_id;
-		$t_coach->coach_id          =$request->coach_id;
+		$t_coach->coach_id         =$request->coach_id;
 		$t_coach->from_date        =$request->from_date;
-		$t_coach->to_date         =$request->to_date;
-		$t_coach->contract        =$request->contract;
-
+		$t_coach->to_date          =$request->to_date;
+		$t_coach->contract         =$request->contract;
 		$t_coach->save();
-
-
-			if($request->ajax()){
+		if($request->ajax())
+		{
 				return response(array('msg' => 'Adding Successfull'), 200)
 									->header('Content-Type', 'application/json');
-				}
+		}
 }
 
 public function select_team(Request $request)
  {
-
-		 $team_type = $request->team_type;
-		 $teams = Team::where('is_team','like',$team_type)->get();
-			foreach($teams as $row)
-			{
+		$team_type = $request->team_type;
+	  $teams = Team::where('is_team','like',$team_type)->get();
+		foreach($teams as $row)
+		{
 				echo'<option value='.$row->id.'> '.$row->name.' </option>';
-			}
+		}
  }
 
 
@@ -131,14 +120,14 @@ public function select_team(Request $request)
 	 * @param  int  $id
 	 * @return Response
 	 */
-	 public function edit(Request $request , $id)
- 	{
+public function edit(Request $request , $id)
+{
  		$t_coach 	= Team_history_coach::find($id);
  		if($request->ajax()){
  			return response(array('msg' => 'Adding Successfull', 'data'=> $t_coach->toJson() ), 200)
  								->header('Content-Type', 'application/json');
  			}
- 	}
+}
 
 	/**
 	 * Update the specified resource in storage.
@@ -146,23 +135,20 @@ public function select_team(Request $request)
 	 * @param  int  $id
 	 * @return Response
 	 */
-	 public function update(Request $request,$id)
-	{
+public function update(Request $request,$id)
+{
 		$t_coach 	= Team_history_coach::find($id);
 		$t_coach->team_id          =$request->team_id;
-		$t_coach->coach_id          =$request->coach_id;
+		$t_coach->coach_id         =$request->coach_id;
 		$t_coach->from_date        =$request->from_date;
-		$t_coach->to_date      =$request->to_date;
-		$t_coach->contract       =$request->contract;
-
+		$t_coach->to_date          =$request->to_date;
+		$t_coach->contract         =$request->contract;
 		$t_coach->save();
-
-			if($request->ajax()){
+		if($request->ajax()){
 				return response(array('msg' => 'Adding Successfull'), 200)
 									->header('Content-Type', 'application/json');
 				}
-
-	}
+}
 
 	/**
 	 * Remove the specified resource from storage.
@@ -172,8 +158,8 @@ public function select_team(Request $request)
 	 */
 
 
-	 public function destroy($id)
- 	{
+public function destroy($id)
+{
  		$t_coach	= Team_history_coach::find($id);
  		$t_coach->delete();
  		if($request->ajax()){
@@ -181,7 +167,5 @@ public function select_team(Request $request)
  								->header('Content-Type', 'application/json');
  			}
  		return redirect()->back();
- 	}
-
-
+}
 }

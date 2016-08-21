@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2016 at 02:03 PM
+-- Generation Time: Aug 21, 2016 at 02:08 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -1500,7 +1500,7 @@ CREATE TABLE `matches` (
   `team2_psessions` int(11) DEFAULT '0',
   `team1_penalties` int(11) DEFAULT '0',
   `team2_penalties` int(11) DEFAULT '0',
-  `group_id` varchar(111) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `group_id` varchar(111) CHARACTER SET utf8 DEFAULT NULL,
   `champion_id` int(11) DEFAULT NULL,
   `stadium_id` int(11) NOT NULL,
   `addition_info` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -3637,7 +3637,6 @@ ALTER TABLE `managment_championships`
 --
 ALTER TABLE `matches`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `group_id` (`group_id`),
   ADD KEY `team1_id` (`team1_id`),
   ADD KEY `team2_id` (`team2_id`),
   ADD KEY `champion_id` (`champion_id`) USING BTREE,

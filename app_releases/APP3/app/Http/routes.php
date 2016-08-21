@@ -515,7 +515,8 @@ Route::POST  ('/now/getplayers'        ,'MatchnowController@getplayers');
 Route::POST('/now'          , array('as' => 'addgoal','uses' => 'MatchnowController@goal'));
 
 //team_group
-Route::POST    ('/team_group/store'             , array('as' => 'addteam_group','uses' => 'Team_groupController@store'));
+Route::POST    ('/team_group/store'              , array('as' => 'addteam_group','uses' => 'Team_groupController@store'));
+Route::POST    ('/team_group/get_teams'          ,'Team_groupController@select_team');
 Route::resource('/team_group'                    , 'Team_groupController');
 
 

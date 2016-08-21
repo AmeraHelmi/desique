@@ -86,6 +86,21 @@
 
 	@section('scripts')
 	<script type="text/javascript">
+	function select_team(){
+	$team_type=$('#team_type').val();
+	$.ajax({
+			url: '{{ url('team_group/get_teams') }}',
+			type: "POST",
+		data:{
+				team_type:$team_type
+			},
+			success: function(res){
+					$('#team_id').show();
+			},
+			error: function(){
+			}
+		});
+}
 	$(document).ready(function() {
 		function populateForm(response, frm) {
         var i;
@@ -95,9 +110,13 @@
         }
     }
 
+
+
 		$("#submitForm").on('click', function(e){
         $('#addModal').modal('hide');
     });
+
+
 
 		$("#addModal form").on('submit', function(e){
 				if (!e.isDefaultPrevented())
@@ -213,6 +232,14 @@
 										{data: 'actions', name: 'actions', orderable: false, searchable: false}
 								]
 							});
+							$('#addModal').on('shown.bs.modal', function () {
+										$('.addForm')[0].reset();
+										$('.chosen-select-it', this).chosen({disable_search_threshold: 10});
+										$('.chosen-select-multiple', this).chosen({disable_search_threshold: 10}).trigger("chosen:updated");
+								});
+
+
+								$('.group-search').chosen({disable_search_threshold: 10});
 });
 </script>
 <script src="{{ asset('/admin-ui/js/for_pages/table.js') }}"></script>

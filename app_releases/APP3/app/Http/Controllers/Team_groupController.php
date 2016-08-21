@@ -55,6 +55,7 @@ class Team_groupController extends Controller {
 	{
 		//
 	}
+
 
 	/**
 	 * Store a newly created resource in storage.
@@ -71,12 +72,12 @@ class Team_groupController extends Controller {
 
 			return response(array('msg' => 'Adding Successfull'), 200)
 								->header('Content-Type', 'application/json');
-							
-							
-	
+
+
+
 
 	}
-
+	public function select_team(Request $request)	 {			 $team_type = $request->team_type;			 $teams = Team::where('is_team','like',$team_type)->get();				foreach($teams as $row)				{					echo'<option value='.$row->id.'> '.$row->name.' </option>';				}	 }
 	/**
 	 * Display the specified resource.
 	 *

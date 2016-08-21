@@ -18,25 +18,22 @@
 
 </div>
 
-<div class="form-group">
+  <div class="form-group">
+  <label for="exampleInputFile">أختيار الفريق</label>
+  <select id="team_type"  class="form-control" onchange="select_team()">
+    <option selected><bdi>أختر الفريق</bdi></option>
+   <option value="نادى"><bdi>نادى</bdi></option>
+   <option value="منتخب"><bdi>منتخب</bdi></option>
+  </select>
+  </div>
 
-<label for="exampleInputFile">أختيار نادى</label>
-
-<select  class="form-control"
-
- name="team_id">
-
- @foreach($teams as $team_id => $team_name)
-
-  <option value="{!! $team_id !!}">{!! $team_name !!}</option>
-
-  @endforeach
-
-</select>
-
-</div>
-
-
+  <!-- <div class="form-group" id="showteam"  style="display:none;">
+  <label for="exampleInputFile">اختيار نادى</label>
+  <select  class="form-control"name="team_id" id="team_id" >
+  </select>
+  </div> -->
+    	<select style="display:none;" id="team_id" multiple="1" data-placeholder="Select Players" class="form-control group-select chosen-select-multiple chosen-select-no-results" name="player_id[]" style="display: none;">
+      </select>
 
 <div class="form-group">
 

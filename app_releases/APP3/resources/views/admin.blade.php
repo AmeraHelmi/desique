@@ -91,11 +91,11 @@
             </div>
         </div>
         <!-- topbar ends -->
-    <div class="ch-container">
+    <div class="container">
         <div class="row">
 
             <!-- left menu starts -->
-            <div class="col-sm-2 col-lg-2">
+            <div class="col-sm-3 col-lg-3">
                 <div class="sidebar-nav">
                     <div class="nav-canvas">
                         <div class="nav-sm nav nav-stacked">
@@ -154,14 +154,14 @@
             <!--/span-->
             <!-- left menu ends -->
 
-            <noscript>
+            <!-- <noscript>
                 <div class="alert alert-block col-md-12">
                     <h4 class="alert-heading">Warning!</h4>
 
                     <p>You need to have <a href="http://en.wikipedia.org/wiki/JavaScript" target="_blank">JavaScript</a>
                         enabled to use this site.</p>
                 </div>
-            </noscript>
+            </noscript> -->
 
             <div id="content" class="col-lg-10 col-sm-10">
                 <!-- content starts -->

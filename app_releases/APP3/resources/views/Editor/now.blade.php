@@ -1,106 +1,124 @@
 @extends('admin')
 @section('content')
-<div class="content-wrapper" style="padding: 0px;">
+<style>
+	.table-bordered{width: 50%;margin: auto;}
+	#input{width: 54px; display: inline-block;text-align: center;}
+	.content-wrapper{padding: 0px;}
+	.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td 
+{
+	vertical-align: middle;
+	text-align:center;
+	width: auto !important;
+	color:#337ab7;
+
+}
+.control-label{color:#337ab7;}
+#finish{color:#337ab7 !important;font-size: 18px;font-weight: bold;}
+
+</style>
+<div class="content-wrapper">
 	<div class="container-fluid">
 <ul class="alerts-list"></ul>
 		<div class="row">
 			<div class="col-md-12">
 
-        <table class="table" border="1" style="border: solid 1px #555555;width: 50%;margin: auto;">
+        <table class="table table-striped table-bordered table-hover">
          <thead>
              @foreach($match as $matchdetail)
-           <tr>
-            <th style="text-align: center;">{{ $matchdetail->T1name }}</th>
-            <th style="text-align: center;">{{ $matchdetail->T2name }}</th>
-						<th style="text-align: center;">edit</th>
-           </tr>
+            <tr>
+		            <th>{{ $matchdetail->T1name }}</th>
+		            <th>{{ $matchdetail->T2name }}</th>
+						<th>edit</th>
+            </tr>
          </thead>
          <tbody>
-           <tr class="success" style="text-align: center;">
-             <td><b><bdi>الاهداف</bdi></b><br>
-               <input type="text" style="width: 54px; display: inline-block;" value="{{ $matchdetail->team1_goals }}"  class="form-control" disabled>
+           <tr>
+             <td><label class="control-label">الاهداف</label><br>
+               <input type="text" id="input" value="{{ $matchdetail->team1_goals }}" class="form-control" disabled>
            </td>
-               <td><b><bdi>الاهداف</bdi></b><br>
-                    <input type="text" style="width: 54px; display: inline-block;"   value="{{ $matchdetail->team2_goals }}" class="form-control" disabled>
+               <td><label class="control-label">الاهداف</label><br>
+                    <input type="text" id="input" value="{{ $matchdetail->team2_goals }}" class="form-control" disabled>
              </td>
 						 <td>
-						 		<button type="button" class="btn btn-info" data-toggle="modal" data-target="#addgoal" >add</button>
+						 		<button type="button" class="btn btn-primary text-capitalize" data-toggle="modal" data-target="#addgoal">add</button>
 						 </td>
            </tr>
-           <tr class="danger" style="text-align: center;">
+           <tr>
              <td>
-               <b><bdi>ضربه ركنيه</bdi></b><br>
-                  <input type="text" style="width: 54px; display: inline-block;" value="{{ $matchdetail->T1corners }}"  class="form-control" disabled>
+               <label class="control-label">ضربه ركنيه</label><br>
+                  <input type="text" id="input" value="{{ $matchdetail->T1corners }}"  class="form-control" disabled>
            </td>
 
-           <td><b><bdi>ضربه ركنيه</bdi></b><br>
-               <input type="text" style="width: 54px; display: inline-block;"  value="{{ $matchdetail->T2corners }}"  class="form-control" disabled>
+           <td><label class="control-label">ضربه ركنيه</label><br>
+               <input type="text" id="input" value="{{ $matchdetail->T2corners }}"  class="form-control" disabled>
          </td>
 				 <td>
-				 		<button type="button" class="btn btn-info" data-toggle="modal" data-target="#addcorner" >add</button>
+				 		<button type="button" class="btn btn-primary text-capitalize" data-toggle="modal" data-target="#addcorner" >add</button>
 				 </td>
       </tr>
-      <tr class="info" style="text-align: center;">
-        <td><b><bdi>تسلل</bdi></b><br>
-            <input type="text" style="width: 54px; display: inline-block;" value="{{ $matchdetail->T1offsides }}"   class="form-control" disabled>
+      <tr>
+        <td><label class="control-label">تسلل</label><br>
+            <input type="text" id="input" value="{{ $matchdetail->T1offsides }}"   class="form-control" disabled>
       </td>
-      <td><b><bdi>تسلل</bdi></b><br>
-            <input type="text" style="width: 54px; display: inline-block;"  value="{{ $matchdetail->T2offsides }}"  class="form-control" disabled>
+      <td><label class="control-label">تسلل</label><br>
+            <input type="text" id="input"  value="{{ $matchdetail->T2offsides }}"  class="form-control" disabled>
     </td>
 		<td>
-				<button type="button" class="btn btn-info" data-toggle="modal" data-target="#addoffside" >add</button>
+				<button type="button" class="btn btn-primary text-capitalize" data-toggle="modal" data-target="#addoffside" >add</button>
 		</td>
  </tr>
- <tr class="success" style="text-align: center;">
-   <td><b><bdi>ضربة جزاء</bdi></b><br>
-		 <input type="text" style="width: 54px; display: inline-block;" value="{{ $matchdetail->T1penalties }}"   class="form-control" disabled>
+ <tr>
+   <td><label class="control-label">ضربة جزاء</label><br>
+		 <input type="text" id="input" value="{{ $matchdetail->T1penalties }}"   class="form-control" disabled>
  </td>
- <td><b><bdi>ضربة جزاء</bdi></b><br>
-    <input type="text" style="width: 54px; display: inline-block;" value="{{ $matchdetail->T2penalties }}"   class="form-control" disabled>
+ <td><label class="control-label">ضربة جزاء</label><br>
+    <input type="text" id="input" value="{{ $matchdetail->T2penalties }}"   class="form-control" disabled>
 </td>
 <td>
-		<button type="button" class="btn btn-info" data-toggle="modal" data-target="#addpenalty" >add</button>
+		<button type="button" class="btn btn-primary text-capitalize" data-toggle="modal" data-target="#addpenalty" >add</button>
 </td>
 </tr>
-<tr class="danger" style="text-align: center;">
-  <td><b><bdi>كروت</bdi></b><br>
-      <input type="text" style="width: 54px; display: inline-block;" value="{{ $matchdetail->T1cards }}"   class="form-control" disabled>
+<tr>
+  <td><label class="control-label">كروت</label><br>
+      <input type="text" id="input" value="{{ $matchdetail->T1cards }}"   class="form-control" disabled>
   </td>
-<td><b><bdi>كروت</bdi></b><br>
-   <input type="text" style="width: 54px; display: inline-block;" value="{{ $matchdetail->T2cards }}"   class="form-control" disabled>
+<td><label class="control-label">كروت</label><br>
+   <input type="text" id="input" value="{{ $matchdetail->T2cards }}"   class="form-control" disabled>
 </td>
 <td>
-		<button type="button" class="btn btn-info" data-toggle="modal" data-target="#addcard" >add</button>
+		<button type="button" class="btn btn-primary text-capitalize" data-toggle="modal" data-target="#addcard" >add</button>
 </td>
 </tr>
-<tr class="info" style="text-align: center;">
-  <td><b><bdi>اخطاء</bdi></b><br>
-     <input type="text" style="width: 54px; display: inline-block;" value="{{ $matchdetail->T1E }}"   class="form-control" disabled>
+<tr>
+  <td><label class="control-label">اخطاء</label><br>
+     <input type="text" id="input" value="{{ $matchdetail->T1E }}"   class="form-control" disabled>
 </td>
-<td><b><bdi>اخطاء</bdi></b><br>
-  <input type="text" style="width: 54px; display: inline-block;" value="{{ $matchdetail->T2E }}"   class="form-control" disabled>
+<td><label class="control-label">اخطاء</label><br>
+  <input type="text" id="input" value="{{ $matchdetail->T2E }}"   class="form-control" disabled>
 </td>
 <td>
-		<button type="button" class="btn btn-info" data-toggle="modal" data-target="#adderror" >add</button>
+		<button type="button" class="btn btn-primary text-capitalize" data-toggle="modal" data-target="#adderror" >add</button>
 </td>
 </tr>
-<tr class="success" style="text-align: center;">
-  <td><b><bdi>استحواذ</bdi></b><br>
-  <input type="text" style="width: 75px; display: inline-block; text-align:center;" value="{{ $matchdetail->T1psessions }}%"   class="form-control" disabled>
+<tr>
+  <td><label class="control-label">استحواذ</label><br>
+  <input type="text" id="input" value="{{ $matchdetail->T1psessions }}%"   class="form-control" disabled>
 </td>
-<td><b><bdi>استحواذ</bdi></b><br>
-  <input type="text" style="width: 75px; display: inline-block;" value="{{ $matchdetail->T2psessions }}%"   class="form-control" disabled>
-</td>
-<td>
-		<button type="button" class="btn btn-info" data-toggle="modal" data-target="#addPsession" >add</button>
+<td><label class="control-label">استحواذ</label><br>
+  <input type="text" id="input" value="{{ $matchdetail->T2psessions }}%"   class="form-control" disabled>
 </td>
 <td>
-<a href="#" style="color:#000 !important;font-size: 18px;font-weight: bold;" id="finish">انهـــــــــاء التعديلات</a>
+		<button type="button" class="btn btn-primary text-capitalize" data-toggle="modal" data-target="#addPsession" >add</button>
+</td>
+</tr>
+<tr>
+<td colspan="3">
+<a href="#" id="finish">انهـــــــــاء التعديلات</a>
 <form id="save2" role="form" method="POST" class="addForm" action="{{ url('/now/save') }}" data-toggle="validator" style="display:none;">
 <input type="hidden" name="T1" value="{{ $matchdetail->T1ID }}"  class="t1">
 <input type="hidden" name="T2" value="{{ $matchdetail->T2ID }}"  class="t2">
 <input type="hidden" name="match_id" value="{{ $matchdetail->match_id }}"  class="match_id">
-	<button type="submit" id="save" class="btn btn-danger" style="width: 115px;">أنهاء</button>
+	<button type="submit" id="save" class="btn btn-danger"  style="width: 115px;">أنهاء</button>
 </form>
 </td>
 </tr>

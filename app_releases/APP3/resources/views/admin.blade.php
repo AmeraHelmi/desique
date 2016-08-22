@@ -17,7 +17,7 @@
      <link href='{{ asset("/admin-ui/admin_bower/bower_components/responsive-tables/responsive-tables.css")}}' rel='stylesheet'>
 
     <link href='{{ asset("/admin-ui/admin_css/bootstrap-rtl.css")}}' rel='stylesheet'>
-     <link href='{{ asset("/admin-ui/admin_bower/bower_components/bootstrap-tour/build/css/bootstrap-tour.min.css")}}' rel='stylesheet'>
+    <link href='{{ asset("/admin-ui/admin_bower/bower_components/bootstrap-tour/build/css/bootstrap-tour.min.css")}}' rel='stylesheet'>
     <link rel='stylesheet' href="{{ asset('/bower_components/datatables/media/css/jquery.dataTables.min.css') }}">
     <link rel='stylesheet' href="{{ asset('/bower_components/chosen/chosen.min.css') }}">
     <link rel='stylesheet' href="{{ asset('/bower_components/fontawesome/css/font-awesome.min.css') }}">
@@ -31,7 +31,7 @@
     <link href='{{ asset("/admin-ui/admin_css/animate.min.css")}}' rel='stylesheet'>
     <link rel='stylesheet' href="{{ asset('/bower_components/fontawesome/css/font-awesome.min.css') }}">
 
-        <link rel="shortcut icon" href="img/favicon.ico">
+    <link rel="shortcut icon" href="img/favicon.ico">
 @yield('styles')
     </head>
 

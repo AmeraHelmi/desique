@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 18, 2016 at 11:31 AM
+-- Generation Time: Aug 21, 2016 at 02:08 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -271,7 +271,8 @@ CREATE TABLE `change_players` (
 --
 
 INSERT INTO `change_players` (`id`, `player1_id`, `player2_id`, `team_id`, `match_id`, `ch_time`, `addition_info`, `created_at`, `updated_at`) VALUES
-(3, 4, 3, 36, 4, '838:59:59', NULL, '2016-08-18 07:30:38', '2016-08-18 07:30:38');
+(3, 4, 3, 36, 4, '838:59:59', NULL, '2016-08-18 07:30:38', '2016-08-18 07:30:38'),
+(4, 3, 3, 36, 4, '00:00:00', NULL, '2016-08-18 10:18:14', '2016-08-18 10:18:14');
 
 -- --------------------------------------------------------
 
@@ -1499,7 +1500,7 @@ CREATE TABLE `matches` (
   `team2_psessions` int(11) DEFAULT '0',
   `team1_penalties` int(11) DEFAULT '0',
   `team2_penalties` int(11) DEFAULT '0',
-  `group_id` int(11) DEFAULT NULL,
+  `group_id` varchar(111) CHARACTER SET utf8 DEFAULT NULL,
   `champion_id` int(11) DEFAULT NULL,
   `stadium_id` int(11) NOT NULL,
   `addition_info` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -1516,7 +1517,13 @@ CREATE TABLE `matches` (
 
 INSERT INTO `matches` (`id`, `team1_id`, `team2_id`, `match_date`, `date`, `match_period`, `team1_goals`, `team2_goals`, `team1_corners`, `team2_corners`, `team1_offsides`, `team2_offsides`, `team1_errors`, `team2_errors`, `team1_cards`, `team2_cards`, `team1_psessions`, `team2_psessions`, `team1_penalties`, `team2_penalties`, `group_id`, `champion_id`, `stadium_id`, `addition_info`, `channel_id`, `role`, `type`, `updated_at`, `created_at`) VALUES
 (3, 8, 4, '2016-08-09 12:18:13', '2016-08-17', 90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, 26, NULL, NULL, NULL, NULL, '2016-08-14 11:26:29', '0000-00-00 00:00:00'),
-(4, 3, 36, '2004-09-14 09:50:00', '2004-09-14', 90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 24, 'asd', 3, 16, NULL, '2016-08-17 13:45:00', '2016-08-17 13:45:00');
+(4, 3, 36, '2004-09-14 09:50:00', '2016-08-18', 90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '1', 3, 24, 'asd', 3, 16, NULL, '2016-08-18 11:22:20', '2016-08-17 13:45:00'),
+(9, 4, 3, '2004-02-16 03:10:00', '2004-02-16', 90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '1', 4, 21, 'aa', 3, 16, NULL, '2016-08-21 08:59:43', '2016-08-21 08:59:43'),
+(11, 3, 9, '2003-03-19 04:05:00', '2003-03-19', 90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '1', 3, 24, 'aa', 3, 8, NULL, '2016-08-21 09:02:14', '2016-08-21 09:02:14'),
+(13, 4, 15, '2004-02-16 03:10:00', '2004-02-16', 90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '1', 3, 23, 'aa', 3, 8, NULL, '2016-08-21 09:14:00', '2016-08-21 09:14:00'),
+(14, 6, 9, '1974-11-17 10:45:00', '1974-11-17', 90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '1', 3, 23, 'aa', 3, 8, NULL, '2016-08-21 09:23:27', '2016-08-21 09:23:27'),
+(15, 8, 4, '2001-04-15 03:15:00', '2001-04-15', 90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '1', 3, 26, 'asd', 3, 4, NULL, '2016-08-21 09:44:59', '2016-08-21 09:44:59'),
+(16, 16, 4, '2001-04-18 02:00:00', '2001-04-18', 90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, 23, 'aaa', NULL, NULL, NULL, '2016-08-21 10:00:59', '2016-08-21 10:00:59');
 
 -- --------------------------------------------------------
 
@@ -1569,7 +1576,12 @@ CREATE TABLE `match_referees` (
 --
 
 INSERT INTO `match_referees` (`id`, `match_id`, `referee_id`, `addition_info`, `updated_at`, `created_at`) VALUES
-(1, 4, 6, NULL, '2016-08-17 13:45:00', '2016-08-17 13:45:00');
+(1, 4, 6, NULL, '2016-08-17 13:45:00', '2016-08-17 13:45:00'),
+(2, 9, 1, NULL, '2016-08-21 08:59:43', '2016-08-21 08:59:43'),
+(3, 11, 1, NULL, '2016-08-21 09:02:15', '2016-08-21 09:02:15'),
+(5, 14, 2, NULL, '2016-08-21 09:23:27', '2016-08-21 09:23:27'),
+(6, 15, 6, NULL, '2016-08-21 09:44:59', '2016-08-21 09:44:59'),
+(7, 16, 2, NULL, '2016-08-21 10:00:59', '2016-08-21 10:00:59');
 
 -- --------------------------------------------------------
 
@@ -2758,6 +2770,14 @@ CREATE TABLE `team_championships` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `team_championships`
+--
+
+INSERT INTO `team_championships` (`id`, `team_id`, `championship_id`, `no_goals`, `no_points`, `no_draughts`, `no_winnes`, `no_loses`, `addition_info`, `updated_at`, `created_at`) VALUES
+(1, 3, 3, 0, 3, 3, 0, 0, NULL, '2016-08-18 13:49:28', '2016-08-18 09:23:29'),
+(2, 36, 3, 0, 3, 3, 0, 0, NULL, '2016-08-18 13:49:28', '2016-08-18 09:23:29');
+
 -- --------------------------------------------------------
 
 --
@@ -3354,8 +3374,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `role`) VALUES
-(2, 'lames', 'lames@lames.com', '$2y$10$d8WHCeFB2GbdeVSABCHUr.IQmMt.v4tXzr32iOEUfh9NTdl0rReFO', 'zXOuN7tOSxOJFts134DQpbz2MNqmaODZPmTv3X0bCYXxtPk5bqBOA0oHJ2kH', '2016-05-11 06:01:54', '2016-08-16 07:11:58', 'Editor'),
-(3, 'alaa', 'alaa@yahoo.com', '$2y$10$BKmcSsvjypRF/Xjm4LSaL./osSpNt/FbUYLu.Ik1AKC05VO2ldVue', '7HvVwnGR1QOa2OgXX9vL6qhMcmn7l2e5olwrWZceYPWiwqK3beeROSwlu8yl', '2016-05-11 06:04:22', '2016-08-18 06:16:25', 'Admin'),
+(2, 'lames', 'lames@lames.com', '$2y$10$d8WHCeFB2GbdeVSABCHUr.IQmMt.v4tXzr32iOEUfh9NTdl0rReFO', 'OyUo7SOBcz7ESK6sIFhN7rqJ33sAU2YyWorhOicJJdpWtRN2Rama4rhqSYMm', '2016-05-11 06:01:54', '2016-08-18 09:08:58', 'Editor'),
+(3, 'alaa', 'alaa@yahoo.com', '$2y$10$BKmcSsvjypRF/Xjm4LSaL./osSpNt/FbUYLu.Ik1AKC05VO2ldVue', 'beosDnsf26srTbhUIguZSDl2xspIMhX8l1VczmP4FHLiZB0u6qraFHb5ZIh3', '2016-05-11 06:04:22', '2016-08-18 09:21:04', 'Admin'),
 (4, 'mohaned', 'm.fouad.developer@gmail.com', '$2y$10$BKmcSsvjypRF/Xjm4LSaL./osSpNt/FbUYLu.Ik1AKC05VO2ldVue', 'Gk0kJVlR266TqTOCRdaavRQo5FgskBsODY36Rbuzxx6upXXeP5fFVn8u6Xmt', '2016-05-15 13:23:10', '2016-05-24 09:37:59', 'ِAnalyiser'),
 (5, 'amera', 'amera.elsayed6@gmail.com', '$2y$10$5Itr3pLJTdM4SI0GMeB.f.WWIoa2FOh1gPs1HCKRchuDIQdmJd9g.', '4cgjartVEo98RoSrvlqQwLfw9lE13f0N2zdty4CR7WEWsLLJ2dRTyquSEXjJ', '2016-05-16 06:25:55', '2016-05-16 08:57:47', 'Admin'),
 (6, 'reham mohamed', 'rehammohamed@brother-group.net', '$2y$10$BR2q0F5Ujf/g4AhHvVP1dOStRzgA1YSuAqWONQCoKQD1dnTErhb.G', 'zlBAVfXZ3xNFXkJtrSRhIyDSyXeO2FOpOaSFhao5gDsjFgGuB8ymifrT6miF', '2016-05-16 08:27:45', '2016-06-02 12:56:25', 'Data Entry'),
@@ -3617,7 +3637,6 @@ ALTER TABLE `managment_championships`
 --
 ALTER TABLE `matches`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `group_id` (`group_id`),
   ADD KEY `team1_id` (`team1_id`),
   ADD KEY `team2_id` (`team2_id`),
   ADD KEY `champion_id` (`champion_id`) USING BTREE,
@@ -3988,7 +4007,7 @@ ALTER TABLE `championship_sponsors`
 -- AUTO_INCREMENT for table `change_players`
 --
 ALTER TABLE `change_players`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `channels`
 --
@@ -4063,7 +4082,7 @@ ALTER TABLE `managment_championships`
 -- AUTO_INCREMENT for table `matches`
 --
 ALTER TABLE `matches`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `match_channels`
 --
@@ -4078,7 +4097,7 @@ ALTER TABLE `match_commentors`
 -- AUTO_INCREMENT for table `match_referees`
 --
 ALTER TABLE `match_referees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `match_sponsors`
 --
@@ -4148,7 +4167,7 @@ ALTER TABLE `player_injured_histories`
 -- AUTO_INCREMENT for table `player_matches`
 --
 ALTER TABLE `player_matches`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `player_sponsors`
 --
@@ -4208,7 +4227,7 @@ ALTER TABLE `teams`
 -- AUTO_INCREMENT for table `team_championships`
 --
 ALTER TABLE `team_championships`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `team_championship_players`
 --
@@ -4407,7 +4426,6 @@ ALTER TABLE `managment_championships`
 ALTER TABLE `matches`
   ADD CONSTRAINT `matches_ibfk_1` FOREIGN KEY (`team1_id`) REFERENCES `teams` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `matches_ibfk_2` FOREIGN KEY (`team2_id`) REFERENCES `teams` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `matches_ibfk_3` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `matches_ibfk_4` FOREIGN KEY (`champion_id`) REFERENCES `championships` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `matches_ibfk_5` FOREIGN KEY (`stadium_id`) REFERENCES `stadia` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `matches_ibfk_6` FOREIGN KEY (`channel_id`) REFERENCES `channels` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;

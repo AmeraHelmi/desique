@@ -16,9 +16,10 @@
 				<table id="cities" class="table table-striped table-bordered table-hover datatable">
 						<thead>
 								<tr>
-										<th class="col-md-4">الأسم</th>
-										<th class="col-md-3">المجموعه</th>
-										<th class="col-md-3">الدور</th>
+										<th class="col-md-2">الفريق</th>
+										<th class="col-md-2">المجموعه</th>
+										<th class="col-md-1">الدور</th>
+										<th class="col-md-3">البطوله</th>
 										<th class="col-md-2">خيارات</th>
 								</tr>
 						</thead>
@@ -28,6 +29,7 @@
 										<td>{{ $row->team_name }}</td>
 										<td>{{ $row->group_name }}</td>
 										<td>{{ $row->role }}</td>
+										<td>{{ $row->Championship }}</td>
 										<td>{!!$row->actions !!}</td>
 								</tr>
 								@endforeach
@@ -88,20 +90,18 @@
 	<script type="text/javascript">
 	function select_team(){
 	$team_type=$('#team_type').val();
-	$.ajax({
-			url: '{{ url('team_group/get_teams') }}',
-			type: "POST",
-		data:{
-				team_type:$team_type
-			},
-			success: function(res){
-					$('#team_id').show();
-			},
-			error: function(){
-			}
-		});
+  if($team_type === 'منتخب'){
+		$('.nations').show();
+		$('.teams').hide();
+	}
+
+	else{
+			$('.teams').show();
+    	$('.nations').hide();
+		}
 }
 	$(document).ready(function() {
+
 		function populateForm(response, frm) {
         var i;
         for (i in response) {
@@ -116,8 +116,6 @@
         $('#addModal').modal('hide');
     });
 
-
-
 		$("#addModal form").on('submit', function(e){
 				if (!e.isDefaultPrevented())
 				{
@@ -131,7 +129,7 @@
 										$('.alerts-list').append(
 												'<li>\
 														<div class="alert alert-success alert-dismissable">\
-																<i class="icon-check-sign"></i> city has been successfully added!\
+																<i class="icon-check-sign"></i> تم أضافة مجموعه بنجـــــاح!\
 																<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
 														</div>\
 												</li>');
@@ -144,7 +142,7 @@
 										$('.alerts-list').append(
 												'<li>\
 														<div class="alert alert-danger alert-dismissable">\
-																<i class="icon-remove-sign"></i> <strong>Opps!</strong> something went wrong.\
+																<i class="icon-remove-sign"></i> <strong>Opps!</strong> حدث خطأ.\
 																<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
 														</div>\
 												</li>');
@@ -197,7 +195,7 @@
 		 		                     $('.alerts-list').append(
 		 		                         '<li>\
 		 		                             <div class="alert alert-success alert-dismissable">\
-		 		                                 <i class="icon-check-sign"></i> City has been successfully updated!\
+		 		                                 <i class="icon-check-sign"></i>تم تحديث البيانات بنجــــاح!\
 		 		                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
 		 		                             </div>\
 		 		                         </li>');
@@ -209,7 +207,7 @@
 		 		                     $('.alerts-list').append(
 		 		                         '<li>\
 		 		                             <div class="alert alert-danger alert-dismissable">\
-		 		                                 <i class="icon-remove-sign"></i> <strong>Opps!</strong>something went wrong.\
+		 		                                 <i class="icon-remove-sign"></i> <strong>Opps!</strong>حدث خطأ.\
 		 		                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
 		 		                             </div>\
 		 		                         </li>');
@@ -229,6 +227,7 @@
 										{data: 'team_name', name: 'team_name'},
 										{data: 'group_name', name: 'group_name'},
 										{data: 'role', name: 'role'},
+										{data: 'Championship', name: 'Championship'},
 										{data: 'actions', name: 'actions', orderable: false, searchable: false}
 								]
 							});

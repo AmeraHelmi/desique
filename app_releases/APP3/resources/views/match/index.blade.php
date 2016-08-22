@@ -128,72 +128,45 @@ li.active a, li.active a:hover
                 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 				<h4 class="modal-title" id="addModalLabel"><i class="fa fa-plus-circle"></i>أضافة مبارأة</h4>
 												<div class="tabs">
-														<ul class="tab-links">
-                             		<li class="active"><a href="#tab1"> ودية</a></li>
-                             		<li><a href="#tab2">كأس</a></li>
-                             		<li><a href="#tab3">دورى</a></li>
+														<ul class="tab-links tab_ul">
+                             		<li class="active"><a href="#tab1" id="unformal" value="unformal"> ودية</a></li>
+                             		<li><a href="#tab2" id="cup" value="cup">كأس</a></li>
+                             		<li><a href="#tab3" id="dawry" value="dawry">دورى</a></li>
                          		</ul>
-                         <div class="tab-content">
-                             <div id="tab1" class="tab active">
-															 		<form id="form1" role="form" method="POST" class="addForm" action="{{ url('/match/store') }}" data-toggle="validator" enctype="multipart/form-data" >
-									                 		<div class="modal-body">
-                                 					<p>هنا مباريات ودية</p>
-																 					@include('match.form')
-																 					<div class="modal-footer">
-																		 					<button type="submit" id="submitForm" class="btn btn-primary">موافق</button>
-																		 					<button type="submit" class="btn btn-primary" id="addNew">موافق وأضافة جديد</button>
-																 					</div>
-															 			  </div>
-														 		 </form>
-                            </div>
-                            <div id="tab2" class="tab">
-																<form id="form2" role="form" method="POST" class="addForm" action="{{ url('/match/store2') }}" data-toggle="validator" enctype="multipart/form-data" >
-										                <div class="modal-body">
-                                 		<p>هنا مباريات كأس</p>
-																 		@include('match.form2')
-																		 		<div class="modal-footer">
-																				 		<button type="submit" id="submitForm" class="btn btn-primary">موافق</button>
-																				 		<button type="submit" class="btn btn-primary" id="addNew">موافق وأضافة جديد</button>
-																		    </div>
-															 			</div>
-														 		</form>
+                            <form role="form" method="POST" class="addForm" action="{{ url('/match/store') }}" data-toggle="validator">
+                                <div class="modal-body">
+                                        @include('match.form')
+                                </div>
+                              <div class="modal-footer">
+                                  <button type="submit" id="submitForm" class="btn btn-primary">موافق</button>
+                                  <button type="submit" class="btn btn-primary" id="addNew">موافق وأضافة جديد</button>
                               </div>
-                              <div id="tab3" class="tab">
-																	<form id="form3" role="form" method="POST" class="addForm" action="{{ url('/match/store3') }}" data-toggle="validator" enctype="multipart/form-data" >
-										                	<div class="modal-body">
-                                 			<p>هنا مباريات دورى</p>
-																 			@include('match.form3')
-																		 			<div class="modal-footer">
-																				 			<button type="submit" id="submitForm" class="btn btn-primary">موافق</button>
-																				 			<button type="submit" class="btn btn-primary" id="addNew">موافق وأضافة جديد</button>
-																		 			</div>
-															 				</div>
-														 	</div>
 												</form>
-                    </div>
 								</div>
 						</div>
         </div>
     </div>
 </div>
-<div class="modal fade" id="editgroupModal" tabindex="-1" role="dialog" aria-labelledby="editEmployeeModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
+<div class="modal fade" id="editgroupModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="editEmployeeModalLabel"><i class="fa fa-pencil"></i> تحدسث</h4>
-            </div>
-            <form role="form"  method="POST" class="editForm" data-id="" action="{{ url('/match/update') }}" data-toggle="validator" enctype="multipart/form-data">
-                <div class="modal-body">
-                    @include('match.form')
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" id="submit" class="btn btn-primary">تحدسث</button>
-                </div>
-            </form>
-        </div>
+                <h4 class="modal-title" id="addModalLabel"><i class="fa fa-plus-circle"></i>أضافة مبارأة</h4>
+
+                    <form role="form" method="POST" class="editForm" action="{{ url('/match/update') }}" data-toggle="validator">
+                        <div class="modal-body">
+                                @include('match.formupdate')
+                        </div>
+                      <div class="modal-footer">
+                        <button type="submit" id="submit" class="btn btn-primary">تحديث</button>
+                      </div>
+                </form>
     </div>
 </div>
+</div>
+</div>
+
 </div>
 </div>
 </div>
@@ -207,12 +180,6 @@ li.active a, li.active a:hover
 		$(function(){
 	  $('#datetime12').combodate();
 	});
-		$(function(){
-	  $('#datetime122').combodate();
-	});
-	$(function(){
-		$('#datetime123').combodate();
-	});
   function select_team(){
   $team_type=$('#team_type').val();
   $.ajax({
@@ -221,59 +188,21 @@ li.active a, li.active a:hover
     data:{
         team_type:$team_type
       },
-      success: function(res){
-          $('#showteam1').show();
-          $('#showteam2').show();
-          $('#team1').html(res);
-          $('#team2').html(res);
+      success:function(res)
+      {
+        $('#showteam1').show();
+        $('#showteam2').show();
+        $('#team1').html(res);
+        $('#team2').html(res);
       },
-      error: function(){
+      error:function(){
+
       }
     });
-}
-function select_team2(){
-$team_type=$('#team_type').val();
-$.ajax({
-    url: '{{ url('match/get_teams2') }}',
-    type: "POST",
-  data:{
-      team_type:$team_type
-    },
-    success: function(res){
-
-        $('#showteam1').show();
-        $('#showteam2').show();
-        $('#team1').html(res);
-        $('#team2').html(res);
-    },
-    error: function(){
-
-    }
-  });
-}
-function select_team3(){
-$team_type=$('#team_type').val();
-$.ajax({
-    url: '{{ url('match/get_teams3') }}',
-    type: "POST",
-  data:{
-      team_type:$team_type
-
-    },
-    success: function(res){
-        $('#showteam1').show();
-        $('#showteam2').show();
-        $('#team1').html(res);
-        $('#team2').html(res);
-
-    },
-    error: function(){
-    }
-  });
-}
-</script>
-<script type="text/javascript">
-		!function(e){var t=function(t,n){this.$element=e(t),this.type=this.$element.data("uploadtype")||(this.$element.find(".thumbnail").length>0?"image":"file"),this.$input=this.$element.find(":file");if(this.$input.length===0)return;this.name=this.$input.attr("name")||n.name,this.$hidden=this.$element.find('input[type=hidden][name="'+this.name+'"]'),this.$hidden.length===0&&(this.$hidden=e('<input type="hidden" />'),this.$element.prepend(this.$hidden)),this.$preview=this.$element.find(".fileupload-preview");var r=this.$preview.css("height");this.$preview.css("display")!="inline"&&r!="0px"&&r!="none"&&this.$preview.css("line-height",r),this.original={exists:this.$element.hasClass("fileupload-exists"),preview:this.$preview.html(),hiddenVal:this.$hidden.val()},this.$remove=this.$element.find('[data-dismiss="fileupload"]'),this.$element.find('[data-trigger="fileupload"]').on("click.fileupload",e.proxy(this.trigger,this)),this.listen()};t.prototype={listen:function(){this.$input.on("change.fileupload",e.proxy(this.change,this)),e(this.$input[0].form).on("reset.fileupload",e.proxy(this.reset,this)),this.$remove&&this.$remove.on("click.fileupload",e.proxy(this.clear,this))},change:function(e,t){if(t==="clear")return;var n=e.target.files!==undefined?e.target.files[0]:e.target.value?{name:e.target.value.replace(/^.+\\/,"")}:null;if(!n){this.clear();return}this.$hidden.val(""),this.$hidden.attr("name",""),this.$input.attr("name",this.name);if(this.type==="image"&&this.$preview.length>0&&(typeof n.type!="undefined"?n.type.match("image.*"):n.name.match(/\.(gif|png|jpe?g)$/i))&&typeof FileReader!="undefined"){var r=new FileReader,i=this.$preview,s=this.$element;r.onload=function(e){i.html('<img src="'+e.target.result+'" '+(i.css("max-height")!="none"?'style="max-height: '+i.css("max-height")+';"':"")+" />"),s.addClass("fileupload-exists").removeClass("fileupload-new")},r.readAsDataURL(n)}else this.$preview.text(n.name),this.$element.addClass("fileupload-exists").removeClass("fileupload-new")},clear:function(e){this.$hidden.val(""),this.$hidden.attr("name",this.name),this.$input.attr("name","");if(navigator.userAgent.match(/msie/i)){var t=this.$input.clone(!0);this.$input.after(t),this.$input.remove(),this.$input=t}else this.$input.val("");this.$preview.html(""),this.$element.addClass("fileupload-new").removeClass("fileupload-exists"),e&&(this.$input.trigger("change",["clear"]),e.preventDefault())},reset:function(e){this.clear(),this.$hidden.val(this.original.hiddenVal),this.$preview.html(this.original.preview),this.original.exists?this.$element.addClass("fileupload-exists").removeClass("fileupload-new"):this.$element.addClass("fileupload-new").removeClass("fileupload-exists")},trigger:function(e){this.$input.trigger("click"),e.preventDefault()}},e.fn.fileupload=function(n){return this.each(function(){var r=e(this),i=r.data("fileupload");i||r.data("fileupload",i=new t(this,n)),typeof n=="string"&&i[n]()})},e.fn.fileupload.Constructor=t,e(document).on("click.fileupload.data-api",'[data-provides="fileupload"]',function(t){var n=e(this);if(n.data("fileupload"))return;n.fileupload(n.data());var r=e(t.target).closest('[data-dismiss="fileupload"],[data-trigger="fileupload"]');r.length>0&&(r.trigger("click.fileupload"),t.preventDefault())})}(window.jQuery)
+  }
+  </script>
+  <script type="text/javascript">
+      !function(e){var t=function(t,n){this.$element=e(t),this.type=this.$element.data("uploadtype")||(this.$element.find(".thumbnail").length>0?"image":"file"),this.$input=this.$element.find(":file");if(this.$input.length===0)return;this.name=this.$input.attr("name")||n.name,this.$hidden=this.$element.find('input[type=hidden][name="'+this.name+'"]'),this.$hidden.length===0&&(this.$hidden=e('<input type="hidden" />'),this.$element.prepend(this.$hidden)),this.$preview=this.$element.find(".fileupload-preview");var r=this.$preview.css("height");this.$preview.css("display")!="inline"&&r!="0px"&&r!="none"&&this.$preview.css("line-height",r),this.original={exists:this.$element.hasClass("fileupload-exists"),preview:this.$preview.html(),hiddenVal:this.$hidden.val()},this.$remove=this.$element.find('[data-dismiss="fileupload"]'),this.$element.find('[data-trigger="fileupload"]').on("click.fileupload",e.proxy(this.trigger,this)),this.listen()};t.prototype={listen:function(){this.$input.on("change.fileupload",e.proxy(this.change,this)),e(this.$input[0].form).on("reset.fileupload",e.proxy(this.reset,this)),this.$remove&&this.$remove.on("click.fileupload",e.proxy(this.clear,this))},change:function(e,t){if(t==="clear")return;var n=e.target.files!==undefined?e.target.files[0]:e.target.value?{name:e.target.value.replace(/^.+\\/,"")}:null;if(!n){this.clear();return}this.$hidden.val(""),this.$hidden.attr("name",""),this.$input.attr("name",this.name);if(this.type==="image"&&this.$preview.length>0&&(typeof n.type!="undefined"?n.type.match("image.*"):n.name.match(/\.(gif|png|jpe?g)$/i))&&typeof FileReader!="undefined"){var r=new FileReader,i=this.$preview,s=this.$element;r.onload=function(e){i.html('<img src="'+e.target.result+'" '+(i.css("max-height")!="none"?'style="max-height: '+i.css("max-height")+';"':"")+" />"),s.addClass("fileupload-exists").removeClass("fileupload-new")},r.readAsDataURL(n)}else this.$preview.text(n.name),this.$element.addClass("fileupload-exists").removeClass("fileupload-new")},clear:function(e){this.$hidden.val(""),this.$hidden.attr("name",this.name),this.$input.attr("name","");if(navigator.userAgent.match(/msie/i)){var t=this.$input.clone(!0);this.$input.after(t),this.$input.remove(),this.$input=t}else this.$input.val("");this.$preview.html(""),this.$element.addClass("fileupload-new").removeClass("fileupload-exists"),e&&(this.$input.trigger("change",["clear"]),e.preventDefault())},reset:function(e){this.clear(),this.$hidden.val(this.original.hiddenVal),this.$preview.html(this.original.preview),this.original.exists?this.$element.addClass("fileupload-exists").removeClass("fileupload-new"):this.$element.addClass("fileupload-new").removeClass("fileupload-exists")},trigger:function(e){this.$input.trigger("click"),e.preventDefault()}},e.fn.fileupload=function(n){return this.each(function(){var r=e(this),i=r.data("fileupload");i||r.data("fileupload",i=new t(this,n)),typeof n=="string"&&i[n]()})},e.fn.fileupload.Constructor=t,e(document).on("click.fileupload.data-api",'[data-provides="fileupload"]',function(t){var n=e(this);if(n.data("fileupload"))return;n.fileupload(n.data());var r=e(t.target).closest('[data-dismiss="fileupload"],[data-trigger="fileupload"]');r.length>0&&(r.trigger("click.fileupload"),t.preventDefault())})}(window.jQuery)
 		$(document).ready(function()
 		{
 			jQuery('.tabs .tab-links a').on('click', function(e)
@@ -285,6 +214,7 @@ $.ajax({
 	         jQuery(this).parent('li').addClass('active').siblings().removeClass('active');
 	         e.preventDefault();
 	     });
+
 
 		function populateForm(response, frm)
 		{
@@ -307,8 +237,28 @@ $.ajax({
         $('#addModal').modal('hide');
     });
 
-// ودى
-$("#form1").on('submit', function(e)
+    $("#cup").on('click', function(e){
+      $("#group").show();
+      $("#week").hide();
+      $("#role").show();
+      $("#type_match").val("cup");
+    });
+
+    $("#unformal").on('click', function(e){
+      $("#group").hide();
+      $("#week").hide();
+      $("#role").hide();
+      $("#type_match").val("unformal");
+
+    });
+    $("#dawry").on('click', function(e){
+          $("#week").show();
+          $("#group").hide();
+          $("#role").hide();
+          $("#type_match").val("dawry");
+    });
+
+$("#addModal form").on('submit', function(e)
 {
 		if (!e.isDefaultPrevented())
     {
@@ -322,7 +272,7 @@ $("#form1").on('submit', function(e)
                   $('.alerts-list').append(
                       '<li>\
                           <div class="alert alert-success alert-dismissable">\
-                              <i class="icon-check-sign"></i> Match has been successfully added!\
+                              <i class="icon-check-sign"></i>تم أضافة مباراه بنجاح!\
                               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
                           </div>\
                       </li>');
@@ -344,106 +294,32 @@ $("#form1").on('submit', function(e)
       }
    });
 
-// كأس
-$("#form2").on('submit', function(e)
-{
- 		if (!e.isDefaultPrevented())
-		{
-				var self = $(this);
-				$.ajax({
-		         url: '{!!URL::route('addmatch2')!!}',
-		         type: "POST",
-		         data: self.serialize(),
-		         success: function(res){
-		               $('.addForm')[0].reset();
-		               $('.alerts-list').append(
-		                   '<li>\
-		                       <div class="alert alert-success alert-dismissable">\
-		                             <i class="icon-check-sign"></i> Match has been successfully added!\
-		                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
-		                         </div>\
-		                     </li>');
-		         oTable.ajax.reload();
-             oTable.draw();
+   /* Edit Form */
+   $(document.body).validator().on('click', '.edit', function() {
+  var self = $(this);
+       self.button('loading');
+       $.ajax({
+           url: "{{ url('match') }}" + "/" + self.data('id') + "/edit" ,
+           type: "GET",
+           success: function(res){
+               self.button('reset');
+               $data = JSON.parse(res.data);
+               populateForm($data, document.getElementsByClassName("editForm")[0] );
+               $('#editgroupModal form').attr("data-id", self.data('id') );
+               $('#editgroupModal').modal('show');
            },
-             error: function(){
-                   $('#addModal').modal('hide')
-                   $('.alerts-list').append(
-                       '<li>\
-                         <div class="alert alert-danger alert-dismissable">\
-                               <i class="icon-remove-sign"></i> <strong>Opps!</strong> something went wrong.\
-                               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
-                           </div>\
-                       </li>');
-               }
-         });
-       e.preventDefault();
-         }
-	});
-// دورى
-$("#form3").on('submit', function(e)
-{
-		if (!e.isDefaultPrevented())
-		{
-				var self = $(this);
-				$.ajax({
-				    url: '{!!URL::route('addmatch3')!!}',
-				    type: "POST",
-				    data: self.serialize(),
-				    success: function(res){
-				          $('.addForm')[0].reset();
-				          $('.alerts-list').append(
-				              '<li>\
-				                  <div class="alert alert-success alert-dismissable">\
-				                      <i class="icon-check-sign"></i> Match has been successfully added!\
-				                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
-				                   </div>\
-				                </li>');
-					  oTable.ajax.reload();
-            oTable.draw();
-      },
-      		error: function(){
-					    	$('#addModal').modal('hide')
-					      $('.alerts-list').append(
-					          '<li>\
-					              <div class="alert alert-danger alert-dismissable">\
-					                  <i class="icon-remove-sign"></i> <strong>Opps!</strong> something went wrong.\
-					                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
-					            	</div>\
-					          </li>');
-									}
-					    });
-					  e.preventDefault();
-					  }
-		});
-
-	     /* Edit Form */
-	     $(document.body).validator().on('click', '.edit', function() {
-	     var self = $(this);
-	     self.button('loading');
-			 $.ajax({
-	       url: "{{ url('match') }}" + "/" + self.data('id') + "/edit" ,
-	       type: "GET",
-	       success: function(res){
-	           self.button('reset');
-	           $data = JSON.parse(res.data);
-	           populateForm($data, document.getElementsByClassName("editForm")[0] );
-	           $('#editgroupModal form').attr("data-id", self.data('id') );
-	           $('#editgroupModal').modal('show');
-	       },
-	       error: function(){
-	       		 self.button('reset');
-	           $('.alerts-list').append(
-	             '<li>\
-	                 <div class="alert alert-danger alert-dismissable">\
-	                     <i class="icon-remove-sign"></i> <strong>Opps!</strong> حدث خطأ.\
-	                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
-	                  </div>\
-	               </li>');
-	          }
-	      });
-});
-
+           error: function(){
+               self.button('reset');
+               $('.alerts-list').append(
+                   '<li>\
+                       <div class="alert alert-danger alert-dismissable">\
+                           <i class="icon-remove-sign"></i> <strong>Opps!</strong> something went wrong.\
+                           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
+                       </div>\
+                   </li>');
+           }
+       });
+   });
    /* update Form Submission */
 $("#editgroupModal form").validator().on('submit', function(e)
 {

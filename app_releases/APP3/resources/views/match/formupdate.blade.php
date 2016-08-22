@@ -1,29 +1,20 @@
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-<input type="hidden" name="type_match" id="type_match" value="aaa">
+<input type="hidden" name="type_match" id="type_match" >
 
-<div class="form-group">
-<label for="exampleInputFile" style="float:right">أختيار الفريق</label>
-<select id="team_type"  class="form-control" onchange="select_team()">
-  <option selected><bdi>أختر الفريق</bdi></option>
- <option value="نادى"><bdi>نادى</bdi></option>
- <option value="منتخب"><bdi>منتخب</bdi></option>
-</select>
-</div>
 <table>
   <tr>
       <td style="width: 48%">
-        <div class="form-group" id="showteam1"  style="display:none;">
+        <div class="form-group" id="showteam1"  >
         <label for="exampleInputFile" style="float:right">النادى الاول</label>
-        <select  class="form-control"name="team1_id" id="team1" >
+        <input type="text"  class="form-control"name="team1_id" id="team1" >
         </select>
         </div>
       </td>
 
       <td style="width: 48%; padding-left: 2%;">
-        <div class="form-group" id="showteam2"  style="display:none;">
+        <div class="form-group" id="showteam2"  >
         <label for="exampleInputFile" style="float:right">النادى الثانى</label>
-        <select  class="form-control"name="team2_id" id="team2" >
-        </select>
+        <input type="text"  class="form-control"name="team2_id" id="team2" >
         </div>
       </td>
 </tr>
@@ -65,7 +56,7 @@
       </div>
    </td>
    <td style="width: 48%; padding-left: 2%;">
-     <div class="form-group" id="week" style="display:none">
+     <div class="form-group" id="week" >
          <label for="exampleInputPassword1" style="float:right"> الاسبوع</label>
          <input type="text"
          name="  group_id"
@@ -77,7 +68,7 @@
 </tr>
 <tr>
   <td style="width: 48%">
-      <div class="form-group" style="display:none" id="group">
+      <div class="form-group" id="group">
           <label for="exampleInputFile" style="float:right">أختيار المجموعه</label>
           <select id="group"  class="form-control" name="group_id">
                 <option value="Null" selected>أختيار المجموعه</option>
@@ -88,7 +79,7 @@
       </div>
   </td>
   <td style="width: 48%; padding-left: 2%;">
-     <div class="form-group"id="role" style="display:none" >
+     <div class="form-group"id="role"   >
          <label for="exampleInputPassword1" style="float:right">الدور</label>
          <select  class="form-control" name="role">
                <option value="Null">دور المجموعات</option>
@@ -102,10 +93,7 @@
 </tr>
 
 </table>
-<div class="form-group" style="text-align:right;">
-    <label>الحكام</label><br />
-          {!! Form::select('referees[]', $referees, null, array('multiple'=> true, 'data-placeholder'=>'Select referees' ,'class'=> 'form-control group-select chosen-select-multiple chosen-select-no-results')) !!}
-</div>
+
 <div class="form-group">
     <label class="control-label" style="display: block;" style="float:right">ميعاد المباره(Year/Month/Day   HH:MM PM)</label>
     <input id="datetime12" data-format="YYYY-MM-DD  h:mm a" data-template="YYYY / MM / DD  h:mm a" name="match_date" value="" type="text">

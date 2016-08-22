@@ -138,17 +138,7 @@ Route::resource('/group'                ,'GroupController');
 
 //  ودى
 Route::POST    ('/match/store'          , array('as' => 'addmatch','uses' => 'MatchController@store'));
-// كأس
-Route::POST    ('/match/store2'          , array('as' => 'addmatch2','uses' => 'MatchController@store2'));
-// دورى
-Route::POST    ('/match/store3'          , array('as' => 'addmatch3','uses' => 'MatchController@store3'));
-
 Route::POST    ('/match/get_teams'      ,'MatchController@select_team');
-Route::POST    ('/match/get_teams2'      ,'MatchController@select_team2');
-Route::POST    ('/match/get_teams3'      ,'MatchController@select_team3');
-
-
-
 Route::resource('/match'                ,'MatchController');
 
 

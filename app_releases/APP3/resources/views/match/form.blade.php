@@ -14,7 +14,7 @@
       <td style="width: 48%">
         <div class="form-group" id="showteam1"  style="display:none;">
         <label for="exampleInputFile" style="float:right">النادى الاول</label>
-        <select  class="form-control"name="team1_id" id="team1" >
+        <select  class="form-control"name="team1_id" id="team1" onchange="select_team2()">
         </select>
         </div>
       </td>

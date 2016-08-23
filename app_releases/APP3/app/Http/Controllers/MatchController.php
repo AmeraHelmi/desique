@@ -118,7 +118,7 @@ public function store(Request $request)
 		if($request->type_match == "dawry")
 		{
 			$match->type="دورى";
-			$match->group_id=$request->week;
+			$match->group_id="الاسبوع".$request->week;
 		}
 		elseif ($request->type_match == "cup")
 		{

@@ -180,6 +180,36 @@ li.active a, li.active a:hover
 		$(function(){
 	  $('#datetime12').combodate();
 	});
+  $(function(){
+  $('#datetime122').combodate();
+});
+function func()
+{
+  var x = document.getElementById("type").value;
+  if(x == "كأس")
+  {
+    // $("#group").show();
+    // document.getElementById("week").style.visibility = "hidden";
+    document.getElementById('weekdiv').style.display = "none";
+    document.getElementById('groupdiv').style.display = "block";
+    document.getElementById('rolediv').style.display = "block";
+
+  }
+  else if (x == "دورى") {
+    document.getElementById('weekdiv').style.display = "block";
+    document.getElementById('groupdiv').style.display = "none";
+    document.getElementById('rolediv').style.display = "none";
+
+
+  }
+  else {
+    document.getElementById('weekdiv').style.display = "none";
+    document.getElementById('groupdiv').style.display = "none";
+    document.getElementById('rolediv').style.display = "none";
+
+
+  }
+}
   function select_team(){
   $team_type=$('#team_type').val();
   $.ajax({

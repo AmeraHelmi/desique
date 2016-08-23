@@ -68,7 +68,7 @@
      <div class="form-group" id="week" style="display:none">
          <label for="exampleInputPassword1" style="float:right"> الاسبوع</label>
          <input type="text"
-         name="  group_id"
+         id="week" name="week"
          placeholder=" ادخل الاسبوع هنا"
          class="form-control"
       >

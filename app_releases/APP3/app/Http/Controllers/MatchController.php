@@ -126,7 +126,8 @@ public function store(Request $request)
 	  	$match->role          =$request->role;
 			$match->group_id      =$request->group_id;
 		}
-		else {
+		else
+		{
 			$match->type="ودية";
 		}
 
@@ -205,17 +206,21 @@ public function edit(Request $request , $id)
 public function update(Request $request, $id)
 {
 		$match 	= Match::find($id);
-		$match->team1_id          =$request->team1_id;
-		$match->team2_id          =$request->team2_id;
-		$match->match_date        =$request->match_date;
-		$match->date              =date('Y-m-d',strtotime($request->match_date));
-		$match->match_period      =$request->match_period;
-		$match->group_id          =$request->group_id;
+
 		$match->champion_id       =$request->champion_id;
 		$match->stadium_id        =$request->stadium_id;
 		$match->addition_info     =$request->addition_info;
 		$match->channel_id        =$request->channel_id;
-		$match->role    =$request->role;
+		$match->type              =$request->type;
+		if ($request->type == "كأس")
+		{
+	  	$match->role          =$request->role;
+			$match->group_id      =$request->group_id;
+		}
+		elseif ($request->type == "دورى") {
+			$match->group_id      =$request->group_id;
+		}
+
 		$match->save();
 		if($request->ajax())
 		{

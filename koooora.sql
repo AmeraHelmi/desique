@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2016 at 02:08 PM
+-- Generation Time: Aug 22, 2016 at 12:49 PM
 -- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.20
+-- PHP Version: 5.6.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -1516,7 +1516,7 @@ CREATE TABLE `matches` (
 --
 
 INSERT INTO `matches` (`id`, `team1_id`, `team2_id`, `match_date`, `date`, `match_period`, `team1_goals`, `team2_goals`, `team1_corners`, `team2_corners`, `team1_offsides`, `team2_offsides`, `team1_errors`, `team2_errors`, `team1_cards`, `team2_cards`, `team1_psessions`, `team2_psessions`, `team1_penalties`, `team2_penalties`, `group_id`, `champion_id`, `stadium_id`, `addition_info`, `channel_id`, `role`, `type`, `updated_at`, `created_at`) VALUES
-(3, 8, 4, '2016-08-09 12:18:13', '2016-08-17', 90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, 26, NULL, NULL, NULL, NULL, '2016-08-14 11:26:29', '0000-00-00 00:00:00'),
+(3, 8, 4, '2016-08-09 12:18:13', '2016-08-22', 90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, 26, NULL, NULL, NULL, NULL, '2016-08-22 08:34:14', '0000-00-00 00:00:00'),
 (4, 3, 36, '2004-09-14 09:50:00', '2016-08-18', 90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '1', 3, 24, 'asd', 3, 16, NULL, '2016-08-18 11:22:20', '2016-08-17 13:45:00'),
 (9, 4, 3, '2004-02-16 03:10:00', '2004-02-16', 90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '1', 4, 21, 'aa', 3, 16, NULL, '2016-08-21 08:59:43', '2016-08-21 08:59:43'),
 (11, 3, 9, '2003-03-19 04:05:00', '2003-03-19', 90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '1', 3, 24, 'aa', 3, 8, NULL, '2016-08-21 09:02:14', '2016-08-21 09:02:14'),
@@ -2806,10 +2806,20 @@ CREATE TABLE `team_groups` (
   `team_id` int(11) DEFAULT NULL,
   `group_id` int(11) NOT NULL,
   `role` int(11) NOT NULL,
-  `addition_info` text,
+  `champion_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `team_groups`
+--
+
+INSERT INTO `team_groups` (`id`, `team_id`, `group_id`, `role`, `champion_id`, `created_at`, `updated_at`) VALUES
+(1, 32, 1, 16, 4, '2016-08-22 08:03:07', '2016-08-22 08:03:07'),
+(2, 33, 1, 16, 4, '2016-08-22 08:03:07', '2016-08-22 08:03:07'),
+(3, 29, 1, 4, 3, '2016-08-22 08:03:58', '2016-08-22 08:03:58'),
+(4, 35, 1, 4, 3, '2016-08-22 08:03:58', '2016-08-22 08:03:58');
 
 -- --------------------------------------------------------
 
@@ -3374,8 +3384,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `role`) VALUES
-(2, 'lames', 'lames@lames.com', '$2y$10$d8WHCeFB2GbdeVSABCHUr.IQmMt.v4tXzr32iOEUfh9NTdl0rReFO', 'OyUo7SOBcz7ESK6sIFhN7rqJ33sAU2YyWorhOicJJdpWtRN2Rama4rhqSYMm', '2016-05-11 06:01:54', '2016-08-18 09:08:58', 'Editor'),
-(3, 'alaa', 'alaa@yahoo.com', '$2y$10$BKmcSsvjypRF/Xjm4LSaL./osSpNt/FbUYLu.Ik1AKC05VO2ldVue', 'beosDnsf26srTbhUIguZSDl2xspIMhX8l1VczmP4FHLiZB0u6qraFHb5ZIh3', '2016-05-11 06:04:22', '2016-08-18 09:21:04', 'Admin'),
+(2, 'lames', 'lames@lames.com', '$2y$10$d8WHCeFB2GbdeVSABCHUr.IQmMt.v4tXzr32iOEUfh9NTdl0rReFO', 'n45i1tCvW4wpnuCWOqjOSZ89nOUMiKfjYhuziYWg7t91R9lQpvX0bSDDb1GU', '2016-05-11 06:01:54', '2016-08-22 08:47:42', 'Editor'),
+(3, 'alaa', 'alaa@yahoo.com', '$2y$10$BKmcSsvjypRF/Xjm4LSaL./osSpNt/FbUYLu.Ik1AKC05VO2ldVue', 'Yi76los4zawIrTd2VHlcth3Dk3dYL65G73pUvFuY6EWtVoD8E7oDqqS1Ro7T', '2016-05-11 06:04:22', '2016-08-22 08:47:57', 'Admin'),
 (4, 'mohaned', 'm.fouad.developer@gmail.com', '$2y$10$BKmcSsvjypRF/Xjm4LSaL./osSpNt/FbUYLu.Ik1AKC05VO2ldVue', 'Gk0kJVlR266TqTOCRdaavRQo5FgskBsODY36Rbuzxx6upXXeP5fFVn8u6Xmt', '2016-05-15 13:23:10', '2016-05-24 09:37:59', 'ِAnalyiser'),
 (5, 'amera', 'amera.elsayed6@gmail.com', '$2y$10$5Itr3pLJTdM4SI0GMeB.f.WWIoa2FOh1gPs1HCKRchuDIQdmJd9g.', '4cgjartVEo98RoSrvlqQwLfw9lE13f0N2zdty4CR7WEWsLLJ2dRTyquSEXjJ', '2016-05-16 06:25:55', '2016-05-16 08:57:47', 'Admin'),
 (6, 'reham mohamed', 'rehammohamed@brother-group.net', '$2y$10$BR2q0F5Ujf/g4AhHvVP1dOStRzgA1YSuAqWONQCoKQD1dnTErhb.G', 'zlBAVfXZ3xNFXkJtrSRhIyDSyXeO2FOpOaSFhao5gDsjFgGuB8ymifrT6miF', '2016-05-16 08:27:45', '2016-06-02 12:56:25', 'Data Entry'),
@@ -3896,7 +3906,8 @@ ALTER TABLE `team_groups`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id` (`id`,`team_id`,`group_id`),
   ADD KEY `team_id` (`team_id`),
-  ADD KEY `group_id` (`group_id`);
+  ADD KEY `group_id` (`group_id`),
+  ADD KEY `champion_id` (`champion_id`);
 
 --
 -- Indexes for table `team_history_coaches`
@@ -4237,7 +4248,7 @@ ALTER TABLE `team_championship_players`
 -- AUTO_INCREMENT for table `team_groups`
 --
 ALTER TABLE `team_groups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `team_history_coaches`
 --
@@ -4617,7 +4628,8 @@ ALTER TABLE `team_championship_players`
 --
 ALTER TABLE `team_groups`
   ADD CONSTRAINT `team_groups_ibfk_1` FOREIGN KEY (`team_id`) REFERENCES `teams` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `team_groups_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `team_groups_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `team_groups_ibfk_3` FOREIGN KEY (`champion_id`) REFERENCES `championships` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `team_history_coaches`

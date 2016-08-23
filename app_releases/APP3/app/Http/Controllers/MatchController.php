@@ -220,8 +220,15 @@ public function update(Request $request, $id)
 		elseif ($request->type == "دورى") {
 			$match->group_id      =$request->group_id;
 		}
-
 		$match->save();
+		$count = count($request->referees);
+		for($i = 0 ; $i < $count ; $i++)
+		{
+				$match_referee = new Match_referee;
+				$match_referee->match_id          =$match->id;
+				$match_referee->referee_id        =$request->referees[$i];
+				$match_referee->save();
+		}
 		if($request->ajax())
 		{
 				return response(array('msg' => 'Adding Successfull'), 200)

@@ -1,26 +1,12 @@
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 <table>
-  <!-- <tr>
-      <td style="width: 48%">
-        <div class="form-group" id="showteam1"  >
-        <label for="exampleInputFile" style="float:right">النادى الاول</label>
-        <input type="text"  class="form-control"name="team1_id" id="team1" >
-        </div>
-      </td>
 
-      <td style="width: 48%; padding-left: 2%;">
-        <div class="form-group" id="showteam2"  >
-        <label for="exampleInputFile" style="float:right">النادى الثانى</label>
-        <input type="text"  class="form-control" name="team2_id" id="team2" >
-        </div>
-      </td>
-</tr> -->
 <tr>
   <td style="width: 48%">
       <div class="form-group" >
           <label for="exampleInputFile" style="float:right">نوع البطولة</label>
-          <select id="type" name="type" class="form-control"  onchange="func(this)">
+          <select  class="form-control" id="type" name="type" onchange="func(this)">
             <option value="ودية" selected>ودية</option>
             <option value="دورى">دورى</option>
             <option value="كأس" >كأس</option>
@@ -105,7 +91,10 @@
 </tr>
 
 </table>
-
+<div class="form-group" style="text-align:right;">
+    <label>الحكام</label><br />
+          {!! Form::select('referees[]', $referees, null, array('multiple'=> true, 'data-placeholder'=>'Select referees' ,'class'=> 'form-control group-select chosen-select-multiple chosen-select-no-results')) !!}
+</div>
 <div class="form-group">
     <label for="exampleInputPassword1" style="float:right">معلومات أضافيه</label>
     <textarea rows="2" cols="30" name="addition_info" class="form-control"></textarea>

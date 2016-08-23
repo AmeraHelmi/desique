@@ -36,7 +36,7 @@ class TeamplayerController  extends Controller {
 
 			if($request->ajax())
 				return DatatablePresenter::make($tableData, 'index');
-				$teams   =Team::lists('name','id');
+				$teams=Team::where('is_team','like','نادى%')->lists('name','id');
 				$players =Player::lists('name','id');
 
 		return view('team_players.index')

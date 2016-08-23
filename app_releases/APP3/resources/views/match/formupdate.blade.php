@@ -20,7 +20,6 @@
   <td style="width: 48%">
       <div class="form-group" >
           <label for="exampleInputFile" style="float:right">نوع البطولة</label>
-          <select id="type" name="type" class="form-control"  onchange="func(this)">
             <option value="ودية" selected>ودية</option>
             <option value="دورى">دورى</option>
             <option value="كأس" >كأس</option>

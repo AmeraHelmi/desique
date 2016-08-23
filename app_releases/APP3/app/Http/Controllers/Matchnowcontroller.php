@@ -286,156 +286,147 @@ class Matchnowcontroller extends Controller {
 	 */
 	public function save(Request $request)
 	{
-		$team1_id = $request->T1;
-		$team2_id = $request->T2;
-		$match_id = $request->match_id;
-		$match             = new Match;
-	    $team1_championship = Team_championship::where('team_id',$team1_id)->first();
-
-		$team2_championship2 = Team_championship::where('team_id',$team2_id)->first();
-
+		$team1_id             = $request->T1;
+		$team2_id             = $request->T2;
+		$match_id             = $request->match_id;
+		$match                = new Match;
+	  $team1_championship   = Team_championship::where('team_id',$team1_id)->first();
+		$team2_championship2  = Team_championship::where('team_id',$team2_id)->first();
 		$championship_id = $match->where('id',$match_id)->first();
-		$t1goals = $match->where('team1_id',$team1_id)->first(['team1_goals']);
-		$t2goals = $match->where('team2_id',$team2_id)->first(['team2_goals']);
-        
+		if(!isset($championship_id))
+		{
+				$t1goals = $match->where('team1_id',$team1_id)->first(['team1_goals']);
+				$t2goals = $match->where('team2_id',$team2_id)->first(['team2_goals']);
         if(count($team1_championship) > 0)
         {
         	    $team1_championship->team_id = $team1_id;
         	    $team1_championship->championship_id =$championship_id->champion_id;
         	    if(count($team2_championship2) > 0)
         	    {
-        	    	 $team2_championship2->team_id = $team2_id;
-        	   		 $team2_championship2->championship_id =$championship_id->champion_id;
+        	    	 		$team2_championship2->team_id = $team2_id;
+        	   		 		$team2_championship2->championship_id =$championship_id->champion_id;
         	    }
         	    else
         	    {
-        	    	 $team2_championship2 = new Team_championship;
-        	    	$team2_championship2->team_id = $team2_id;
-        	    	$team2_championship2->championship_id =$championship_id->champion_id;
+        	    	 		$team2_championship2 = new Team_championship;
+        	    			$team2_championship2->team_id = $team2_id;
+        	    			$team2_championship2->championship_id =$championship_id->champion_id;
         	    }
+        	  	if($t1goals->team1_goals == $t2goals->team2_goals)
+							{
+        						$team1_championship->no_goals += $t1goals->team1_goals;
+        						$team1_championship->no_points += 1;
+        						$team1_championship->no_draughts += 1;
+        						$team1_championship->no_winnes += 0;
+        						$team1_championship->no_loses += 0;
+        						$team1_championship->save();
 
-        	  if($t1goals->team1_goals == $t2goals->team2_goals){
-        			$team1_championship->no_goals += $t1goals->team1_goals;
-        			$team1_championship->no_points += 1;
-        			$team1_championship->no_draughts += 1;
-        			$team1_championship->no_winnes += 0;
-        			$team1_championship->no_loses += 0;
-        			$team1_championship->save();
-
-         
-        			$team2_championship2->no_goals += $t2goals->team2_goals;
-         			$team2_championship2->no_points += 1;
-        			$team2_championship2->no_draughts += 1;
-        			$team2_championship2->no_winnes += 0;
-        			$team2_championship2->no_loses += 0;
-        			$team2_championship2->save();
-       			 }
-       			 else if($t1goals->team1_goals > $t2goals->team2_goals){
-        	
-        			$team1_championship->no_goals += $t1goals->team1_goals;
-        			$team1_championship->no_points += 3;
-        			$team1_championship->no_draughts += 0;
-        			$team1_championship->no_winnes += 1;
-        			$team1_championship->no_loses += 0;
-        			$team1_championship->save();
-		        	$team2_championship2->no_goals += $t2goals->team2_goals;
-  			       	$team2_championship2->no_points += 0;
-  			      	$team2_championship2->no_draughts += 0;
- 			       	$team2_championship2->no_winnes += 0;
- 			       	$team2_championship2->no_loses += 1;
- 			       	$team2_championship2->save();
+        						$team2_championship2->no_goals += $t2goals->team2_goals;
+         						$team2_championship2->no_points += 1;
+        						$team2_championship2->no_draughts += 1;
+        						$team2_championship2->no_winnes += 0;
+        						$team2_championship2->no_loses += 0;
+        						$team2_championship2->save();
+       			 	}
+       			 	else if($t1goals->team1_goals > $t2goals->team2_goals)
+							{
+        						$team1_championship->no_goals += $t1goals->team1_goals;
+        						$team1_championship->no_points += 3;
+        						$team1_championship->no_draughts += 0;
+        						$team1_championship->no_winnes += 1;
+        						$team1_championship->no_loses += 0;
+        						$team1_championship->save();
+		        				$team2_championship2->no_goals += $t2goals->team2_goals;
+  			       			$team2_championship2->no_points += 0;
+  			      			$team2_championship2->no_draughts += 0;
+ 			       				$team2_championship2->no_winnes += 0;
+ 			       				$team2_championship2->no_loses += 1;
+ 			       				$team2_championship2->save();
       			  }
-                   else {
-        	
-        			$team1_championship->no_goals += $t1goals->team1_goals;
-        			$team1_championship->no_points += 0;
-        			$team1_championship->no_draughts += 0;
-        			$team1_championship->no_winnes += 0;
-        			$team1_championship->no_loses += 1;
-        			$team1_championship->save();
- 
-       			 	$team2_championship2->no_goals += $t2goals->team2_goals;
-       			  	$team2_championship2->no_points += 3;
-      			  	$team2_championship2->no_draughts += 0;
-        			$team2_championship2->no_winnes += 1;
-        			$team2_championship2->no_loses += 0;
-        			$team2_championship2->save();
+              else
+							{
+        						$team1_championship->no_goals += $t1goals->team1_goals;
+        						$team1_championship->no_points += 0;
+        						$team1_championship->no_draughts += 0;
+        						$team1_championship->no_winnes += 0;
+        						$team1_championship->no_loses += 1;
+        						$team1_championship->save();
+
+       			 				$team2_championship2->no_goals += $t2goals->team2_goals;
+       			  			$team2_championship2->no_points += 3;
+      			  			$team2_championship2->no_draughts += 0;
+        						$team2_championship2->no_winnes += 1;
+        						$team2_championship2->no_loses += 0;
+        						$team2_championship2->save();
+        			}
+						}
+        		else
+        		{
+        	    	$team1_championship = new Team_championship;
+        	    	$team1_championship->team_id = $team1_id;
+        	    	$team1_championship->championship_id =$championship_id->champion_id;
+        	    	if(count($team2_championship2) > 0)
+        	    	{
+        	    	 		$team2_championship2->team_id = $team2_id;
+        	   		 		$team2_championship2->championship_id =$championship_id->champion_id;
+        	    	}
+        	    	else
+        	    	{
+        	    	 		$team2_championship2 = new Team_championship;
+        	    			$team2_championship2->team_id = $team2_id;
+        	    			$team2_championship2->championship_id =$championship_id->champion_id;
+        	    	}
+        	  		if($t1goals->team1_goals == $t2goals->team2_goals)
+								{
+        						$team1_championship->no_goals += $t1goals->team1_goals;
+        						$team1_championship->no_points += 1;
+        						$team1_championship->no_draughts += 1;
+        						$team1_championship->no_winnes += 0;
+        						$team1_championship->no_loses += 0;
+        						$team1_championship->save();
+
+        						$team2_championship2->no_goals += $t2goals->team2_goals;
+         						$team2_championship2->no_points += 1;
+        						$team2_championship2->no_draughts += 1;
+        						$team2_championship2->no_winnes += 0;
+        						$team2_championship2->no_loses += 0;
+        						$team2_championship2->save();
+       			 		}
+       			 		else if($t1goals->team1_goals > $t2goals->team2_goals)
+								{
+        						$team1_championship->no_goals += $t1goals->team1_goals;
+        						$team1_championship->no_points += 3;
+        						$team1_championship->no_draughts += 0;
+        						$team1_championship->no_winnes += 1;
+        						$team1_championship->no_loses += 0;
+        						$team1_championship->save();
+
+										$team2_championship2->no_goals += $t2goals->team2_goals;
+  			       			$team2_championship2->no_points += 0;
+  			      			$team2_championship2->no_draughts += 0;
+ 			       				$team2_championship2->no_winnes += 0;
+ 			       				$team2_championship2->no_loses += 1;
+ 			       				$team2_championship2->save();
+      			  	}
+                else
+								{
+        						$team1_championship->no_goals += $t1goals->team1_goals;
+			        			$team1_championship->no_points += 0;
+			        			$team1_championship->no_draughts += 0;
+			        			$team1_championship->no_winnes += 0;
+			        			$team1_championship->no_loses += 1;
+			        			$team1_championship->save();
+
+       			 				$team2_championship2->no_goals += $t2goals->team2_goals;
+		       			  	$team2_championship2->no_points += 3;
+		      			  	$team2_championship2->no_draughts += 0;
+			        			$team2_championship2->no_winnes += 1;
+			        			$team2_championship2->no_loses += 0;
+			        			$team2_championship2->save();
+        				}
+						}
         }
-        
-
-
-        }
-        else
-        {
-        	    $team1_championship = new Team_championship;
-        	    $team1_championship->team_id = $team1_id;
-        	    $team1_championship->championship_id =$championship_id->champion_id;
-        	    if(count($team2_championship2) > 0)
-        	    {
-        	    	 $team2_championship2->team_id = $team2_id;
-        	   		 $team2_championship2->championship_id =$championship_id->champion_id;
-        	    }
-        	    else
-        	    {
-        	    	 $team2_championship2 = new Team_championship;
-        	    	$team2_championship2->team_id = $team2_id;
-        	    	$team2_championship2->championship_id =$championship_id->champion_id;
-        	    }
-
-
-        	  if($t1goals->team1_goals == $t2goals->team2_goals){
-        			$team1_championship->no_goals += $t1goals->team1_goals;
-        			$team1_championship->no_points += 1;
-        			$team1_championship->no_draughts += 1;
-        			$team1_championship->no_winnes += 0;
-        			$team1_championship->no_loses += 0;
-        			$team1_championship->save();
-
-         
-        			$team2_championship2->no_goals += $t2goals->team2_goals;
-         			$team2_championship2->no_points += 1;
-        			$team2_championship2->no_draughts += 1;
-        			$team2_championship2->no_winnes += 0;
-        			$team2_championship2->no_loses += 0;
-        			$team2_championship2->save();
-       			 }
-       			 else if($t1goals->team1_goals > $t2goals->team2_goals){
-        	
-        			$team1_championship->no_goals += $t1goals->team1_goals;
-        			$team1_championship->no_points += 3;
-        			$team1_championship->no_draughts += 0;
-        			$team1_championship->no_winnes += 1;
-        			$team1_championship->no_loses += 0;
-        			$team1_championship->save();
-		        	$team2_championship2->no_goals += $t2goals->team2_goals;
-  			       	$team2_championship2->no_points += 0;
-  			      	$team2_championship2->no_draughts += 0;
- 			       	$team2_championship2->no_winnes += 0;
- 			       	$team2_championship2->no_loses += 1;
- 			       	$team2_championship2->save();
-      			  }
-                   else {
-        	
-        			$team1_championship->no_goals += $t1goals->team1_goals;
-        			$team1_championship->no_points += 0;
-        			$team1_championship->no_draughts += 0;
-        			$team1_championship->no_winnes += 0;
-        			$team1_championship->no_loses += 1;
-        			$team1_championship->save();
- 
-       			 	$team2_championship2->no_goals += $t2goals->team2_goals;
-       			  	$team2_championship2->no_points += 3;
-      			  	$team2_championship2->no_draughts += 0;
-        			$team2_championship2->no_winnes += 1;
-        			$team2_championship2->no_loses += 0;
-        			$team2_championship2->save();
-        }
-        
-
-
-        }
-        
-		 return view('Editor.finish');
+		 		return view('Editor.finish');
 	}
 
 	/**

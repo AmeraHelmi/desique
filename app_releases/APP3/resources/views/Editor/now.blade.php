@@ -4,7 +4,7 @@
 	.table-bordered{width: 50%;margin: auto;}
 	#input{width: 54px; display: inline-block;text-align: center;}
 	.content-wrapper{padding: 0px;}
-	.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td 
+	.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td
 {
 	vertical-align: middle;
 	text-align:center;
@@ -420,7 +420,7 @@ $.ajax({
 					$('#addgoal').modal('hide');
 			});
 
-			
+
 
 			$("#addpenalty form").on('submit', function(e){
 					if (!e.isDefaultPrevented())
@@ -488,7 +488,7 @@ $.ajax({
  					}
  			 });
 
-			
+
 			 $("#addcorner form").on('submit', function(e){
 			  					if (!e.isDefaultPrevented())
 			  					{

@@ -24,16 +24,15 @@ class BallController extends Controller {
 		 $this->middleware('auth');
 	}
             /**
-			*@method [return view] [index]([[obj] [$ball],[obj] [$request]]) 
+			*@method [return view] [index]([[obj] [$ball],[obj] [$request]])
 			*[<to get data from 3 tables [matches,teams] in DB to get[Author,analysis_id,analysis_date,T1name,T2name] >]
-			*@param [obj] [$ball] 
-			*@param [obj] [$request] 
-			*@uses [Ball,Request Model] 
+			*@param [obj] [$ball]
+			*@param [obj] [$request]
+			*@uses [Ball,Request Model]
 			*@return [view] <'ball.index'>
 			*/
 	public function index(Ball $ball , Request $request)
 	{
-<<<<<<< HEAD
 		 $balls = $ball
 			 					->select(array('id','brand','flag'))
 			 					->orderBy('id','desc')->get();
@@ -43,18 +42,7 @@ class BallController extends Controller {
 					 			{
 									return view('partials.actionBtns')->with('controller','ball')->with('id', $data->id)->render();
 								});
-=======
-		$balls = $ball
-		  		->join('championships as champion', 'champion.id', '=', 'balls.champion_id')
-			 	->select(array('balls.id as ball_id','champion.name as Cname','balls.flag as image '))
-			 	->orderBy('ball_id','desc')->get();
-		$tableData = Datatables::of($balls)
-			 	->editColumn('image', '<div class="image"><img src="images/uploads/{{ $image }}"  width="50px" height="50px">')
-				->addColumn('actions', function ($data)
-					 		{
-							  return view('partials.actionBtns')->with('controller','ball')->with('id', $data->ball_id)->render();
-							});
->>>>>>> 176e575464cad1570b694d62e3fe3971f560c5f5
+
 
 		if($request->ajax())
 				return DatatablePresenter::make($tableData, 'index');
@@ -67,7 +55,7 @@ class BallController extends Controller {
 >>>>>>> 176e575464cad1570b694d62e3fe3971f560c5f5
 	 }
 
-	
+
 	public function create()
 	{
 		//
@@ -75,10 +63,10 @@ class BallController extends Controller {
 
 	/**
 			* Store a newly created resource in storage.
-			**@method [return response] [store]([[obj] [$request]]) 
+			**@method [return response] [store]([[obj] [$request]])
 			*[<to store data >]
-			*@param [obj] [$request] 
-			*@var [obj] [$ball] 
+			*@param [obj] [$request]
+			*@var [obj] [$ball]
 			*@uses [Request Model]
 			* @return Response
 			*/
@@ -108,19 +96,19 @@ class BallController extends Controller {
     }
 
 
-	
+
 	public function show($id)
 	{
 		//
 	}
 
 	/**
-			*@method [return response] [edit]([[obj] [$request],[int][$id]]) 
+			*@method [return response] [edit]([[obj] [$request],[int][$id]])
 			*[<show data to edit  >]
 			*@param [int] [$id]
 			*@param [obj] [$request]
 			*@var [obj] [$ball]
-			*@uses [Request Model] 
+			*@uses [Request Model]
 			*@return response
 			*/
 	public function edit(Request $request , $id)
@@ -137,7 +125,7 @@ class BallController extends Controller {
 
 	/**
 			 * Update the specified resource in storage.
-			 **@method [return response] [update]([[obj] [$request]]) 
+			 **@method [return response] [update]([[obj] [$request]])
 			*[<to update data >]
 			 * @param  obj  $request
 			 *@uses Ball Model
@@ -189,7 +177,7 @@ class BallController extends Controller {
 
 			/**
 			 * Remove the specified resource from storage.
-			 *@method [return response] [destroy]([[int] [$id]]) 
+			 *@method [return response] [destroy]([[int] [$id]])
 			 *[<to delete data >]
 			 * @param  int  $id
 			 * @return Response

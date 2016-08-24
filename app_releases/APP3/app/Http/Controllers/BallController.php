@@ -42,10 +42,6 @@ class BallController extends Controller {
 					 			{
 									return view('partials.actionBtns')->with('controller','ball')->with('id', $data->id)->render();
 								});
-<<<<<<< HEAD
-
-=======
->>>>>>> d79da0f9d01c40aeeab16694fa5848d681805dce
 
 		if($request->ajax())
 				return DatatablePresenter::make($tableData, 'index');

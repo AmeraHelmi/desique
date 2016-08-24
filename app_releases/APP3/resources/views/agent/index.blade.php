@@ -17,7 +17,8 @@
 				<table id="countries" class="table table-striped table-bordered table-hover datatable">
 						<thead>
 								<tr>
-										<th class="col-md-4">الأسم</th>
+										<th class="col-md-2">الأسم</th>
+										<th class="col-md-4">معلومات اضافيه</th>
 										<th class="col-md-2">خيارات</th>
 								</tr>
 						</thead>
@@ -25,6 +26,7 @@
 								@foreach ($tableData->getData()->data as $row)
 								<tr>
 										<td>{{ $row->name }}</td>
+										<td>{{ $row->addition_info }}</td>
 										<td>{!! $row->actions !!}</td>
 								</tr>
 								@endforeach
@@ -206,6 +208,7 @@
 		"deferLoading": {{ $tableData->getData()->recordsFiltered }},
 		"columns": [
 				{data: 'name', name: 'name'},
+				{data: 'addition_info', name: 'addition_info'},
 				{data: 'actions', name: 'actions', orderable: false, searchable: false}
 		]
 	});

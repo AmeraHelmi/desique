@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 22, 2016 at 12:49 PM
+-- Generation Time: Aug 24, 2016 at 10:40 AM
 -- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.21
+-- PHP Version: 5.6.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -52,8 +52,6 @@ INSERT INTO `adverts` (`id`, `name`, `flag`, `url`, `addition_info`, `created_at
 CREATE TABLE `agents` (
   `id` int(11) NOT NULL,
   `name` varchar(150) CHARACTER SET utf8 NOT NULL,
-  `country_id` int(11) DEFAULT NULL,
-  `flag` text COLLATE utf8_unicode_ci,
   `addition_info` text COLLATE utf8_unicode_ci,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
@@ -3451,8 +3449,7 @@ ALTER TABLE `adverts`
 -- Indexes for table `agents`
 --
 ALTER TABLE `agents`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `country_id` (`country_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `agent_histories`
@@ -4282,12 +4279,6 @@ ALTER TABLE `winners`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `agents`
---
-ALTER TABLE `agents`
-  ADD CONSTRAINT `agents_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `agent_histories`

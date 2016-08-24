@@ -100,6 +100,8 @@ public function select_team(Request $request)
 {
 	 		$team_type = $request->team_type;
 	 	  $teams = Team::where('is_team','like',$team_type)->get();
+			echo'<option value="selected">النادى الأول </option>';
+			
 	 		foreach($teams as $row)
 	 		{
 	 				echo'<option value='.$row->id.'> '.$row->name.' </option>';
@@ -108,18 +110,11 @@ public function select_team(Request $request)
 public function select_team2(Request $request)
 {
 	 		$team_id = $request->team_id;
-			$team_type=Team::where('id',$team_id)->get('type');
-	 	  $teams = Team::where('is_team','like',$team_type)->get();
+			$team_type = $request->team_type;
+	 	  $teams = Team::where('is_team','like',$team_type)->where('id','!=',$team_id)->get();
 	 		foreach($teams as $row)
 	 		{
-				if($row->id == $team_id)
-				{
-
-				}
-				else {
-
 	 				echo'<option value='.$row->id.'> '.$row->name.' </option>';
-				}
 	 		}
 }
 

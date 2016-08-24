@@ -244,17 +244,17 @@ function func()
   }
   function select_team2(){
   $team_id=$('#team1').val();
+  $team_type=$('#team_type').val();
   $.ajax({
-      url: '{{ url('match/get2') }}',
+      url: '{{ url('match/select2') }}',
       type: "POST",
     data:{
-        team_id:$team_id
+        team_id:$team_id,
+        team_type:$team_type
       },
       success:function(res)
       {
-        alert(res);
         $('#showteam2').show();
-
         $('#team2').html(res);
       },
       error:function(){

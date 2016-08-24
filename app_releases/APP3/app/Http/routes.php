@@ -139,7 +139,7 @@ Route::resource('/group'                ,'GroupController');
 //  ودى
 Route::POST    ('/match/store'          , array('as' => 'addmatch','uses' => 'MatchController@store'));
 Route::POST    ('/match/get_teams'      ,'MatchController@select_team');
-Route::POST    ('/match/get2'      ,'MatchController@select_team2');
+Route::POST    ('/match/select2'      ,'MatchController@select_team2');
 Route::resource('/match'                ,'MatchController');
 
 

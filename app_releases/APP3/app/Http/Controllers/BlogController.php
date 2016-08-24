@@ -109,14 +109,14 @@ public function update(Request $request)
 		{
 			if(Input::hasFile('flag'))
 			{
-			 	$file = Input::file('flag');
-			 	$filename=time();
-			 	$file->move('images/uploads', $filename);
-			  $blog->title             =$request->title;
-			  $blog->flag              =$filename;
-			  $blog->body              =$request->body;
-			  $blog->vedio_url         =$request->vedio_url;
-			  $blog->date              =$request->date;
+			$file = Input::file('flag');
+			$filename=time();
+			$file->move('images/uploads', $filename);
+			$blog->title             =$request->title;
+			$blog->flag              =$filename;
+			$blog->body              =$request->body;
+			$blog->vedio_url         =$request->vedio_url;
+			$blog->date              =$request->date;
             }
         }
 	else
@@ -139,13 +139,13 @@ public function update(Request $request)
 	
 public function destroy($id)
 {
-	$blog 	= Blog::find($id);
-	$blog->delete();
-	if($request->ajax())
-		{
-			return response(array('msg' => 'Removing Successfull'), 200)
-								->header('Content-Type', 'application/json');
-		}
-	return redirect()->back();
+				$blog 	= Blog::find($id);
+				$blog->delete();
+				if($request->ajax())
+					{
+						return response(array('msg' => 'Removing Successfull'), 200)
+											->header('Content-Type', 'application/json');
+					}
+				return redirect()->back();
 }
 }

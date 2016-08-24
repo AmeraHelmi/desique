@@ -555,7 +555,8 @@ Route::POST    ('/category/store'          , array('as' => 'addcategory','uses' 
 Route::POST    ('/category/update'           ,'CategoryController@update');
 Route::resource('/category'                , 'CategoryController');
 
-
+//Front
+Route::resource('/front'  , 'FrontEndController');
 Route::controllers([
 	'auth'      => 'Auth\AuthController',
 	'password'  => 'Auth\PasswordController'

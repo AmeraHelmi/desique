@@ -24,25 +24,34 @@ class BallController extends Controller {
 		$this->middleware('auth');
 	}
             /**
-			*@method [return view] [index]([[obj] [$ball],[obj] [$request]]) 
+			*@method [return view] [index]([[obj] [$ball],[obj] [$request]])
 			*[<to get data from 3 tables [matches,teams] in DB to get[Author,analysis_id,analysis_date,T1name,T2name] >]
-			*@param [obj] [$ball] 
-			*@param [obj] [$request] 
-			*@uses [Ball,Request Model] 
+			*@param [obj] [$ball]
+			*@param [obj] [$request]
+			*@uses [Ball,Request Model]
 			*@return [view] <'ball.index'>
 			*/
 	public function index(Ball $ball , Request $request)
 	{
+<<<<<<< HEAD
 
 		$balls = $ball
 			->select(array('id','brand','flag'))
 			->orderBy('id','desc')->get();
 		$tableData = Datatables::of($balls)
 			->editColumn('flag', '<div class="image"><img src="images/uploads/{{ $flag }}"  width="50px" height="50px">')
+=======
+		 $balls = $ball
+			 					->select(array('id','brand','flag'))
+			 					->orderBy('id','desc')->get();
+		 $tableData = Datatables::of($balls)
+			 	 				->editColumn('flag', '<div class="image"><img src="images/uploads/{{ $flag }}"  width="50px" height="50px">')
+>>>>>>> d79da0f9d01c40aeeab16694fa5848d681805dce
 				 				->addColumn('actions', function ($data)
 					 			{
 									return view('partials.actionBtns')->with('controller','ball')->with('id', $data->id)->render();
 								});
+<<<<<<< HEAD
 
 		$balls = $ball
 		  		->join('championships as champion', 'champion.id', '=', 'balls.champion_id')
@@ -55,10 +64,13 @@ class BallController extends Controller {
 							  return view('partials.actionBtns')->with('controller','ball')->with('id', $data->ball_id)->render();
 							});
 
+=======
+>>>>>>> d79da0f9d01c40aeeab16694fa5848d681805dce
 
 		if($request->ajax())
 				return DatatablePresenter::make($tableData, 'index');
 		 		return view('ball.index')
+<<<<<<< HEAD
 
 		   			->with('championships',$championships)
 			 		->with('tableData', DatatablePresenter::make($tableData, 'index'));
@@ -68,9 +80,12 @@ class BallController extends Controller {
 		   				->with('championships',$championships)
 			 			->with('tableData', DatatablePresenter::make($tableData, 'index'));
 
+=======
+			 					->with('tableData', DatatablePresenter::make($tableData, 'index'));
+>>>>>>> d79da0f9d01c40aeeab16694fa5848d681805dce
 	 }
 
-	
+
 	public function create()
 	{
 		//
@@ -78,10 +93,10 @@ class BallController extends Controller {
 
 	/**
 			* Store a newly created resource in storage.
-			**@method [return response] [store]([[obj] [$request]]) 
+			**@method [return response] [store]([[obj] [$request]])
 			*[<to store data >]
-			*@param [obj] [$request] 
-			*@var [obj] [$ball] 
+			*@param [obj] [$request]
+			*@var [obj] [$ball]
 			*@uses [Request Model]
 			* @return Response
 			*/
@@ -112,19 +127,19 @@ class BallController extends Controller {
     }
 
 
-	
+
 	public function show($id)
 	{
 		//
 	}
 
 	/**
-			*@method [return response] [edit]([[obj] [$request],[int][$id]]) 
+			*@method [return response] [edit]([[obj] [$request],[int][$id]])
 			*[<show data to edit  >]
 			*@param [int] [$id]
 			*@param [obj] [$request]
 			*@var [obj] [$ball]
-			*@uses [Request Model] 
+			*@uses [Request Model]
 			*@return response
 			*/
 	public function edit(Request $request , $id)
@@ -141,7 +156,7 @@ class BallController extends Controller {
 
 	/**
 			 * Update the specified resource in storage.
-			 **@method [return response] [update]([[obj] [$request]]) 
+			 **@method [return response] [update]([[obj] [$request]])
 			*[<to update data >]
 			 * @param  obj  $request
 			 *@uses Ball Model
@@ -154,18 +169,25 @@ class BallController extends Controller {
 			{
      		if(Input::hasFile('flag'))
 				{
+<<<<<<< HEAD
 
+=======
+>>>>>>> d79da0f9d01c40aeeab16694fa5848d681805dce
 						$file = Input::file('flag');
 						$filename=$file->getClientOriginalName();
 						$file->move('images/uploads', $filename);
 						$ball->brand           =$request->brand;
 						$ball->addition_info   =$request->addition_info;
 						$ball->flag         =$filename;
+<<<<<<< HEAD
 					$file = Input::file('flag');
 					$filename=$file->getClientOriginalName();
 					$file->move('images/uploads', $filename);
 					$ball->champion_id  =$request->champion_id;
 					$ball->flag         =$filename;				}
+=======
+				}
+>>>>>>> d79da0f9d01c40aeeab16694fa5848d681805dce
             }
    		    else
 			{
@@ -174,10 +196,13 @@ class BallController extends Controller {
 						$ball->flag              =session('ballimage');
    		}
 			$ball->save();
+<<<<<<< HEAD
 					$ball->championship_id   =$request->champion_id;
 					$ball->flag              =session('ballimage');
    		    }
 			        $ball->save();
+=======
+>>>>>>> d79da0f9d01c40aeeab16694fa5848d681805dce
 			if($request->ajax())
 			{
 				return response(array('msg' => 'Adding Successfull'), 200)
@@ -187,7 +212,7 @@ class BallController extends Controller {
 
 			/**
 			 * Remove the specified resource from storage.
-			 *@method [return response] [destroy]([[int] [$id]]) 
+			 *@method [return response] [destroy]([[int] [$id]])
 			 *[<to delete data >]
 			 * @param  int  $id
 			 * @return Response

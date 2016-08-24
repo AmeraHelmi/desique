@@ -92,6 +92,13 @@
         </ul>
     </li>
 
+    <li class="accordion">
+<a href="#"><i class="glyphicon glyphicon-plus"></i><span> الكوره</span></a>
+<ul class="nav nav-pills nav-stacked">
+<li><a href="{{ url('ball') }}"> اضافة كوره</a></li>
+</ul>
+</li>
+
     <li>
 <a class="ajax-link" href="{{ url('referee') }}"><i class="glyphicon glyphicon-arrow-left"></i><span> الحكم</span></a>
 </li>

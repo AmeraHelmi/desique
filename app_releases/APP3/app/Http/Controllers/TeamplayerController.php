@@ -67,7 +67,7 @@ class TeamplayerController  extends Controller {
 
 		for($i = 0 ; $i < $count ; $i++){
 	$Team_player = new Team_player;
-			$Team_player->team_id    = $request->team_id;
+			$Team_player->team_id      = $request->team_id;
 			$Team_player->player_id    = $request->player_id[$i];
 			$Team_player->save();
 		}
@@ -109,7 +109,7 @@ class TeamplayerController  extends Controller {
 	 * @return Response
 	 */
 	 public function update(Request $request , $id)
- 	{
+ 	  {
 		$team_player =Team_player::find($id);
 
 		$team_player->team_id          =$request->team_id;

@@ -34,7 +34,6 @@ name="country_id">
 <label for="exampleInputPassword1">عدد المباريات</label>
 <input type="number"
  name="no_matches"
- required
  placeholder="no_matches"
  class="form-control"
 >
@@ -82,6 +81,19 @@ name="country_id">
  class="form-control"
 >
 <span class="help-block with-errors errorName"></span>
+</div>
+</td>
+<td style="width: 48%;padding-left: 2%;">
+<div class="form-group">
+<label for="exampleInputPassword1">أختار ماركه</label>
+<select id="Brand"  class="form-control"
+name="ball_id">
+@foreach($balls as $ball_id => $brand)
+ <option value="{!! $ball_id !!}">{!! $brand !!}</option>
+ @endforeach
+</select>
+<span class="help-block with-errors errorName"></span>
+
 </div>
 </td>
 </tr>

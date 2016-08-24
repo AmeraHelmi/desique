@@ -91,11 +91,11 @@ public function store(Request $request) {	 if(Input::hasFile('flag'))
 		 $player->nationality    =$request->nationality;
 		 $player->team_id    =$request->team_id;
 		 $player->save();
-		 $maxplayer_id = Player::max('id');
-		 $newtid = new Team_player;
-		 $newtid->team_id   = $request->team_id;
-		 $newtid->player_id = $maxplayer_id;
-		 $newtid->save();
+		//  $maxplayer_id = Player::max('id');
+		//  $newtid = new Team_player;
+		//  $newtid->team_id   = $request->team_id;
+		//  $newtid->player_id = $maxplayer_id;
+		//  $newtid->save();
 		 if($request->ajax())
 		 {
 

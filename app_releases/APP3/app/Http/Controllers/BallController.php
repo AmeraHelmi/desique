@@ -42,17 +42,15 @@ class BallController extends Controller {
 					 			{
 									return view('partials.actionBtns')->with('controller','ball')->with('id', $data->id)->render();
 								});
+<<<<<<< HEAD
 
+=======
+>>>>>>> d79da0f9d01c40aeeab16694fa5848d681805dce
 
 		if($request->ajax())
 				return DatatablePresenter::make($tableData, 'index');
 		 		return view('ball.index')
-<<<<<<< HEAD
 			 					->with('tableData', DatatablePresenter::make($tableData, 'index'));
-=======
-		   				->with('championships',$championships)
-			 			->with('tableData', DatatablePresenter::make($tableData, 'index'));
->>>>>>> 176e575464cad1570b694d62e3fe3971f560c5f5
 	 }
 
 
@@ -138,36 +136,21 @@ class BallController extends Controller {
 			{
      		if(Input::hasFile('flag'))
 				{
-<<<<<<< HEAD
 						$file = Input::file('flag');
 						$filename=$file->getClientOriginalName();
 						$file->move('images/uploads', $filename);
 						$ball->brand           =$request->brand;
 						$ball->addition_info   =$request->addition_info;
 						$ball->flag         =$filename;
-=======
-					$file = Input::file('flag');
-					$filename=$file->getClientOriginalName();
-					$file->move('images/uploads', $filename);
-					$ball->champion_id  =$request->champion_id;
-					$ball->flag         =$filename;
->>>>>>> 176e575464cad1570b694d62e3fe3971f560c5f5
 				}
             }
    		    else
 			{
-<<<<<<< HEAD
 			    	$ball->brand           =$request->brand;
 				    $ball->addition_info   =$request->addition_info;
 						$ball->flag              =session('ballimage');
    		}
 			$ball->save();
-=======
-					$ball->championship_id   =$request->champion_id;
-					$ball->flag              =session('ballimage');
-   		    }
-			        $ball->save();
->>>>>>> 176e575464cad1570b694d62e3fe3971f560c5f5
 			if($request->ajax())
 			{
 				return response(array('msg' => 'Adding Successfull'), 200)

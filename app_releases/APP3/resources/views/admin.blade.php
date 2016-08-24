@@ -84,7 +84,7 @@
                 <!-- theme selector ends -->
 
                 <ul class="collapse navbar-collapse nav navbar-nav top-menu" style="float: left;">
-                    <li><a href="{{ url('/') }}"><i class="glyphicon glyphicon-globe"></i> زيارة الموقع</a></li>
+                    <li><a href="{{ url('/front') }}"><i class="glyphicon glyphicon-globe"></i> زيارة الموقع</a></li>
 
                 </ul>
 

@@ -29,23 +29,24 @@
 </tr>
 <tr>
   <td style="width: 48%;">
-      <div class="form-group">
+    <div class="form-group">
+        <label for="exampleInputFile" style="float:right">أختيار القناه</label>
+        <select id="channel"  class="form-control" name="channel_id">
+              <option value="Null" selected>أختيار القناه</option>
+              @foreach($channels as $channel_id => $channel_name)
+              <option value="{!! $channel_id !!}">{!! $channel_name !!}</option>
+              @endforeach
+        </select>
+    </div>
+  </td>
+  <td style="width: 48%; padding-left: 2%;">
+
+      <div class="form-group" id="champion">
           <label for="exampleInputFile" style="float:right">أختيار البطوله</label>
           <select  class="form-control" name="champion_id">
                 <option value="Null" selected>أختيار البطوله</option>
                 @foreach($championships as $championship_id => $championship_name)
                 <option value="{!! $championship_id !!}">{!! $championship_name !!}</option>
-                @endforeach
-          </select>
-      </div>
-  </td>
-  <td style="width: 48%; padding-left: 2%;">
-      <div class="form-group">
-          <label for="exampleInputFile" style="float:right">أختيار القناه</label>
-          <select id="channel"  class="form-control" name="channel_id">
-                <option value="Null" selected>أختيار القناه</option>
-                @foreach($channels as $channel_id => $channel_name)
-                <option value="{!! $channel_id !!}">{!! $channel_name !!}</option>
                 @endforeach
           </select>
       </div>

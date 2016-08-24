@@ -101,7 +101,7 @@ public function select_team(Request $request)
 	 		$team_type = $request->team_type;
 	 	  $teams = Team::where('is_team','like',$team_type)->get();
 			echo'<option value="selected">النادى الأول </option>';
-			
+
 	 		foreach($teams as $row)
 	 		{
 	 				echo'<option value='.$row->id.'> '.$row->name.' </option>';
@@ -150,7 +150,6 @@ public function store(Request $request)
 			$match->type="ودية";
 		}
 
-		$match->champion_id   =$request->champion_id;
 		$match->stadium_id        =$request->stadium_id;
 		$match->channel_id    =$request->channel_id;
 		$match->addition_info     =$request->addition_info;
@@ -227,7 +226,6 @@ public function update(Request $request, $id)
 {
 		$match 	= Match::find($id);
 
-		$match->champion_id       =$request->champion_id;
 		$match->stadium_id        =$request->stadium_id;
 		$match->addition_info     =$request->addition_info;
 		$match->channel_id        =$request->channel_id;
@@ -236,9 +234,13 @@ public function update(Request $request, $id)
 		{
 	  	$match->role          =$request->role;
 			$match->group_id      =$request->group_id;
+			$match->champion_id       =$request->champion_id;
+
 		}
 		elseif ($request->type == "دورى") {
 			$match->group_id      =$request->group_id;
+			$match->champion_id       =$request->champion_id;
+
 		}
 		$match->save();
 		$count = count($request->referees);

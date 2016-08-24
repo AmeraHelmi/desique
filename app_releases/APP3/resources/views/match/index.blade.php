@@ -220,6 +220,7 @@ function func()
     document.getElementById('weekdiv').style.display = "none";
     document.getElementById('groupdiv').style.display = "none";
     document.getElementById('rolediv').style.display = "none";
+    document.getElementById('champion').style.display = "none";
 
 
   }
@@ -303,6 +304,7 @@ function func()
       $("#group").show();
       $("#week").hide();
       $("#role").show();
+      $("#champion").show();
       $("#type_match").val("cup");
     });
 
@@ -310,6 +312,7 @@ function func()
       $("#group").hide();
       $("#week").hide();
       $("#role").hide();
+      $("#champion").hide();
       $("#type_match").val("unformal");
 
     });
@@ -317,6 +320,7 @@ function func()
           $("#week").show();
           $("#group").hide();
           $("#role").hide();
+          $("#champion").show();
           $("#type_match").val("dawry");
     });
 

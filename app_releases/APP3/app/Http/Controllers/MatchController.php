@@ -105,6 +105,23 @@ public function select_team(Request $request)
 	 				echo'<option value='.$row->id.'> '.$row->name.' </option>';
 	 		}
 }
+public function select_team2(Request $request)
+{
+	 		$team_id = $request->team_id;
+			$team_type=Team::where('id',$team_id)->get('type');
+	 	  $teams = Team::where('is_team','like',$team_type)->get();
+	 		foreach($teams as $row)
+	 		{
+				if($row->id == $team_id)
+				{
+
+				}
+				else {
+
+	 				echo'<option value='.$row->id.'> '.$row->name.' </option>';
+				}
+	 		}
+}
 
 //   ودى
 public function store(Request $request)
@@ -113,12 +130,19 @@ public function store(Request $request)
 
 		$match->team1_id          =$request->team1_id;
 		$match->team2_id          =$request->team2_id;
+		if($request->team1_id == $request->team2_id)
+		{
+			return response(array('msg' => 'there is error'), 404)
+							->header('Content-Type', 'application/json');
+		}
+		else {
+
 		$match->match_date        =$request->match_date;
 		$match->date              =date('Y-m-d',strtotime($request->match_date));
 		if($request->type_match == "dawry")
 		{
 			$match->type="دورى";
-			$match->group_id=$request->week;
+			$match->group_id="الاسبوع".$request->week;
 		}
 		elseif ($request->type_match == "cup")
 		{
@@ -150,6 +174,7 @@ public function store(Request $request)
 				return response(array('msg' => 'Adding Successfull'), 200)
 								->header('Content-Type', 'application/json');
 		}
+	}
 }
 
 

@@ -15,10 +15,25 @@ use Clockwork\Support\Laravel\Facade as Clockwork ;
 class AdminController extends Controller
  {
 
+/**
+*@method [] [construct]([[] [no parameter]<, ...>])
+* [<it check into auth if the user is login or not >]
+*/
+
 	public function __construct()
 	{
 		$this->middleware('auth');
 	}
+
+/**
+*@method [return view] [index]([[object] [$request]<, ...>]) 
+*[<if user is employee it will return view with specific pages depending on his role
+but if the user role is admin it will return view with all pages >]
+*@var [array] [$employees] [<it take array of data about user>]
+*@var [array] [$admin] [<it take array of data about admin>]
+*@return [view] [<return view partials.actionBtns if user & return view admin.index if admin >]
+
+*/
 
 	public function index(Request $request)
 	{
@@ -48,6 +63,13 @@ class AdminController extends Controller
 
 	}
 
+/**
+*@method [responce massege] [edit]([[object] [$request],[int] [$id]])
+* [<to edit data of user [name,Email, role]>]
+*@param [integer] [$id] [<we find with id the user which we need to edit >]
+*@return [msg] [<succesful msg of status 200>]
+*/
+
 	public function edit(Request $request, $id)
 	{
 		$employee 	= User::find($id);
@@ -56,7 +78,11 @@ class AdminController extends Controller
  								->header('Content-Type', 'application/json');
 	}
 }
-
+/**
+*@method [responce msg] [update]([[object] [$request],[int] [$id]]) 
+*[<to update data of user [name,email,role] and save the new data in DB>]
+*@return [responce msg] [<succes msg of status 200 >]
+*/
 	public function update(Request $request, $id)
 	{
 			$employee = User::find($id);
@@ -70,7 +96,10 @@ class AdminController extends Controller
 									->header('Content-Type', 'application/json');
 			}
 	}
-
+/**
+*@method [view of same page] [update_admin]([[object] [$request]]) 
+*[<update data [name ,email,role] of admin >]
+*/
 	public function update_admin(Request $request)
 	{
 			$employee = User::find(Auth::user()->id);
@@ -80,7 +109,10 @@ class AdminController extends Controller
 			$employee->save();
       return redirect()->back();
 	}
-
+/**
+*@method [view of same page] [destroy]([[int] [$id]])
+* [<delete user >]
+*/
 	public function destroy($id)
 	{
 			$employee = User::find($id);
@@ -96,3 +128,4 @@ class AdminController extends Controller
 	}
 
 }
+/**@copyright 2016 The PHP Team [Amera Helmi,Alaa Ragab, Lamess Said]*/

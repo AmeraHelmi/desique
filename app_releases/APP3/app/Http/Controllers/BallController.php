@@ -14,18 +14,26 @@ use Input;
 
 class BallController extends Controller {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+	         /**
+			 * Display a listing of the resource.
+			 *@method [] [construct]([[] [no parameter]]) [<to checks if user login or not>]
+			 * @return Response
+			 */
 	public function __construct()
 	{
 		 $this->middleware('auth');
 	}
-
+            /**
+			*@method [return view] [index]([[obj] [$ball],[obj] [$request]]) 
+			*[<to get data from 3 tables [matches,teams] in DB to get[Author,analysis_id,analysis_date,T1name,T2name] >]
+			*@param [obj] [$ball] 
+			*@param [obj] [$request] 
+			*@uses [Ball,Request Model] 
+			*@return [view] <'ball.index'>
+			*/
 	public function index(Ball $ball , Request $request)
 	{
+<<<<<<< HEAD
 		 $balls = $ball
 			 					->select(array('id','brand','flag'))
 			 					->orderBy('id','desc')->get();
@@ -35,32 +43,49 @@ class BallController extends Controller {
 					 			{
 									return view('partials.actionBtns')->with('controller','ball')->with('id', $data->id)->render();
 								});
+=======
+		$balls = $ball
+		  		->join('championships as champion', 'champion.id', '=', 'balls.champion_id')
+			 	->select(array('balls.id as ball_id','champion.name as Cname','balls.flag as image '))
+			 	->orderBy('ball_id','desc')->get();
+		$tableData = Datatables::of($balls)
+			 	->editColumn('image', '<div class="image"><img src="images/uploads/{{ $image }}"  width="50px" height="50px">')
+				->addColumn('actions', function ($data)
+					 		{
+							  return view('partials.actionBtns')->with('controller','ball')->with('id', $data->ball_id)->render();
+							});
+>>>>>>> 176e575464cad1570b694d62e3fe3971f560c5f5
 
 		if($request->ajax())
 				return DatatablePresenter::make($tableData, 'index');
 		 		return view('ball.index')
+<<<<<<< HEAD
 			 					->with('tableData', DatatablePresenter::make($tableData, 'index'));
+=======
+		   				->with('championships',$championships)
+			 			->with('tableData', DatatablePresenter::make($tableData, 'index'));
+>>>>>>> 176e575464cad1570b694d62e3fe3971f560c5f5
 	 }
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
+	
 	public function create()
 	{
 		//
 	}
 
 	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
+			* Store a newly created resource in storage.
+			**@method [return response] [store]([[obj] [$request]]) 
+			*[<to store data >]
+			*@param [obj] [$request] 
+			*@var [obj] [$ball] 
+			*@uses [Request Model]
+			* @return Response
+			*/
 	public function store(Request $request)
  	{
- 			if(Input::hasFile('flag'))
-			{
+ 		if(Input::hasFile('flag'))
+		    {
 			    $file = Input::file('flag');
 			    $filename=$file->getClientOriginalName();
 			    $file->move('images/uploads', $filename);
@@ -71,35 +96,33 @@ class BallController extends Controller {
  					$ball->save();
 					if($request->ajax())
 					{
-							return response(array('msg' => 'Adding Successfull'), 200)
-										->header('Content-Type', 'application/json');
+						return response(array('msg' => 'Adding Successfull'), 200)
+								->header('Content-Type', 'application/json');
 					}
  			}
-			else
-			{
-							return response(false, 200)
-										->header('Content-Type', 'application/json');
-			}
- }
+			       else
+			        {
+						return response(false, 200)
+								->header('Content-Type', 'application/json');
+			        }
+    }
 
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+	
 	public function show($id)
 	{
 		//
 	}
 
 	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+			*@method [return response] [edit]([[obj] [$request],[int][$id]]) 
+			*[<show data to edit  >]
+			*@param [int] [$id]
+			*@param [obj] [$request]
+			*@var [obj] [$ball]
+			*@uses [Request Model] 
+			*@return response
+			*/
 	public function edit(Request $request , $id)
  	{
  			$ball 	= Ball::find($id);
@@ -107,17 +130,19 @@ class BallController extends Controller {
 			session(['ballimage' => $ball->flag]);
  			if($request->ajax())
 			{
- 					return response(array('msg' => 'Adding Successfull', 'data'=> $ball->toJson() ), 200)
- 								->header('Content-Type', 'application/json');
+ 				return response(array('msg' => 'Adding Successfull', 'data'=> $ball->toJson() ), 200)
+ 						->header('Content-Type', 'application/json');
  			}
  	}
 
 	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+			 * Update the specified resource in storage.
+			 **@method [return response] [update]([[obj] [$request]]) 
+			*[<to update data >]
+			 * @param  obj  $request
+			 *@uses Ball Model
+			 * @return Response
+			 */
 	public function update(Request $request)
 	{
 			$ball 	= Ball::find(session('ballid'));
@@ -125,35 +150,50 @@ class BallController extends Controller {
 			{
      		if(Input::hasFile('flag'))
 				{
+<<<<<<< HEAD
 						$file = Input::file('flag');
 						$filename=$file->getClientOriginalName();
 						$file->move('images/uploads', $filename);
 						$ball->brand           =$request->brand;
 						$ball->addition_info   =$request->addition_info;
 						$ball->flag         =$filename;
+=======
+					$file = Input::file('flag');
+					$filename=$file->getClientOriginalName();
+					$file->move('images/uploads', $filename);
+					$ball->champion_id  =$request->champion_id;
+					$ball->flag         =$filename;
+>>>>>>> 176e575464cad1570b694d62e3fe3971f560c5f5
 				}
-      }
-   		else
+            }
+   		    else
 			{
+<<<<<<< HEAD
 			    	$ball->brand           =$request->brand;
 				    $ball->addition_info   =$request->addition_info;
 						$ball->flag              =session('ballimage');
    		}
 			$ball->save();
+=======
+					$ball->championship_id   =$request->champion_id;
+					$ball->flag              =session('ballimage');
+   		    }
+			        $ball->save();
+>>>>>>> 176e575464cad1570b694d62e3fe3971f560c5f5
 			if($request->ajax())
 			{
-						return response(array('msg' => 'Adding Successfull'), 200)
-								->header('Content-Type', 'application/json');
+				return response(array('msg' => 'Adding Successfull'), 200)
+						->header('Content-Type', 'application/json');
 			}
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-
+			/**
+			 * Remove the specified resource from storage.
+			 *@method [return response] [destroy]([[int] [$id]]) 
+			 *[<to delete data >]
+			 * @param  int  $id
+			 * @return Response
+			 */
 
 	public function destroy($id)
  	{
@@ -161,8 +201,8 @@ class BallController extends Controller {
  			$ball->delete();
  			if($request->ajax())
 			{
- 					return response(array('msg' => 'Removing Successfull'), 200)
- 								->header('Content-Type', 'application/json');
+ 				return response(array('msg' => 'Removing Successfull'), 200)
+ 						->header('Content-Type', 'application/json');
  			}
  		return redirect()->back();
  	}

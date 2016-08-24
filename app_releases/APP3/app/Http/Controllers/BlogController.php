@@ -12,17 +12,24 @@ use Input;
 
 class BlogController extends Controller {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+			/**
+			 * Display a listing of the resource.
+			 *@method [] [construct]([[] [no parameter]]) [<to checks if user login or not>]
+			 * @return Response
+			*/
 
 public function __construct()
 {
  	$this->middleware('auth');
 }
-
+			/**
+			*@method [return view] [index]([[obj] [$blog],[obj] [$request]]) 
+			*[<to get data from  DB  >]
+			*@param [obj] [$blog] 
+			*@param [obj] [$request] 
+			*@uses [Blog,Request Model] 
+			*@return [view] <'blog.index'>
+			*/
 public function index(Blog $blog , Request $request)
 {
 	$blogs = $blog
@@ -51,7 +58,15 @@ public function create()
 		
 }
 
-	
+			/**
+			* Store a newly created resource in storage.
+			**@method [return response] [store]([[obj] [$request]]) 
+			*[<to store data >]
+			*@param [obj] [$request] 
+			*@var [obj] [$blog] 
+			*@uses [Request Model]
+			* @return Response
+			*/
 public function store(Request $request)
 {
 	if(Input::hasFile('flag'))
@@ -86,7 +101,14 @@ public function show($id)
 		
 }
 
-	
+			/**
+			*@method [return response] [edit]([[int][$id]]) 
+			*[<show data to edit  >]
+			*@param [int] [$id]
+			*@var [obj] [$blog]
+			*@uses [Blog Model] 
+			*@return response
+			*/
 public function edit($id)
 {
 		$blog = Blog::find($id);
@@ -96,12 +118,13 @@ public function edit($id)
 								    ->header('Content-Type', 'application/json');
 }
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+			/**
+			* Update the specified resource in storage.
+			**@method [return response] [update]([[obj] [$request]) 
+			*[<to update data >]
+			* @param  obj  $request
+			* @return Response
+			*/
 public function update(Request $request)
 {
  	$blog 	= Blog::find(session('blogid'));
@@ -127,25 +150,31 @@ public function update(Request $request)
 			$blog->date              =$request->date;
 		    $blog->flag              =session('blogflag');
 	   }
-	$blog->save();
-	if($request->ajax())
-	    {
-	 			return response(array('msg' => 'Adding Successfull'), 200)
-	 							->header('Content-Type', 'application/json');
-	    }
+			$blog->save();
+			if($request->ajax())
+	    	{
+	 		return response(array('msg' => 'Adding Successfull'), 200)
+	 			->header('Content-Type', 'application/json');
+	    	}
 }
 
 
-	
+			/**
+			* Remove the specified resource from storage.
+			*@method [return response] [destroy]([[int] [$id]]) 
+			*[<to delete data >]
+			* @param  int  $id
+			* @return Response
+			*/
 public function destroy($id)
 {
-				$blog 	= Blog::find($id);
-				$blog->delete();
-				if($request->ajax())
-					{
-						return response(array('msg' => 'Removing Successfull'), 200)
-											->header('Content-Type', 'application/json');
-					}
+			$blog = Blog::find($id);
+			$blog->delete();
+			if($request->ajax())
+			{
+				return response(array('msg' => 'Removing Successfull'), 200)
+					->header('Content-Type', 'application/json');
+			}
 				return redirect()->back();
 }
 }

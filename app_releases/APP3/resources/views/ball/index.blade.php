@@ -60,7 +60,7 @@
 <ul class="alerts-list" style="display:none;" id="show">
   <li>
      <div class="alert alert-success alert-dismissable">
-           <i class="icon-remove-sign"></i> <strong>Ball</strong> has been successfully added!.
+           <i class="icon-remove-sign"></i> تم أضافة كوره بنجاح!.
            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
        </div>
    </li>
@@ -68,29 +68,29 @@
 <ul class="alerts-list" style="display:none;" id="showupdate">
   <li>
      <div class="alert alert-success alert-dismissable">
-           <i class="icon-remove-sign"></i> <strong>Ball</strong> has been successfully updated!.
+           <i class="icon-remove-sign"></i> تم تحديث البيانات بنجاح!.
            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
        </div>
    </li>
 </ul>
 <a class="btn btn-primary" data-toggle="modal" data-target="#addModal" style="margin-bottom:20px;" >
-		<i class="fa fa-plus-circle"  style="font-size: 18px;"></i> Add Ball
+		<i class="fa fa-plus-circle"  style="font-size: 18px;"></i> أضافة كوره
 </a>
 <div class="widget-content-white glossed">
 		<div class="padded">
 				<table id="Balls" class="table table-striped table-bordered table-hover datatable">
 						<thead>
 								<tr>
-										<th class="col-md-1">Championship</th>
-										<th class="col-md-1">Image</th>
-										<th class="col-md-1">Actions</th>
+										<th class="col-md-2">الماركه</th>
+										<th class="col-md-2">الصوره</th>
+										<th class="col-md-2">خيارات</th>
 								</tr>
 						</thead>
 						<tbody>
 								@foreach ($tableData->getData()->data as $row)
 								<tr>
-										<td>{{ $row->Cname }}</td>
-										<td>{!! $row->image !!}</td>
+										<td>{{ $row->brand }}</td>
+										<td>{!! $row->flag !!}</td>
 										<td>{!!$row->actions !!}</td>
 								</tr>
 								@endforeach
@@ -111,8 +111,8 @@
                     @include('ball.form')
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" id="submitForm" class="btn btn-primary">Submit</button>
-                    <button type="submit" class="btn btn-primary" id="addNew">Submit and Add New</button>
+                  <button type="submit" id="submitForm" class="btn btn-primary">موافق</button>
+                  <button type="submit" class="btn btn-primary" id="addNew">موافق وأضافة جديد</button>
 
                 </div>
             </form>
@@ -125,14 +125,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="editEmployeeModalLabel"><i class="fa fa-pencil"></i> Update</h4>
+                <h4 class="modal-title" id="editEmployeeModalLabel"><i class="fa fa-pencil"></i> تحديث</h4>
             </div>
             <form role="form" id="update_form" method="POST" class="editForm" data-id="" action="{{ url('/ball/update') }}" data-toggle="validator" enctype="multipart/form-data">
                 <div class="modal-body">
                     @include('ball.form')
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" id="submit" class="btn btn-primary">Update</button>
+                    <button type="submit" id="submit" class="btn btn-primary">تحديث</button>
                 </div>
             </form>
         </div>
@@ -215,8 +215,8 @@ $(document).ready(function() {
 								"stateSave": true,
 								"deferLoading": {{ $tableData->getData()->recordsFiltered }},
 								"columns": [
-										{data: 'Cname', name: 'Cname'},
-										{data: 'image', name: 'image' , orderable: false, searchable: false},
+										{data: 'brand', name: 'brand'},
+										{data: 'flag', name: 'flag' , orderable: false, searchable: false},
 										{data: 'actions', name: 'actions', orderable: false, searchable: false}
 								]
 							});

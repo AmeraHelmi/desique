@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Country;
 use App\Models\City;
+use App\Models\Ball;
 use App\Models\Player;
 use App\Models\Branch;
 use App\Models\Championship;
@@ -32,15 +33,17 @@ class ChampionshipController extends Controller {
 	{
 		 	$championships = $championship
 			 												->join('countries as country', 'country.id', '=', 'championships.country_id')
+															->join('Balls as B','B.id','=','championships.ball_id')
 															->select(array(
 				 																'championships.id as championshipID',
 			   																'championships.name as name',
 				 																'country.name as countryname',
 				 																'championships.no_matches as no_matches',
 				 																'championships.addition_info as addition_info',
-				 																'championships.type as type'
+																				'championships.type as type',
+				 																'B.brand as B_brand'
 				 		 														))
-		 													->orderBy('country.name')->get();
+		 													->orderBy('championshipID')->get();
 
 			 $tableData = Datatables::of($championships)
 				 											->addColumn('actions', function ($data)
@@ -51,7 +54,9 @@ class ChampionshipController extends Controller {
 			 if($request->ajax())
 				 return DatatablePresenter::make($tableData, 'index');
 				 $countries=Country::lists('name','id');
+				 $balls=Ball::lists('brand','id');
 				 return view('championship.index')
+				        ->with('balls',$balls)
 			 					->with('countries',$countries)
 			 					->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	 }
@@ -84,6 +89,7 @@ class ChampionshipController extends Controller {
 			$championship->addition_info =$request->addition_info;
 			$championship->start_date   =$request->start_date;
 			$championship->end_date     =$request->end_date;
+			$championship->ball_id     =$request->ball_id;
 			$championship->continent    =$request->continent;
  			$championship->save();
 			if($request->ajax())
@@ -146,6 +152,7 @@ class ChampionshipController extends Controller {
 		$championship->addition_info =$request->addition_info;
 		$championship->start_date    =$request->start_date;
 		$championship->end_date      =$request->end_date;
+		$championship->ball_id     =$request->ball_id;
 		$championship->continent     =$request->continent;
 		$championship->save();
 		if($request->ajax())

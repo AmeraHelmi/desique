@@ -112,7 +112,7 @@
 										$('.alerts-list').append(
 												'<li>\
 														<div class="alert alert-success alert-dismissable">\
-																<i class="icon-check-sign"></i> city has been successfully added!\
+																<i class="icon-check-sign"></i> تم أضافة لاعيبه بنجـــــاح!\
 																<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
 														</div>\
 												</li>');
@@ -125,7 +125,7 @@
 										$('.alerts-list').append(
 												'<li>\
 														<div class="alert alert-danger alert-dismissable">\
-																<i class="icon-remove-sign"></i> <strong>Opps!</strong> something went wrong.\
+																<i class="icon-remove-sign"></i> <strong>Opps!</strong> حدث خطأ.\
 																<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
 														</div>\
 												</li>');
@@ -134,8 +134,6 @@
 						e.preventDefault();
 				}
 		 });
-
-
 	     /* Edit Form */
 	     $(document.body).validator().on('click', '.edit', function() {
 	    var self = $(this);
@@ -155,7 +153,7 @@
 	                 $('.alerts-list').append(
 	                     '<li>\
 	                         <div class="alert alert-danger alert-dismissable">\
-	                             <i class="icon-remove-sign"></i> <strong>Opps!</strong> something went wrong.\
+	                             <i class="icon-remove-sign"></i> <strong>Opps!</strong> حدث خطأ.\
 	                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
 	                         </div>\
 	                     </li>');

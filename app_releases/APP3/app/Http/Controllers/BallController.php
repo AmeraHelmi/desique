@@ -27,23 +27,18 @@ class BallController extends Controller {
 	public function index(Ball $ball , Request $request)
 	{
 		 $balls = $ball
-		  					->join('championships as champion', 'champion.id', '=', 'balls.champion_id')
-			 					->select(array('balls.id as ball_id',
-															'champion.name as Cname',
-															'balls.flag as image'))
-			 					->orderBy('ball_id','desc')->get();
+			 					->select(array('id','brand','flag'))
+			 					->orderBy('id','desc')->get();
 		 $tableData = Datatables::of($balls)
-			 	 				->editColumn('image', '<div class="image"><img src="images/uploads/{{ $image }}"  width="50px" height="50px">')
+			 	 				->editColumn('flag', '<div class="image"><img src="images/uploads/{{ $flag }}"  width="50px" height="50px">')
 				 				->addColumn('actions', function ($data)
 					 			{
-									return view('partials.actionBtns')->with('controller','ball')->with('id', $data->ball_id)->render();
+									return view('partials.actionBtns')->with('controller','ball')->with('id', $data->id)->render();
 								});
 
 		if($request->ajax())
 				return DatatablePresenter::make($tableData, 'index');
-        $championships = Championship::lists('name','id');
 		 		return view('ball.index')
-		   					->with('championships',$championships)
 			 					->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	 }
 
@@ -70,7 +65,8 @@ class BallController extends Controller {
 			    $filename=$file->getClientOriginalName();
 			    $file->move('images/uploads', $filename);
  					$ball = new Ball;
- 					$ball->champion_id     =$request->champion_id;
+					$ball->brand           =$request->brand;
+ 					$ball->addition_info   =$request->addition_info;
 					$ball->flag            =$filename;
  					$ball->save();
 					if($request->ajax())
@@ -132,13 +128,15 @@ class BallController extends Controller {
 						$file = Input::file('flag');
 						$filename=$file->getClientOriginalName();
 						$file->move('images/uploads', $filename);
-						$ball->champion_id  =$request->champion_id;
+						$ball->brand           =$request->brand;
+						$ball->addition_info   =$request->addition_info;
 						$ball->flag         =$filename;
 				}
       }
    		else
 			{
-						$ball->championship_id   =$request->champion_id;
+			    	$ball->brand           =$request->brand;
+				    $ball->addition_info   =$request->addition_info;
 						$ball->flag              =session('ballimage');
    		}
 			$ball->save();

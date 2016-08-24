@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 class Ball extends Eloquent {
 
 	//
-	protected $fillable= ['champion_id','flag'];
+	protected $fillable= ['brand','flag','addition_info'];
 
 }

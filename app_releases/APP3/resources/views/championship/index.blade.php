@@ -38,7 +38,8 @@
 										<th class="col-md-1">أسم البطوله</th>
 										<th class="col-md-1">أسم الدوله</th>
 										<th class="col-md-1">عدد المباريات</th>
-                    <th class="col-md-1">النوع</th>
+										<th class="col-md-1">النوع</th>
+                    <th class="col-md-1">الماركه</th>
 										<th class="col-md-1">خيارات</th>
 								</tr>
 						</thead>
@@ -48,7 +49,8 @@
 										<td>{{ $row->name }}</td>
 										<td>{{ $row->countryname }}</td>
 										<td>{{ $row->no_matches }}</td>
-                    <td>{{ $row->type }}</td>
+										<td>{{ $row->type }}</td>
+                    <td>{{ $row->B_brand }}</td>
 										<td>{!!$row->actions !!}</td>
 								</tr>
 								@endforeach
@@ -185,7 +187,8 @@ $(document).ready(function() {
 										{data: 'name', name: 'name'},
 										{data: 'countryname', name: 'countryname'},
 										{data: 'no_matches', name: 'no_matches'},
-                    {data: 'type', name: 'type'},
+										{data: 'type', name: 'type'},
+                    {data: 'B_brand', name: 'B_brand'},
 										{data: 'actions', name: 'actions', orderable: false, searchable: false}
 								]
 							});

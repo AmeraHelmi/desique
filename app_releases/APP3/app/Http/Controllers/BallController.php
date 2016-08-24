@@ -1,5 +1,4 @@
 <?php namespace App\Http\Controllers;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Ball;
@@ -10,10 +9,7 @@ use Illuminate\Routing\Router as Route;
 use App\Services\DatatablePresenter;
 use Auth;
 use Input;
-
-
 class BallController extends Controller {
-
 	         /**
 			 * Display a listing of the resource.
 			 *@method [] [construct]([[] [no parameter]]) [<to checks if user login or not>]
@@ -42,19 +38,15 @@ class BallController extends Controller {
 					 			{
 									return view('partials.actionBtns')->with('controller','ball')->with('id', $data->id)->render();
 								});
-
 		if($request->ajax())
 				return DatatablePresenter::make($tableData, 'index');
 		 		return view('ball.index')
 			 					->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	 }
-
-
 	public function create()
 	{
 		//
 	}
-
 	/**
 			* Store a newly created resource in storage.
 			**@method [return response] [store]([[obj] [$request]])
@@ -88,14 +80,10 @@ class BallController extends Controller {
 								->header('Content-Type', 'application/json');
 			        }
     }
-
-
-
 	public function show($id)
 	{
 		//
 	}
-
 	/**
 			*@method [return response] [edit]([[obj] [$request],[int][$id]])
 			*[<show data to edit  >]
@@ -116,7 +104,6 @@ class BallController extends Controller {
  						->header('Content-Type', 'application/json');
  			}
  	}
-
 	/**
 			 * Update the specified resource in storage.
 			 **@method [return response] [update]([[obj] [$request]])
@@ -153,7 +140,6 @@ class BallController extends Controller {
 						->header('Content-Type', 'application/json');
 			}
 	}
-
 			/**
 			 * Remove the specified resource from storage.
 			 *@method [return response] [destroy]([[int] [$id]])
@@ -161,7 +147,6 @@ class BallController extends Controller {
 			 * @param  int  $id
 			 * @return Response
 			 */
-
 	public function destroy($id)
  	{
  			$ball	= Ball::find($id);
@@ -174,3 +159,4 @@ class BallController extends Controller {
  		return redirect()->back();
  	}
 }
+/**@copyright 2016 The PHP Group [Amera Helmi ,Alaa Ragab,Lamess Said]*/

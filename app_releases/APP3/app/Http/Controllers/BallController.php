@@ -21,7 +21,7 @@ class BallController extends Controller {
 			 */
 	public function __construct()
 	{
-		 $this->middleware('auth');
+		$this->middleware('auth');
 	}
             /**
 			*@method [return view] [index]([[obj] [$ball],[obj] [$request]]) 
@@ -48,8 +48,8 @@ class BallController extends Controller {
 				return DatatablePresenter::make($tableData, 'index');
         $championships = Championship::lists('name','id');
 		 		return view('ball.index')
-		   				->with('championships',$championships)
-			 			->with('tableData', DatatablePresenter::make($tableData, 'index'));
+		   			->with('championships',$championships)
+			 		->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	 }
 
 	
@@ -74,20 +74,20 @@ class BallController extends Controller {
 			    $file = Input::file('flag');
 			    $filename=$file->getClientOriginalName();
 			    $file->move('images/uploads', $filename);
- 					$ball = new Ball;
- 					$ball->champion_id     =$request->champion_id;
-					$ball->flag            =$filename;
- 					$ball->save();
+ 				$ball = new Ball;
+ 				$ball->champion_id     =$request->champion_id;
+				$ball->flag            =$filename;
+ 				$ball->save();
 					if($request->ajax())
 					{
 						return response(array('msg' => 'Adding Successfull'), 200)
-								->header('Content-Type', 'application/json');
+							->header('Content-Type', 'application/json');
 					}
  			}
 			       else
 			        {
 						return response(false, 200)
-								->header('Content-Type', 'application/json');
+							->header('Content-Type', 'application/json');
 			        }
     }
 
@@ -115,7 +115,7 @@ class BallController extends Controller {
  			if($request->ajax())
 			{
  				return response(array('msg' => 'Adding Successfull', 'data'=> $ball->toJson() ), 200)
- 						->header('Content-Type', 'application/json');
+ 					->header('Content-Type', 'application/json');
  			}
  	}
 
@@ -129,7 +129,7 @@ class BallController extends Controller {
 			 */
 	public function update(Request $request)
 	{
-			$ball 	= Ball::find(session('ballid'));
+			$ball = Ball::find(session('ballid'));
 			if(!empty($_FILES))
 			{
      		if(Input::hasFile('flag'))
@@ -150,7 +150,7 @@ class BallController extends Controller {
 			if($request->ajax())
 			{
 				return response(array('msg' => 'Adding Successfull'), 200)
-						->header('Content-Type', 'application/json');
+				    ->header('Content-Type', 'application/json');
 			}
 	}
 
@@ -164,13 +164,14 @@ class BallController extends Controller {
 
 	public function destroy($id)
  	{
- 			$ball	= Ball::find($id);
+ 			$ball= Ball::find($id);
  			$ball->delete();
  			if($request->ajax())
 			{
  				return response(array('msg' => 'Removing Successfull'), 200)
- 						->header('Content-Type', 'application/json');
+ 				    ->header('Content-Type', 'application/json');
  			}
- 		return redirect()->back();
+ 		        return redirect()->back();
  	}
 }
+/**@copyright 2016 The PHP Group [Amera Helmi ,Alaa Ragab,Lamess Said]*/

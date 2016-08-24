@@ -117,7 +117,7 @@ public function index(Discussion $Discussion , Request $request)
 			*/
 	public function edit(Request $request , $id)
 	{
-			$Discussion = Discussion::find($id);
+		$Discussion = Discussion::find($id);
 			if($request->ajax())
 			  {
 				return response(array('msg' => 'Adding Successfull', 'data'=>$Discussion->toJson() ), 200)
@@ -133,7 +133,7 @@ public function index(Discussion $Discussion , Request $request)
 			 * @param  obj  $request
 			 * @return Response
 			 */
-	 public function update(Request $request , $id)
+	public function update(Request $request , $id)
  	{
 		$Discussion = Discussion::find($id);
 		$Discussion->match_id          = $request->match_id;

@@ -439,7 +439,8 @@ Route::resource('/team_championship'                ,'Team_championshipControlle
 
 
 
-Route::POST    ('/snew/store'          ,'SnewController@store');
+Route::POST    ('/snew/store'          ,array('as' => 'addsnew','uses' => 'SnewController@store'));
+
 
 
 

@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Models\User;
 use App\Models\Snew;
+use App\Models\New_meta;
 use App\Models\Category;
 use App\Models\Championship_sponsor;
 use App\Http\Controllers\Controller;
@@ -35,10 +36,11 @@ class SnewController extends Controller {
 			->editColumn('flag', '<div class="image"><img src="images/uploads/{{ $flag }}"  width="50px" height="50px">')
 				->addColumn('actions', function ($data)
 					{return view('partials.actionBtns')->with('controller','snew')->with('id', $data->id)->render(); });
-
+$metas =Category::lists('name','id');
 			if($request->ajax())
 				return DatatablePresenter::make($tableData, 'index');
 		return view('snew.index')
+		->with('metas',$metas)
 			->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	}
 
@@ -66,8 +68,17 @@ class SnewController extends Controller {
 			  $snew->flag               =$filename;
 				$snew->date              =$request->date;
 				$snew->additional_info    =$request->additional_info;
+				$snew->save();
 
-			  $snew->save();
+				$count = count($request->metas);
+				$meta="";
+				for($i = 0 ; $i < $count ; $i++)
+				{
+						$new_meta = new New_meta;
+						$new_meta->new_id          =$snew->id;
+						$new_meta->meta_id        =$request->metas[$i];
+						$new_meta->save();
+				}
 
 				if($request->ajax()){
 					return response(array('msg' => 'Adding Successfull'), 200)

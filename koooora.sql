@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 25, 2016 at 11:27 AM
+-- Generation Time: Aug 25, 2016 at 11:35 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -2539,7 +2539,7 @@ CREATE TABLE `snews` (
   `additional_info` text CHARACTER SET utf8 NOT NULL,
   `user_id` int(11) NOT NULL,
   `likes` int(11) DEFAULT NULL,
-  `meta` int(11) DEFAULT NULL,
+  `meta` varchar(1500) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -3789,7 +3789,7 @@ ALTER TABLE `shoes`
 ALTER TABLE `snews`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`),
-  ADD KEY `meta` (`meta`);
+  ADD KEY `meta` (`meta`(255));
 
 --
 -- Indexes for table `sponsors`
@@ -4514,12 +4514,6 @@ ALTER TABLE `reserve_players`
   ADD CONSTRAINT `reserve_players_ibfk_1` FOREIGN KEY (`player_id`) REFERENCES `players` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `reserve_players_ibfk_2` FOREIGN KEY (`team_id`) REFERENCES `teams` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `reserve_players_ibfk_3` FOREIGN KEY (`match_id`) REFERENCES `matches` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `snews`
---
-ALTER TABLE `snews`
-  ADD CONSTRAINT `snews_ibfk_1` FOREIGN KEY (`meta`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `stadia`

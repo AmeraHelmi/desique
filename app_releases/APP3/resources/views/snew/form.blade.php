@@ -23,6 +23,10 @@
 <label class="control-label" style="display: block;">الوقت(Year/Month/Day   HH:MM PM)</label>
 <input id="datetime12" data-format="YYYY-MM-DD  h:mm a" data-template="YYYY / MM / DD  h:mm a" name="date" value="" type="text">
 </div>
+<div class="form-group" style="text-align:right;">
+    <label>اهم الوسوم</label><br />
+          {!! Form::select('metas[]', $metas, null, array('multiple'=> true, 'data-placeholder'=>'Select meta keyword' ,'class'=> 'form-control group-select chosen-select-multiple chosen-select-no-results')) !!}
+</div>
 
 <div class="form-group" style="display:none;">
 <label for="exampleInputFile">pic path</label>

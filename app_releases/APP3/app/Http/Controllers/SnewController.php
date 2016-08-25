@@ -3,6 +3,7 @@
 use App\Http\Requests;
 use App\Models\User;
 use App\Models\Snew;
+use App\Models\Category;
 use App\Models\Championship_sponsor;
 use App\Http\Controllers\Controller;
 use yajra\Datatables\Datatables as Datatables;

@@ -127,9 +127,12 @@ Route::resource('/team'                  ,'TeamController');
 Route::POST    ('/group/store'          , array('as' => 'addgroup','uses' => 'GroupController@store'));
 Route::resource('/group'                ,'GroupController');
 
+//min
 
-
-
+Route::POST    ('/minute/store'          , array('as' => 'addminute','uses' => 'MinuteController@store'));
+Route::resource('/minute' ,'MinuteController');
+Route::POST    ('/minute/update'           ,'MinuteController@update');
+Route::POST    ('/finish'          ,'MinuteController@finish');
 
 
 

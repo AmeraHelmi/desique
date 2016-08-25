@@ -113,7 +113,9 @@
     <li>
 <a class="ajax-link" href="{{ url('post') }}"><i class="glyphicon glyphicon-arrow-left"></i><span> المدونه</span></a>
 </li>
-
+  <li>
+<a class="ajax-link" href="{{ url('minute') }}"><i class="glyphicon glyphicon-arrow-left"></i><span> لحظة بلحظة </span></a>
+</li>
     <li>
 <a class="ajax-link" href="{{ url('sponsor') }}"><i class="glyphicon glyphicon-arrow-left"></i><span> الرعاه</span></a>
 </li>

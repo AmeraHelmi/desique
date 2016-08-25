@@ -230,6 +230,10 @@ public function update(Request $request, $id)
 		$match->addition_info     =$request->addition_info;
 		$match->channel_id        =$request->channel_id;
 		$match->type              =$request->type;
+		if(isset($request->match_period))
+		{
+			$match->match_period=$request->match_period;
+		}
 		if ($request->type == "كأس")
 		{
 	  	$match->role          =$request->role;

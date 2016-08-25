@@ -92,6 +92,14 @@
 </tr>
 
 </table>
+<div class="form-group">
+<label for="exampleInputPassword1">وقت المبارأة</label>
+<input type="number"
+ name="match_period"
+ placeholder="ادخل مدة المباراة"
+ class="form-control"
+>
+</div>
 <div class="form-group" style="text-align:right;">
     <label>الحكام</label><br />
           {!! Form::select('referees[]', $referees, null, array('multiple'=> true, 'data-placeholder'=>'Select referees' ,'class'=> 'form-control group-select chosen-select-multiple chosen-select-no-results')) !!}

@@ -9,6 +9,10 @@
 <a class="ajax-link" href="{{ url('advert') }}"><i class="glyphicon glyphicon-arrow-left"></i><span> الاعلان</span></a>
 </li>
 
+<li>
+<a class="ajax-link" href="{{ url('category') }}"><i class="glyphicon glyphicon-arrow-left"></i><span> الوسوم</span></a>
+</li>
+
 <li class="accordion">
 <a href="#"><i class="glyphicon glyphicon-plus"></i><span> مكتبة الصور</span></a>
 <ul class="nav nav-pills nav-stacked">
@@ -19,7 +23,6 @@
 <li class="accordion">
 <a href="#"><i class="glyphicon glyphicon-plus"></i><span> الفيديوهات</span></a>
 <ul class="nav nav-pills nav-stacked">
-    <li><a href="{{ url('category') }}">ااضافة فئة </a></li>
     <li><a href="{{ url('v_album') }}">اضافة فيديو</a></li>
 </ul>
 </li>

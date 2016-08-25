@@ -3,10 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 24, 2016 at 11:15 AM
--- Generation Time: Aug 24, 2016 at 10:40 AM
+-- Generation Time: Aug 25, 2016 at 11:27 AM
 -- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.23
+-- PHP Version: 5.6.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -2540,23 +2539,10 @@ CREATE TABLE `snews` (
   `additional_info` text CHARACTER SET utf8 NOT NULL,
   `user_id` int(11) NOT NULL,
   `likes` int(11) DEFAULT NULL,
+  `meta` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `snews`
---
-
-INSERT INTO `snews` (`id`, `title`, `flag`, `date`, `additional_info`, `user_id`, `likes`, `created_at`, `updated_at`) VALUES
-(1, 'عنوان الخبر', '1464255046', '2016-04-04 04:15:00', 'إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم الموقع.', 0, NULL, '2016-06-02 11:34:58', '2016-06-02 10:34:58'),
-(2, 'عنوان الخبر', '1464255082', '2015-04-03 03:15:00', 'إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم الموقع.', 0, NULL, '2016-06-02 11:40:13', '2016-06-02 10:40:13'),
-(5, 'عنوان الخبرssss', '1470659716', '2004-04-17 04:10:00', 'إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم الموقع.', 0, NULL, '2016-08-08 12:35:22', '2016-08-08 09:35:22'),
-(6, 'عنوان الخبر', '1464770365', '2004-04-15 03:10:00', 'إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم الموقع.', 0, NULL, '2016-06-02 11:34:11', '2016-06-02 10:34:11'),
-(7, 'عنوان الخبر', '1464770473', '2006-04-15 04:20:00', 'إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم الموقع.', 0, NULL, '2016-06-02 11:42:21', '2016-06-02 10:42:21'),
-(8, 'عنوان الخبر', '1464770887', '2004-03-17 04:10:00', 'إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم الموقع.', 0, NULL, '2016-06-02 11:35:32', '2016-06-02 10:35:32'),
-(9, 'عنوان الخبر', '1464870689', '2002-03-16 03:10:00', 'إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص ', 0, NULL, '2016-06-02 12:31:29', '2016-06-02 11:31:29'),
-(10, 'عنوان الخبر', '1464870598', '2003-03-18 04:10:00', 'إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص ', 0, NULL, '2016-06-02 12:29:58', '2016-06-02 11:29:58');
 
 -- --------------------------------------------------------
 
@@ -3802,7 +3788,8 @@ ALTER TABLE `shoes`
 --
 ALTER TABLE `snews`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `meta` (`meta`);
 
 --
 -- Indexes for table `sponsors`
@@ -3963,12 +3950,12 @@ ALTER TABLE `championships`
 -- AUTO_INCREMENT for table `championship_sponsors`
 --
 ALTER TABLE `championship_sponsors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `change_players`
 --
 ALTER TABLE `change_players`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `channels`
 --
@@ -4018,7 +4005,7 @@ ALTER TABLE `goals`
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `g_albums`
 --
@@ -4043,7 +4030,7 @@ ALTER TABLE `managment_championships`
 -- AUTO_INCREMENT for table `matches`
 --
 ALTER TABLE `matches`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `match_channels`
 --
@@ -4058,7 +4045,7 @@ ALTER TABLE `match_commentors`
 -- AUTO_INCREMENT for table `match_referees`
 --
 ALTER TABLE `match_referees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `match_sponsors`
 --
@@ -4153,7 +4140,7 @@ ALTER TABLE `referees`
 -- AUTO_INCREMENT for table `reserve_players`
 --
 ALTER TABLE `reserve_players`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `shoes`
 --
@@ -4188,7 +4175,7 @@ ALTER TABLE `teams`
 -- AUTO_INCREMENT for table `team_championships`
 --
 ALTER TABLE `team_championships`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `team_championship_players`
 --
@@ -4198,7 +4185,7 @@ ALTER TABLE `team_championship_players`
 -- AUTO_INCREMENT for table `team_groups`
 --
 ALTER TABLE `team_groups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `team_history_coaches`
 --
@@ -4527,6 +4514,12 @@ ALTER TABLE `reserve_players`
   ADD CONSTRAINT `reserve_players_ibfk_1` FOREIGN KEY (`player_id`) REFERENCES `players` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `reserve_players_ibfk_2` FOREIGN KEY (`team_id`) REFERENCES `teams` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `reserve_players_ibfk_3` FOREIGN KEY (`match_id`) REFERENCES `matches` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `snews`
+--
+ALTER TABLE `snews`
+  ADD CONSTRAINT `snews_ibfk_1` FOREIGN KEY (`meta`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `stadia`

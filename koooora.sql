@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 25, 2016 at 11:35 AM
+-- Generation Time: Aug 25, 2016 at 05:37 PM
 -- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.20
+-- PHP Version: 5.6.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -1292,13 +1292,6 @@ CREATE TABLE `discussions` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `discussions`
---
-
-INSERT INTO `discussions` (`id`, `match_id`, `analysis`, `Author`, `analysis_date`, `flag`, `vedio_url`, `updated_at`, `created_at`) VALUES
-(1, 3, '', 'alaa', '0000-00-00 00:00:00', NULL, NULL, '2016-08-14 09:26:54', '2016-08-14 09:26:54');
-
 -- --------------------------------------------------------
 
 --
@@ -1401,6 +1394,21 @@ INSERT INTO `g_album_photos` (`id`, `g_album_id`, `flag`, `alt`, `created_at`, `
 (2, 1, '1470913205', '1470913205', '2016-08-11 09:00:03', '2016-08-11 09:00:03'),
 (3, 2, '1471174505', '1471174505', '2016-08-14 09:35:04', '2016-08-14 09:35:04'),
 (4, 2, '1471174506', '1471174506', '2016-08-14 09:35:04', '2016-08-14 09:35:04');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jminutes`
+--
+
+CREATE TABLE `jminutes` (
+  `id` int(11) NOT NULL,
+  `match_id` int(11) NOT NULL,
+  `body` text NOT NULL,
+  `min` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1615,6 +1623,21 @@ CREATE TABLE `migrations` (
 INSERT INTO `migrations` (`migration`, `batch`) VALUES
 ('2014_10_12_000000_create_users_table', 1),
 ('2014_10_12_100000_create_password_resets_table', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `minutes`
+--
+
+CREATE TABLE `minutes` (
+  `id` int(11) NOT NULL,
+  `match_id` int(11) NOT NULL,
+  `body` text NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `minute` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -2539,10 +2562,23 @@ CREATE TABLE `snews` (
   `additional_info` text CHARACTER SET utf8 NOT NULL,
   `user_id` int(11) NOT NULL,
   `likes` int(11) DEFAULT NULL,
-  `meta` varchar(1500) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `snews`
+--
+
+INSERT INTO `snews` (`id`, `title`, `flag`, `date`, `additional_info`, `user_id`, `likes`, `created_at`, `updated_at`) VALUES
+(1, 'عنوان الخبر', '1464255046', '2016-04-04 04:15:00', 'إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم الموقع.', 0, NULL, '2016-06-02 11:34:58', '2016-06-02 10:34:58'),
+(2, 'عنوان الخبر', '1464255082', '2015-04-03 03:15:00', 'إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم الموقع.', 0, NULL, '2016-06-02 11:40:13', '2016-06-02 10:40:13'),
+(5, 'عنوان الخبرssss', '1470659716', '2004-04-17 04:10:00', 'إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم الموقع.', 0, NULL, '2016-08-08 12:35:22', '2016-08-08 09:35:22'),
+(6, 'عنوان الخبر', '1464770365', '2004-04-15 03:10:00', 'إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم الموقع.', 0, NULL, '2016-06-02 11:34:11', '2016-06-02 10:34:11'),
+(7, 'عنوان الخبر', '1464770473', '2006-04-15 04:20:00', 'إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم الموقع.', 0, NULL, '2016-06-02 11:42:21', '2016-06-02 10:42:21'),
+(8, 'عنوان الخبر', '1464770887', '2004-03-17 04:10:00', 'إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم الموقع.', 0, NULL, '2016-06-02 11:35:32', '2016-06-02 10:35:32'),
+(9, 'عنوان الخبر', '1464870689', '2002-03-16 03:10:00', 'إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص ', 0, NULL, '2016-06-02 12:31:29', '2016-06-02 11:31:29'),
+(10, 'عنوان الخبر', '1464870598', '2003-03-18 04:10:00', 'إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص ', 0, NULL, '2016-06-02 12:29:58', '2016-06-02 11:29:58');
 
 -- --------------------------------------------------------
 
@@ -3562,6 +3598,13 @@ ALTER TABLE `g_album_photos`
   ADD KEY `album_id` (`g_album_id`);
 
 --
+-- Indexes for table `jminutes`
+--
+ALTER TABLE `jminutes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `match_id` (`match_id`);
+
+--
 -- Indexes for table `managers`
 --
 ALTER TABLE `managers`
@@ -3629,6 +3672,13 @@ ALTER TABLE `members`
   ADD PRIMARY KEY (`id`),
   ADD KEY `country_id` (`country_id`),
   ADD KEY `city_id` (`city_id`);
+
+--
+-- Indexes for table `minutes`
+--
+ALTER TABLE `minutes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `match_id` (`match_id`);
 
 --
 -- Indexes for table `nationcloths`
@@ -3788,8 +3838,7 @@ ALTER TABLE `shoes`
 --
 ALTER TABLE `snews`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `meta` (`meta`(255));
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `sponsors`
@@ -4017,6 +4066,11 @@ ALTER TABLE `g_albums`
 ALTER TABLE `g_album_photos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
+-- AUTO_INCREMENT for table `jminutes`
+--
+ALTER TABLE `jminutes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `managers`
 --
 ALTER TABLE `managers`
@@ -4056,6 +4110,11 @@ ALTER TABLE `match_sponsors`
 --
 ALTER TABLE `members`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `minutes`
+--
+ALTER TABLE `minutes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `nationcloths`
 --
@@ -4343,6 +4402,12 @@ ALTER TABLE `g_album_photos`
   ADD CONSTRAINT `g_album_photos_ibfk_1` FOREIGN KEY (`g_album_id`) REFERENCES `g_albums` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `jminutes`
+--
+ALTER TABLE `jminutes`
+  ADD CONSTRAINT `jminutes_ibfk_1` FOREIGN KEY (`match_id`) REFERENCES `matches` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `managers`
 --
 ALTER TABLE `managers`
@@ -4402,6 +4467,12 @@ ALTER TABLE `match_sponsors`
 ALTER TABLE `members`
   ADD CONSTRAINT `members_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `members_ibfk_2` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `minutes`
+--
+ALTER TABLE `minutes`
+  ADD CONSTRAINT `minutes_ibfk_1` FOREIGN KEY (`match_id`) REFERENCES `matches` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `nationcloths`

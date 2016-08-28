@@ -9,7 +9,6 @@ class Branch extends Eloquent {
 
 	//
 	protected $fillable= [
-		'name','country_id','team_id','flag','city_id'
-];
+		'name','country_id','team_id','flag','city_id','addition_info'];
 
 }

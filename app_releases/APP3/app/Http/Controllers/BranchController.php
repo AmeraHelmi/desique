@@ -48,7 +48,8 @@ class BranchController extends Controller {
 								'country.name as countryname',
 								'branches.flag as flag',
 								'team.name as teamname',
-								'city.name as cityname'
+								'city.name as cityname',
+								'branches.addition_info as addition_info',
 							  ))
 				->orderBy('country.name')->get();
 
@@ -95,11 +96,12 @@ class BranchController extends Controller {
 			 	$filename=time();
 			 	$file->move('images/uploads', $filename);
 				$branch = new Branch;
- 				$branch->name          =$request->name;
- 				$branch->country_id    =$request->country_id;
-				$branch->flag          =$filename;
-				$branch->city_id       =$request->city_id;
-				$branch->team_id       =$request->team_id;
+ 				$branch->name          		 =$request->name;
+ 				$branch->country_id    		 =$request->country_id;
+				$branch->flag          		 =$filename;
+				$branch->city_id       		 =$request->city_id;
+				$branch->team_id             =$request->team_id;
+				$branch->addition_info       =$request->addition_info;
  				$branch->save();
 		if($request->ajax())
 		{
@@ -186,12 +188,13 @@ class BranchController extends Controller {
        			}
        	else
 		{
-       			$branch->city_id       =$request->city_id;
+       			$branch->city_id       		 =$request->city_id;
        	}
-				$branch->name          =$request->name;
-				$branch->country_id    =$request->country_id;
-				$branch->flag          =$filename;
-				$branch->team_id       =$request->team_id;
+				$branch->name          		 =$request->name;
+				$branch->country_id    		 =$request->country_id;
+				$branch->flag          		 =$filename;
+				$branch->team_id       		 =$request->team_id;
+				$branch->addition_info       =$request->addition_info;
 		}
 		}
    		else
@@ -202,12 +205,13 @@ class BranchController extends Controller {
        	}
        	else
 		{
-       			$branch->city_id       =$request->city_id;
+       			$branch->city_id       		 =$request->city_id;
        	}
-   				$branch->name          =$request->name;
-				$branch->country_id    =$request->country_id;
-				$branch->flag          =session('branchimage');
-				$branch->team_id       =$request->team_id;
+   				$branch->name          		 =$request->name;
+				$branch->country_id    		 =$request->country_id;
+				$branch->flag          		 =session('branchimage');
+				$branch->team_id       		 =$request->team_id;
+				$branch->addition_info       =$request->addition_info;
    		}
 	 			$branch->save();
 	 	if($request->ajax())

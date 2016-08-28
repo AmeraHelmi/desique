@@ -3,7 +3,7 @@
 use App\Http\Requests;
 use App\Models\User;
 use App\Models\Snew;
-use App\Models\New_meta;
+use App\Models\Cnew;
 use App\Models\Category;
 use App\Models\Championship_sponsor;
 use App\Http\Controllers\Controller;
@@ -21,27 +21,29 @@ class SnewController extends Controller {
 	 *
 	 * @return Response
 	 */
-   	 public function __construct()
-	 {
- 		$this->middleware('auth');
- 	 }
+public function __construct()
+{
+		$this->middleware('auth');
+}
 
-	public function index(Snew $snew , Request $request)
-	{
+public function index(Snew $snew , Request $request)
+{
 		$snews = $snew
-			->select(array('id', 'title', 'flag','date','additional_info'))
-			->orderBy('id','desc')->get();
+								->select(array('id', 'title', 'flag','date','additional_info'))
+								->orderBy('id','desc')->get();
 
-			$tableData = Datatables::of($snews)
-			->editColumn('flag', '<div class="image"><img src="images/uploads/{{ $flag }}"  width="50px" height="50px">')
-				->addColumn('actions', function ($data)
-					{return view('partials.actionBtns')->with('controller','snew')->with('id', $data->id)->render(); });
-$metas =Category::lists('name','id');
-			if($request->ajax())
+		$tableData = Datatables::of($snews)
+								->editColumn('flag', '<div class="image"><img src="images/uploads/{{ $flag }}"  width="50px" height="50px">')
+								->addColumn('actions', function ($data)
+								{
+									return view('partials.actionBtns')->with('controller','snew')->with('id', $data->id)->render();
+								});
+		$metas =Category::lists('name','id');
+		if($request->ajax())
 				return DatatablePresenter::make($tableData, 'index');
-		return view('snew.index')
-		->with('metas',$metas)
-			->with('tableData', DatatablePresenter::make($tableData, 'index'));
+	  return view('snew.index')
+		        ->with('metas',$metas)
+			      ->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	}
 
 	/**
@@ -56,14 +58,15 @@ $metas =Category::lists('name','id');
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request)
-	{
-		 if(Input::hasFile('flag')){
+public function store(Request $request)
+{
+		if(Input::hasFile('flag'))
+		{
 		    $file = Input::file('flag');
 			  $filename=time();
 		    $file->move('images/uploads', $filename);
 
-			$snew = new Snew;
+				$snew = new Snew;
 			  $snew->title              =$request->title;
 			  $snew->flag               =$filename;
 				$snew->date              =$request->date;
@@ -71,24 +74,30 @@ $metas =Category::lists('name','id');
 				$snew->save();
 
 				$count = count($request->metas);
-				$meta="";
+				$new_meta = new Cnew;
+				$new_meta->news_id          =$snew->id;
+				$data = [];
+
 				for($i = 0 ; $i < $count ; $i++)
 				{
-						$new_meta = new New_meta;
-						$new_meta->new_id          =$snew->id;
-						$new_meta->meta_id        =$request->metas[$i];
-						$new_meta->save();
+
+						$data[]      =$request->metas[$i];
 				}
+				$new_meta->words=json_encode($data,true);
+				$new_meta->save();
+				return redirect()->back();
 
 				if($request->ajax()){
 					return response(array('msg' => 'Adding Successfull'), 200)
 										->header('Content-Type', 'application/json');
 					}
+				else{
+					return response(false, 200)
+										->header('Content-Type', 'application/json');
+				}
+
     }
-		else{
-			return response(false, 200)
-								->header('Content-Type', 'application/json');
-		}
+
 
 	}
 

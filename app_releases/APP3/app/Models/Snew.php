@@ -5,5 +5,5 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 class Snew extends Eloquent {
 
 	//
-	protected $fillable= ['title','flag','date','additional_info','meta'];
+	protected $fillable= ['title','flag','date','additional_info'];
 }

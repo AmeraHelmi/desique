@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 28, 2016 at 11:23 AM
+-- Generation Time: Aug 28, 2016 at 12:56 PM
 -- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.23
+-- PHP Version: 5.6.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -1099,6 +1099,20 @@ INSERT INTO `cities` (`id`, `name`, `country_id`, `addition_info`, `updated_at`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cnews`
+--
+
+CREATE TABLE `cnews` (
+  `id` int(11) NOT NULL,
+  `news_id` int(11) NOT NULL,
+  `words` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `coaches`
 --
 
@@ -1415,7 +1429,9 @@ CREATE TABLE `jminutes` (
 --
 
 INSERT INTO `jminutes` (`id`, `match_id`, `body`, `min`, `created_at`, `updated_at`) VALUES
-(11, 3, '["hhh","nnbn"]', '[10,90]', '2016-08-28 07:23:11', '2016-08-28 07:23:11');
+(11, 3, '["hhh","nnbn"]', '[10,90]', '2016-08-28 07:23:11', '2016-08-28 07:23:11'),
+(12, 3, '["sadddderferfg"]', '[2]', '2016-08-28 07:52:03', '2016-08-28 07:52:03'),
+(13, 16, '["hhuiu"]', '[50]', '2016-08-28 07:52:10', '2016-08-28 07:52:10');
 
 -- --------------------------------------------------------
 
@@ -1645,13 +1661,6 @@ CREATE TABLE `minutes` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `minute` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `minutes`
---
-
-INSERT INTO `minutes` (`id`, `match_id`, `body`, `updated_at`, `created_at`, `minute`) VALUES
-(6, 16, 'hhuiu', '2016-08-28 07:22:59', '2016-08-28 07:22:59', 50);
 
 -- --------------------------------------------------------
 
@@ -3533,6 +3542,13 @@ ALTER TABLE `cities`
   ADD KEY `country_id_2` (`country_id`);
 
 --
+-- Indexes for table `cnews`
+--
+ALTER TABLE `cnews`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `news_id` (`news_id`);
+
+--
 -- Indexes for table `coaches`
 --
 ALTER TABLE `coaches`
@@ -4030,6 +4046,11 @@ ALTER TABLE `channels`
 ALTER TABLE `cities`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1055;
 --
+-- AUTO_INCREMENT for table `cnews`
+--
+ALTER TABLE `cnews`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT for table `coaches`
 --
 ALTER TABLE `coaches`
@@ -4083,7 +4104,7 @@ ALTER TABLE `g_album_photos`
 -- AUTO_INCREMENT for table `jminutes`
 --
 ALTER TABLE `jminutes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `managers`
 --
@@ -4128,7 +4149,7 @@ ALTER TABLE `members`
 -- AUTO_INCREMENT for table `minutes`
 --
 ALTER TABLE `minutes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `nationcloths`
 --
@@ -4223,7 +4244,7 @@ ALTER TABLE `shoes`
 -- AUTO_INCREMENT for table `snews`
 --
 ALTER TABLE `snews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `sponsors`
 --
@@ -4350,6 +4371,12 @@ ALTER TABLE `change_players`
 --
 ALTER TABLE `cities`
   ADD CONSTRAINT `cities_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `cnews`
+--
+ALTER TABLE `cnews`
+  ADD CONSTRAINT `cnews_ibfk_1` FOREIGN KEY (`news_id`) REFERENCES `snews` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `coaches`

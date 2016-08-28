@@ -185,43 +185,43 @@
         $('#addModal').modal('hide');
     });
 
-    $("#addModal form").on('submit', function(e){
-
-        if (!e.isDefaultPrevented())
-        {
-
-            var self = $(this);
-            $.ajax({
-                url: '{!!URL::route('addsnew')!!}',
-                type: "POST",
-                data: self.serialize(),
-                success: function(res){
-                    $('.addForm')[0].reset();
-                    $('.alerts-list').append(
-                        '<li>\
-                            <div class="alert alert-success alert-dismissable">\
-                                <i class="icon-check-sign"></i> تم أضافة خبر بنجــاح!\
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
-                            </div>\
-                        </li>');
-                        oTable.ajax.reload();
-
-                    oTable.draw();
-                },
-                error: function(){
-                    $('#addModal').modal('hide')
-                    $('.alerts-list').append(
-                        '<li>\
-                            <div class="alert alert-danger alert-dismissable">\
-                                <i class="icon-remove-sign"></i> <strong>Opps!</strong> حدث خطأ.\
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
-                            </div>\
-                        </li>');
-                }
-            });
-            e.preventDefault();
-        }
-     });
+    // $("#addModal form").on('submit', function(e){
+    //
+    //     if (!e.isDefaultPrevented())
+    //     {
+    //
+    //         var self = $(this);
+    //         $.ajax({
+    //             url: '{!!URL::route('addsnew')!!}',
+    //             type: "POST",
+    //             data: self.serialize(),
+    //             success: function(res){
+    //                 $('.addForm')[0].reset();
+    //                 $('.alerts-list').append(
+    //                     '<li>\
+    //                         <div class="alert alert-success alert-dismissable">\
+    //                             <i class="icon-check-sign"></i> تم أضافة خبر بنجــاح!\
+    //                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
+    //                         </div>\
+    //                     </li>');
+    //                     oTable.ajax.reload();
+    //
+    //                 oTable.draw();
+    //             },
+    //             error: function(){
+    //                 $('#addModal').modal('hide')
+    //                 $('.alerts-list').append(
+    //                     '<li>\
+    //                         <div class="alert alert-danger alert-dismissable">\
+    //                             <i class="icon-remove-sign"></i> <strong>Opps!</strong> حدث خطأ.\
+    //                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
+    //                         </div>\
+    //                     </li>');
+    //             }
+    //         });
+    //         e.preventDefault();
+    //     }
+    //  });
 
        //Edit Form
 		     $(document.body).validator().on('click', '.edit', function() {

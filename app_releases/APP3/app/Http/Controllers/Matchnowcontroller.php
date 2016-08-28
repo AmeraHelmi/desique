@@ -295,7 +295,18 @@ class Matchnowcontroller extends Controller {
 		$championship_id = $match->where('id',$match_id)->first();
 		$t1goals = $match->where('team1_id',$team1_id)->first(['team1_goals']);
 		$t2goals = $match->where('team2_id',$team2_id)->first(['team2_goals']);
+<<<<<<< HEAD
 		
+=======
+
+		$team1_id             = $request->T1;
+		$team2_id             = $request->T2;
+		$match_id             = $request->match_id;
+		$match                = new Match;
+	  $team1_championship   = Team_championship::where('team_id',$team1_id)->first();
+		$team2_championship2  = Team_championship::where('team_id',$team2_id)->first();
+		$championship_id = $match->where('id',$match_id)->first();
+>>>>>>> 93479a0fa5a03b1f3f56f5e85c4f87750c2d433b
 		if(!isset($championship_id))
 		{
 				$t1goals = $match->where('team1_id',$team1_id)->first(['team1_goals']);
@@ -438,6 +449,7 @@ class Matchnowcontroller extends Controller {
         }
 
 		 return view('Editor.finish');
+<<<<<<< HEAD
 
         	  	if($t1goals->team1_goals == $t2goals->team2_goals)
 							{
@@ -556,6 +568,10 @@ class Matchnowcontroller extends Controller {
 		 		return view('Editor.finish');
 	
 
+=======
+	}
+}
+>>>>>>> 93479a0fa5a03b1f3f56f5e85c4f87750c2d433b
 
 	/**
 	 * Show the form for editing the specified resource.

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 25, 2016 at 05:37 PM
+-- Generation Time: Aug 28, 2016 at 11:23 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -1410,6 +1410,13 @@ CREATE TABLE `jminutes` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `jminutes`
+--
+
+INSERT INTO `jminutes` (`id`, `match_id`, `body`, `min`, `created_at`, `updated_at`) VALUES
+(11, 3, '["hhh","nnbn"]', '[10,90]', '2016-08-28 07:23:11', '2016-08-28 07:23:11');
+
 -- --------------------------------------------------------
 
 --
@@ -1502,8 +1509,8 @@ CREATE TABLE `matches` (
 --
 
 INSERT INTO `matches` (`id`, `team1_id`, `team2_id`, `match_date`, `date`, `match_period`, `team1_goals`, `team2_goals`, `team1_corners`, `team2_corners`, `team1_offsides`, `team2_offsides`, `team1_errors`, `team2_errors`, `team1_cards`, `team2_cards`, `team1_psessions`, `team2_psessions`, `team1_penalties`, `team2_penalties`, `group_id`, `champion_id`, `stadium_id`, `addition_info`, `channel_id`, `role`, `type`, `updated_at`, `created_at`) VALUES
-(3, 8, 4, '2016-08-09 12:18:13', '2016-08-23', 90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, NULL, NULL, 26, NULL, NULL, NULL, NULL, '2016-08-23 09:59:12', '0000-00-00 00:00:00'),
-(16, 16, 4, '2001-04-18 02:00:00', '2001-04-18', 90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, 23, 'aaa', NULL, NULL, NULL, '2016-08-21 10:00:59', '2016-08-21 10:00:59');
+(3, 8, 4, '2016-08-09 12:18:13', '2016-08-28', 90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, NULL, NULL, 26, NULL, NULL, NULL, NULL, '2016-08-28 07:59:46', '0000-00-00 00:00:00'),
+(16, 16, 4, '2001-04-18 02:00:00', '2016-08-28', 90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, 23, 'aaa', NULL, NULL, NULL, '2016-08-28 09:22:31', '2016-08-21 10:00:59');
 
 -- --------------------------------------------------------
 
@@ -1638,6 +1645,13 @@ CREATE TABLE `minutes` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `minute` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `minutes`
+--
+
+INSERT INTO `minutes` (`id`, `match_id`, `body`, `updated_at`, `created_at`, `minute`) VALUES
+(6, 16, 'hhuiu', '2016-08-28 07:22:59', '2016-08-28 07:22:59', 50);
 
 -- --------------------------------------------------------
 
@@ -4039,7 +4053,7 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT for table `discussions`
 --
 ALTER TABLE `discussions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `errors`
 --
@@ -4069,7 +4083,7 @@ ALTER TABLE `g_album_photos`
 -- AUTO_INCREMENT for table `jminutes`
 --
 ALTER TABLE `jminutes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `managers`
 --
@@ -4114,7 +4128,7 @@ ALTER TABLE `members`
 -- AUTO_INCREMENT for table `minutes`
 --
 ALTER TABLE `minutes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `nationcloths`
 --

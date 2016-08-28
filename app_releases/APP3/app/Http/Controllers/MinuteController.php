@@ -9,6 +9,7 @@ use Illuminate\Routing\Router as Route;
 use App\Services\DatatablePresenter;
 use Auth;
 use App\Models\Minute;
+use App\Models\Jminute;
 use App\Models\Match;
 
 
@@ -44,14 +45,16 @@ class MinuteController extends Controller
 
     if($request->ajax())
         return DatatablePresenter::make($tableData, 'index');
+
         $match= new Match;
         $matches = $match
                 ->join('teams as team1', 'team1.id', '=', 'matches.team1_id')
                 ->join('teams as team2', 'team2.id', '=', 'matches.team2_id')
                 ->select(array('team1.name as team1_name',
-                                                    'team2.name as team2_name',
-                                                    'matches.id as matchid'))
-                ->get();
+                                'team2.name as team2_name',
+                                'matches.id as matchid'))
+                ->where('date',date('Y-m-d'))->get();
+
         return view('minutes.index')
         ->with('matches',$matches)
         ->with('tableData', DatatablePresenter::make($tableData, 'index'));
@@ -124,7 +127,7 @@ class MinuteController extends Controller
         $minute = Minute::find($id);
         $minute->match_id      = $request->match_id;
         $minute->body          = $request->body;
-        $minute->minute           = $request->minute;
+        $minute->minute         = $request->minute;
         $minute->save();
         if($request->ajax())
           {
@@ -153,21 +156,27 @@ class MinuteController extends Controller
 
 
 
-     public function finish()
+     public function finish(Request $request)
     {
+         $match_id = $request->match_id;
          $l7za = new Minute();
-         $result = $l7za->where('match_id',2)->get();
+         $result = $l7za->where('match_id',$match_id)->get();
          $data = [];
          $datamin = [];
          foreach($result as $row){
             $data[]=$row->body;
-            $datamin[]=$row->min;
-
-         $inputs = new Jminutes();
-         $inputs->match_id=2;
+            $datamin[]=$row->minute;
+               }
+         $inputs = new Jminute();
+         $inputs->match_id=$match_id;
          $inputs->body=json_encode($data,true);
          $inputs->min=json_encode($datamin,true);
          $inputs->save();
+         //delete all records specified match id
+        $l7za->where('match_id',$match_id)->delete();
+
+                return response(array('msg' => 'Removing Successfull'), 200)
+                            ->header('Content-Type', 'application/json');
 
          //$alaa=new Minute();
          //$alaaresult=$alaa->where('match_id',2)->first();
@@ -176,5 +185,4 @@ class MinuteController extends Controller
         // return view('json')->with('res',$res);
 
     }
-}
 }

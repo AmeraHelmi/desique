@@ -130,9 +130,10 @@ Route::resource('/group'                ,'GroupController');
 //min
 
 Route::POST    ('/minute/store'          , array('as' => 'addminute','uses' => 'MinuteController@store'));
-Route::resource('/minute' ,'MinuteController');
+Route::POST    ('/minute/finish'          , array('as' => 'finish_match','uses' => 'MinuteController@finish'));
 Route::POST    ('/minute/update'           ,'MinuteController@update');
-Route::POST    ('/finish'          ,'MinuteController@finish');
+Route::resource('/minute' ,'MinuteController');
+
 
 
 

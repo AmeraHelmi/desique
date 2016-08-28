@@ -13,6 +13,10 @@
 <a class="btn btn-primary" data-toggle="modal" data-target="#addModal" style="margin-bottom:20px;" >
 		<i class="fa fa-plus-circle"  style="font-size: 18px;"></i> لحظه بلحظه
 </a>
+
+<a class="btn btn-danger" style="margin-bottom:20px;" data-toggle="modal" data-target="#finish_match_model" href="{{ url('/finish') }}">
+		<i class="fa fa-hourglass-end"  style="font-size: 18px;"></i> أنهاء التعديلات</a>
+
 <div class="widget-content-white glossed">
 		<div class="padded">
 				<table id="analysis" class="table table-striped table-bordered table-hover datatable">
@@ -53,9 +57,10 @@
                 <div class="modal-footer">
                     <button type="submit" id="submitForm" class="btn btn-primary">موافق</button>
                     <button type="submit" class="btn btn-primary" id="addNew">موافق وأضافة جديد</button>
-
+                   
                 </div>
             </form>
+
         </div>
     </div>
 </div>
@@ -73,6 +78,34 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" id="submit" class="btn btn-primary">تحديث</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- finish match  -->
+<div class="modal fade" id="finish_match_model" tabindex="-1" role="dialog" aria-labelledby="editEmployeeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id=""><i class="fa fa-pencil"></i> أنهاء التعديلات</h4>
+            </div>
+  <form role="form" id="" method="POST" class="" data-id="" action="{{ url('/minute/finish') }}" data-toggle="validator">
+                <div class="modal-body">
+                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
+						<div class="form-group">
+						<label for="exampleInputFile">أختيار المباراه </label>
+						<select  class="form-control"  id="match"  name="match_id">
+						 <option selected>أختيار المباراه</option>
+						 @foreach($matches as $key=>$value)
+						  <option value="{!! $value['matchid'] !!}">{!! $value['team1_name'] !!} - {!! $value['team2_name'] !!}</option>
+						  @endforeach
+						</select>
+						</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="submit" class="btn btn-primary">انهاء</button>
                 </div>
             </form>
         </div>
@@ -125,6 +158,43 @@
                 },
                 error: function(){
                     $('#addModal').modal('hide')
+                    $('.alerts-list').append(
+                        '<li>\
+                            <div class="alert alert-danger alert-dismissable">\
+                                <i class="icon-remove-sign"></i> <strong>Opps!</strong> حدث خطأ.\
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
+                            </div>\
+                        </li>');
+								}
+						});
+						e.preventDefault();
+				}
+		 });
+
+		//Finish match
+				$("#finish_match_model form").on('submit', function(e){
+				if (!e.isDefaultPrevented())
+				{
+						var self = $(this);
+						$.ajax({
+								url: '{!!URL::route('finish_match')!!}',
+								type: "POST",
+								data: self.serialize(),
+								success: function(res){
+					$('.addForm')[0].reset();
+                    $('.alerts-list').append(
+                        '<li>\
+                    <div class="alert alert-success alert-dismissable">\
+                                <i class="icon-check-sign"></i> تم أنهاء التعديلات بنجـــــــــاح!\
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
+                            </div>\
+                        </li>');
+                    $('#finish_match_model').modal('hide');
+                    oTable.ajax.reload();
+                    oTable.draw();
+                },
+                error: function(){
+                    $('#finish_match_model').modal('hide')
                     $('.alerts-list').append(
                         '<li>\
                             <div class="alert alert-danger alert-dismissable">\

@@ -12,6 +12,7 @@ return array(
     'CreateBlogsTable' => $baseDir . '/database/migrations/2016_08_08_115022_create_blogs_table.php',
     'CreateChampionshipSponsorsTable' => $baseDir . '/database/migrations/2016_04_25_174501_create_championship_sponsors_table.php',
     'CreateChangePlayersTable' => $baseDir . '/database/migrations/2016_05_16_095445_create_change_players_table.php',
+    'CreateJminutesTable' => $baseDir . '/database/migrations/2016_08_28_083343_create_jminutes_table.php',
     'CreateManagmentChampionshipsTable' => $baseDir . '/database/migrations/2016_05_09_124555_create_managment_championships_table.php',
     'CreatePlayerMatchesTable' => $baseDir . '/database/migrations/2016_05_16_084307_create_player_matches_table.php',
     'CreatePlayerSponsorsTable' => $baseDir . '/database/migrations/2016_05_09_143040_create_player_sponsors_table.php',

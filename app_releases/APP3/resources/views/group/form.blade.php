@@ -26,3 +26,15 @@
  <option value="H المجموعه">H المجموعه</option>
 </select>
 </div>
+<div class="form-group">
+<label for="exampleInputPassword1">المحتوى</label>
+<textarea rows="2" cols="30" name="addition_info" class="form-control" ></textarea>
+<span class="help-block with-errors errorName"></span>
+</div>
+<label for="exampleInputPassword1">عدد المباريات</label>
+<input type="text"
+  class="form-control"
+  name="no_matches"
+  id="title"
+  placeholder="no_matches"
+  class="form-control">

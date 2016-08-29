@@ -117,3 +117,8 @@
    id="flag"
    >
   </div>
+<div class="form-group">
+<label for="exampleInputPassword1">معلومات اضافيه</label>
+<textarea rows="2" cols="30" name="addition_info" class="form-control" required></textarea>
+<span class="help-block with-errors errorName"></span>
+</div>

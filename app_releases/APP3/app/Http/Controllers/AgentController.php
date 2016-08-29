@@ -23,6 +23,9 @@ class AgentController extends Controller {
 	}
 				/**
 			*@method [return view] [index]([[obj] [$agent],[obj] [$request]])
+
+
+			*@method [return view] [index]([[obj] [$agent],[obj] [$request]]) 
 			*[<to get data of agent [name,addition_info]>]
 			*@param [obj] [$agent]
 			*@param [obj] [$request]

@@ -66,3 +66,7 @@
    id="flag"
    >
   </div>
+  <div class="form-group">
+<label for="exampleInputPassword1">معلومات أضافيه</label>
+<textarea rows="2" cols="30" name="addition_info" class="form-control"></textarea>
+</div>

@@ -13,10 +13,6 @@
 		<i class="fa fa-plus-circle" style="font-size: 18px;"></i> أضافة وكيل
 </a>
 <div id="status"></div>
-	<button onclick="uploadPhoto()">Upload Photo</button>
-	<button onclick="getInfo()">Get Info</button>
-	<button onclick="post()">post</button>
-	<button onclick="login()" id="login">Login</button>
 <div class="widget-content-white glossed">
 		<div class="padded">
 				<table id="countries" class="table table-striped table-bordered table-hover datatable">
@@ -89,72 +85,6 @@
 	@endsection
 
 	@section('scripts')
-	<script>
-	// initialize and setup facebook js sdk
-	window.fbAsyncInit = function() {
-			FB.init({
-				appId      : '313343109002079',
-				xfbml      : true,
-				version    : 'v2.5'
-			});
-			FB.getLoginStatus(function(response) {
-				if (response.status === 'connected') {
-					document.getElementById('status').innerHTML = 'We are connected.';
-					document.getElementById('login').style.visibility = 'hidden';
-				} else if (response.status === 'not_authorized') {
-					document.getElementById('status').innerHTML = 'We are not logged in.'
-				} else {
-					document.getElementById('status').innerHTML = 'You are not logged into Facebook.';
-				}
-			});
-	};
-	(function(d, s, id){
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) {return;}
-			js = d.createElement(s); js.id = id;
-			js.src = "//connect.facebook.net/en_US/sdk.js";
-			fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
-	// login with facebook with extened publish_actions permission
-	function login() {
-		FB.login(function(response) {
-			if (response.status === 'connected') {
-					document.getElementById('status').innerHTML = 'We are connected.';
-					document.getElementById('login').style.visibility = 'hidden';
-				} else if (response.status === 'not_authorized') {
-					document.getElementById('status').innerHTML = 'We are not logged in.'
-				} else {
-					document.getElementById('status').innerHTML = 'You are not logged into Facebook.';
-				}
-		}, {scope: 'publish_actions'});
-	}
-	// getting basic user info
-	function getInfo() {
-		FB.api('/me', 'GET', {fields: 'first_name,last_name,name,id'}, function(response) {
-			document.getElementById('status').innerHTML = response.name;
-		});
-	}
-
-	function post() {
-		FB.api('/me/feed', 'post', {message: 'aaaa'}, function(response) {
-			document.getElementById('status').innerHTML = response.id;
-		});
-	}
-	// uploading photo on user timeline
-	function uploadPhoto() {
-		var imgURL="images/uploads/13590485_1242939712405277_5455481658250733322_n.jpg";
-		FB.api('/me/feed', 'post',{
-			message:'photo description',
-	    url:imgURL
-		}, function(response) {
-			if (!response || response.error) {
-				document.getElementById('status').innerHTML = "Error!";
-			} else {
-				document.getElementById('status').innerHTML = response.id;
-			}
-		});
-	}
-</script>
 	<script type="text/javascript">
 	$(document).ready(function() {
 		function populateForm(response, frm) {

@@ -8,9 +8,7 @@
   id="title"
   placeholder="title"
   required
-  class="form-control"
-
-  >
+  class="form-control">
     <span class="help-block with-errors errorName"></span>
 </div>
 
@@ -28,9 +26,7 @@
   id="vedio_url"
   placeholder="vedio_url"
   required
-  class="form-control"
-
-  >
+  class="form-control">
     <span class="help-block with-errors errorName"></span>
 </div>
 

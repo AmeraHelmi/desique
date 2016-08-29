@@ -22,11 +22,11 @@ class AgentController extends Controller {
 		 $this->middleware('auth');
 	}
 				/**
-			*@method [return view] [index]([[obj] [$agent],[obj] [$request]]) 
+			*@method [return view] [index]([[obj] [$agent],[obj] [$request]])
 			*[<to get data of agent [name,addition_info]>]
-			*@param [obj] [$agent] 
-			*@param [obj] [$request] 
-			*@uses [Agent,Request Model] 
+			*@param [obj] [$agent]
+			*@param [obj] [$request]
+			*@uses [Agent,Request Model]
 			*@return [view] <'agent.index'>
 			*/
 	public function index(Agent $agent , Request $request)
@@ -40,23 +40,22 @@ class AgentController extends Controller {
 								  return view('partials.actionBtns')->with('controller','agent')
 								       ->with('id', $data->id)->render();
 								});
-
 		if($request->ajax())
 		    return DatatablePresenter::make($tableData, 'index');
 		return view('agent.index')
 			->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	}
 
-		
+
 	public function create()
 	{
 	}
 
 			/**
 			* Store a newly created resource in storage.
-			*@method [return response] [store]([[obj] [$request]]) 
+			*@method [return response] [store]([[obj] [$request]])
 			*[<to insert data in DB>]
-			*@param [obj] [$request] 
+			*@param [obj] [$request]
 			*@var [obj] [$agent] [< data [name,addition_info]>]
 			*@uses [Request Model]
 			*@return [Response]
@@ -75,17 +74,17 @@ class AgentController extends Controller {
 	}
 
 
-			
+
 	public function show()
 	{
 	}
 				/**
-			*@method [return response] [edit]([[obj] [$request],[int] [$id]]) 
+			*@method [return response] [edit]([[obj] [$request],[int] [$id]])
 			*[<to edit data >]
-			*@param [obj] [$request] 
-			*@param [int] [$id] 
+			*@param [obj] [$request]
+			*@param [int] [$id]
 			*@var [int] [$agent]
-			*@uses [Request Model] 
+			*@uses [Request Model]
 			*@return [response]
 			 */
 	public function edit(Request $request , $id)
@@ -100,7 +99,7 @@ class AgentController extends Controller {
 
 			/**
 			 * Update the specified resource in storage.
-			 **@method [return response] [update]([[obj] [$request],[int] [$id]]) 
+			 **@method [return response] [update]([[obj] [$request],[int] [$id]])
 			*[<to update data >]
 			 * @param  int  $id
 			 * @param  obj  $request
@@ -118,7 +117,7 @@ class AgentController extends Controller {
 
 			/**
 			 * Remove the specified resource from storage.
-			 *@method [return response] [destroy]([[int] [$id]]) 
+			 *@method [return response] [destroy]([[int] [$id]])
 			*[<to delete data >]
 			 * @param  int  $id
 			 * @return Response

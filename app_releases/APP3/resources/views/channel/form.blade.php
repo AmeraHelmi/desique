@@ -22,8 +22,7 @@
  name="frequency"
  
  placeholder="Channel Frequency"
- class="form-control"
->
+ class="form-control">
 <span class="help-block with-errors errorName"></span>
 </div>
 </tr>
@@ -36,7 +35,19 @@
     <span class="fileupload-preview"></span>
     <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
   </div>
-
+<label for="exampleInputPassword1">رابط القناه</label>
+<input type="url"
+  class="form-control"
+  name="url"
+  id="url"
+  placeholder="channel url"
+  required
+  class="form-control">
+  <div class="form-group">
+<label for="exampleInputPassword1">معلومات اضافيه</label>
+<textarea rows="2" cols="30" name="addition_info" class="form-control" required></textarea>
+<span class="help-block with-errors errorName"></span>
+</div>
   <div class="form-group" style="display:none;">
   <label for="exampleInputFile">pic path</label>
   <input type="text"

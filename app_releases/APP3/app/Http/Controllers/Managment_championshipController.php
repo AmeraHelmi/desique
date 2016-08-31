@@ -22,48 +22,48 @@ use Input;
 
 class Managment_championshipController extends Controller {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	 public function __construct()
-	 {
-		 $this->middleware('auth');
-	 }
-	 public function index(Managment_championship $m_champion , Request $request)
-	 {
-		 $managment_championships = $m_champion
-			 ->join('managers as manager','manager.id','=','managment_championships.manager_id')
-			 ->join('championships as championship','championship.id','=','managment_championships.championship_id')
+			/**
+			 * Display a listing of the resource.
+			 *
+			 * @return Response
+			 */
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
+	public function index(Managment_championship $m_champion , Request $request)
+	{
+		$managment_championships = $m_champion
+			->join('managers as manager','manager.id','=','managment_championships.manager_id')
+			->join('championships as championship','championship.id','=','managment_championships.championship_id')
 
-			 ->select(array(
-				 'managment_championships.id as m_championID',
-			   'manager.name as manager_name',
-				 'championship.name as championship_name',
-				 'managment_championships.win_date as win_date'
-			 ))
+			->select(array(
+				'managment_championships.id as m_championID',
+			   	'manager.name as manager_name',
+				'championship.name as championship_name',
+				'managment_championships.win_date as win_date'
+			 	))
 
-			 ->orderBy('managment_championships.id','desc')->get();
+			->orderBy('managment_championships.id','desc')->get();
 
-			 $tableData = Datatables::of($managment_championships)
+		$tableData = Datatables::of($managment_championships)
 
-				 ->addColumn('actions', function ($data)
-					 {return view('partials.actionBtns')->with('controller','managment_championship')->with('id', $data->m_championID)->render(); })
-				 ;
+			->addColumn('actions', function ($data)
+				{
+				return view('partials.actionBtns')->with('controller','managment_championship')->with('id', $data->m_championID)->render(); });
 
-			 if($request->ajax())
-				 return DatatablePresenter::make($tableData, 'index');
+			if($request->ajax())
+				return DatatablePresenter::make($tableData, 'index');
 				//  $championships=Championship::lists('name','id');
 
-				 $managers= Manager::lists('name','id');
-			   $championships =Championship::lists('name','id');
-		 return view('managment_championship.index')
-		   ->with('managers',$managers)
-			 ->with('championships',$championships)
+				$managers= Manager::lists('name','id');
+			   	$championships =Championship::lists('name','id');
+			 	return view('managment_championship.index')
+			   	->with('managers',$managers)
+				->with('championships',$championships)
 
-			 ->with('tableData', DatatablePresenter::make($tableData, 'index'));
-	 }
+				->with('tableData', DatatablePresenter::make($tableData, 'index'));
+	}
 
 
 	/**
@@ -81,21 +81,20 @@ class Managment_championshipController extends Controller {
 	 *
 	 * @return Response
 	 */
-	 public function store(Request $request)
+	public function store(Request $request)
  	{
 		$m_champion = new Managment_championship;
-		$m_champion->manager_id          =$request->manager_id;
+		$m_champion->manager_id         	  =$request->manager_id;
 		$m_champion->championship_id          =$request->championship_id;
-		$m_champion->win_date        =$request->win_date;
-
+		$m_champion->win_date                 =$request->win_date;
 		$m_champion->save();
 
 
 			if($request->ajax()){
-				return response(array('msg' => 'Adding Successfull'), 200)
-									->header('Content-Type', 'application/json');
+			return response(array('msg' => 'Adding Successfull'), 200)
+			->header('Content-Type', 'application/json');
 				}
-}
+	}
 
 
 
@@ -118,10 +117,10 @@ class Managment_championshipController extends Controller {
 	 */
 	 public function edit(Request $request , $id)
  	{
- 		$m_champion 	= Managment_championship::find($id);
+ 		$m_champion = Managment_championship::find($id);
  		if($request->ajax()){
- 			return response(array('msg' => 'Adding Successfull', 'data'=> $m_champion->toJson() ), 200)
- 								->header('Content-Type', 'application/json');
+ 		return response(array('msg' => 'Adding Successfull', 'data'=> $m_champion->toJson() ), 200)
+ 		->header('Content-Type', 'application/json');
  			}
  	}
 
@@ -133,16 +132,15 @@ class Managment_championshipController extends Controller {
 	 */
 	 public function update(Request $request,$id)
 	{
-		$m_champion 	= Managment_championship::find($id);
-		$m_champion->manager_id          =$request->manager_id;
-		$m_champion->championship_id          =$request->championship_id;
-		$m_champion->win_date        =$request->win_date;
-
+		$m_champion = Managment_championship::find($id);
+		$m_champion->manager_id          	=$request->manager_id;
+		$m_champion->championship_id        =$request->championship_id;
+		$m_champion->win_date        		=$request->win_date;
 		$m_champion->save();
 
-			if($request->ajax()){
-				return response(array('msg' => 'Adding Successfull'), 200)
-									->header('Content-Type', 'application/json');
+		if($request->ajax()){
+		return response(array('msg' => 'Adding Successfull'), 200)
+		->header('Content-Type', 'application/json');
 				}
 
 	}
@@ -160,9 +158,9 @@ class Managment_championshipController extends Controller {
  		$m_champion	= Managment_championship::find($id);
  		$m_champion->delete();
  		if($request->ajax()){
- 			return response(array('msg' => 'Removing Successfull'), 200)
- 								->header('Content-Type', 'application/json');
- 			}
+ 		return response(array('msg' => 'Removing Successfull'), 200)
+ 		->header('Content-Type', 'application/json');
+ 							}
  		return redirect()->back();
  	}
 

@@ -27,106 +27,80 @@ class Player_sponsorController extends Controller {
 	 *
 	 * @return Response
 	 */
-	 public function __construct()
- {
-	 $this->middleware('auth');
- }
-	 public function index(Player_sponsor $p_sponsor , Request $request)
-	 {
-		 $player_sponsors = $p_sponsor
-			 ->join('players as player','player.id','=','player_sponsors.player_id')
-			 ->join('sponsors as sponsor','sponsor.id','=','player_sponsors.sponsor_id')
+	public function __construct()
+ 	{
+	 	$this->middleware('auth');
+ 	}
+	public function index(Player_sponsor $p_sponsor , Request $request)
+	{
+		$player_sponsors = $p_sponsor
+			->join('players as player','player.id','=','player_sponsors.player_id')
+			->join('sponsors as sponsor','sponsor.id','=','player_sponsors.sponsor_id')
 
-			 ->select(array(
-				 'player_sponsors.id as p_sponsorID',
-			   'player.name as player_name',
-				 'sponsor.name as sponsor_name',
-				 'player_sponsors.from_date as from_date',
-				 'player_sponsors.to_date as to_date',
-				 'player_sponsors.amount as amount'
-			 ))
+			->select(array('player_sponsors.id as p_sponsorID',
+			   				'player.name as player_name',
+				 			'sponsor.name as sponsor_name',
+				 			'player_sponsors.from_date as from_date',
+				 			'player_sponsors.to_date as to_date',
+				 			'player_sponsors.amount as amount'
+			 			))
 
-			 ->orderBy('player_sponsors.id','desc')->get();
+			->orderBy('player_sponsors.id','desc')->get();
 
-			 $tableData = Datatables::of($player_sponsors)
+		$tableData = Datatables::of($player_sponsors)
 
-				 ->addColumn('actions', function ($data)
-					 {return view('partials.actionBtns')->with('controller','player_sponsor')->with('id', $data->p_sponsorID)->render(); })
-				 ;
+			->addColumn('actions', function ($data)
+			{return view('partials.actionBtns')->with('controller','player_sponsor')->with('id', $data->p_sponsorID)->render(); });
+		if($request->ajax())
+			return DatatablePresenter::make($tableData, 'index');
+		//  $championships=Championship::lists('name','id');
 
-			 if($request->ajax())
-				 return DatatablePresenter::make($tableData, 'index');
-				//  $championships=Championship::lists('name','id');
-
-				 $players= Player::lists('name','id');
-			   $sponsors =Sponsor::lists('name','id');
-		 return view('player_sponsor.index')
-		   ->with('players',$players)
-			 ->with('sponsors',$sponsors)
-
-			 ->with('tableData', DatatablePresenter::make($tableData, 'index'));
-	 }
+		$players= Player::lists('name','id');
+		$sponsors =Sponsor::lists('name','id');
+			return view('player_sponsor.index')
+			->with('players',$players)
+			->with('sponsors',$sponsors)
+			->with('tableData', DatatablePresenter::make($tableData, 'index'));
+	}
 
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
+
 	public function create()
 	{
 		//
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	 public function store(Request $request)
+	
+	public function store(Request $request)
  	{
 		$p_sponsor = new Player_sponsor;
 		$p_sponsor->player_id          =$request->player_id;
-		$p_sponsor->sponsor_id          =$request->sponsor_id;
-		$p_sponsor->from_date        =$request->from_date;
-		$p_sponsor->to_date        =$request->to_date;
-		$p_sponsor->amount        =$request->amount;
-		$p_sponsor->addition_info        =$request->addition_info;
-
+		$p_sponsor->sponsor_id         =$request->sponsor_id;
+		$p_sponsor->from_date          =$request->from_date;
+		$p_sponsor->to_date            =$request->to_date;
+		$p_sponsor->amount             =$request->amount;
+		$p_sponsor->addition_info      =$request->addition_info;
 		$p_sponsor->save();
-
-
-			if($request->ajax()){
-				return response(array('msg' => 'Adding Successfull'), 200)
-									->header('Content-Type', 'application/json');
+		if($request->ajax()){
+			return response(array('msg' => 'Adding Successfull'), 200)
+			->header('Content-Type', 'application/json');
 				}
-}
+	}
 
 
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+	
 	public function show($id)
 	{
 		//
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	 public function edit(Request $request , $id)
+	public function edit(Request $request , $id)
  	{
  		$p_sponsor 	= Player_sponsor::find($id);
  		if($request->ajax()){
- 			return response(array('msg' => 'Adding Successfull', 'data'=> $p_sponsor->toJson() ), 200)
- 								->header('Content-Type', 'application/json');
+ 		return response(array('msg' => 'Adding Successfull', 'data'=> $p_sponsor->toJson() ), 200)
+ 		->header('Content-Type', 'application/json');
  			}
  	}
 
@@ -140,18 +114,15 @@ class Player_sponsorController extends Controller {
 	{
 		$p_sponsor 	= Player_sponsor::find($id);
 		$p_sponsor->player_id          =$request->player_id;
-		$p_sponsor->sponsor_id          =$request->sponsor_id;
-		$p_sponsor->from_date        =$request->from_date;
-		$p_sponsor->to_date        =$request->to_date;
-		$p_sponsor->amount        =$request->amount;
-			$p_sponsor->addition_info        =$request->addition_info;
-
+		$p_sponsor->sponsor_id         =$request->sponsor_id;
+		$p_sponsor->from_date          =$request->from_date;
+		$p_sponsor->to_date        	   =$request->to_date;
+		$p_sponsor->amount             =$request->amount;
+		$p_sponsor->addition_info      =$request->addition_info;
 		$p_sponsor->save();
-
-
-			if($request->ajax()){
-				return response(array('msg' => 'Adding Successfull'), 200)
-									->header('Content-Type', 'application/json');
+		if($request->ajax()){
+			return response(array('msg' => 'Adding Successfull'), 200)
+			->header('Content-Type', 'application/json');
 				}
 
 	}
@@ -164,13 +135,13 @@ class Player_sponsorController extends Controller {
 	 */
 
 
-	 public function destroy($id)
+	public function destroy($id)
  	{
  		$p_sponsor	= Player_sponsor::find($id);
  		$p_sponsor->delete();
  		if($request->ajax()){
  			return response(array('msg' => 'Removing Successfull'), 200)
- 								->header('Content-Type', 'application/json');
+ 			->header('Content-Type', 'application/json');
  			}
  		return redirect()->back();
  	}

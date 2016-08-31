@@ -15,7 +15,7 @@ use Auth;
 use Input;
 
 class V_albumController extends Controller {
-
+تتت
 	/**
 	 * Display a listing of the resource.
 	 *

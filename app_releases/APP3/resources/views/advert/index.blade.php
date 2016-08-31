@@ -166,11 +166,10 @@
 
 								<tr>
 
-										<th class="col-md-4">الأسم</th>
-
-										<th class="col-md-3">الصوره</th>
-
-										<th class="col-md-2">خيارات</th>
+                  <th class="col-md-3">الأسم</th>
+									<th class="col-md-3">الرابط</th>
+									<th class="col-md-3">الصوره</th>
+									<th class="col-md-2">خيارات</th>
 
 								</tr>
 
@@ -182,11 +181,10 @@
 
 								<tr>
 
-										<td>{{ $row->name }}</td>
-
-										<td>{!! $row->flag !!}</div></td>
-
-										<td>{!! $row->actions !!}</td>
+                  <td>{{ $row->name }}</td>
+									<td>{{ $row->url }}</td>
+                  <td>{!! $row->flag !!}</div></td>
+                  <td>{!! $row->actions !!}</td>
 
 								</tr>
 
@@ -490,11 +488,10 @@
 
 		"columns": [
 
-				{data: 'name', name: 'name'},
-
-				{data: 'flag', name: 'flag'},
-
-				{data: 'actions', name: 'actions', orderable: false, searchable: false}
+      {data: 'name', name: 'name'},
+			{data: 'url', name: 'url'},
+      {data: 'flag', name: 'flag'},
+      {data: 'actions', name: 'actions', orderable: false, searchable: false}
 
 		]
 

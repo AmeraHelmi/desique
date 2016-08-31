@@ -28,12 +28,12 @@ class AdvertController extends Controller {
  	*@method [return view 'advert.index'] [index]([[obj] [$advert],[obj] [$request]])
  	* [<to return datatable of user data >]
  	*@var [obj] [$adverts] [<take array of 'latest' or new data [id,name,flag]>]
- 	*@return [return view 'advert.index] 
+ 	*@return [return view 'advert.index]
  	*/
 	public function index(Advert $advert , Request $request)
 	{
 		$adverts = $advert
-			->select(array('id', 'name', 'flag'))
+			->select(array('id', 'name', 'flag','url'))
 			->orderBy('id','desc')->get();
 
 		$tableData = Datatables::of($adverts)
@@ -60,7 +60,7 @@ class AdvertController extends Controller {
 
 	/**
 	 * Store a newly created resource in DB.
-	 * @method [responce msg] [store]([[obj] [$request]]) 
+	 * @method [responce msg] [store]([[obj] [$request]])
 	 *[<Store a newly created advertisment  in DB>]
 	 *@var [obj] [$advert] [<insert array of new data [name,flag]>]
 	 * @return Response msg of status 200
@@ -75,7 +75,8 @@ class AdvertController extends Controller {
 				$advert = new Advert;
 				if($request->name)
 				{
-			  	$advert->name    =$request->name;
+					$advert->name    =$request->name;
+			  	$advert->url    =$request->url;
 			  	$advert->flag    =$filename;
 			  	$advert->save();
 					if($request->ajax())
@@ -105,7 +106,7 @@ class AdvertController extends Controller {
 
 	/**
 	 * Show the form for editing the specified resource.
-	 * @method [Response] [edit]([[obj] [$advert],[obj] [$request],[int] [$id]) 
+	 * @method [Response] [edit]([[obj] [$advert],[obj] [$request],[int] [$id])
 	 *[<edit data of advertisment>]
 	 * @param  int  $id
 	 * @param  obj $advert
@@ -139,13 +140,15 @@ class AdvertController extends Controller {
 			 		$filename=time();
 			 		$file->move('images/uploads', $filename);
 			 		$advert->name    =$request->name;
+					$advert->url    =$request->url;
 			 		$advert->flag    =$filename;
        	}
    		}
 			else
 			{
 					$advert->name    =$request->name;
-					$advert->flag    =session('countryflag');
+					$advert->url    =$request->url;
+					$advert->flag    =session('advertflag');
 			}
 			$advert->save();
 	 		if($request->ajax())

@@ -6,14 +6,21 @@
   class="form-control"
   name="name"
   id="advert_name"
-  placeholder="advert name"
+  placeholder="ادخل اسم الاعلان"
   required
   class="form-control"
 
   >
     <span class="help-block with-errors errorName"></span>
 </div>
-
+<div class="form-group">
+    <label for="exampleInputFile">الرابط</label>
+    <input type="url"
+     name="url"
+     placeholder="http://"
+     class="form-control"
+     >
+</div>
 <div class="form-group" style="display:none;">
 <label for="exampleInputFile">pic path</label>
 <input type="text"

@@ -24,40 +24,38 @@ class RefereeController extends Controller {
 	 *
 	 * @return Response
 	 */
-	 	 public function __construct()
+	public function __construct()
  	{
  		$this->middleware('auth');
  	}
-	 public function index(Referee $referee , Request $request)
-	 {
-		 $referees = $referee
-			 ->join('countries AS country', 'country.id', '=', 'referees.country_id')
-			 ->join('cities as city','city.id','=','referees.city_id')
-			 ->select(array(
-				 'referees.id as refereeID',
-			    'referees.name as refereename',
-				 'country.name as countryname',
-				 'referees.job as referee_job',
-				 'referees.birth_date as referees_birth_date',
-			     'city.name as cityname',
-			     'referees.flag as referee_image'
-		 ))
-		 	 ->orderBy('country.name')->get();
+	public function index(Referee $referee , Request $request)
+	{
+		$referees = $referee
+			->join('countries AS country', 'country.id', '=', 'referees.country_id')
+			->join('cities as city','city.id','=','referees.city_id')
+			->select(array('referees.id as refereeID',
+			    			'referees.name as refereename',
+				 			'country.name as countryname',
+				 			'referees.job as referee_job',
+				 			'referees.birth_date as referees_birth_date',
+			     			'city.name as cityname',
+			     			'referees.flag as referee_image'
+		 				))
+		 	->orderBy('country.name')->get();
 
-			 $tableData = Datatables::of($referees)
-			 ->editColumn('referee_image', '<div class="image"><img src="images/uploads/{{ $referee_image }}"  width="50px" height="50px">')
-				 ->addColumn('actions', function ($data)
-					 {return view('partials.actionBtns')->with('controller','referee')->with('id', $data->refereeID)->render(); })
-				 ;
+		$tableData = Datatables::of($referees)
+			->editColumn('referee_image', '<div class="image"><img src="images/uploads/{{ $referee_image }}"  width="50px" height="50px">')
+			->addColumn('actions', function ($data)
+				{return view('partials.actionBtns')->with('controller','referee')->with('id', $data->refereeID)->render(); });
 
-			 if($request->ajax())
-				 return DatatablePresenter::make($tableData, 'index');
-				 $countries=Country::lists('name','id');
-				 $cities=City ::lists('name','id');
-		 return view('referee.index')
-			 ->with('countries',$countries)->with('cities',$cities)
-			 ->with('tableData', DatatablePresenter::make($tableData, 'index'));
-	 }
+		if($request->ajax())
+			return DatatablePresenter::make($tableData, 'index');
+			$countries=Country::lists('name','id');
+			$cities=City ::lists('name','id');
+		 	return view('referee.index')
+			->with('countries',$countries)->with('cities',$cities)
+			->with('tableData', DatatablePresenter::make($tableData, 'index'));
+	}
 
 
 
@@ -80,31 +78,29 @@ class RefereeController extends Controller {
 	 */
 	 public function store(Request $request)
 	{
-		if(Input::hasFile('flag')){
-			 $file = Input::file('flag');
-			 $filename=time();
-			 $file->move('images/uploads', $filename);
+		if(Input::hasFile('flag'))
+		{
+			$file = Input::file('flag');
+			$filename=time();
+			$file->move('images/uploads', $filename);
 
-		$referee = new Referee;
+			$referee = new Referee;
 			$referee->name          =$request->name;
 			$referee->country_id    =$request->country_id;
 			$referee->job           =$request->job;
 			$referee->city_id       =$request->city_id;
 			$referee->additional_info          =$request->additional_info;
-
 			$referee->flag          =$filename;
-
 			$referee->save();
-
 			if($request->ajax()){
 				return response(array('msg' => 'Adding Successfull'), 200)
-									->header('Content-Type', 'application/json');
+				->header('Content-Type', 'application/json');
 				}
-}
-else{
-		return response(false, 200)
-							->header('Content-Type', 'application/json');
-	}
+		}
+		else{
+			return response(false, 200)
+			->header('Content-Type', 'application/json');
+			}
 	}
 
 	/**
@@ -135,22 +131,19 @@ else{
 	 		$country_id = $request->country_id;
 	 		echo $country_id;
 	 		$city = City::where('country_id',$country_id)->get();
-
 	 		foreach($city as $row){
 	 			echo'<option value='.$row->id.'> '.$row->name.' </option>';
-	 		}
-    }
+	 			}
+    	}
 	public function edit(Request $request , $id)
  	 	{
  	 		$referee 	= Referee::find($id);
-
 			session(['refereeid'   => $referee->id]);
 			session(['refereecity_id'   => $referee->city_id]);
 	 		session(['refereeflag' => $referee->flag]);
-
  	 		if($request->ajax()){
  	 			return response(array('msg' => 'Adding Successfull', 'data'=> $referee->toJson() ), 200)
- 	 								->header('Content-Type', 'application/json');
+ 	 			->header('Content-Type', 'application/json');
  	 			}
  	 	}
 	/**
@@ -159,51 +152,54 @@ else{
 	 * @param  int  $id
 	 * @return Response
 	 */
-	 public function update(Request $request)
+	public function update(Request $request)
 	{
 		$referee 	= Referee::find(session('refereeid'));
-
-		if(!empty($_FILES)){
-			if(Input::hasFile('flag')){
-		$file = Input::file('flag');
-		$filename=time();
-		$file->move('images/uploads', $filename);
-
-   if($request->city_id == 0){
-	  $referee->city_id       =session('refereecity_id');
+		if(!empty($_FILES))
+		{
+		if(Input::hasFile('flag'))
+		{
+			$file = Input::file('flag');
+			$filename=time();
+			$file->move('images/uploads', $filename);
+   		if($request->city_id == 0)
+   		{
+	  		$referee->city_id    =session('refereecity_id');
        	}
-       	else{
-       $referee->city_id       =$request->city_id;
+       	else
+       	{
+       		$referee->city_id         =$request->city_id;
        	}
-		$referee->name          =$request->name;
-		$referee->country_id    =$request->country_id;
-		$referee->job           =$request->job;
-		$referee->flag          =$filename;
+			$referee->name           =$request->name;
+			$referee->country_id     =$request->country_id;
+			$referee->job            =$request->job;
+			$referee->flag           =$filename;
+			$referee->additional_info          =$request->additional_info;
 
-		$referee->additional_info          =$request->additional_info;
-
-    }
-	}
-	else{
-		   if($request->city_id == 0){
-	  $referee->city_id       =session('refereecity_id');
+   		}
+		}
+		else
+		{
+		if($request->city_id == 0)
+		{
+	  		$referee->city_id       =session('refereecity_id');
        	}
-       	else{
-       $referee->city_id       =$request->city_id;
+       	else
+       	{
+       		$referee->city_id       =$request->city_id;
        	}
-		$referee->name          =$request->name;
-		$referee->country_id    =$request->country_id;
-		$referee->job           =$request->job;
-
-	    $referee->additional_info          =$request->additional_info;
-
-		$referee->flag          =session('refereeflag');
-	}
+			$referee->name          		=$request->name;
+			$referee->country_id    		=$request->country_id;
+			$referee->job           		=$request->job;
+	    	$referee->additional_info       =$request->additional_info;
+			$referee->flag           		=session('refereeflag');
+		}
 		$referee->save();
-		if($request->ajax()){
+		if($request->ajax())
+		{
 			return response(array('msg' => 'Adding Successfull'), 200)
-								->header('Content-Type', 'application/json');
-			}
+			->header('Content-Type', 'application/json');
+		}
 	}
 
 	/**
@@ -212,15 +208,15 @@ else{
 	 * @param  int  $id
 	 * @return Response
 	 */
-	 public function destroy($id)
-	 {
-	  $referee	= Referee::find($id);
-	  $referee->delete();
-	  if($request->ajax()){
-	 	 return response(array('msg' => 'Removing Successfull'), 200)
-	 						 ->header('Content-Type', 'application/json');
-	 	 }
-	  return redirect()->back();
-	 }
+	public function destroy($id)
+	{
+	  	$referee	= Referee::find($id);
+	  	$referee->delete();
+	  	if($request->ajax()){
+	 	 	return response(array('msg' => 'Removing Successfull'), 200)
+	 		->header('Content-Type', 'application/json');
+	 	}
+	  	return redirect()->back();
+	}
 
 }

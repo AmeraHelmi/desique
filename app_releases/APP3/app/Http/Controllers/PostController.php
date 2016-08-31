@@ -19,23 +19,22 @@ class PostController extends Controller {
 	 */
 
     public function __construct()
-	 {
+	{
  		$this->middleware('auth');
- 	 }
+ 	}
 	public function index(Post $post , Request $request)
 	{
 		$posts = $post
 			->select(array('id', 'title','body','flag','author','date','likes'))
 			->orderBy('id','desc')->get();
-
-			$tableData = Datatables::of($posts)
+		$tableData = Datatables::of($posts)
 			->editColumn('flag', '<div class="image"><img src="images/uploads/{{ $flag }}"  width="50px" height="50px">')
-				->addColumn('actions', function ($data)
-					{return view('partials.actionBtns')->with('controller','post')->with('id', $data->id)->render(); });
+			->addColumn('actions', function ($data)
+			{return view('partials.actionBtns')->with('controller','post')->with('id', $data->id)->render(); });
 
-			if($request->ajax())
-				return DatatablePresenter::make($tableData, 'index');
-		return view('post.index')
+		if($request->ajax())
+			return DatatablePresenter::make($tableData, 'index');
+			return view('post.index')
 			->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	}
 
@@ -56,28 +55,27 @@ class PostController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-		 if(Input::hasFile('flag')){
-		    $file = Input::file('flag');
+		if(Input::hasFile('flag'))
+		{
+			$file = Input::file('flag');
 			$filename=time();
-		    $file->move('images/uploads', $filename);
-
+			$file->move('images/uploads', $filename);
 			$post = new Post;
-			  $post->title             =$request->title;
-			  $post->flag              =$filename;
-			  $post->body              =$request->body;
-			  $post->author            =Auth::user()->name;
-			  $post->date              =$request->date;
-
-			  $post->save();
-
-				if($request->ajax()){
-					return response(array('msg' => 'Adding Successfull'), 200)
-										->header('Content-Type', 'application/json');
+			$post->title             =$request->title;
+			$post->flag              =$filename;
+			$post->body              =$request->body;
+			$post->author            =Auth::user()->name;
+			$post->date              =$request->date;
+			$post->save();
+		if($request->ajax()){
+			return response(array('msg' => 'Adding Successfull'), 200)
+			->header('Content-Type', 'application/json');
 					}
-    }
-		else{
+    	}
+		else
+		{
 			return response(false, 200)
-								->header('Content-Type', 'application/json');
+			->header('Content-Type', 'application/json');
 		}
 
 	}
@@ -105,9 +103,8 @@ class PostController extends Controller {
 
 		session(['postid'   => $post->id]);
 		session(['postflag' => $post->flag]);
-
-			return response(array('msg' => 'Adding Successfull', 'data'=> $post->toJson() ), 200)
-								->header('Content-Type', 'application/json');
+		return response(array('msg' => 'Adding Successfull', 'data'=> $post->toJson() ), 200)
+		->header('Content-Type', 'application/json');
 	}
 
 	/**
@@ -118,29 +115,30 @@ class PostController extends Controller {
 	 */
 	public function update(Request $request)
 	{
- $post 	= Post::find(session('postid'));
-
-	if(!empty($_FILES)){
-		if(Input::hasFile('flag')){
-			 $file = Input::file('flag');
-			 $filename=time();
-			 $file->move('images/uploads', $filename);
-			  $post->title             =$request->title;
-			  $post->flag              =$filename;
-			  $post->body              =$request->body;
-			  $post->date              =$request->date;
+		$post 	= Post::find(session('postid'));
+		if(!empty($_FILES)){
+		if(Input::hasFile('flag'))
+		{
+			$file = Input::file('flag');
+			$filename=time();
+			$file->move('images/uploads', $filename);
+			$post->title             =$request->title;
+			$post->flag              =$filename;
+			$post->body              =$request->body;
+			$post->date              =$request->date;
        	}
-   }
-	else{
-			  $post->title             =$request->title;
-			  $post->body              =$request->body;
-			  $post->date              =$request->date;
-		      $post->flag              =session('blogflag');
-	}
-	$post->save();
+   		}
+		else
+		{
+			$post->title             =$request->title;
+			$post->body              =$request->body;
+			$post->date              =$request->date;
+		    $post->flag              =session('blogflag');
+		}
+			$post->save();
 	 		if($request->ajax()){
 	 			return response(array('msg' => 'Adding Successfull'), 200)
-	 								->header('Content-Type', 'application/json');
+	 			->header('Content-Type', 'application/json');
 	 			}
 
 	}
@@ -158,7 +156,7 @@ class PostController extends Controller {
 		$post->delete();
 		if($request->ajax()){
 			return response(array('msg' => 'Removing Successfull'), 200)
-								->header('Content-Type', 'application/json');
+			->header('Content-Type', 'application/json');
 			}
 		return redirect()->back();
 	}

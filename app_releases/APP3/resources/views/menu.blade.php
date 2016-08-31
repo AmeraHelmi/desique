@@ -2,7 +2,7 @@
 </li>
 
 <li>
-<a class="ajax-link" href="{{ url('expection') }}"><i class="glyphicon glyphicon-arrow-left"></i><span> التوقعات</span></a>
+<a class="ajax-link" href="{{ url('expection') }}"><i class="glyphicon glyphicon-arrow-left"></i><span> gالتوقعات</span></a>
 </li>
 
 <li>

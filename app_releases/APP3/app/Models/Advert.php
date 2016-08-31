@@ -4,6 +4,6 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class Advert extends Eloquent {
 
-	protected $fillable= ['name','flag'];
+	protected $fillable= ['name','flag','url'];
 
 }

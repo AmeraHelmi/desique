@@ -175,7 +175,7 @@ class ManagerController extends Controller {
 		$manager->selection_type	=$request->selection_type;
 		$manager->flag          	=$filename;
 		}
-							}		
+							}
  		else{
 	 	$manager->name          	=$request->name;
 	 	$manager->country_id    	=$request->country_id;

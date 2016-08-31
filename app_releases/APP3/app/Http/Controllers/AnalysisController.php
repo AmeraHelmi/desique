@@ -34,6 +34,7 @@ public function __construct()
 			*@uses [Discussion,Request Model]
 			*@return [view] <'analysis.index'>
 			*/
+
 public function index(Discussion $Discussion , Request $request)
 {
 	$Discussion = $Discussion
@@ -41,16 +42,16 @@ public function index(Discussion $Discussion , Request $request)
 				->join('teams as T1', 'T1.id', '=', 'M.team1_id')
 				->join('teams as T2', 'T2.id', '=', 'M.team2_id')
 				->select(array(
-					            	'discussions.analysis as analysis',
-			  						'discussions.id as analysis_id',
+					        'discussions.analysis as analysis',
+			  					'discussions.id as analysis_id',
 									'discussions.Author as Author',
-      								'discussions.analysis_date as analysis_date',
+      						'discussions.analysis_date as analysis_date',
 									'T1.name as T1name',
 									'T2.name as T2name'
 								))
 				->orderBy('analysis_id','desc')->get();
 	$tableData = Datatables::of($Discussion)
-			  	->editColumn('T1name', '{{ $T1name }} - {{ $T2name }}')
+			  ->editColumn('T1name', '{{ $T1name }} - {{ $T2name }}')
 				->addColumn('actions', function ($data)
 									{
 										return view('partials.actionBtns')->with('controller','Analysis')->with('id', $data->analysis_id)->render();
@@ -64,8 +65,8 @@ public function index(Discussion $Discussion , Request $request)
 			 	->join('teams as team1', 'team1.id', '=', 'matches.team1_id')
 			 	->join('teams as team2', 'team2.id', '=', 'matches.team2_id')
 			 	->select(array('team1.name as team1_name',
-					 								'team2.name as team2_name',
-													'matches.id as matchid'))
+					 							'team2.name as team2_name',
+												'matches.id as matchid'))
 			 	->get();
 		return view('analysis.index')
 		->with('matches',$matches)
@@ -139,15 +140,15 @@ public function index(Discussion $Discussion , Request $request)
 			*@uses [Request Model]
 			*@return response
 			*/
-	public function edit(Request $request , $id)
-	{
+public function edit(Request $request , $id)
+{
 		$Discussion = Discussion::find($id);
-			if($request->ajax())
-			  {
+		if($request->ajax())
+		{
 				return response(array('msg' => 'Adding Successfull', 'data'=>$Discussion->toJson() ), 200)
 						->header('Content-Type', 'application/json');
-			  }
-	}
+		}
+}
 
 			/**
 			 * Update the specified resource in storage.
@@ -157,8 +158,9 @@ public function index(Discussion $Discussion , Request $request)
 			 * @param  obj  $request
 			 * @return Response
 			 */
-	public function update(Request $request , $id)
- 	{
+
+public function update(Request $request , $id)
+ {
 		$Discussion = Discussion::find($id);
 		$Discussion->analysis          = $request->analysis;
 		$Discussion->Author            = Auth::user()->name;
@@ -178,8 +180,8 @@ public function index(Discussion $Discussion , Request $request)
 			 * @param  int  $id
 			 * @return Response
 			 */
-	public function destroy($id)
-	{
+public function destroy($id)
+{
 		$Discussion = Discussion::find($id);
 		$Discussion->delete();
 		if($request->ajax())

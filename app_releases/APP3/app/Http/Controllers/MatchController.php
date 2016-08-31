@@ -20,7 +20,7 @@ use App\Services\DatatablePresenter;
 use Auth;
 use Input;
 
-class MatchController extends Controller 
+class MatchController extends Controller
 {
 
 
@@ -46,7 +46,7 @@ class MatchController extends Controller
 		$tableData = Datatables::of($matches)
 				->addColumn('actions', function ($data)
 				{
-					return view('partials.actionBtns')->with('controller','match')->with('id', $data->matchID)->render(); 
+					return view('partials.actionBtns')->with('controller','match')->with('id', $data->matchID)->render();
 				});
 					if($request->ajax())
 					return DatatablePresenter::make($tableData, 'index');
@@ -120,7 +120,7 @@ public function create()
 			return response(array('msg' => 'there is error'), 404)
 			->header('Content-Type', 'application/json');
 		}
-		else 
+		else
 		{
 			$match->match_date       =$request->match_date;
 			$match->date             =date('Y-m-d',strtotime($request->match_date));
@@ -168,7 +168,7 @@ public function create()
 	}
 
 
-	
+
 
 	public function edit(Request $request , $id)
 	{
@@ -179,7 +179,7 @@ public function create()
 			->header('Content-Type', 'application/json');
  		}
 	}
-	
+
 	public function update(Request $request, $id)
 	{
 		$match 	= Match::find($id);

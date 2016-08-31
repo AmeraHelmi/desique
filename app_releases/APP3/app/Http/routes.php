@@ -105,6 +105,11 @@ Route::resource('/agent'                , 'AgentController');
 Route::POST    ('/ball/store'            ,'BallController@store');
 Route::POST    ('/ball/update'           ,'BallController@update');
 Route::resource('/ball'                  ,'BallController');
+
+//expection
+Route::POST    ('/expection/store'          , array('as' => 'addexpection','uses' => 'ExpectionController@store'));
+Route::resource('/expection'                ,'ExpectionController');
+
 //coach
 Route::POST    ('/coach/store'            ,'CoachController@store');
 Route::POST    ('/coach/update'           ,'CoachController@update');

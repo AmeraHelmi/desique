@@ -68,48 +68,6 @@ class Managment_championshipController extends Controller {
 			 ->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	 }
 
-			/**
-			 * Display a listing of the resource.
-			 *
-			 * @return Response
-			 */
-	public function __construct()
-	{
-		$this->middleware('auth');
-	}
-	public function index(Managment_championship $m_champion , Request $request)
-	{
-		$managment_championships = $m_champion
-			->join('managers as manager','manager.id','=','managment_championships.manager_id')
-			->join('championships as championship','championship.id','=','managment_championships.championship_id')
-
-			->select(array(
-				'managment_championships.id as m_championID',
-			   	'manager.name as manager_name',
-				'championship.name as championship_name',
-				'managment_championships.win_date as win_date'
-			 	))
-
-			->orderBy('managment_championships.id','desc')->get();
-
-		$tableData = Datatables::of($managment_championships)
-
-			->addColumn('actions', function ($data)
-				{
-				return view('partials.actionBtns')->with('controller','managment_championship')->with('id', $data->m_championID)->render(); });
-
-			if($request->ajax())
-				return DatatablePresenter::make($tableData, 'index');
-				//  $championships=Championship::lists('name','id');
-
-				$managers= Manager::lists('name','id');
-			   	$championships =Championship::lists('name','id');
-			 	return view('managment_championship.index')
-			   	->with('managers',$managers)
-				->with('championships',$championships)
-
-				->with('tableData', DatatablePresenter::make($tableData, 'index'));
-	}
 
 
 	/**

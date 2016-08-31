@@ -100,7 +100,7 @@ class MatchsponsorController extends Controller {
 		$Msponsor->match_id          =$request->match_id;
 		$Msponsor->save();
 		}
-		if($request->ajax()
+		if($request->ajax())
 		{
 		return response(array('msg' => 'Adding Successfull'), 200)
 		->header('Content-Type', 'application/json');

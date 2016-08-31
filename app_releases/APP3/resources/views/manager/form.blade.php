@@ -58,28 +58,7 @@
 </div>
 </td>
 </tr>
-<tr>
-<td style="width: 48%">
-<div class="form-group">
-<label for="exampleInputPassword1">نوع التعين</label>
-<select id="type"  class="form-control" name="type" required>
-  <option selected>أختر النوع</option>
-  <option value="Elected">منتخب</option>
-  <option value="appoint">معين</option>
- </select>
-<span class="help-block with-errors errorName"></span>
 
-</div>
-</td>
-<td style="width: 48%; padding-left: 2%;">
-  <div class="form-group">
-    <label for="exampleInputFile">التعليق</label>
-<textarea rows="2" cols="30" name="comment" class="form-control" required></textarea>
-<span class="help-block with-errors errorName"></span>
-
-</div>
-</td>
-</tr>
 <tr>
   <td style="width: 48%">
 <div class="form-group">
@@ -98,6 +77,20 @@
 <label for="exampleInputFile">أختر المدينه</label>
 <select  class="form-control" name="city_id" id="cityID" >
 </select>
+</div>
+</td>
+</tr>
+<tr>
+<td style="width: 48%">
+<div class="form-group">
+<label for="exampleInputPassword1">نوع التعين</label>
+<select id="type"  class="form-control" name="type" required>
+  <option selected>أختر النوع</option>
+  <option value="Elected">منتخب</option>
+  <option value="appoint">معين</option>
+ </select>
+<span class="help-block with-errors errorName"></span>
+
 </div>
 </td>
 </tr>

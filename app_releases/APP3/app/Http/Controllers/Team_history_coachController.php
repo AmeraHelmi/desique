@@ -43,7 +43,8 @@ public function index(Team_history_coach $t_coach , Request $request)
 																 'coach.name as coach_name',
 																 'team_history_coaches.from_date as from_date',
 																 'team_history_coaches.to_date as to_date',
-																 'team_history_coaches.contract as contract'
+																 'team_history_coaches.contract as contract',
+																 'team_history_coaches.addition_info as addition_info'
 															))
 														->orderBy('team_history_coaches.id','desc')->get();
 		$tableData = Datatables::of($team_history_coaches)
@@ -84,6 +85,7 @@ public function store(Request $request)
 		$t_coach->from_date        =$request->from_date;
 		$t_coach->to_date          =$request->to_date;
 		$t_coach->contract         =$request->contract;
+		$t_coach->addition_info    =$request->addition_info;
 		$t_coach->save();
 		if($request->ajax())
 		{
@@ -123,6 +125,8 @@ public function select_team(Request $request)
 public function edit(Request $request , $id)
 {
  		$t_coach 	= Team_history_coach::find($id);
+		session(['team_id'    => $t_coach->team_id]);
+
  		if($request->ajax()){
  			return response(array('msg' => 'Adding Successfull', 'data'=> $t_coach->toJson() ), 200)
  								->header('Content-Type', 'application/json');
@@ -138,11 +142,21 @@ public function edit(Request $request , $id)
 public function update(Request $request,$id)
 {
 		$t_coach 	= Team_history_coach::find($id);
-		$t_coach->team_id          =$request->team_id;
+		if($request->team_id == 0)
+		{
+				$t_coach->team_id       =session('team_id');
+
+		}
+		else
+		{
+				$t_coach->team_id       =$request->team_id;
+		}
+
 		$t_coach->coach_id         =$request->coach_id;
 		$t_coach->from_date        =$request->from_date;
 		$t_coach->to_date          =$request->to_date;
 		$t_coach->contract         =$request->contract;
+	  $t_coach->addition_info    =$request->addition_info;
 		$t_coach->save();
 		if($request->ajax()){
 				return response(array('msg' => 'Adding Successfull'), 200)

@@ -36,7 +36,7 @@
 
 <div class="form-group">
 
-<label for="exampleInputPassword1">أسم اللاعب</label>
+<label for="exampleInputPassword1">اللقب</label>
 
 <input type="text"
 
@@ -204,7 +204,7 @@
 
 <label for="exampleInputFile">أختيار الدوله</label>
 
-<select id="country"  class="form-control" onchange="selectCity()"
+<select id="country2"  class="form-control" onchange="selectCity2()"
 
  name="country_id">
 
@@ -224,11 +224,11 @@
 
 <td style="width: 48%; padding-left: 2%;">
 
-<div class="form-group" id="showCity"  style="display:none;">
+<div class="form-group" id="show-City"  style="display:none;">
 
 <label for="exampleInputFile">اختيار المدينه</label>
 
-<select  class="form-control"name="city_id" id="cityID" >
+<select  class="form-control"name="city_id" id="cityID2" >
 
 </select>
 

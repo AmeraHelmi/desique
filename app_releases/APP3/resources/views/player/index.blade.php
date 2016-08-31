@@ -332,9 +332,7 @@
     <script>
 
   $(function(){
-
       $('#datetime12').combodate();
-
   });
 
   </script>
@@ -342,36 +340,40 @@
 	<script type="text/javascript">
 
 		function selectCity(){
-
 		$country_id=$('#country').val();
-
 		$.ajax({
-
 				url: '{{ url('player/getCities') }}',
-
 				type: "POST",
-
 				data:{
-
 					country_id:$country_id
-
 				},
-
 				success: function(res){
-
-			   		    $('#showCity').show();
-
+			   		$('#showCity').show();
 						$('#cityID').html(res);
-
 				},
-
 				error: function(){
-
 				}
-
 			});
 
 	}
+//update
+  function selectCity2(){
+  $country_id=$('#country2').val();
+  $.ajax({
+      url: '{{ url('player/getCities') }}',
+      type: "POST",
+      data:{
+        country_id:$country_id
+      },
+      success: function(res){
+          $('#show-City').show();
+          $('#cityID2').html(res);
+      },
+      error: function(){
+      }
+    });
+
+}
 
 
 

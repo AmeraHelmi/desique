@@ -35,33 +35,36 @@ class Managment_championshipController extends Controller {
 	 {
 		 $managment_championships = $m_champion
 			 ->join('managers as manager','manager.id','=','managment_championships.manager_id')
-			 ->join('championships as championship','championship.id','=','managment_championships.championship_id')
+			 ->join('teams as team','team.id','=','managment_championships.team_id')
 
 			 ->select(array(
-				 'managment_championships.id as m_championID',
-			   'manager.name as manager_name',
-				 'championship.name as championship_name',
-				 'managment_championships.win_date as win_date'
+				 'managment_championships.id as tmanagerID',
+				 'team.name as team_name',
+				 'manager.name as manager_name',
+				 'managment_championships.from_date as from_date',
+				 'managment_championships.to_date as to_date',
+				 'managment_championships.contract as contract',
+				 'managment_championships.addition_info as addition_info'
 			 ))
 
-			 ->orderBy('managment_championships.id','desc')->get();
+			 ->orderBy('tmanagerID','desc')->get();
 
 			 $tableData = Datatables::of($managment_championships)
 
 				 ->addColumn('actions', function ($data)
-					 {return view('partials.actionBtns')->with('controller','managment_championship')->with('id', $data->m_championID)->render(); })
+					 {return view('partials.actionBtns')->with('controller','managment_championship')->with('id', $data->tmanagerID)->render(); })
 				 ;
 
 			 if($request->ajax())
 				 return DatatablePresenter::make($tableData, 'index');
 				//  $championships=Championship::lists('name','id');
 
-				 $managers= Manager::lists('name','id');
-			   $championships =Championship::lists('name','id');
+				$managers= Manager::lists('name','id');
+				$teams=Team::where('is_team','like','نادى%')->lists('name','id');
+
 		 return view('managment_championship.index')
 		   ->with('managers',$managers)
-			 ->with('championships',$championships)
-
+			 ->with('teams',$teams)
 			 ->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	 }
 
@@ -84,9 +87,12 @@ class Managment_championshipController extends Controller {
 	 public function store(Request $request)
  	{
 		$m_champion = new Managment_championship;
-		$m_champion->manager_id          =$request->manager_id;
-		$m_champion->championship_id          =$request->championship_id;
-		$m_champion->win_date        =$request->win_date;
+		$m_champion->manager_id       =$request->manager_id;
+		$m_champion->team_id         =$request->team_id;
+		$m_champion->from_date        =$request->from_date;
+		$m_champion->to_date          =$request->to_date;
+		$m_champion->contract         =$request->contract;
+		$m_champion->addition_info    =$request->addition_info;
 
 		$m_champion->save();
 
@@ -134,9 +140,12 @@ class Managment_championshipController extends Controller {
 	 public function update(Request $request,$id)
 	{
 		$m_champion 	= Managment_championship::find($id);
-		$m_champion->manager_id          =$request->manager_id;
-		$m_champion->championship_id          =$request->championship_id;
-		$m_champion->win_date        =$request->win_date;
+		$m_champion->manager_id       =$request->manager_id;
+		$m_champion->team_id         =$request->team_id;
+		$m_champion->from_date        =$request->from_date;
+		$m_champion->to_date          =$request->to_date;
+		$m_champion->contract         =$request->contract;
+		$m_champion->addition_info    =$request->addition_info;
 
 		$m_champion->save();
 

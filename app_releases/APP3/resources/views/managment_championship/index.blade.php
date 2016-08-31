@@ -15,22 +15,25 @@
 				<table id="matchs" class="table table-striped table-bordered table-hover datatable">
 						<thead>
 								<tr>
-										<th class="col-md-1">المدير </th>
-										<th class="col-md-1">البطوله </th>
-										<th class="col-md-1">التاريخ</th>
-
-										<th class="col-md-1">خيارات</th>
+									<th class="col-md-1">النادى </th>
+									<th class="col-md-1">المدير</th>
+									<th class="col-md-1">من</th>
+									<th class="col-md-1">الى </th>
+									<th class="col-md-1">عقد </th>
+									<th class="col-md-2">بطولات المدير</th>
+									<th class="col-md-1">خيارات</th>
 								</tr>
 						</thead>
 						<tbody>
 								@foreach ($tableData->getData()->data as $row)
 								<tr>
-										<td>{{ $row->manager_name }}</td>
-										<td>{{ $row->championship_name }}</td>
-										<td>{!! $row->win_date !!}</td>
-
-
-										<td>{!!$row->actions !!}</td>
+									<td>{{ $row->team_name }}</td>
+									<td>{{ $row->manager_name }}</td>
+									<td>{!! $row->from_date !!}</td>
+									<td>{!! $row->to_date !!}</td>
+									<td>{{ $row->contract }}</td>
+									<td>{{ $row->addition_info }}</td>
+									<td>{!!$row->actions !!}</td>
 								</tr>
 								@endforeach
 						</tbody>
@@ -91,6 +94,7 @@
 		<script>
 	$(function(){
 			$('#datetime1').combodate();
+			$('#datetime2').combodate();
 	});
 	</script>
 
@@ -228,11 +232,13 @@
 								"responsive": true,
 								"deferLoading": {{ $tableData->getData()->recordsFiltered }},
 								"columns": [
-										{data: 'manager_name', name: 'manager_name'},
-										{data: 'championship_name', name: 'championship_name'},
-                    {data: 'win_date',  name: 'win_date'},
-
-										{data: 'actions', name: 'actions', orderable: false, searchable: false}
+									{data: 'team_name', name: 'team_name'},
+									{data: 'manager_name', name: 'manager_name'},
+									{data: 'from_date',  name: 'from_date'},
+									{data: 'to_date', name: 'to_date'},
+									{data: 'contract', name: 'contract'},
+									{data: 'addition_info', name: 'addition_info'},
+									{data: 'actions', name: 'actions', orderable: false, searchable: false}
 								]
 							});
 							$('#addModal').on('shown.bs.modal', function () {

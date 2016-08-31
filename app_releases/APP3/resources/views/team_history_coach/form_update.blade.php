@@ -3,7 +3,7 @@
   <tr>
     <div class="form-group">
     <label for="exampleInputFile">أختيار الفريق</label>
-    <select id="team_type"  class="form-control" onchange="select_team()">
+    <select id="team_type2"  class="form-control" onchange="select_team2()">
       <option selected><bdi>أختر الفريق</bdi></option>
      <option value="نادى"><bdi>نادى</bdi></option>
      <option value="منتخب"><bdi>منتخب</bdi></option>
@@ -11,9 +11,9 @@
     </div>
   </tr>
   <tr>
-      <div class="form-group" id="showteam">
+      <div class="form-group" id="show-team">
       <label for="exampleInputFile">اختيار نادى</label>
-      <select  class="form-control"name="team_id" id="team_id" >
+      <select  class="form-control"name="team_id" id="team_id2" >
       </select>
       </div>
     </tr>
@@ -62,3 +62,8 @@
 
 </tr>
 </table>
+<div class="form-group">
+<label for="exampleInputPassword1">نبذه عن بطولات المدرب مع النادى</label>
+<textarea rows="2" cols="30"  name="addition_info" class="form-control" ></textarea>
+<span class="help-block with-errors errorName"></span>
+</div>

@@ -62,3 +62,8 @@
 
 </tr>
 </table>
+<div class="form-group">
+<label for="exampleInputPassword1">نبذه عن بطولات المدرب مع النادى</label>
+<textarea rows="2" cols="30"  name="addition_info" class="form-control" ></textarea>
+<span class="help-block with-errors errorName"></span>
+</div>

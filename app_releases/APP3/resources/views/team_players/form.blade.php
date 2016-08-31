@@ -14,3 +14,9 @@
     <label>اللاعبون</label><br />
     {!! Form::select('player_id[]', $players, null, array('multiple'=> true, 'data-placeholder'=>'Select Players' ,'class'=> 'form-control group-select chosen-select-multiple chosen-select-no-results')) !!}
 </div>
+<!-- 
+<select class="chosen-select-multiple" multiple="multiple" name="player_id[]" required>
+    @foreach($players as $player_id => $player_name)
+        <option value="{{$player_id}}">{{$player_name}}</option>
+    @endforeach
+</select> -->

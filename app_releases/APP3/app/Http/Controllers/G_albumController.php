@@ -19,32 +19,32 @@ class G_albumController extends Controller {
 	 *
 	 * @return Response
 	 */
-	 public function __construct()
-	 {
-            $this->middleware('auth');
-	 }
+	public function __construct()
+	{
+        $this->middleware('auth');
+	}
 	public function index(G_album $album , Request $request)
 	{
-      $g_albums = $album
-            				->join('categories as c ','c.id','=','g_albums.category_id')
-										->select(array('g_albums.id as G_id',
-										              'g_albums.title as G_title',
-																	'c.name as C_name'))
-                    ->orderBy('G_title')->get();
+      	$g_albums = $album
+            	->join('categories as c ','c.id','=','g_albums.category_id')
+				->select(array('g_albums.id as G_id',
+								'g_albums.title as G_title',
+								'c.name as C_name'))
+                ->orderBy('G_title')->get();
 
-      $tableData = Datatables::of($g_albums)
-                    ->addColumn('actions', function ($data)
+      	$tableData = Datatables::of($g_albums)
+                ->addColumn('actions', function ($data)
             {
                 return view('partials.actionBtns')->with('controller','g_album')->with('id', $data->G_id)->render();
 
             });
-           $categories=Category::lists('id','name');
+        $categories=Category::lists('id','name');
 
-            if($request->ajax())
+        if($request->ajax())
 		return DatatablePresenter::make($tableData, 'index');
 		return view('g_album.index')
-		    ->with('categories',$categories)
-			->with('tableData', DatatablePresenter::make($tableData, 'index'));
+		->with('categories',$categories)
+		->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	}
 
 	/**
@@ -64,15 +64,15 @@ class G_albumController extends Controller {
 	public function store(Request $request)
 	{
 
-            $g_album = new G_album;
-            $g_album->title          =$request->title;
-            $g_album->category_id    =$request->category_id;
-            $g_album->save();
-            if($request->ajax())
-                {
-                    return response(array('msg' => 'adding Successfull'), 200)
-                            ->header('Content-Type', 'application/json');
-		}
+        $g_album = new G_album;
+        $g_album->title          =$request->title;
+        $g_album->category_id    =$request->category_id;
+        $g_album->save();
+        if($request->ajax())
+            {
+                return response(array('msg' => 'adding Successfull'), 200)
+                ->header('Content-Type', 'application/json');
+			}
 
 	}
 
@@ -99,8 +99,8 @@ class G_albumController extends Controller {
             if($request->ajax())
                 {
                     return response(array('msg' => 'Adding Successfull', 'data'=> $g_album->toJson() ), 200)
-                            ->header('Content-Type', 'application/json');
-		}
+                    ->header('Content-Type', 'application/json');
+				}
 	}
 
 	/**
@@ -112,14 +112,14 @@ class G_albumController extends Controller {
 	public function update(Request $request , $id)
 	{
 
-		$g_album 	= G_album::find($id);
-		$g_album->title 	= $request->title ;
+		$g_album = G_album::find($id);
+		$g_album->title 	     = $request->title ;
         $g_album->category_id    =$request->category_id;
 
 
 		$g_album->save();
 		return response(array('msg' => 'Adding Successfull'), 200)
-							->header('Content-Type', 'application/json');
+		->header('Content-Type', 'application/json');
 	}
 
 	/**
@@ -134,8 +134,8 @@ class G_albumController extends Controller {
 		$g_album->delete();
 		if($request->ajax()){
 			return response(array('msg' => 'Removing Successfull'), 200)
-								->header('Content-Type', 'application/json');
-			}
+			->header('Content-Type', 'application/json');
+				}
 		return redirect()->back();
 	}
 

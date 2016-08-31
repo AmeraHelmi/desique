@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 29, 2016 at 09:48 AM
+-- Generation Time: Aug 31, 2016 at 01:50 PM
 -- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.23
+-- PHP Version: 5.6.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -1411,7 +1411,11 @@ INSERT INTO `g_album_photos` (`id`, `g_album_id`, `flag`, `alt`, `created_at`, `
 (1, 1, '1471174517', '1470913204', '2016-08-14 11:35:17', '2016-08-14 09:35:17'),
 (2, 1, '1470913205', '1470913205', '2016-08-11 09:00:03', '2016-08-11 09:00:03'),
 (3, 2, '1471174505', '1471174505', '2016-08-14 09:35:04', '2016-08-14 09:35:04'),
-(4, 2, '1471174506', '1471174506', '2016-08-14 09:35:04', '2016-08-14 09:35:04');
+(4, 2, '1471174506', '1471174506', '2016-08-14 09:35:04', '2016-08-14 09:35:04'),
+(5, 1, '1472458277', '1472458277', '2016-08-29 06:11:16', '2016-08-29 06:11:16'),
+(6, 1, '1472458278', '1472458278', '2016-08-29 06:11:16', '2016-08-29 06:11:16'),
+(7, 1, '1472458279', '1472458279', '2016-08-29 06:11:16', '2016-08-29 06:11:16'),
+(8, 1, '1472458280', '1472458280', '2016-08-29 06:11:16', '2016-08-29 06:11:16');
 
 -- --------------------------------------------------------
 
@@ -1448,12 +1452,10 @@ CREATE TABLE `managers` (
   `name` varchar(150) CHARACTER SET utf8 NOT NULL,
   `from_date` date NOT NULL,
   `to_date` date NOT NULL,
-  `birth_date` date DEFAULT NULL,
   `role` varchar(150) CHARACTER SET utf8 NOT NULL,
   `job` varchar(150) CHARACTER SET utf8 DEFAULT NULL,
   `salary` int(11) DEFAULT NULL,
   `selection_type` varchar(150) CHARACTER SET utf8 NOT NULL,
-  `comment` varchar(250) CHARACTER SET utf8 DEFAULT NULL,
   `flag` varchar(150) CHARACTER SET utf8 DEFAULT NULL,
   `city_id` int(11) DEFAULT NULL,
   `country_id` int(11) NOT NULL,
@@ -1467,8 +1469,8 @@ CREATE TABLE `managers` (
 -- Dumping data for table `managers`
 --
 
-INSERT INTO `managers` (`id`, `name`, `from_date`, `to_date`, `birth_date`, `role`, `job`, `salary`, `selection_type`, `comment`, `flag`, `city_id`, `country_id`, `updated_at`, `created_at`, `team_id`, `addition_info`) VALUES
-(1, 'alaa', '0000-00-00', '0000-00-00', NULL, 'kkk', 'vvvvvvvvvvvvvvvvvvvvvvv', 44, 'Elected', 'njjj', '1471359332', 31, 109, '2016-08-16 12:55:45', '2016-08-16 12:55:32', NULL, NULL);
+INSERT INTO `managers` (`id`, `name`, `from_date`, `to_date`, `role`, `job`, `salary`, `selection_type`, `flag`, `city_id`, `country_id`, `updated_at`, `created_at`, `team_id`, `addition_info`) VALUES
+(1, 'alaa', '0000-00-00', '0000-00-00', 'kkk', 'vvvvvvvvvvvvvvvvvvvvvvv', 44, 'Elected', '1471359332', 31, 109, '2016-08-16 12:55:45', '2016-08-16 12:55:32', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1478,9 +1480,11 @@ INSERT INTO `managers` (`id`, `name`, `from_date`, `to_date`, `birth_date`, `rol
 
 CREATE TABLE `managment_championships` (
   `id` int(11) NOT NULL,
+  `team_id` int(11) NOT NULL,
   `manager_id` int(11) NOT NULL,
-  `championship_id` int(11) NOT NULL,
-  `win_date` date NOT NULL,
+  `from_date` date NOT NULL,
+  `to_date` date NOT NULL,
+  `contract` int(11) NOT NULL,
   `addition_info` text COLLATE utf8_unicode_ci,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
@@ -2838,6 +2842,13 @@ CREATE TABLE `team_history_coaches` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `team_history_coaches`
+--
+
+INSERT INTO `team_history_coaches` (`id`, `team_id`, `coach_id`, `from_date`, `to_date`, `contract`, `addition_info`, `updated_at`, `created_at`) VALUES
+(2, 29, 23, '2016-03-03', '2015-04-02', 20, 'لالا', '2016-08-31 08:38:58', '2016-08-31 08:20:17');
+
 -- --------------------------------------------------------
 
 --
@@ -3653,7 +3664,7 @@ ALTER TABLE `managers`
 ALTER TABLE `managment_championships`
   ADD PRIMARY KEY (`id`),
   ADD KEY `managment_id` (`manager_id`),
-  ADD KEY `championship_id` (`championship_id`);
+  ADD KEY `team_id` (`team_id`);
 
 --
 -- Indexes for table `matches`
@@ -4103,7 +4114,7 @@ ALTER TABLE `g_albums`
 -- AUTO_INCREMENT for table `g_album_photos`
 --
 ALTER TABLE `g_album_photos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `jminutes`
 --
@@ -4118,7 +4129,7 @@ ALTER TABLE `managers`
 -- AUTO_INCREMENT for table `managment_championships`
 --
 ALTER TABLE `managment_championships`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `matches`
 --
@@ -4288,7 +4299,7 @@ ALTER TABLE `team_groups`
 -- AUTO_INCREMENT for table `team_history_coaches`
 --
 ALTER TABLE `team_history_coaches`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `team_players`
 --
@@ -4465,7 +4476,7 @@ ALTER TABLE `managers`
 --
 ALTER TABLE `managment_championships`
   ADD CONSTRAINT `managment_championships_ibfk_1` FOREIGN KEY (`manager_id`) REFERENCES `managers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `managment_championships_ibfk_2` FOREIGN KEY (`championship_id`) REFERENCES `championships` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `managment_championships_ibfk_2` FOREIGN KEY (`team_id`) REFERENCES `teams` (`id`);
 
 --
 -- Constraints for table `matches`

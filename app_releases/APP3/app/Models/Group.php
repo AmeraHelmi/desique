@@ -4,7 +4,7 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class Group extends Eloquent {
 
-	protected $fillable= ['from_date','to_date','championship_id','name'];
+	protected $fillable= ['championship_id','name','addition_info','no_matches'];
 
 	//
 

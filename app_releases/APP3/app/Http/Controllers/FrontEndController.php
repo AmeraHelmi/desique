@@ -19,6 +19,10 @@ class FrontEndController extends Controller {
 	 {
 		
 	 }
+	 /**
+	 * Display a home page 
+	 * @return view <Front.index>
+	 */
 	public function index()
 	{
 		return view ('Front.index');

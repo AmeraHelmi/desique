@@ -70,7 +70,7 @@
             </div>
             <form role="form" id="update_form" method="POST" class="editForm" data-id="" action="{{ url('/analysis/update') }}" data-toggle="validator">
                 <div class="modal-body">
-                    @include('analysis.form')
+                    @include('analysis.formupdate')
                 </div>
                 <div class="modal-footer">
                     <button type="submit" id="submit" class="btn btn-primary">تحديث</button>
@@ -93,6 +93,27 @@
 $(function(){
 		$('#datetime12').combodate();
 });
+$(function(){
+		$('#datetime122').combodate();
+});
+function select_match(){
+$championship_id=$('#championship_id').val();
+$.ajax({
+		url: '{{ url('analysis/get_match') }}',
+		type: "POST",
+	data:{
+			championship_id:$championship_id
+		},
+		success:function(res)
+		{
+			$('#show_match').show();
+			$('#match').html(res);
+		},
+		error:function(){
+
+		}
+	});
+}
 </script>
 	<script type="text/javascript">
 	$(document).ready(function() {
@@ -186,7 +207,7 @@ $(function(){
 		 		                     $('.alerts-list').append(
 		 		                         '<li>\
 		 		                             <div class="alert alert-success alert-dismissable">\
-		 		                                 <i class="icon-check-sign"></i> Analysis has been successfully updated!\
+		 		                                 <i class="icon-check-sign"></i> تم تعديل التحليل بنجاح!\
 		 		                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\
 		 		                             </div>\
 		 		                         </li>');

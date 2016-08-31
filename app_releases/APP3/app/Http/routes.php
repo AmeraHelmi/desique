@@ -470,6 +470,7 @@ Route::resource('/users' ,'AdminController');
 
 //Analysis
 Route::POST    ('/analysis/store'          , array('as' => 'addanalysis','uses' => 'AnalysisController@store'));
+Route::POST    ('/analysis/get_match'          ,  'AnalysisController@get_match');
 Route::resource('/analysis' ,'AnalysisController');
 
 //reserve_players

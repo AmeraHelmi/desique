@@ -5,6 +5,7 @@ use App\Http\Requests;
 use App\Models\Match;
 use App\Models\Player_match;
 use App\Models\Team_player;
+use App\Models\Championship;
 use App\Models\Team;
 use App\Models\Discussion;
 use App\Models\Player;
@@ -26,11 +27,11 @@ public function __construct()
 	 $this->middleware('auth');
  }
  			/**
-			*@method [return view] [index]([[obj] [$Discussion],[obj] [$request]]) 
+			*@method [return view] [index]([[obj] [$Discussion],[obj] [$request]])
 			*[<to get data from 3 tables [matches,teams] in DB to get[Author,analysis_id,analysis_date,T1name,T2name] >]
-			*@param [obj] [$Discussion] 
-			*@param [obj] [$request] 
-			*@uses [Discussion,Request Model] 
+			*@param [obj] [$Discussion]
+			*@param [obj] [$request]
+			*@uses [Discussion,Request Model]
 			*@return [view] <'analysis.index'>
 			*/
 public function index(Discussion $Discussion , Request $request)
@@ -57,6 +58,7 @@ public function index(Discussion $Discussion , Request $request)
 
 	if($request->ajax())
 		return DatatablePresenter::make($tableData, 'index');
+		$champions=Championship::lists('name','id');
 		$match= new Match;
 		$matches = $match
 			 	->join('teams as team1', 'team1.id', '=', 'matches.team1_id')
@@ -67,9 +69,31 @@ public function index(Discussion $Discussion , Request $request)
 			 	->get();
 		return view('analysis.index')
 		->with('matches',$matches)
+		->with('championships',$champions)
 		->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	}
 
+	public function get_match(Request $request)
+	{
+		 		$championship_id = $request->championship_id;
+		    $matches = Match::where('champion_id','=',$championship_id)->get();
+				echo'<option value="selected"> اختر مباراة</option>';
+		 		foreach($matches as $row)
+		 		{
+						$team1_name=Team::where('id',$row->team1_id)->get(['name']);
+ 						$team2_name=Team::where('id',$row->team2_id)->get(['name']);
+						$arr=array();
+						foreach($team1_name as $tname)
+						{
+								$arr[0]=$tname->name;
+						}
+					  foreach($team2_name as $t2name)
+					  {
+						    $arr[1]=$t2name->name;
+					  }
+						echo'<option value='.$row->id.'> '. $arr[0] .'-'. $arr[1].' </option>';
+				 }
+	}
 
 	public function create()
 	{
@@ -78,10 +102,10 @@ public function index(Discussion $Discussion , Request $request)
 
 			/**
 			* Store a newly created resource in storage.
-			**@method [return response] [store]([[obj] [$request]]) 
+			**@method [return response] [store]([[obj] [$request]])
 			*[<to store data >]
-			*@param [obj] [$request] 
-			*@var [obj] [$Discussion] 
+			*@param [obj] [$request]
+			*@var [obj] [$Discussion]
 			*@uses [Request Model]
 			* @return Response
 			*/
@@ -100,19 +124,19 @@ public function index(Discussion $Discussion , Request $request)
 			}
 	}
 
-	
+
 	public function show($id)
 	{
 		//
 	}
 
 			/**
-			*@method [return response] [edit]([[obj] [$request],[int][$id]]) 
+			*@method [return response] [edit]([[obj] [$request],[int][$id]])
 			*[<show data to edit  >]
 			*@param [int] [$id]
 			*@param [obj] [$request]
 			*@var [obj] [$Discussion]
-			*@uses [Request Model] 
+			*@uses [Request Model]
 			*@return response
 			*/
 	public function edit(Request $request , $id)
@@ -127,7 +151,7 @@ public function index(Discussion $Discussion , Request $request)
 
 			/**
 			 * Update the specified resource in storage.
-			 **@method [return response] [update]([[obj] [$request],[int] [$id]]) 
+			 **@method [return response] [update]([[obj] [$request],[int] [$id]])
 			*[<to update data >]
 			 * @param  int  $id
 			 * @param  obj  $request
@@ -136,7 +160,6 @@ public function index(Discussion $Discussion , Request $request)
 	public function update(Request $request , $id)
  	{
 		$Discussion = Discussion::find($id);
-		$Discussion->match_id          = $request->match_id;
 		$Discussion->analysis          = $request->analysis;
 		$Discussion->Author            = Auth::user()->name;
 		$Discussion->analysis_date     = $request->analysis_date;
@@ -150,7 +173,7 @@ public function index(Discussion $Discussion , Request $request)
 
 			/**
 			 * Remove the specified resource from storage.
-			 *@method [return response] [destroy]([[int] [$id]]) 
+			 *@method [return response] [destroy]([[int] [$id]])
 			 *[<to delete data >]
 			 * @param  int  $id
 			 * @return Response

@@ -14,7 +14,7 @@ use Input;
 
 class MatchsponsorController extends Controller {
 
-	
+
 	public function __construct()
 	{
 	 	$this->middleware('auth');
@@ -51,12 +51,12 @@ class MatchsponsorController extends Controller {
 			->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	}
 
-	
+
 	public function create()
 	{
 	}
 
-	
+
 	public function store(Request $request)
 	{
 		$count = count($request->sponsor_id);
@@ -73,7 +73,7 @@ class MatchsponsorController extends Controller {
 	}
 
 
-	
+
 	public function show()
 	{
 	}
@@ -89,7 +89,7 @@ class MatchsponsorController extends Controller {
 		}
 	}
 
-	
+
 	public function update(Request $request , $id)
 	{
 		$count = count($request->sponsor_id);
@@ -100,7 +100,7 @@ class MatchsponsorController extends Controller {
 		$Msponsor->match_id          =$request->match_id;
 		$Msponsor->save();
 		}
-		if($request->ajax()
+		if($request->ajax())
 		{
 		return response(array('msg' => 'Adding Successfull'), 200)
 		->header('Content-Type', 'application/json');

@@ -7,7 +7,6 @@ class Commentor  extends Eloquent {
 
 	//
 	protected $fillable= [
-		'name','country_id','count','flag','city_id','nationality'
-];
+		'name','country_id','flag','city_id','nationality','birth_date','addition_info'];
 
 }

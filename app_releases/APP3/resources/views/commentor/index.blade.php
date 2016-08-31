@@ -87,7 +87,6 @@
 										<th class="col-md-1">أسم المدينه</th>
 										<th class="col-md-1">الصوره</th>
 										<th class="col-md-1">الجنسيه</th>
-										<th class="col-md-1">#likes</th>
 										<th class="col-md-1">خيارات</th>
 								</tr>
 						</thead>
@@ -99,7 +98,6 @@
 										<td>{{ $row->cityname }}</td>
 										<td>{!! $row->flag !!}</td>
 										<td>{{ $row->nationality }}</td>
-									  <td>{{ $row->count }}</td>
 										<td>{!!$row->actions !!}</td>
 								</tr>
 								@endforeach
@@ -157,6 +155,11 @@
 	@endsection
 
 	@section('scripts')
+	  <script>
+$(function(){
+    $('#datetime12').combodate();
+});
+</script>
 	<script src="http://malsup.github.com/jquery.form.js"></script>
 	<script type="text/javascript">
 	function selectCity(){
@@ -265,7 +268,6 @@ $(document).ready(function() {
 										{data: 'cityname', name: 'cityname'},
 										{data: 'flag', name: 'flag',orderable: false, searchable: false},
 										{data: 'nationality', name: 'nationality'},
-										{data: 'count', name: 'count'},
 										{data: 'actions', name: 'actions', orderable: false, searchable: false}
 								]
 							});

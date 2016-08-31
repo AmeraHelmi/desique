@@ -26,12 +26,7 @@ use App\Models\Corner;
 use App\Models\Error;
 use App\Models\Card;
 use App\Models\Goal;
-
-
-
-
 class Matchnowcontroller extends Controller {
-
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -58,9 +53,6 @@ class Matchnowcontroller extends Controller {
 					'T2.id as T2ID'
 				 ))
 				 ->where('date',date('Y-m-d'))->orderBy('match_id','desc')->get();
-
-
-
 		$matchnow= new Match;
 		$match_id = $matchnow->find($id);
 				 $match = $matchnow
@@ -92,15 +84,12 @@ class Matchnowcontroller extends Controller {
 			 ->where('matches.id',$id)->get();
 			 $players=Player::lists('name','id');
 			 $championships=Championship::lists('name','id');
-
-
 		   return view('Editor.now')
 			 ->with('match',$match)
 			   ->with('Allmatch',$Allmatch)
 			->with('championships',$championships)
 			->with('players',$players);
 	}
-
 	public function store(Request $request)
 	{
 	 $penlty = new Penlty;
@@ -109,35 +98,27 @@ class Matchnowcontroller extends Controller {
 	 $penlty->team_id            =$request->team_id;
 	 $penlty->time                =date('H:i:s');
    $penlty->save();
-
 	 $count_penaltyT1 = $penlty->where('match_id',$request->matchid)->where('team_id',$request->T1)->count();
 	 $count_penaltyT2 = $penlty->where('match_id',$request->matchid)->where('team_id',$request->T2)->count();
-
    $match = new Match;
 	 $match = $match->where('id',$request->matchid )->first();
 	 $match->team1_penalties =  $count_penaltyT1 ;
 	 $match->team2_penalties =  $count_penaltyT2 ;
-
    $match->save();
-
 	 return response(array('msg' => 'Adding Successfull'), 200)
 						 ->header('Content-Type', 'application/json');
 	}
-
 	public function getplayers(Request $request)
 	{
 		$team_id = $request->team_id;
 		$team_player = Team_player::where('team_id',$team_id)->get();
-
 		foreach($team_player as $row){
 			$player_name=Player::where('id',$row->player_id)->get(['name']);
 				foreach($player_name as $row2){
 					echo'<option value='.$row->player_id.'> '.$row2->name.' </option>';
 				}
 		}
-
 	}
-
 	public function offside(Request $request)
 	{
 	 $offside = new Offside;
@@ -146,22 +127,16 @@ class Matchnowcontroller extends Controller {
 	 $offside->team_id            =$request->team_id;
 	 $offside->time                =date('H:i:s');
    $offside->save();
-
 	 $count_offsideT1 = $offside->where('match_id',$request->matchid)->where('team_id',$request->T1)->count();
 	 $count_offsideT2 = $offside->where('match_id',$request->matchid)->where('team_id',$request->T2)->count();
-
    $match = new Match;
 	 $match = $match->where('id',$request->matchid )->first();
 	 $match->team1_offsides =  $count_offsideT1 ;
 	 $match->team2_offsides =  $count_offsideT2 ;
-
    $match->save();
-
 	 return response(array('msg' => 'Adding Successfull'), 200)
 						 ->header('Content-Type', 'application/json');
 	}
-
-
 		public function corner(Request $request)
 		{
 		 $corner = new Corner;
@@ -170,17 +145,13 @@ class Matchnowcontroller extends Controller {
 		 $corner->team_id            =$request->team_id;
 		 $corner->time                =date('H:i:s');
 	     $corner->save();
-
 		 $count_cornerT1 = $corner->where('match_id',$request->matchid)->where('team_id',$request->T1)->count();
 		 $count_cornerT2 = $corner->where('match_id',$request->matchid)->where('team_id',$request->T2)->count();
-
 	   $match = new Match;
 		 $match = $match->where('id',$request->matchid )->first();
 		 $match->team1_corners =  $count_cornerT1 ;
 		 $match->team2_corners =  $count_cornerT2 ;
-
 	   $match->save();
-
 		 return response(array('msg' => 'Adding Successfull'), 200)
 							 ->header('Content-Type', 'application/json');
 		}
@@ -192,17 +163,13 @@ class Matchnowcontroller extends Controller {
 		 $Psession->percent            =$request->percent;
 		 $Psession->time                =date('H:i:s');
 		 $Psession->save();
-
 		 $count_psessionT1 = $Psession->where('match_id',$request->matchid)->where('team_id',$request->T1)->sum('percent');
 		 $count_psessionT2 = $Psession->where('match_id',$request->matchid)->where('team_id',$request->T2)->sum('percent');
-
 		 $match = new Match;
 		 $match = $match->where('id',$request->matchid )->first();
 		 $match->team1_psessions =  $count_psessionT1 ;
 		 $match->team2_psessions =  $count_psessionT2 ;
-
 		 $match->save();
-
 		 return response(array('msg' => 'Adding Successfull'), 200)
 							 ->header('Content-Type', 'application/json');
 		}
@@ -214,21 +181,16 @@ class Matchnowcontroller extends Controller {
 		 $Error->team_id            =$request->team_id;
 		 $Error->time                =date('H:i:s');
 	   $Error->save();
-
 		 $count_errorT1 = $Error->where('match_id',$request->matchid)->where('team_id',$request->T1)->count();
 		 $count_errorT2 = $Error->where('match_id',$request->matchid)->where('team_id',$request->T2)->count();
-
 	   $match = new Match;
 		 $match = $match->where('id',$request->matchid )->first();
 		 $match->team1_errors =  $count_errorT1 ;
 		 $match->team2_errors =  $count_errorT2 ;
-
 	   $match->save();
-
 		 return response(array('msg' => 'Adding Successfull'), 200)
 							 ->header('Content-Type', 'application/json');
 		}
-
 		public function card(Request $request)
 		{
 		 $card = new Card;
@@ -238,17 +200,13 @@ class Matchnowcontroller extends Controller {
 		 $card->color              =$request->cardcolor;
 		 $card->time                =date('H:i:s');
 		 $card->save();
-
 		 $count_cardT1 = $card->where('match_id',$request->matchid)->where('team_id',$request->T1)->count();
 		 $count_cardT2 = $card->where('match_id',$request->matchid)->where('team_id',$request->T2)->count();
-
 		 $match = new Match;
 		 $match = $match->where('id',$request->matchid )->first();
 		 $match->team1_cards =  $count_cardT1 ;
 		 $match->team2_cards =  $count_cardT2 ;
-
 		 $match->save();
-
 		 return response(array('msg' => 'Adding Successfull'), 200)
 							 ->header('Content-Type', 'application/json');
 		}
@@ -263,21 +221,16 @@ class Matchnowcontroller extends Controller {
 		 $goal->type               =$request->type;
 		 $goal->time                =date('H:i:s');
 		 $goal->save();
-
 		 $count_goalT1 = $goal->where('match_id',$request->matchid)->where('team_id',$request->T1)->count();
 		 $count_goalT2 = $goal->where('match_id',$request->matchid)->where('team_id',$request->T2)->count();
-
 		 $match = new Match;
 		 $match = $match->where('id',$request->matchid )->first();
 		 $match->team1_goals =  $count_goalT1 ;
 		 $match->team2_goals =  $count_goalT2 ;
-
 		 $match->save();
-
 		 return response(array('msg' => 'Adding Successfull'), 200)
 							 ->header('Content-Type', 'application/json');
 		}
-
 	/**
 	 * Display the specified resource.
 	 *
@@ -292,11 +245,9 @@ class Matchnowcontroller extends Controller {
 		$match             = new Match;
 	  $team1_championship = Team_championship::where('team_id',$team1_id)->first();
 		$team2_championship2 = Team_championship::where('team_id',$team2_id)->first();
-
 		$championship_id = $match->where('id',$match_id)->first();
 		$t1goals = $match->where('team1_id',$team1_id)->first(['team1_goals']);
 		$t2goals = $match->where('team2_id',$team2_id)->first(['team2_goals']);
-
 		$team1_id             = $request->T1;
 		$team2_id             = $request->T2;
 		$match_id             = $request->match_id;
@@ -323,7 +274,6 @@ class Matchnowcontroller extends Controller {
         	    			$team2_championship2->team_id = $team2_id;
         	    			$team2_championship2->championship_id =$championship_id->champion_id;
         	    }
-
         	  if($t1goals->team1_goals == $t2goals->team2_goals){
         			$team1_championship->no_goals += $t1goals->team1_goals;
         			$team1_championship->no_points += 1;
@@ -331,8 +281,6 @@ class Matchnowcontroller extends Controller {
         			$team1_championship->no_winnes += 0;
         			$team1_championship->no_loses += 0;
         			$team1_championship->save();
-
-
         			$team2_championship2->no_goals += $t2goals->team2_goals;
          			$team2_championship2->no_points += 1;
         			$team2_championship2->no_draughts += 1;
@@ -341,7 +289,6 @@ class Matchnowcontroller extends Controller {
         			$team2_championship2->save();
        			 }
        			 else if($t1goals->team1_goals > $t2goals->team2_goals){
-
         			$team1_championship->no_goals += $t1goals->team1_goals;
         			$team1_championship->no_points += 3;
         			$team1_championship->no_draughts += 0;
@@ -356,14 +303,12 @@ class Matchnowcontroller extends Controller {
  			       	$team2_championship2->save();
       			  }
                    else {
-
         			$team1_championship->no_goals += $t1goals->team1_goals;
         			$team1_championship->no_points += 0;
         			$team1_championship->no_draughts += 0;
         			$team1_championship->no_winnes += 0;
         			$team1_championship->no_loses += 1;
         			$team1_championship->save();
-
        			 	$team2_championship2->no_goals += $t2goals->team2_goals;
        			  	$team2_championship2->no_points += 3;
       			  	$team2_championship2->no_draughts += 0;
@@ -371,9 +316,6 @@ class Matchnowcontroller extends Controller {
         			$team2_championship2->no_loses += 0;
         			$team2_championship2->save();
         }
-
-
-
         }
         else
         {
@@ -391,8 +333,6 @@ class Matchnowcontroller extends Controller {
         	    	$team2_championship2->team_id = $team2_id;
         	    	$team2_championship2->championship_id =$championship_id->champion_id;
         	    }
-
-
         	  if($t1goals->team1_goals == $t2goals->team2_goals){
         			$team1_championship->no_goals += $t1goals->team1_goals;
         			$team1_championship->no_points += 1;
@@ -400,8 +340,6 @@ class Matchnowcontroller extends Controller {
         			$team1_championship->no_winnes += 0;
         			$team1_championship->no_loses += 0;
         			$team1_championship->save();
-
-
         			$team2_championship2->no_goals += $t2goals->team2_goals;
          			$team2_championship2->no_points += 1;
         			$team2_championship2->no_draughts += 1;
@@ -410,7 +348,6 @@ class Matchnowcontroller extends Controller {
         			$team2_championship2->save();
        			 }
        			 else if($t1goals->team1_goals > $t2goals->team2_goals){
-
         			$team1_championship->no_goals += $t1goals->team1_goals;
         			$team1_championship->no_points += 3;
         			$team1_championship->no_draughts += 0;
@@ -425,14 +362,12 @@ class Matchnowcontroller extends Controller {
  			       	$team2_championship2->save();
       			  }
                    else {
-
         			$team1_championship->no_goals += $t1goals->team1_goals;
         			$team1_championship->no_points += 0;
         			$team1_championship->no_draughts += 0;
         			$team1_championship->no_winnes += 0;
         			$team1_championship->no_loses += 1;
         			$team1_championship->save();
-
        			 	$team2_championship2->no_goals += $t2goals->team2_goals;
        			  	$team2_championship2->no_points += 3;
       			  	$team2_championship2->no_draughts += 0;
@@ -440,15 +375,10 @@ class Matchnowcontroller extends Controller {
         			$team2_championship2->no_loses += 0;
         			$team2_championship2->save();
         }
-
-
-
         }
-
 		 return view('Editor.finish');
 	}
 }
-
 	/**
 	 * Show the form for editing the specified resource.
 	 *
@@ -459,7 +389,6 @@ class Matchnowcontroller extends Controller {
 	{
 		//
 	}
-
 	/**
 	 * Update the specified resource in storage.
 	 *
@@ -470,7 +399,6 @@ class Matchnowcontroller extends Controller {
 	{
 		//
 	}
-
 	/**
 	 * Remove the specified resource from storage.
 	 *
@@ -481,5 +409,4 @@ class Matchnowcontroller extends Controller {
 	{
 		//
 	}
-
 }

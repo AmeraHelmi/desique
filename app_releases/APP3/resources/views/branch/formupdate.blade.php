@@ -58,7 +58,10 @@
     <span class="fileupload-preview"></span>
     <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
   </div>
-
+<div class="form-group">
+<label for="exampleInputPassword1">معلومات أضافيه</label>
+<textarea rows="2" cols="30" name="addition_info" class="form-control"></textarea>
+</div>
   <div class="form-group" style="display:none;">
   <label for="exampleInputFile">pic path</label>
   <input type="text"

@@ -7,7 +7,6 @@ class Channel extends Eloquent {
 
 	//
 	protected $fillable= [
-		'name','frequency','flag'
-];
+		'name','frequency','flag','url','addition_info'];
 
 }

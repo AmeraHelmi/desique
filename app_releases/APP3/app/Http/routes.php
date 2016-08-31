@@ -192,20 +192,6 @@ Route::resource('/corner'                    , 'CornerController');
 
 
 
-
-
-
-
-//card
-
-
-
-Route::POST    ('/card/store'             , array('as' => 'addcard','uses' => 'CardController@store'));
-
-
-Route::resource('/card'                    , 'CardController');
-
-
 //error
 
 

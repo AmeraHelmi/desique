@@ -21,7 +21,7 @@ class AgentController extends Controller {
 	{
 		 $this->middleware('auth');
 	}
-				/**
+			/**
 			*@method [return view] [index]([[obj] [$agent],[obj] [$request]]) 
 			*[<to get data of agent [name,addition_info]>]
 			*@param [obj] [$agent] 

@@ -227,7 +227,7 @@ class Matchnowcontroller extends Controller {
 		return response(array('msg' => 'Adding Successfull'), 200)
 		->header('Content-Type', 'application/json');
 	}
-	
+
 	public function save(Request $request)
 	{
 		$team1_id = $request->T1;
@@ -293,7 +293,7 @@ class Matchnowcontroller extends Controller {
  			$team2_championship2->no_loses += 1;
  			$team2_championship2->save();
       		}
-        else 
+        else
         {
         	$team1_championship->no_goals += $t1goals->team1_goals;
         	$team1_championship->no_points += 0;
@@ -372,19 +372,19 @@ class Matchnowcontroller extends Controller {
         }
         }
 		 	return view('Editor.finish');
-		
+
 	}
 
 	public function edit($id)
 	{
 		//
 	}
-	
+
 	public function update($id)
 	{
 		//
 	}
-	
+
 	public function destroy($id)
 	{
 		//

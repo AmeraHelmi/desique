@@ -141,7 +141,6 @@ public function create()
 		}
 
 		$match->stadium_id          =$request->stadium_id;
-		$match->channel_id    	    =$request->channel_id;
 		$match->addition_info       =$request->addition_info;
 		$match->save();
 		$count = count($request->referees);
@@ -185,7 +184,6 @@ public function create()
 		$match 	= Match::find($id);
 		$match->stadium_id           =$request->stadium_id;
 		$match->addition_info        =$request->addition_info;
-		$match->channel_id           =$request->channel_id;
 		$match->type                 =$request->type;
 		if(isset($request->match_period))
 		{

@@ -154,6 +154,11 @@
 	@endsection
 
 	@section('scripts')
+  <script>
+$(function(){
+    $('#datetime1').combodate();
+});
+</script>
 	  <script src="http://malsup.github.com/jquery.form.js"></script>
 	<script type="text/javascript">
 	function selectCity(){

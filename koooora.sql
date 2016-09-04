@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 31, 2016 at 05:40 PM
+-- Generation Time: Sep 04, 2016 at 03:15 PM
 -- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.23
+-- PHP Version: 5.6.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -232,7 +232,8 @@ CREATE TABLE `championships` (
 
 INSERT INTO `championships` (`id`, `name`, `addition_info`, `no_matches`, `country_id`, `type`, `continent`, `start_date`, `end_date`, `ball_id`, `updated_at`, `created_at`) VALUES
 (5, 'دورى ابطال افريقيا', 'kkk', 44, 86, 'local', 'افريقيا', '2014-04-04', '2015-02-03', 2, '2016-08-24 07:11:50', '2016-08-24 07:11:50'),
-(6, 'alaa', 'jij', 4, 81, 'world', 'افريقيا', '2016-02-03', '2016-02-04', 2, '2016-08-24 07:12:39', '2016-08-24 07:12:31');
+(6, 'alaa', 'jij', 4, 81, 'world', 'افريقيا', '2016-02-03', '2016-02-04', 2, '2016-08-24 07:12:39', '2016-08-24 07:12:31'),
+(7, 'ييي', 'ققق', 3, 81, 'local', 'أوربا', '2017-03-02', '2017-02-03', 2, '2016-09-04 10:31:33', '2016-09-04 10:31:33');
 
 -- --------------------------------------------------------
 
@@ -1304,8 +1305,6 @@ CREATE TABLE `discussions` (
   `analysis` varchar(2000) NOT NULL,
   `Author` varchar(100) NOT NULL,
   `analysis_date` datetime NOT NULL,
-  `flag` text,
-  `vedio_url` text,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -1470,12 +1469,10 @@ CREATE TABLE `managers` (
   `name` varchar(150) CHARACTER SET utf8 NOT NULL,
   `from_date` date NOT NULL,
   `to_date` date NOT NULL,
-  `birth_date` date DEFAULT NULL,
   `role` varchar(150) CHARACTER SET utf8 NOT NULL,
   `job` varchar(150) CHARACTER SET utf8 DEFAULT NULL,
   `salary` int(11) DEFAULT NULL,
   `selection_type` varchar(150) CHARACTER SET utf8 NOT NULL,
-  `comment` varchar(250) CHARACTER SET utf8 DEFAULT NULL,
   `flag` varchar(150) CHARACTER SET utf8 DEFAULT NULL,
   `city_id` int(11) DEFAULT NULL,
   `country_id` int(11) NOT NULL,
@@ -1489,8 +1486,8 @@ CREATE TABLE `managers` (
 -- Dumping data for table `managers`
 --
 
-INSERT INTO `managers` (`id`, `name`, `from_date`, `to_date`, `birth_date`, `role`, `job`, `salary`, `selection_type`, `comment`, `flag`, `city_id`, `country_id`, `updated_at`, `created_at`, `team_id`, `addition_info`) VALUES
-(1, 'alaa', '0000-00-00', '0000-00-00', NULL, 'kkk', 'vvvvvvvvvvvvvvvvvvvvvvv', 44, 'Elected', 'njjj', '1471359332', 31, 109, '2016-08-16 12:55:45', '2016-08-16 12:55:32', NULL, NULL);
+INSERT INTO `managers` (`id`, `name`, `from_date`, `to_date`, `role`, `job`, `salary`, `selection_type`, `flag`, `city_id`, `country_id`, `updated_at`, `created_at`, `team_id`, `addition_info`) VALUES
+(1, 'alaa', '0000-00-00', '0000-00-00', 'kkk', 'vvvvvvvvvvvvvvvvvvvvvvv', 44, 'Elected', '1471359332', 31, 109, '2016-08-16 12:55:45', '2016-08-16 12:55:32', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1541,7 +1538,6 @@ CREATE TABLE `matches` (
   `champion_id` int(11) DEFAULT NULL,
   `stadium_id` int(11) NOT NULL,
   `addition_info` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `channel_id` int(11) DEFAULT NULL,
   `role` int(11) DEFAULT NULL,
   `type` text COLLATE utf8_unicode_ci,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -1552,9 +1548,10 @@ CREATE TABLE `matches` (
 -- Dumping data for table `matches`
 --
 
-INSERT INTO `matches` (`id`, `team1_id`, `team2_id`, `match_date`, `date`, `match_period`, `team1_goals`, `team2_goals`, `team1_corners`, `team2_corners`, `team1_offsides`, `team2_offsides`, `team1_errors`, `team2_errors`, `team1_cards`, `team2_cards`, `team1_psessions`, `team2_psessions`, `team1_penalties`, `team2_penalties`, `group_id`, `champion_id`, `stadium_id`, `addition_info`, `channel_id`, `role`, `type`, `updated_at`, `created_at`) VALUES
-(3, 8, 4, '2016-08-09 12:18:13', '2016-08-28', 90, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, NULL, NULL, 26, NULL, NULL, NULL, NULL, '2016-08-28 09:24:34', '0000-00-00 00:00:00'),
-(16, 16, 4, '2001-04-18 02:00:00', '2016-08-28', 90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, 23, 'aaa', NULL, NULL, NULL, '2016-08-28 09:22:31', '2016-08-21 10:00:59');
+INSERT INTO `matches` (`id`, `team1_id`, `team2_id`, `match_date`, `date`, `match_period`, `team1_goals`, `team2_goals`, `team1_corners`, `team2_corners`, `team1_offsides`, `team2_offsides`, `team1_errors`, `team2_errors`, `team1_cards`, `team2_cards`, `team1_psessions`, `team2_psessions`, `team1_penalties`, `team2_penalties`, `group_id`, `champion_id`, `stadium_id`, `addition_info`, `role`, `type`, `updated_at`, `created_at`) VALUES
+(3, 8, 4, '2016-08-09 12:18:13', '2016-08-28', 90, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, NULL, NULL, 26, NULL, NULL, NULL, '2016-08-28 09:24:34', '0000-00-00 00:00:00'),
+(16, 16, 4, '2001-04-18 02:00:00', '2016-08-28', 90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, 23, 'aaa', NULL, NULL, '2016-08-28 09:22:31', '2016-08-21 10:00:59'),
+(17, 32, 33, '2003-10-16 10:50:00', '2003-10-16', 90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'الاسبوع1', NULL, 22, 'rrrr', NULL, 'دورى', '2016-09-04 06:13:53', '2016-09-04 06:13:53');
 
 -- --------------------------------------------------------
 
@@ -1607,7 +1604,8 @@ CREATE TABLE `match_referees` (
 --
 
 INSERT INTO `match_referees` (`id`, `match_id`, `referee_id`, `addition_info`, `updated_at`, `created_at`) VALUES
-(7, 16, 2, NULL, '2016-08-21 10:00:59', '2016-08-21 10:00:59');
+(7, 16, 2, NULL, '2016-08-21 10:00:59', '2016-08-21 10:00:59'),
+(8, 17, 2, NULL, '2016-09-04 06:13:53', '2016-09-04 06:13:53');
 
 -- --------------------------------------------------------
 
@@ -1693,44 +1691,6 @@ CREATE TABLE `minutes` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nationcloths`
---
-
-CREATE TABLE `nationcloths` (
-  `id` int(11) NOT NULL,
-  `nation_id` int(11) NOT NULL,
-  `principle_cloths` varchar(150) CHARACTER SET utf8 NOT NULL,
-  `reserve_cloths` varchar(150) CHARACTER SET utf8 DEFAULT NULL,
-  `reserve2_cloths` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `practise_cloths` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `addition_info` text COLLATE utf8_unicode_ci,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `nations`
---
-
-CREATE TABLE `nations` (
-  `id` int(11) NOT NULL,
-  `country_id` int(11) NOT NULL,
-  `continent` varchar(150) CHARACTER SET utf8 NOT NULL,
-  `start_date` date DEFAULT NULL,
-  `slogan` varchar(150) CHARACTER SET utf8 DEFAULT NULL,
-  `flag` varchar(150) CHARACTER SET utf8 NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `nickname` varchar(150) CHARACTER SET utf8 DEFAULT NULL,
-  `stadium_id` int(11) DEFAULT NULL,
-  `addition_info` text COLLATE utf8_unicode_ci
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `nation_history_coachs`
 --
 
@@ -1746,22 +1706,6 @@ CREATE TABLE `nation_history_coachs` (
   `role` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `addition_info` text COLLATE utf8_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `ncomments`
---
-
-CREATE TABLE `ncomments` (
-  `id` int(11) NOT NULL,
-  `new_id` int(11) NOT NULL,
-  `comment` text NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -2546,27 +2490,29 @@ CREATE TABLE `referees` (
   `flag` varchar(150) CHARACTER SET utf8 NOT NULL,
   `country_id` int(11) NOT NULL,
   `city_id` int(11) DEFAULT NULL,
+  `role` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `additional_info` varchar(10000) COLLATE utf8_unicode_ci NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `additional_info` varchar(10000) COLLATE utf8_unicode_ci NOT NULL
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `referees`
 --
 
-INSERT INTO `referees` (`id`, `name`, `job`, `birth_date`, `flag`, `country_id`, `city_id`, `updated_at`, `created_at`, `additional_info`) VALUES
-(1, 'نيكولا ريتزولي', 'مهندس معماري', '0000-00-00', '1464260215', 97, 820, '2016-05-26 10:14:06', '2016-05-26 08:56:55', 'نيكولا ريتزولي (بالإنجليزية: Nicola Rizzoli) (مواليد 5 أكتوبر 1971) حكم كرة قدم إيطالي. بدأ مسيرته التحكيمية في الدرجة الأولى سنة 2002 ثم قرر الاتحاد الدولي لكرة القدم اعتماده حكما دوليا في سنة 2007. في يونيو 2009 قرر الاتحاد الأوروبي لكرة القدم تصعيد ريتزولي إلى حكام النخبة الذين يستطيعون إدارة المباريات الصعبة وأبرز المباريات التي تم اسنادها إليه إياب الدور الربع النهائي بين مانشستر يونايتد الإنجليزي وبايرن ميونخ الألماني في دوري أبطال أوروبا 2009-2010 حيث شهدت المباراة طرد الظهير البرازيلي الأيمن لمانشستر رافاييل لتنتهي المباراة بخساره بايرن ميونخ 3-2 و الفوز في المجموع 4-4 بقانون الأهداف خارج الأرض.\r\n\r\nأهم مباراة أدارها: مباراة الذهاب في اليوروباليغ 2016 بين بوروسيا دورتموند وتوتنهام\r\n'),
-(2, 'مارتين أتكينسون', 'لا يوجد', '0000-00-00', '1464261589', 87, 253, '2016-05-26 10:13:05', '2016-05-26 09:19:49', 'ولد في برادفورد ولكنه يقيم الآن في ليدز، يوركشاير. وبدأ حياته المهنية في سن مبكرة حينما كان يبلغ من العمر 16 عاما. وفي سنة 1998 تم ترقيته ليصبح ضمن لائحة الحكام المساعدين.\r\nأول مباراة يديرها اتكينسون في الدوري الإنجليزي كانت في 20 إبريل 2005، بين فريقا مانشستر سيتي وبرمنغهام. وفي يوم 13 أغسطس 2006 تولى اتكينسون نهائي بطولة درع اتحاد كرة القدم الإنجليزي (كوميونيتي شيلد) على استاد الالفية في كارديف، حيث فاز نادي ليفربول على تشلسي 2-1. وفي نفس العام تم تعيينه في لائحة الفيفا للحكام (الشارة الدولية)\r\n\r\n\r\nأهم مباراة أدارها : نهائي كأس الإتحاد الإنجليزي 2014 بين مانشستر سيتي وسندرلاند\r\n'),
-(6, 'شونيت شاكير', 'عميل تأمين', '0000-00-00', '1464263671', 95, 280, '2016-05-26 09:54:31', '2016-05-26 09:42:24', 'هو حكم كرة قدم دولي تركي. وهو من بين حكام النخبة في الاتحاد الأوروبي لكرة القدم. أدار عدد من المباريات في بطولات شهيرة مثل كأس العالم للشباب 2011 ومباراة نصف النهائي في دوري أبطال أوروبا بين برشلونة وتشيلسي.\r\nوصلات خارجية\r\nمواليد:23 نوفمبر 1976 (العمر 39 سنة)'),
-(7, 'مارك كلاتينبرج', 'مهندس كهربائي', '0000-00-00', '1464263290', 87, 167, '2016-05-26 09:48:10', '2016-05-26 09:48:10', 'أهم مباراة أدارها : المباراة النهائية في أوليمبياد 2012 بين البرازيل والمكسيك\r\n'),
-(10, 'أوفيديو هاتيجان', 'طبيب', '0000-00-00', '1464265128', 86, 80, '2016-05-26 10:18:48', '2016-05-26 10:18:48', 'سنة اعتماده دوليا	: 2008\r\nأهم مباراة أدارها\r\n مباراة الإياب في الشامبيونزليغ في 2016 بين مانشستر سيتي ودينامو كييف\r\n'),
-(11, 'سيرجي كاراسيف', 'لا يوجد', '0000-00-00', '1464266069', 89, 822, '2016-05-26 10:34:29', '2016-05-26 10:34:29', 'سنة اعتماده دوليا: 2010		\r\nأهم مباراة أدارها\r\nمباراة الإياب في الشامبيونزليغ في 2016 بين برشلونة وآرسنال\r\n'),
-(12, 'بافل كرالوفيتش', 'مهندس', '0000-00-00', '1464266272', 94, 470, '2016-05-26 10:37:52', '2016-05-26 10:37:52', 'اعتمده الفيفا كحكم دولي منذ عام 2005.\r\nاختير ليكون ضمن قائمة الحكام لمباريات كأس العالم للناشئين تحت 17 سنة 2011 في المكسيك.'),
-(13, 'سايمون مارسينياك', 'رجل اعمال', '0000-00-00', '1464267140', 92, 823, '2016-05-26 10:52:20', '2016-05-26 10:52:20', 'أهم مباراة أدارها\r\nمواجهة الإياب في الشامبيونزليغ 2016 بين روما وريال مدريد\r\n'),
-(16, 'دامير سكومينا', 'مشرف سياحي', '0000-00-00', '1464269343', 138, 826, '2016-05-26 11:29:03', '2016-05-26 11:29:03', 'أهم مباراة أدارها سكومينا كانت بين البرازيل و الكاميرون في الدور الربع النهائي من دورة الألعاب الأولمبية 2008 التي أقيمت في العاصمة الصينية بكين .\r\nو السوبر الأوروبي في 2012 بين تشيلسي وأتلتيكو مدريد'),
-(17, 'كليمنت توربين', 'لايوجد', '0000-00-00', '1464269661', 81, 35, '2016-05-26 11:34:21', '2016-05-26 11:34:21', 'أهم مباراة أدارها\r\nمواجهة بوروسيا مونشنغلادباخ ومانشستر سيتي في دور المجموعات من بطولة الشامبيونزليغ\r\n 2016\r\nسنة اعتمادة دوليا :2010\r\n\r\n'),
-(21, 'بيورن كويبرس', 'لايوجد', '0000-00-00', '1464270215', 99, 828, '2016-05-26 11:43:35', '2016-05-26 11:43:35', 'بيورن كويبرس (مواليد 28 مارس 1973) هو حكم كرة قدم هولندي. يدير الحكم عدة مباريات في الدوري الهولندي الممتاز، الدوري الأوروبي ودوري أبطال أوروبا. وقد اختاره الاتحاد الأوروبي لكرة القدم للتحكيم في كأس أمم أوروبا 2012. وهو من بين حكام النخبة بليويفا. قرر الاتحاد الدولي لكرة القدم اعتماده حكما دوليا في سنة 2006.');
+INSERT INTO `referees` (`id`, `name`, `job`, `birth_date`, `flag`, `country_id`, `city_id`, `role`, `additional_info`, `updated_at`, `created_at`) VALUES
+(1, 'نيكولا ريتزولي', 'مهندس معماري', '0000-00-00', '1464260215', 97, 820, '', 'نيكولا ريتزولي (بالإنجليزية: Nicola Rizzoli) (مواليد 5 أكتوبر 1971) حكم كرة قدم إيطالي. بدأ مسيرته التحكيمية في الدرجة الأولى سنة 2002 ثم قرر الاتحاد الدولي لكرة القدم اعتماده حكما دوليا في سنة 2007. في يونيو 2009 قرر الاتحاد الأوروبي لكرة القدم تصعيد ريتزولي إلى حكام النخبة الذين يستطيعون إدارة المباريات الصعبة وأبرز المباريات التي تم اسنادها إليه إياب الدور الربع النهائي بين مانشستر يونايتد الإنجليزي وبايرن ميونخ الألماني في دوري أبطال أوروبا 2009-2010 حيث شهدت المباراة طرد الظهير البرازيلي الأيمن لمانشستر رافاييل لتنتهي المباراة بخساره بايرن ميونخ 3-2 و الفوز في المجموع 4-4 بقانون الأهداف خارج الأرض.\r\n\r\nأهم مباراة أدارها: مباراة الذهاب في اليوروباليغ 2016 بين بوروسيا دورتموند وتوتنهام\r\n', '2016-05-26 10:14:06', '2016-05-26 08:56:55'),
+(2, 'مارتين أتكينسون', 'لا يوجد', '0000-00-00', '1464261589', 87, 253, '', 'ولد في برادفورد ولكنه يقيم الآن في ليدز، يوركشاير. وبدأ حياته المهنية في سن مبكرة حينما كان يبلغ من العمر 16 عاما. وفي سنة 1998 تم ترقيته ليصبح ضمن لائحة الحكام المساعدين.\r\nأول مباراة يديرها اتكينسون في الدوري الإنجليزي كانت في 20 إبريل 2005، بين فريقا مانشستر سيتي وبرمنغهام. وفي يوم 13 أغسطس 2006 تولى اتكينسون نهائي بطولة درع اتحاد كرة القدم الإنجليزي (كوميونيتي شيلد) على استاد الالفية في كارديف، حيث فاز نادي ليفربول على تشلسي 2-1. وفي نفس العام تم تعيينه في لائحة الفيفا للحكام (الشارة الدولية)\r\n\r\n\r\nأهم مباراة أدارها : نهائي كأس الإتحاد الإنجليزي 2014 بين مانشستر سيتي وسندرلاند\r\n', '2016-05-26 10:13:05', '2016-05-26 09:19:49'),
+(6, 'شونيت شاكير', 'عميل تأمين', '0000-00-00', '1464263671', 95, 280, '', 'هو حكم كرة قدم دولي تركي. وهو من بين حكام النخبة في الاتحاد الأوروبي لكرة القدم. أدار عدد من المباريات في بطولات شهيرة مثل كأس العالم للشباب 2011 ومباراة نصف النهائي في دوري أبطال أوروبا بين برشلونة وتشيلسي.\r\nوصلات خارجية\r\nمواليد:23 نوفمبر 1976 (العمر 39 سنة)', '2016-05-26 09:54:31', '2016-05-26 09:42:24'),
+(7, 'مارك كلاتينبرج', 'مهندس كهربائي', '0000-00-00', '1464263290', 87, 167, '', 'أهم مباراة أدارها : المباراة النهائية في أوليمبياد 2012 بين البرازيل والمكسيك\r\n', '2016-05-26 09:48:10', '2016-05-26 09:48:10'),
+(10, 'أوفيديو هاتيجان', 'طبيب', '0000-00-00', '1464265128', 86, 80, '', 'سنة اعتماده دوليا	: 2008\r\nأهم مباراة أدارها\r\n مباراة الإياب في الشامبيونزليغ في 2016 بين مانشستر سيتي ودينامو كييف\r\n', '2016-05-26 10:18:48', '2016-05-26 10:18:48'),
+(11, 'سيرجي كاراسيف', 'لا يوجد', '0000-00-00', '1464266069', 89, 822, '', 'سنة اعتماده دوليا: 2010		\r\nأهم مباراة أدارها\r\nمباراة الإياب في الشامبيونزليغ في 2016 بين برشلونة وآرسنال\r\n', '2016-05-26 10:34:29', '2016-05-26 10:34:29'),
+(12, 'بافل كرالوفيتش', 'مهندس', '0000-00-00', '1464266272', 94, 470, '', 'اعتمده الفيفا كحكم دولي منذ عام 2005.\r\nاختير ليكون ضمن قائمة الحكام لمباريات كأس العالم للناشئين تحت 17 سنة 2011 في المكسيك.', '2016-05-26 10:37:52', '2016-05-26 10:37:52'),
+(13, 'سايمون مارسينياك', 'رجل اعمال', '0000-00-00', '1464267140', 92, 823, '', 'أهم مباراة أدارها\r\nمواجهة الإياب في الشامبيونزليغ 2016 بين روما وريال مدريد\r\n', '2016-05-26 10:52:20', '2016-05-26 10:52:20'),
+(16, 'دامير سكومينا', 'مشرف سياحي', '0000-00-00', '1464269343', 138, 826, '', 'أهم مباراة أدارها سكومينا كانت بين البرازيل و الكاميرون في الدور الربع النهائي من دورة الألعاب الأولمبية 2008 التي أقيمت في العاصمة الصينية بكين .\r\nو السوبر الأوروبي في 2012 بين تشيلسي وأتلتيكو مدريد', '2016-05-26 11:29:03', '2016-05-26 11:29:03'),
+(17, 'كليمنت توربين', 'لايوجد', '0000-00-00', '1464269661', 81, 35, '', 'أهم مباراة أدارها\r\nمواجهة بوروسيا مونشنغلادباخ ومانشستر سيتي في دور المجموعات من بطولة الشامبيونزليغ\r\n 2016\r\nسنة اعتمادة دوليا :2010\r\n\r\n', '2016-05-26 11:34:21', '2016-05-26 11:34:21'),
+(21, 'بيورن كويبرس', 'لايوجد', '0000-00-00', '1464270215', 99, 828, '', 'بيورن كويبرس (مواليد 28 مارس 1973) هو حكم كرة قدم هولندي. يدير الحكم عدة مباريات في الدوري الهولندي الممتاز، الدوري الأوروبي ودوري أبطال أوروبا. وقد اختاره الاتحاد الأوروبي لكرة القدم للتحكيم في كأس أمم أوروبا 2012. وهو من بين حكام النخبة بليويفا. قرر الاتحاد الدولي لكرة القدم اعتماده حكما دوليا في سنة 2006.', '2016-05-26 11:43:35', '2016-05-26 11:43:35'),
+(22, 'alaa', 'alaa', '2017-02-02', '1472993354', 85, 63, 'حكم 1', 'aa', '2016-09-04 10:49:14', '2016-09-04 10:49:14');
 
 -- --------------------------------------------------------
 
@@ -2642,7 +2588,6 @@ CREATE TABLE `sponsors` (
   `name` varchar(150) CHARACTER SET utf8 NOT NULL,
   `flag` varchar(150) CHARACTER SET utf8 DEFAULT NULL,
   `url` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `addition_info` text COLLATE utf8_unicode_ci,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -2651,14 +2596,14 @@ CREATE TABLE `sponsors` (
 -- Dumping data for table `sponsors`
 --
 
-INSERT INTO `sponsors` (`id`, `name`, `flag`, `url`, `addition_info`, `updated_at`, `created_at`) VALUES
-(1, 'Hisense', '1463753102', 'http://global.hisense.com/', NULL, '2016-05-21 10:28:48', '2016-05-20 10:05:03'),
-(2, 'Orange', '1463753121', 'http://www.orange.com/fr/Euro/Orange-partenaire-global-de-l-UEFA-EURO-2016', NULL, '2016-05-21 10:29:45', '2016-05-20 10:05:21'),
-(3, 'macdonalds', '1463753182', 'http://www.aboutmcdonalds.com/mcd/country/map.html', NULL, '2016-05-21 10:30:09', '2016-05-20 10:06:22'),
-(4, 'Carlsberg', '1463753335', 'http://www.carlsberg.com/', NULL, '2016-05-21 10:27:06', '2016-05-20 10:08:55'),
-(5, 'Coca cola', '1463753525', 'http://www.coca-cola.com/global/glp.html', NULL, '2016-05-21 10:29:21', '2016-05-20 10:12:05'),
-(6, 'Hyundai', '1464693466', 'http://worldwide.hyundai.com/WW/Main/index.html', NULL, '2016-05-31 10:17:46', '2016-05-20 10:25:02'),
-(8, 'socar', '1463918739', 'http://www.socar.az/socar/en/home', NULL, '2016-05-22 08:05:39', '2016-05-22 08:05:39');
+INSERT INTO `sponsors` (`id`, `name`, `flag`, `url`, `updated_at`, `created_at`) VALUES
+(1, 'Hisense', '1463753102', 'http://global.hisense.com/', '2016-05-21 10:28:48', '2016-05-20 10:05:03'),
+(2, 'Orange', '1463753121', 'http://www.orange.com/fr/Euro/Orange-partenaire-global-de-l-UEFA-EURO-2016', '2016-05-21 10:29:45', '2016-05-20 10:05:21'),
+(3, 'macdonalds', '1463753182', 'http://www.aboutmcdonalds.com/mcd/country/map.html', '2016-05-21 10:30:09', '2016-05-20 10:06:22'),
+(4, 'Carlsberg', '1463753335', 'http://www.carlsberg.com/', '2016-05-21 10:27:06', '2016-05-20 10:08:55'),
+(5, 'Coca cola', '1463753525', 'http://www.coca-cola.com/global/glp.html', '2016-05-21 10:29:21', '2016-05-20 10:12:05'),
+(6, 'Hyundai', '1464693466', 'http://worldwide.hyundai.com/WW/Main/index.html', '2016-05-31 10:17:46', '2016-05-20 10:25:02'),
+(8, 'socar', '1463918739', 'http://www.socar.az/socar/en/home', '2016-05-22 08:05:39', '2016-05-22 08:05:39');
 
 -- --------------------------------------------------------
 
@@ -2726,7 +2671,6 @@ CREATE TABLE `teamcloths` (
   `reserve_cloths` varchar(150) CHARACTER SET utf8 DEFAULT NULL,
   `reserve2_cloths` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `practise_cloths` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `addition_info` text COLLATE utf8_unicode_ci,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -2735,8 +2679,8 @@ CREATE TABLE `teamcloths` (
 -- Dumping data for table `teamcloths`
 --
 
-INSERT INTO `teamcloths` (`id`, `team_id`, `principle_cloths`, `reserve_cloths`, `reserve2_cloths`, `practise_cloths`, `addition_info`, `updated_at`, `created_at`) VALUES
-(1, 32, '1471363234', '1471363234', '1471363234', '1471363234', NULL, '2016-08-16 14:00:34', '2016-08-16 14:00:34');
+INSERT INTO `teamcloths` (`id`, `team_id`, `principle_cloths`, `reserve_cloths`, `reserve2_cloths`, `practise_cloths`, `updated_at`, `created_at`) VALUES
+(1, 32, '1471363234', '1471363234', '1471363234', '1471363234', '2016-08-16 14:00:34', '2016-08-16 14:00:34');
 
 -- --------------------------------------------------------
 
@@ -2789,7 +2733,8 @@ INSERT INTO `teams` (`id`, `name`, `slogan`, `flag`, `flag2`, `country_id`, `sta
 (32, 'test', 'aa', '1471255752', '1471255752', 85, 0, 'asd', 'afrika', 0, 2004, 'نادى', NULL, '2016-08-15 08:09:12', '2016-08-15 08:09:12'),
 (33, 'aaa', 'aa', '1471256002', '1471256002', 85, NULL, 'aa', 'afrika', NULL, 2001, 'نادى', NULL, '2016-08-15 08:13:22', '2016-08-15 08:13:22'),
 (35, 'xx', 'aa', '1471360483', '1471360484', 81, 3, 'jjj', 'افريقيا', 45, 2002, 'منتخب', 1, '2016-08-16 13:14:41', '2016-08-16 13:00:10'),
-(36, 'asd', 'asden', '1471448612', '1471448612', 81, 4, 'asd', 'اوربا', 14, 2010, 'نادى', 1, '2016-08-17 13:43:32', '2016-08-17 13:43:32');
+(36, 'asd', 'asden', '1471448612', '1471448612', 81, 4, 'asd', 'اوربا', 14, 2010, 'نادى', 1, '2016-08-17 13:43:32', '2016-08-17 13:43:32'),
+(37, 'سسس', 'سس', '1472992152', '1472992152', 81, 3, 'سسس', 'أوربا', 41, 2002, 'منتخب', 1, '2016-09-04 10:29:12', '2016-09-04 10:29:12');
 
 -- --------------------------------------------------------
 
@@ -2861,6 +2806,13 @@ CREATE TABLE `team_history_coaches` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `team_history_coaches`
+--
+
+INSERT INTO `team_history_coaches` (`id`, `team_id`, `coach_id`, `from_date`, `to_date`, `contract`, `addition_info`, `updated_at`, `created_at`) VALUES
+(0, 32, 23, '2016-02-03', '2016-04-05', 50, 'bbbbbbbbbbbbb', '2016-09-01 06:35:22', '2016-09-01 06:35:11');
 
 -- --------------------------------------------------------
 
@@ -3378,12 +3330,12 @@ CREATE TABLE `team_sponsors` (
   `id` int(11) NOT NULL,
   `team_id` int(11) DEFAULT NULL,
   `sponsor_id` int(11) NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `from_date` date DEFAULT NULL,
   `to_date` date DEFAULT NULL,
   `amount` int(11) DEFAULT NULL,
-  `addition_info` text COLLATE utf8_unicode_ci
+  `addition_info` text COLLATE utf8_unicode_ci,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -3393,7 +3345,7 @@ CREATE TABLE `team_sponsors` (
 --
 
 CREATE TABLE `users` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(255) CHARACTER SET utf8 NOT NULL,
   `email` varchar(255) CHARACTER SET utf8 NOT NULL,
   `password` varchar(60) CHARACTER SET utf8 NOT NULL,
@@ -3408,9 +3360,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `role`) VALUES
-(2, 'lames', 'lames@lames.com', '$2y$10$d8WHCeFB2GbdeVSABCHUr.IQmMt.v4tXzr32iOEUfh9NTdl0rReFO', 'k6V1I0OS8Hwurgr4xiZIPquTukxVgMBsk1Qnjqx8arjTbyk0RTBi3QfXb45X', '2016-05-11 06:01:54', '2016-08-28 09:26:54', 'Editor'),
-(3, 'alaa', 'alaa@yahoo.com', '$2y$10$BKmcSsvjypRF/Xjm4LSaL./osSpNt/FbUYLu.Ik1AKC05VO2ldVue', 'CER5uv1EU9R6n9GB9wcOA9LoDO3Aq49uPVn7mGD5SAcBqa41ZgXdPzNEYN0l', '2016-05-11 06:04:22', '2016-08-23 09:58:17', 'Admin'),
-(4, 'mohaned', 'm.fouad.developer@gmail.com', '$2y$10$BKmcSsvjypRF/Xjm4LSaL./osSpNt/FbUYLu.Ik1AKC05VO2ldVue', 'Gk0kJVlR266TqTOCRdaavRQo5FgskBsODY36Rbuzxx6upXXeP5fFVn8u6Xmt', '2016-05-15 13:23:10', '2016-05-24 09:37:59', 'ِAnalyiser'),
+(2, 'lames', 'lames@lames.com', '$2y$10$d8WHCeFB2GbdeVSABCHUr.IQmMt.v4tXzr32iOEUfh9NTdl0rReFO', 'ggnrMf2LwsGuWuW7ZaOYFXqjYaKhXZBEJ07Jo1fim9OvVTileJHtTKY3lyf2', '2016-05-11 06:01:54', '2016-09-04 10:11:57', 'Editor'),
+(3, 'alaa', 'alaa@yahoo.com', '$2y$10$BKmcSsvjypRF/Xjm4LSaL./osSpNt/FbUYLu.Ik1AKC05VO2ldVue', 'EcVOzw4ssmbbkNa1b7OmianmZV1MqOQbruOVf1DT0TVsl2rBR7btGQ4icN5X', '2016-05-11 06:04:22', '2016-09-04 10:10:48', 'Admin'),
+(4, 'mohaned', 'm.fouad.developer@gmail.com', '$2y$10$BKmcSsvjypRF/Xjm4LSaL./osSpNt/FbUYLu.Ik1AKC05VO2ldVue', 'AFtDw748GdoVIzrQkQ8pO4p5Zq18qqAUawomI3NdFHqXMp2U777cc7GMbIYi', '2016-05-15 13:23:10', '2016-09-04 08:08:54', 'ِAnalyiser'),
 (5, 'amera', 'amera.elsayed6@gmail.com', '$2y$10$5Itr3pLJTdM4SI0GMeB.f.WWIoa2FOh1gPs1HCKRchuDIQdmJd9g.', '4cgjartVEo98RoSrvlqQwLfw9lE13f0N2zdty4CR7WEWsLLJ2dRTyquSEXjJ', '2016-05-16 06:25:55', '2016-05-16 08:57:47', 'Admin'),
 (6, 'reham mohamed', 'rehammohamed@brother-group.net', '$2y$10$BR2q0F5Ujf/g4AhHvVP1dOStRzgA1YSuAqWONQCoKQD1dnTErhb.G', 'zlBAVfXZ3xNFXkJtrSRhIyDSyXeO2FOpOaSFhao5gDsjFgGuB8ymifrT6miF', '2016-05-16 08:27:45', '2016-06-02 12:56:25', 'Data Entry'),
 (7, 'soaad elattar ', 'SOSO_MOSTAFA2012@HOTMAIL.COM', '$2y$10$5DNUW.mPGbC4jUA9qtd/MOly/hhkSQjz3H4xZ31Uuq7I9PDolPIYO', 'eOqwsPCynpxZZ7bK4wG8QcYO6N08vuMA4wRXvjGKcBhqa6gHLERYYJlR1RU3', '2016-05-17 12:03:04', '2016-05-29 14:48:07', 'Data Entry'),
@@ -3692,8 +3644,7 @@ ALTER TABLE `matches`
   ADD KEY `team1_id` (`team1_id`),
   ADD KEY `team2_id` (`team2_id`),
   ADD KEY `champion_id` (`champion_id`) USING BTREE,
-  ADD KEY `stadium_id` (`stadium_id`),
-  ADD KEY `channel_id` (`channel_id`);
+  ADD KEY `stadium_id` (`stadium_id`);
 
 --
 -- Indexes for table `match_channels`
@@ -3744,35 +3695,12 @@ ALTER TABLE `minutes`
   ADD KEY `match_id` (`match_id`);
 
 --
--- Indexes for table `nationcloths`
---
-ALTER TABLE `nationcloths`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `nation_id` (`nation_id`);
-
---
--- Indexes for table `nations`
---
-ALTER TABLE `nations`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `country_id` (`country_id`),
-  ADD KEY `stadium_id` (`stadium_id`),
-  ADD KEY `stadium_id_2` (`stadium_id`);
-
---
 -- Indexes for table `nation_history_coachs`
 --
 ALTER TABLE `nation_history_coachs`
   ADD PRIMARY KEY (`id`),
   ADD KEY `nation_id` (`nation_id`),
   ADD KEY `coach_id` (`coach_id`);
-
---
--- Indexes for table `ncomments`
---
-ALTER TABLE `ncomments`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `new_id` (`new_id`);
 
 --
 -- Indexes for table `offsides`
@@ -4056,7 +3984,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `championships`
 --
 ALTER TABLE `championships`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `championship_sponsors`
 --
@@ -4146,7 +4074,7 @@ ALTER TABLE `managers`
 -- AUTO_INCREMENT for table `matches`
 --
 ALTER TABLE `matches`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `match_channels`
 --
@@ -4161,7 +4089,7 @@ ALTER TABLE `match_commentors`
 -- AUTO_INCREMENT for table `match_referees`
 --
 ALTER TABLE `match_referees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `match_sponsors`
 --
@@ -4178,24 +4106,9 @@ ALTER TABLE `members`
 ALTER TABLE `minutes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `nationcloths`
---
-ALTER TABLE `nationcloths`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `nations`
---
-ALTER TABLE `nations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `nation_history_coachs`
 --
 ALTER TABLE `nation_history_coachs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `ncomments`
---
-ALTER TABLE `ncomments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `offsides`
@@ -4206,7 +4119,7 @@ ALTER TABLE `offsides`
 -- AUTO_INCREMENT for table `pcomments`
 --
 ALTER TABLE `pcomments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `penlties`
 --
@@ -4256,7 +4169,7 @@ ALTER TABLE `psessions`
 -- AUTO_INCREMENT for table `referees`
 --
 ALTER TABLE `referees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `reserve_players`
 --
@@ -4291,7 +4204,7 @@ ALTER TABLE `teamcloths`
 -- AUTO_INCREMENT for table `teams`
 --
 ALTER TABLE `teams`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 --
 -- AUTO_INCREMENT for table `team_championships`
 --
@@ -4321,7 +4234,7 @@ ALTER TABLE `team_sponsors`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `v_albums`
 --
@@ -4492,8 +4405,7 @@ ALTER TABLE `matches`
   ADD CONSTRAINT `matches_ibfk_1` FOREIGN KEY (`team1_id`) REFERENCES `teams` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `matches_ibfk_2` FOREIGN KEY (`team2_id`) REFERENCES `teams` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `matches_ibfk_4` FOREIGN KEY (`champion_id`) REFERENCES `championships` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `matches_ibfk_5` FOREIGN KEY (`stadium_id`) REFERENCES `stadia` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `matches_ibfk_6` FOREIGN KEY (`channel_id`) REFERENCES `channels` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `matches_ibfk_5` FOREIGN KEY (`stadium_id`) REFERENCES `stadia` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `match_channels`
@@ -4538,30 +4450,11 @@ ALTER TABLE `minutes`
   ADD CONSTRAINT `minutes_ibfk_1` FOREIGN KEY (`match_id`) REFERENCES `matches` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `nationcloths`
---
-ALTER TABLE `nationcloths`
-  ADD CONSTRAINT `nationcloths_ibfk_1` FOREIGN KEY (`nation_id`) REFERENCES `nations` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `nations`
---
-ALTER TABLE `nations`
-  ADD CONSTRAINT `nations_ibfk_1` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `nations_ibfk_2` FOREIGN KEY (`stadium_id`) REFERENCES `stadia` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `nation_history_coachs`
 --
 ALTER TABLE `nation_history_coachs`
   ADD CONSTRAINT `nation_history_coachs_ibfk_1` FOREIGN KEY (`nation_id`) REFERENCES `teams` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `nation_history_coachs_ibfk_2` FOREIGN KEY (`coach_id`) REFERENCES `coaches` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `ncomments`
---
-ALTER TABLE `ncomments`
-  ADD CONSTRAINT `ncomments_ibfk_1` FOREIGN KEY (`new_id`) REFERENCES `snews` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `offsides`
@@ -4574,7 +4467,8 @@ ALTER TABLE `offsides`
 -- Constraints for table `pcomments`
 --
 ALTER TABLE `pcomments`
-  ADD CONSTRAINT `pcomments_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`);
+  ADD CONSTRAINT `pcomments_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`),
+  ADD CONSTRAINT `pcomments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `penlties`

@@ -51,9 +51,29 @@
     </select>
     </div>
   </td>
- 
+
+</tr>
+<tr>
+  <td>
+    <div class="form-group">
+    <label class="control-label" style="display: block;">تاريخ الميلاد</label>
+    <input id="datetime1" data-format="YYYY-MM-DD" data-template="YYYY / MM / DD" name="birth_date" value="" type="text">
+    </div>
+  </td>
 </tr>
 </table>
+<div class="form-group">
+<label for="exampleInputPassword1">الدور</label>
+<select  class="form-control"
+ name="role">
+ <option value="حكم 1"><bdi>حكم 1</bdi></option>
+ <option value="حكم 2"><bdi>حكم 2</bdi></option>
+ <option value="حكم 3"><bdi>حكم 3</bdi></option>
+ <option value="حكم 4"><bdi>حكم 4</bdi></option>
+ <option value="حكم 5"><bdi>حكم 5</bdi></option>
+</select>
+</div>
+
 <div class="form-group">
 <label for="exampleInputPassword1">معلومات أضافيه</label>
 <textarea rows="2" cols="30" name="additional_info" class="form-control"></textarea>

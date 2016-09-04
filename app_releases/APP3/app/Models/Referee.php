@@ -6,7 +6,7 @@ class Referee extends Eloquent {
 
 	//
 	protected $fillable= [
-		'name','country_id','job','role','city_id','flag','additional_info','age'
+		'name','country_id','job','role','city_id','flag','additional_info','birth_date'
 ];
 
 }

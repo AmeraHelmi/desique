@@ -68,14 +68,12 @@ class Managment_championshipController extends Controller {
 			 ->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	 }
 
-<<<<<<< HEAD
-=======
+
 			/**
 			 * Display a listing of the resource.
 			 *
 			 * @return Response
 			 */
->>>>>>> c27c631433fa5478791988155a14a94e8de7a77b
 
 
 	/**

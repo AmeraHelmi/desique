@@ -35,9 +35,9 @@ class RefereeController extends Controller {
 			->join('cities as city','city.id','=','referees.city_id')
 			->select(array('referees.id as refereeID',
 			    			'referees.name as refereename',
-				 			'country.name as countryname',
-				 			'referees.job as referee_job',
-				 			'referees.birth_date as referees_birth_date',
+				 			  'country.name as countryname',
+				 		  	'referees.job as referee_job',
+				 		  	'referees.birth_date as referees_birth_date',
 			     			'city.name as cityname',
 			     			'referees.flag as referee_image'
 		 				))
@@ -88,6 +88,8 @@ class RefereeController extends Controller {
 			$referee->name          =$request->name;
 			$referee->country_id    =$request->country_id;
 			$referee->job           =$request->job;
+			$referee->role           =$request->role;
+			$referee->birth_date           =$request->birth_date;
 			$referee->city_id       =$request->city_id;
 			$referee->additional_info          =$request->additional_info;
 			$referee->flag          =$filename;
@@ -173,6 +175,8 @@ class RefereeController extends Controller {
 			$referee->name           =$request->name;
 			$referee->country_id     =$request->country_id;
 			$referee->job            =$request->job;
+			$referee->birth_date     =$request->birth_date;
+			$referee->role           =$request->role;
 			$referee->flag           =$filename;
 			$referee->additional_info          =$request->additional_info;
 
@@ -191,6 +195,8 @@ class RefereeController extends Controller {
 			$referee->name          		=$request->name;
 			$referee->country_id    		=$request->country_id;
 			$referee->job           		=$request->job;
+			$referee->role           =$request->role;
+			$referee->birth_date           =$request->birth_date;
 	    	$referee->additional_info       =$request->additional_info;
 			$referee->flag           		=session('refereeflag');
 		}

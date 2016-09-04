@@ -54,7 +54,7 @@ class PlayerController extends Controller
 				return DatatablePresenter::make($tableData, 'index');
 				$countries=Country::lists('name','id');
 				$cities=City ::lists('name','id');
-				$teams=Team::where('is_team','like','منتحب%')->lists('name','id');
+				$teams=Team::where('is_team','like','منتخب%')->lists('name','id');
 				return view('player.index')
 				->with('countries',$countries)
 				->with('cities',$cities)
@@ -62,7 +62,7 @@ class PlayerController extends Controller
 				->with('tableData', DatatablePresenter::make($tableData, 'index'));
 		}
 
-		
+
 
 	public function create()
 
@@ -139,7 +139,7 @@ class PlayerController extends Controller
 		}
 	}
 
-	
+
 
 	public function edit(Request $request , $id)
 	{
@@ -251,7 +251,7 @@ class PlayerController extends Controller
 
 
 
-	
+
 
 	public function destroy($id)
 	{

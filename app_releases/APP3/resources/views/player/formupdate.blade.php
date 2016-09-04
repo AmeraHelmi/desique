@@ -1,103 +1,44 @@
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
 <table>
-
   <tr>
-
   <td style="width: 48%">
-
 <div class="form-group">
-
 <label for="exampleInputPassword1">أسم اللاعب</label>
-
 <input type="text"
-
  name="name"
-
  required
-
  placeholder="player name"
-
  class="form-control"
-
 >
-
-
-
 <span class="help-block with-errors errorName"></span>
-
-
-
 </div>
-
 </td>
 
 <td style="width: 48%; padding-left: 2%;">
-
 <div class="form-group">
-
 <label for="exampleInputPassword1">اللقب</label>
-
 <input type="text"
-
  name="nickname"
-
-
-
  placeholder="player nickname"
-
  class="form-control"
-
 >
-
-
-
 <span class="help-block with-errors errorName"></span>
-
-
-
 </div>
-
 </td>
-
 </tr>
 
-
-
 <tr>
-
 <td style="width: 48%">
-
 <div class="form-group">
-
 <label for="exampleInputPassword1">القدم المفضله</label>
-
 <select  class="form-control"
-
  name="prefered_foot">
-
-
-
   <option value="Right">يمين</option>
-
-
-
   <option value="Left">يسار</option>
-
-
-
   <option value="Right and Left">الثنين معا</option>
-
-
-
 </select>
-
 <span class="help-block with-errors errorName"></span>
-
-
-
 </div>
-
 </td>
 
 <td style="width: 48%; padding-left: 2%;">
@@ -409,25 +350,14 @@
 </div>
 
 <div class="form-group">
-
 <label for="exampleInputPassword1">المنتخب</label>
-
 <select  class="form-control"
-
  name="team_id">
-
  @foreach($teams as $team_id => $team_name)
-
   <option value="{!! $team_id !!}">{!! $team_name !!}</option>
-
 @endforeach
-
 </select>
-
 <span class="help-block with-errors errorName"></span>
-
-
-
 </div>
 
 <div class="form-group">

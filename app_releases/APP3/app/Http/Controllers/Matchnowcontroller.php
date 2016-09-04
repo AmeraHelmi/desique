@@ -227,7 +227,7 @@ class Matchnowcontroller extends Controller {
 		return response(array('msg' => 'Adding Successfull'), 200)
 		->header('Content-Type', 'application/json');
 	}
-	
+
 	public function save(Request $request)
 	{
 		$team1_id = $request->T1;
@@ -312,6 +312,7 @@ class Matchnowcontroller extends Controller {
     	}
         else
         {
+<<<<<<< HEAD
 	        	$team1_championship = new Team_championship;
 	        	$team1_championship->team_id = $team1_id;
 	        	$team1_championship->championship_id =$championship_id->champion_id;
@@ -373,6 +374,120 @@ class Matchnowcontroller extends Controller {
 	        }
 	    }
 		return view('Editor.finish');
+=======
+        	$team2_championship2 = new Team_championship;
+        	$team2_championship2->team_id = $team2_id;
+        	$team2_championship2->championship_id =$championship_id->champion_id;
+        }
+        if($t1goals->team1_goals == $t2goals->team2_goals){
+        	$team1_championship->no_goals += $t1goals->team1_goals;
+        	$team1_championship->no_points += 1;
+        	$team1_championship->no_draughts += 1;
+        	$team1_championship->no_winnes += 0;
+        	$team1_championship->no_loses += 0;
+        	$team1_championship->save();
+        	$team2_championship2->no_goals += $t2goals->team2_goals;
+         	$team2_championship2->no_points += 1;
+        	$team2_championship2->no_draughts += 1;
+        	$team2_championship2->no_winnes += 0;
+        	$team2_championship2->no_loses += 0;
+        	$team2_championship2->save();
+       		}
+       	else if($t1goals->team1_goals > $t2goals->team2_goals){
+        	$team1_championship->no_goals += $t1goals->team1_goals;
+        	$team1_championship->no_points += 3;
+        	$team1_championship->no_draughts += 0;
+        	$team1_championship->no_winnes += 1;
+        	$team1_championship->no_loses += 0;
+        	$team1_championship->save();
+		    $team2_championship2->no_goals += $t2goals->team2_goals;
+  			$team2_championship2->no_points += 0;
+  			$team2_championship2->no_draughts += 0;
+ 			$team2_championship2->no_winnes += 0;
+ 			$team2_championship2->no_loses += 1;
+ 			$team2_championship2->save();
+      		}
+        else
+        {
+        	$team1_championship->no_goals += $t1goals->team1_goals;
+        	$team1_championship->no_points += 0;
+        	$team1_championship->no_draughts += 0;
+        	$team1_championship->no_winnes += 0;
+        	$team1_championship->no_loses += 1;
+        	$team1_championship->save();
+       		$team2_championship2->no_goals += $t2goals->team2_goals;
+       		$team2_championship2->no_points += 3;
+      		$team2_championship2->no_draughts += 0;
+        	$team2_championship2->no_winnes += 1;
+        	$team2_championship2->no_loses += 0;
+        	$team2_championship2->save();
+        }
+        }
+        else
+        {
+        	$team1_championship = new Team_championship;
+        	$team1_championship->team_id = $team1_id;
+        	$team1_championship->championship_id =$championship_id->champion_id;
+        if(count($team2_championship2) > 0)
+        {
+        	$team2_championship2->team_id = $team2_id;
+        	$team2_championship2->championship_id =$championship_id->champion_id;
+        }
+        else
+       	{
+        	$team2_championship2 = new Team_championship;
+        	$team2_championship2->team_id = $team2_id;
+        	$team2_championship2->championship_id =$championship_id->champion_id;
+        }
+        if($t1goals->team1_goals == $t2goals->team2_goals)
+        {
+        	$team1_championship->no_goals += $t1goals->team1_goals;
+        	$team1_championship->no_points += 1;
+        	$team1_championship->no_draughts += 1;
+        	$team1_championship->no_winnes += 0;
+        	$team1_championship->no_loses += 0;
+        	$team1_championship->save();
+        	$team2_championship2->no_goals += $t2goals->team2_goals;
+         	$team2_championship2->no_points += 1;
+        	$team2_championship2->no_draughts += 1;
+        	$team2_championship2->no_winnes += 0;
+        	$team2_championship2->no_loses += 0;
+        	$team2_championship2->save();
+       	}
+       	else if($t1goals->team1_goals > $t2goals->team2_goals)
+       	{
+        	$team1_championship->no_goals += $t1goals->team1_goals;
+        	$team1_championship->no_points += 3;
+        	$team1_championship->no_draughts += 0;
+        	$team1_championship->no_winnes += 1;
+        	$team1_championship->no_loses += 0;
+        	$team1_championship->save();
+		    $team2_championship2->no_goals += $t2goals->team2_goals;
+  			$team2_championship2->no_points += 0;
+  			$team2_championship2->no_draughts += 0;
+ 			$team2_championship2->no_winnes += 0;
+ 			$team2_championship2->no_loses += 1;
+ 			$team2_championship2->save();
+      	}
+        else
+        {
+        	$team1_championship->no_goals += $t1goals->team1_goals;
+        	$team1_championship->no_points += 0;
+        	$team1_championship->no_draughts += 0;
+        	$team1_championship->no_winnes += 0;
+        	$team1_championship->no_loses += 1;
+        	$team1_championship->save();
+       		$team2_championship2->no_goals += $t2goals->team2_goals;
+       		$team2_championship2->no_points += 3;
+      		$team2_championship2->no_draughts += 0;
+        	$team2_championship2->no_winnes += 1;
+        	$team2_championship2->no_loses += 0;
+        	$team2_championship2->save();
+        }
+        }
+		 	return view('Editor.finish');
+
+>>>>>>> a3b0146cbd1a44c834cb9f68db8daf1cf860820b
 	}
 		
 	
@@ -381,12 +496,12 @@ class Matchnowcontroller extends Controller {
 	{
 		//
 	}
-	
+
 	public function update($id)
 	{
 		//
 	}
-	
+
 	public function destroy($id)
 	{
 		//

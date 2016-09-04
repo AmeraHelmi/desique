@@ -69,15 +69,17 @@ name="stadium_id">
 
   <td style="width: 48%;padding-left: 2%;">
     <div class="form-group">
-  <label for="exampleInputPassword1">القاره</label>
-  <input type="text"
-   name="continent"
-   required
-   placeholder="القاره"
-   class="form-control"
-  >
-  <span class="help-block with-errors errorName"></span>
-  </div>
+    <label for="exampleInputFile">القاره</label>
+    <select   class="form-control" name="continent">
+    <option selected>أختيار القاره</option>
+    <option value="أفريقيا"><bdi>أفريقيا</bdi></option>
+    <option value="أوربا"><bdi>أوربا</bdi></option>
+    <option value="أمريكا الشماليه"><bdi>أمريكا الشماليه</bdi></option>
+    <option value="أمريكا الجنوبيه"><bdi>أمريكا الجنوبيه</bdi></option>
+    <option value="أستراليا"><bdi>أستراليا</bdi></option>
+    <option value="أسيا"><bdi>أسيا</bdi></option>
+    </select>
+    </div>
   </td>
 </tr><tr>
   <td style="width: 48%">
@@ -106,7 +108,7 @@ name="stadium_id">
 </tr>
 </table>
   <div class="form-group">
-  <label for="exampleInputPassword1">تاريخ المنتخب</label>
+  <label for="exampleInputPassword1">تاريخ الفريق</label>
   <textarea rows="2" cols="30"  name="history" class="form-control" ></textarea>
   <span class="help-block with-errors errorName"></span>
   </div>

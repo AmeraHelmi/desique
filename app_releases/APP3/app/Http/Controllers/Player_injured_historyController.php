@@ -24,10 +24,10 @@ class Player_matchController  extends Controller {
 	{
 	   $this->middleware('auth');
 	}
-	public function index(Player_match $player_match , Request $request)
+	public function index(Player_injured_history $Player_injured_history , Request $request)
 	{
-		$Allmatch= new Match;
-		$Allmatch = $Allmatch
+		$Player_injured_history= new Player_injured_history;
+		$Player_injured_history = $Player_injured_history
 				->join('teams as T1', 'T1.id', '=', 'matches.team1_id')
 				->join('teams as T2', 'T2.id', '=', 'matches.team2_id')
 				->select(array('T1.name as T1name','T2.name as T2name',

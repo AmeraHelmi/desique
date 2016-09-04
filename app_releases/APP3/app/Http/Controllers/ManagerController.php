@@ -92,6 +92,7 @@ class ManagerController extends Controller {
 		$manager->from_date     	=$request->from_date;
 		$manager->to_date       	=$request->to_date;
 		$manager->salary        	=$request->salary;
+		$manager->birth_date        =$request->birth_date;
 		$manager->selection_type	=$request->type;
 		$manager->flag          	=$filename;
 		$manager->city_id       	=$request->city_id;

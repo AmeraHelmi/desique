@@ -10,7 +10,6 @@ use Illuminate\Routing\Router as Route;
 use App\Services\DatatablePresenter;
 use Auth;
 use Input;
-
 class AdvertController extends Controller {
 
 	/**

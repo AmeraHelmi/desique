@@ -5,7 +5,6 @@
     width: 100%;
     height: 100%;
 }
-
 .image img {
     -webkit-transition: all 1s ease; /* Safari and Chrome */
     -moz-transition: all 1s ease; /* Firefox */
@@ -13,7 +12,6 @@
     -o-transition: all 1s ease; /* Opera */
     transition: all 1s ease;
 }
-
 .image img:hover  {
     -webkit-transform:scale(7.5); /* Safari and Chrome */
     -moz-transform:scale(7.5); /* Firefox */
@@ -21,10 +19,6 @@
     -o-transform:scale(7.5); /* Opera */
      transform:scale(7.5);
 }
-
-/* leave this part out */
-/* leave this part out */
-
 .clearfix{*zoom:1;}.clearfix:before,.clearfix:after{display:table;content:"";line-height:0;}
 .clearfix:after{clear:both;}
 .hide-text{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0;}
@@ -50,109 +44,102 @@
 </style>
 @endsection
 @section('content')
-		<div class="content-wrapper">
-			<div class="container-fluid">
-
-				<div class="row">
-					<div class="col-md-12">
-<br>
-<ul class="alerts-list delete"></ul>
-<ul class="alerts-list" style="display:none;" id="show">
-  <li>
-     <div class="alert alert-success alert-dismissable">
-           <i class="icon-remove-sign"></i> تم أضافة الزى بنجـــــــــــــاح!.
-           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-       </div>
-   </li>
-</ul>
-<ul class="alerts-list" style="display:none;" id="showupdate">
-  <li>
-     <div class="alert alert-success alert-dismissable">
-           <i class="icon-remove-sign"></i> تم تحديث البيانات  بنجـــــــــــــاح!.
-           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-       </div>
-   </li>
-</ul>
-<a class="btn btn-primary" data-toggle="modal" data-target="#addModal" style="margin-bottom:20px;" >
-		<i class="fa fa-plus-circle"  style="font-size: 18px;"></i>أضافة زى النادى
-</a>
-<div class="widget-content-white glossed">
-		<div class="padded">
-				<table id="Tcloths" class="table table-striped table-bordered table-hover datatable">
-						<thead>
-								<tr>
-										<th class="col-md-2">النادى</th>
-										<th class="col-md-2">الزى الأساسيه</th>
-										<th class="col-md-2">الزى الأحتياطى</th>
-										<th class="col-md-2">الزى الأحتياطى 2</th>
-										<th class="col-md-2">زى التمارين</th>
-										<th class="col-md-2">خيارات</th>
-								</tr>
-						</thead>
-						<tbody>
-								@foreach ($tableData->getData()->data as $row)
-								<tr>
-										<td>{{  $row->teamname }}</td>
-										<td>{!! $row->principle_cloths !!}</td>
-										<td>{!! $row->reserve_cloths !!}</td>
-										<td>{!! $row->reserve2_cloths !!}</td>
-										<td>{!! $row->practise_cloths !!}</td>
-										<td>{!! $row->actions !!}</td>
-								</tr>
-								@endforeach
-						</tbody>
-				</table>
-		</div>
-</div>
-
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="addModalLabel"><i class="fa fa-plus-circle"></i> أضافة زى</h4>
-            </div>
-            <form role="form" method="POST" class="addForm" action="{{ url('/teamcloth/store') }}" data-toggle="validator" enctype="multipart/form-data">
-                <div class="modal-body">
-                    @include('teamcloth.form')
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" id="submitForm" class="btn btn-primary">موافق</button>
-                    <button type="submit" class="btn btn-primary" id="addNew">موافق وأضافة جديد</button>
-
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="editTclothModal" tabindex="-1" role="dialog" aria-labelledby="editEmployeeModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="editEmployeeModalLabel"><i class="fa fa-pencil"></i> تحديث</h4>
-            </div>
-            <form role="form" id="update_form" method="POST" class="editForm" data-id="" action="{{ url('/teamcloth/update') }}" data-toggle="validator"enctype="multipart/form-data">
-                <div class="modal-body">
-                    @include('teamcloth.form')
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" id="submit" class="btn btn-primary">تحديث</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-					</div>
-				</div>
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+					    <div class="col-md-12">
+              <br>
+                  <ul class="alerts-list delete"></ul>
+                  <ul class="alerts-list" style="display:none;" id="show">
+                      <li>
+                          <div class="alert alert-success alert-dismissable">
+                              <i class="icon-remove-sign"></i> تم أضافة الزى بنجـــــــــــــاح!.
+                              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                          </div>
+                      </li>
+                  </ul>
+                  <ul class="alerts-list" style="display:none;" id="showupdate">
+                      <li>
+                          <div class="alert alert-success alert-dismissable">
+                              <i class="icon-remove-sign"></i> تم تحديث البيانات  بنجـــــــــــــاح!.
+                              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                          </div>
+                      </li>
+                  </ul>
+                  <a class="btn btn-primary" data-toggle="modal" data-target="#addModal" style="margin-bottom:20px;" >
+		                  <i class="fa fa-plus-circle"  style="font-size: 18px;"></i>أضافة زى النادى
+                  </a>
+                  <div class="widget-content-white glossed">
+		                    <div class="padded">
+                             <table id="Tcloths" class="table table-striped table-bordered table-hover datatable">
+						                        <thead>
+								                          <tr>
+										                          <th class="col-md-2">النادى</th>
+										                          <th class="col-md-2">الزى الأساسيه</th>
+										                          <th class="col-md-2">الزى الأحتياطى</th>
+										                          <th class="col-md-2">الزى الأحتياطى 2</th>
+										                          <th class="col-md-2">زى التمارين</th>
+										                          <th class="col-md-2">خيارات</th>
+								                          </tr>
+                                    </thead>
+						                        <tbody>
+								                    @foreach ($tableData->getData()->data as $row)
+								                          <tr>
+										                          <td>{{  $row->teamname }}</td>
+										                          <td>{!! $row->principle_cloths !!}</td>
+										                          <td>{!! $row->reserve_cloths !!}</td>
+										                          <td>{!! $row->reserve2_cloths !!}</td>
+										                          <td>{!! $row->practise_cloths !!}</td>
+										                          <td>{!! $row->actions !!}</td>
+								                          </tr>
+								                    @endforeach
+						                        </tbody>
+				                      </table>
+		                      </div>
+                      </div>
+                      <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="addModalLabel"><i class="fa fa-plus-circle"></i> أضافة زى</h4>
+                                  </div>
+                                  <form role="form" method="POST" class="addForm" action="{{ url('/teamcloth/store') }}" data-toggle="validator" enctype="multipart/form-data">
+                                      <div class="modal-body">
+                                            @include('teamcloth.form')
+                                      </div>
+                                      <div class="modal-footer">
+                                            <button type="submit" id="submitForm" class="btn btn-primary">موافق</button>
+                                            <button type="submit" class="btn btn-primary" id="addNew">موافق وأضافة جديد</button>
+                                      </div>
+                                  </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="editTclothModal" tabindex="-1" role="dialog" aria-labelledby="editEmployeeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="editEmployeeModalLabel"><i class="fa fa-pencil"></i> تحديث</h4>
+                                </div>
+                                <form role="form" id="update_form" method="POST" class="editForm" data-id="" action="{{ url('/teamcloth/update') }}" data-toggle="validator"enctype="multipart/form-data">
+                                    <div class="modal-body">
+                                        @include('teamcloth.form')
+                                    </div>
+                                    <div class="modal-footer">
+                                          <button type="submit" id="submit" class="btn btn-primary">تحديث</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                  </div>
+					    </div>
+          </div>
 			</div>
 		</div>
 	</div>
 	@endsection
-
 	@section('scripts')
 	<script src="http://malsup.github.com/jquery.form.js"></script>
 	<script type="text/javascript">
@@ -161,7 +148,7 @@
   $.ajax({
       url: '{{ url('teamcloth/get_teams') }}',
       type: "POST",
-    data:{
+      data:{
         team_type:$team_type
       },
       success: function(res){
@@ -208,9 +195,9 @@
 	     /* Edit Form */
 	     $(document.body).validator().on('click', '.edit', function() {
          $('.delete').show();
-	    var self = $(this);
-	         self.button('loading');
-	         $.ajax({
+         var self = $(this);
+	       self.button('loading');
+	       $.ajax({
 	             url: "{{ url('teamcloth') }}" + "/" + self.data('id') + "/edit" ,
 	             type: "GET",
 	             success: function(res){

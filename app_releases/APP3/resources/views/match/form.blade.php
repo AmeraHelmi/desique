@@ -31,12 +31,8 @@
   <td style="width: 48%;">
     <div class="form-group">
         <label for="exampleInputFile" style="float:right">أختيار القناه</label>
-        <select id="channel"  class="form-control" name="channel_id">
-              <option value="Null" selected>أختيار القناه</option>
-              @foreach($channels as $channel_id => $channel_name)
-              <option value="{!! $channel_id !!}">{!! $channel_name !!}</option>
-              @endforeach
-        </select>
+        {!! Form::select('channels[]', $channels, null, array('multiple'=> true, 'data-placeholder'=>'Select referees' ,'class'=> 'form-control group-select chosen-select-multiple chosen-select-no-results')) !!}
+
     </div>
   </td>
   <td style="width: 48%; padding-left: 2%;">
@@ -101,7 +97,15 @@
      </div>
    </td>
 </tr>
+<tr>
+  <td style="width: 48%;">
+    <div class="form-group">
+        <label for="exampleInputFile" style="float:right">أختيار المعلق</label>
+        {!! Form::select('commentors[]', $commentors, null, array('multiple'=> true, 'data-placeholder'=>'Select referees' ,'class'=> 'form-control group-select chosen-select-multiple chosen-select-no-results')) !!}
 
+    </div>
+  </td>
+</tr>
 </table>
 <div class="form-group" style="text-align:right;">
     <label>الحكام</label><br />

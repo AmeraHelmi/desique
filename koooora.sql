@@ -3,9 +3,15 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
+<<<<<<< HEAD
 -- Generation Time: Sep 05, 2016 at 05:49 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
+=======
+-- Generation Time: Sep 05, 2016 at 02:35 PM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 5.6.20
+>>>>>>> 476edde1daffe7d48bbd262a1d310e5b8e0813c0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";

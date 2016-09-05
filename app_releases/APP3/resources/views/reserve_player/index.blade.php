@@ -1,66 +1,60 @@
 @extends('admin')
 @section('styles')
 <style type="text/css" media="all">
-	/* fix rtl for demo */
-	.chosen-rtl .chosen-drop { left: -9000px; }
+		.chosen-rtl .chosen-drop { left: -9000px; }
 </style>
 @endsection
 @section('content')
-		<div class="content-wrapper">
-			<div class="container-fluid">
-
+<div class="content-wrapper">
+		<div class="container-fluid">
 				<div class="row">
-					<div class="col-md-12">
-<br>
-<ul class="alerts-list delete">
-</ul>
-<a class="btn btn-primary" data-toggle="modal" data-target="#addModal" style="margin-bottom:20px;" >
-		<i class="fa fa-plus-circle"  style="font-size: 18px;"></i> اضافة اللاعيبين الاحتياطى
-</a>
-<div class="widget-content-white glossed">
-		<div class="padded">
-				<table id="playersteam" class="table table-striped table-bordered table-hover datatable">
-						<thead>
-								<tr>
-										<th class="col-md-4">الفريق</th>
-										<th class="col-md-3">اللاعب</th>
-										<th class="col-md-2">الخيارات</th>
-								</tr>
-						</thead>
-						<tbody>
-								@foreach ($tableData->getData()->data as $row)
-								<tr>
-										<td>{{ $row->Tname }}</td>
-										<td>{{ $row->Pname }}</td>
-										<td>{!!$row->actions !!}</td>
-								</tr>
-								@endforeach
-						</tbody>
-				</table>
-		</div>
-</div>
-
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="addModalLabel"><i class="fa fa-plus-circle"></i> اضافة لاعيبين احتياطى</h4>
-            </div>
-            <form role="form" method="POST" class="addForm" action="{{ url('/reserve_player/store') }}" data-toggle="validator">
-                <div class="modal-body">
-                    @include('reserve_player.form')
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" id="submitForm" class="btn btn-primary">موافق</button>
-                    <button type="submit" class="btn btn-primary" id="addNew">موافق و اضافة جديد</button>
-
-                </div>
-            </form>
+						<div class="col-md-12">
+						<br>
+								<ul class="alerts-list delete"></ul>
+								<a class="btn btn-primary" data-toggle="modal" data-target="#addModal" style="margin-bottom:20px;" >
+										<i class="fa fa-plus-circle"  style="font-size: 18px;"></i> اضافة اللاعيبين الاحتياطى
+								</a>
+								<div class="widget-content-white glossed">
+										<div class="padded">
+												<table id="playersteam" class="table table-striped table-bordered table-hover datatable">
+														<thead>
+																<tr>
+																		<th class="col-md-4">الفريق</th>
+																		<th class="col-md-3">اللاعب</th>
+																		<th class="col-md-2">الخيارات</th>
+																</tr>
+														</thead>
+														<tbody>
+															@foreach ($tableData->getData()->data as $row)
+															<tr>
+																	<td>{{ $row->Tname }}</td>
+																	<td>{{ $row->Pname }}</td>
+																	<td>{!!$row->actions !!}</td>
+															</tr>
+															@endforeach
+														</tbody>
+												</table>
+										</div>
+								</div>
+								<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+    								<div class="modal-dialog">
+        								<div class="modal-content">
+            								<div class="modal-header">
+                								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                								<h4 class="modal-title" id="addModalLabel"><i class="fa fa-plus-circle"></i> اضافة لاعيبين احتياطى</h4>
+            								</div>
+            								<form role="form" method="POST" class="addForm" action="{{ url('/reserve_player/store') }}" data-toggle="validator">
+                									<div class="modal-body">
+                    										@include('reserve_player.form')
+                									</div>
+                									<div class="modal-footer">
+                    									<button type="submit" id="submitForm" class="btn btn-primary">موافق</button>
+                    									<button type="submit" class="btn btn-primary" id="addNew">موافق و اضافة جديد</button>
+                									</div>
+            								</form>
         </div>
     </div>
 </div>
-
 <div class="modal fade" id="editplayersteamModal" tabindex="-1" role="dialog" aria-labelledby="editEmployeeModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -76,21 +70,17 @@
                     <button type="submit" id="submit" class="btn btn-primary">تعديل</button>
                 </div>
             </form>
-        </div>
-    </div>
-</div>
-
-
-					</div>
-				</div>
+        	</div>
+    		</div>
 			</div>
 		</div>
 	</div>
-	@endsection
-
-	@section('scripts')
-
-		<script type="text/javascript">
+</div>
+</div>
+</div>
+@endsection
+@section('scripts')
+<script type="text/javascript">
 			function selectteam(){
 			$match_id=$('#match').val();
 			// alert($match_id);
@@ -304,14 +294,9 @@
         $('.chosen-select-it', this).chosen({disable_search_threshold: 10});
         $('.chosen-select-multiple', this).chosen({disable_search_threshold: 10}).trigger("chosen:updated");
     });
-    // $('#groupModal').on('shown.bs.modal', function () {
-    //     $('.chosen-select-it', this).chosen({disable_search_threshold: 10});
-    //     $('.chosen-select-multiple', this).chosen({disable_search_threshold: 10});
-    // });
     $('.group-search').chosen({disable_search_threshold: 10});
 
 });
 </script>
 <script src="{{ asset('/admin-ui/js/for_pages/table.js') }}"></script>
-
-	@endsection
+@endsection

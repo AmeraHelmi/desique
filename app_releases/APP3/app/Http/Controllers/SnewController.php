@@ -29,7 +29,7 @@ public function __construct()
 public function index(Snew $snew , Request $request)
 {
 		$snews = $snew
-								->select(array('id', 'title', 'flag','date','additional_info'))
+								->select(array('id', 'title', 'flag','date'))
 								->orderBy('id','desc')->get();
 
 		$tableData = Datatables::of($snews)
@@ -69,15 +69,14 @@ public function store(Request $request)
 				$snew = new Snew;
 			  $snew->title              =$request->title;
 			  $snew->flag               =$filename;
-				$snew->date              =$request->date;
+				$snew->date               =$request->date;
 				$snew->additional_info    =$request->additional_info;
 				$snew->save();
 
 				$count = count($request->metas);
 				$new_meta = new Cnew;
-				$new_meta->news_id          =$snew->id;
+				$new_meta->news_id        =$snew->id;
 				$data = [];
-
 				for($i = 0 ; $i < $count ; $i++)
 				{
 
@@ -85,7 +84,6 @@ public function store(Request $request)
 				}
 				$new_meta->words=json_encode($data,true);
 				$new_meta->save();
-				return redirect()->back();
 
 				if($request->ajax()){
 					return response(array('msg' => 'Adding Successfull'), 200)

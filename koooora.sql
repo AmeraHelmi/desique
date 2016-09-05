@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 04, 2016 at 03:15 PM
+-- Generation Time: Sep 05, 2016 at 05:49 PM
 -- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.21
+-- PHP Version: 5.6.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -248,6 +248,14 @@ CREATE TABLE `championship_sponsors` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `championship_sponsors`
+--
+
+INSERT INTO `championship_sponsors` (`id`, `championship_id`, `sponsor_id`, `updated_at`, `created_at`) VALUES
+(1, 6, 3, '2016-09-05 13:43:56', '2016-09-05 13:43:45'),
+(2, 6, 3, '2016-09-05 13:43:46', '2016-09-05 13:43:46');
 
 -- --------------------------------------------------------
 
@@ -1386,6 +1394,13 @@ CREATE TABLE `groups` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `groups`
+--
+
+INSERT INTO `groups` (`id`, `name`, `championship_id`, `addition_info`, `no_matches`, `updated_at`, `created_at`) VALUES
+(1, 'B المجموعه', 5, 'hh', 55, '2016-09-05 12:17:38', '2016-09-05 12:17:38');
+
 -- --------------------------------------------------------
 
 --
@@ -1549,7 +1564,7 @@ CREATE TABLE `matches` (
 --
 
 INSERT INTO `matches` (`id`, `team1_id`, `team2_id`, `match_date`, `date`, `match_period`, `team1_goals`, `team2_goals`, `team1_corners`, `team2_corners`, `team1_offsides`, `team2_offsides`, `team1_errors`, `team2_errors`, `team1_cards`, `team2_cards`, `team1_psessions`, `team2_psessions`, `team1_penalties`, `team2_penalties`, `group_id`, `champion_id`, `stadium_id`, `addition_info`, `role`, `type`, `updated_at`, `created_at`) VALUES
-(3, 8, 4, '2016-08-09 12:18:13', '2016-08-28', 90, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, NULL, NULL, 26, NULL, NULL, NULL, '2016-08-28 09:24:34', '0000-00-00 00:00:00'),
+(3, 8, 4, '2016-09-05 18:13:00', '2016-09-05', 90, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, NULL, NULL, 26, NULL, NULL, NULL, '2016-09-05 08:01:33', '0000-00-00 00:00:00'),
 (16, 16, 4, '2001-04-18 02:00:00', '2016-08-28', 90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, 23, 'aaa', NULL, NULL, '2016-08-28 09:22:31', '2016-08-21 10:00:59'),
 (17, 32, 33, '2003-10-16 10:50:00', '2003-10-16', 90, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'الاسبوع1', NULL, 22, 'rrrr', NULL, 'دورى', '2016-09-04 06:13:53', '2016-09-04 06:13:53');
 
@@ -1578,7 +1593,6 @@ CREATE TABLE `match_commentors` (
   `id` int(11) NOT NULL,
   `match_id` int(11) NOT NULL,
   `commentor_id` int(11) NOT NULL,
-  `channel_id` int(11) DEFAULT NULL,
   `addition_info` text COLLATE utf8_unicode_ci,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
@@ -2364,13 +2378,19 @@ CREATE TABLE `player_injured_histories` (
   `from_date` date DEFAULT NULL,
   `to_date` date DEFAULT NULL,
   `nature_of_medicine` varchar(150) CHARACTER SET utf8 DEFAULT NULL,
-  `comment` varchar(150) CHARACTER SET utf8 DEFAULT NULL,
-  `injured_place` varchar(150) CHARACTER SET utf8 NOT NULL,
   `medicine_place` varchar(150) CHARACTER SET utf8 DEFAULT NULL,
   `addition_info` text COLLATE utf8_unicode_ci,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `player_injured_histories`
+--
+
+INSERT INTO `player_injured_histories` (`id`, `player_id`, `match_id`, `injured_name`, `from_date`, `to_date`, `nature_of_medicine`, `medicine_place`, `addition_info`, `updated_at`, `created_at`) VALUES
+(1, 219, 3, 'name1', '2001-02-16', '2001-02-17', 'nature1', 'egypt', 'ششش', '2016-09-05 10:21:30', '2016-09-05 10:21:30'),
+(3, 219, 3, 'inj', '2002-03-19', '2001-02-12', 'med', 'minia', 'tt', '2016-09-05 11:12:33', '2016-09-05 10:26:18');
 
 -- --------------------------------------------------------
 
@@ -3330,13 +3350,17 @@ CREATE TABLE `team_sponsors` (
   `id` int(11) NOT NULL,
   `team_id` int(11) DEFAULT NULL,
   `sponsor_id` int(11) NOT NULL,
-  `from_date` date DEFAULT NULL,
-  `to_date` date DEFAULT NULL,
-  `amount` int(11) DEFAULT NULL,
-  `addition_info` text COLLATE utf8_unicode_ci,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `team_sponsors`
+--
+
+INSERT INTO `team_sponsors` (`id`, `team_id`, `sponsor_id`, `created_at`, `updated_at`) VALUES
+(3, 32, 3, '2016-09-05 13:46:00', '2016-09-05 13:47:13'),
+(4, 32, 3, '2016-09-05 13:46:00', '2016-09-05 13:46:00');
 
 -- --------------------------------------------------------
 
@@ -3360,8 +3384,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `role`) VALUES
-(2, 'lames', 'lames@lames.com', '$2y$10$d8WHCeFB2GbdeVSABCHUr.IQmMt.v4tXzr32iOEUfh9NTdl0rReFO', 'ggnrMf2LwsGuWuW7ZaOYFXqjYaKhXZBEJ07Jo1fim9OvVTileJHtTKY3lyf2', '2016-05-11 06:01:54', '2016-09-04 10:11:57', 'Editor'),
-(3, 'alaa', 'alaa@yahoo.com', '$2y$10$BKmcSsvjypRF/Xjm4LSaL./osSpNt/FbUYLu.Ik1AKC05VO2ldVue', 'EcVOzw4ssmbbkNa1b7OmianmZV1MqOQbruOVf1DT0TVsl2rBR7btGQ4icN5X', '2016-05-11 06:04:22', '2016-09-04 10:10:48', 'Admin'),
+(2, 'lames', 'lames@lames.com', '$2y$10$d8WHCeFB2GbdeVSABCHUr.IQmMt.v4tXzr32iOEUfh9NTdl0rReFO', 'mqEj5wUiD8hJrO2FjmjMKKDzQtx1llJ9woYZMy35mSj0Hqx2KKPAyJ0c9uDn', '2016-05-11 06:01:54', '2016-09-05 10:09:17', 'Editor'),
+(3, 'alaa', 'alaa@yahoo.com', '$2y$10$BKmcSsvjypRF/Xjm4LSaL./osSpNt/FbUYLu.Ik1AKC05VO2ldVue', 'gb8rfH2K6JwttTGF56MUzkOCZliNia5RcJTHlQ8dlEUaQJkCsloXpkfHcgyE', '2016-05-11 06:04:22', '2016-09-05 10:08:27', 'Admin'),
 (4, 'mohaned', 'm.fouad.developer@gmail.com', '$2y$10$BKmcSsvjypRF/Xjm4LSaL./osSpNt/FbUYLu.Ik1AKC05VO2ldVue', 'AFtDw748GdoVIzrQkQ8pO4p5Zq18qqAUawomI3NdFHqXMp2U777cc7GMbIYi', '2016-05-15 13:23:10', '2016-09-04 08:08:54', 'ِAnalyiser'),
 (5, 'amera', 'amera.elsayed6@gmail.com', '$2y$10$5Itr3pLJTdM4SI0GMeB.f.WWIoa2FOh1gPs1HCKRchuDIQdmJd9g.', '4cgjartVEo98RoSrvlqQwLfw9lE13f0N2zdty4CR7WEWsLLJ2dRTyquSEXjJ', '2016-05-16 06:25:55', '2016-05-16 08:57:47', 'Admin'),
 (6, 'reham mohamed', 'rehammohamed@brother-group.net', '$2y$10$BR2q0F5Ujf/g4AhHvVP1dOStRzgA1YSuAqWONQCoKQD1dnTErhb.G', 'zlBAVfXZ3xNFXkJtrSRhIyDSyXeO2FOpOaSFhao5gDsjFgGuB8ymifrT6miF', '2016-05-16 08:27:45', '2016-06-02 12:56:25', 'Data Entry'),
@@ -3412,6 +3436,13 @@ CREATE TABLE `winners` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `winners`
+--
+
+INSERT INTO `winners` (`id`, `team_id`, `championship_id`, `win_date`, `no_goals`, `no_points`, `additional_info`, `created_at`, `updated_at`) VALUES
+(1, 4, 5, '2017-01-02', 55, 125, 'تتت', '2016-09-05 13:05:54', '2016-09-05 13:05:54');
 
 --
 -- Indexes for dumped tables
@@ -3660,8 +3691,7 @@ ALTER TABLE `match_channels`
 ALTER TABLE `match_commentors`
   ADD PRIMARY KEY (`id`),
   ADD KEY `match_id` (`match_id`),
-  ADD KEY `commentor_id` (`commentor_id`),
-  ADD KEY `channel_id` (`channel_id`);
+  ADD KEY `commentor_id` (`commentor_id`);
 
 --
 -- Indexes for table `match_referees`
@@ -3989,7 +4019,7 @@ ALTER TABLE `championships`
 -- AUTO_INCREMENT for table `championship_sponsors`
 --
 ALTER TABLE `championship_sponsors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `change_players`
 --
@@ -4049,7 +4079,7 @@ ALTER TABLE `goals`
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `g_albums`
 --
@@ -4119,7 +4149,7 @@ ALTER TABLE `offsides`
 -- AUTO_INCREMENT for table `pcomments`
 --
 ALTER TABLE `pcomments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `penlties`
 --
@@ -4144,7 +4174,7 @@ ALTER TABLE `player_histories`
 -- AUTO_INCREMENT for table `player_injured_histories`
 --
 ALTER TABLE `player_injured_histories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `player_matches`
 --
@@ -4229,7 +4259,7 @@ ALTER TABLE `team_players`
 -- AUTO_INCREMENT for table `team_sponsors`
 --
 ALTER TABLE `team_sponsors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `users`
 --
@@ -4244,7 +4274,7 @@ ALTER TABLE `v_albums`
 -- AUTO_INCREMENT for table `winners`
 --
 ALTER TABLE `winners`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- Constraints for dumped tables
 --
@@ -4419,8 +4449,7 @@ ALTER TABLE `match_channels`
 --
 ALTER TABLE `match_commentors`
   ADD CONSTRAINT `match_commentors_ibfk_1` FOREIGN KEY (`match_id`) REFERENCES `matches` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `match_commentors_ibfk_2` FOREIGN KEY (`commentor_id`) REFERENCES `commentors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `match_commentors_ibfk_3` FOREIGN KEY (`channel_id`) REFERENCES `channels` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `match_commentors_ibfk_2` FOREIGN KEY (`commentor_id`) REFERENCES `commentors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `match_referees`

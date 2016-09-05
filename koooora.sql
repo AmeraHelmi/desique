@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 04, 2016 at 03:15 PM
+-- Generation Time: Sep 05, 2016 at 02:35 PM
 -- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.21
+-- PHP Version: 5.6.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -1578,7 +1578,6 @@ CREATE TABLE `match_commentors` (
   `id` int(11) NOT NULL,
   `match_id` int(11) NOT NULL,
   `commentor_id` int(11) NOT NULL,
-  `channel_id` int(11) DEFAULT NULL,
   `addition_info` text COLLATE utf8_unicode_ci,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
@@ -3660,8 +3659,7 @@ ALTER TABLE `match_channels`
 ALTER TABLE `match_commentors`
   ADD PRIMARY KEY (`id`),
   ADD KEY `match_id` (`match_id`),
-  ADD KEY `commentor_id` (`commentor_id`),
-  ADD KEY `channel_id` (`channel_id`);
+  ADD KEY `commentor_id` (`commentor_id`);
 
 --
 -- Indexes for table `match_referees`
@@ -4119,7 +4117,7 @@ ALTER TABLE `offsides`
 -- AUTO_INCREMENT for table `pcomments`
 --
 ALTER TABLE `pcomments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `penlties`
 --
@@ -4419,8 +4417,7 @@ ALTER TABLE `match_channels`
 --
 ALTER TABLE `match_commentors`
   ADD CONSTRAINT `match_commentors_ibfk_1` FOREIGN KEY (`match_id`) REFERENCES `matches` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `match_commentors_ibfk_2` FOREIGN KEY (`commentor_id`) REFERENCES `commentors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `match_commentors_ibfk_3` FOREIGN KEY (`channel_id`) REFERENCES `channels` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `match_commentors_ibfk_2` FOREIGN KEY (`commentor_id`) REFERENCES `commentors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `match_referees`

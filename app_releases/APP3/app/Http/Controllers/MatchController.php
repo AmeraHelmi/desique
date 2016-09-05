@@ -8,8 +8,11 @@ use App\Models\Group;
 use App\Models\Team;
 use App\Models\Stadium;
 use App\Models\Match_referee;
+use App\Models\Match_channel;
+use App\Models\Match_commentor;
 use App\Models\Referee;
 use App\Models\Manager;
+use App\Models\Commentor;
 use App\Models\Match;
 use App\Models\Channel;
 use App\Models\Championship;
@@ -55,6 +58,7 @@ class MatchController extends Controller
 					$referees =Referee::lists('name','id');
 					$stadiums =Stadium::lists('name','id');
 					$channels=Channel::lists('name','id');
+					$commentors=Commentor::lists('name','id');
 					$championships = Championship::lists('name','id');
 					return view('match.index')
 						->with('championships',$championships)
@@ -63,6 +67,7 @@ class MatchController extends Controller
 						->with('teams',$teams)
 						->with('stadiums',$stadiums)
 						->with('channels',$channels)
+						->with('commentors',$commentors)
 						->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	}
 
@@ -128,12 +133,15 @@ public function create()
 		{
 			$match->type="دورى";
 			$match->group_id="الاسبوع".$request->week;
+			$match->champion_id=$request->champion_id;
 		}
 		elseif ($request->type_match == "cup")
 		{
 			$match->type="كأس";
 	  		$match->role            =$request->role;
 			$match->group_id        =$request->group_id;
+			$match->champion_id=$request->champion_id;
+
 		}
 		else
 		{
@@ -151,6 +159,22 @@ public function create()
 			$match_referee->referee_id        =$request->referees[$i];
 			$match_referee->save();
     	}
+			$chaneel_count = count($request->channels);
+			for($i = 0 ; $i < $chaneel_count ; $i++)
+			{
+				$match_channel = new Match_channel;
+				$match_channel->match_id          =$match->id;
+				$match_channel->channel_id        =$request->channels[$i];
+				$match_channel->save();
+				}
+				$commentor_count = count($request->commentors);
+				for($i = 0 ; $i < $commentor_count ; $i++)
+				{
+					$match_commentor = new Match_commentor;
+					$match_commentor->match_id          =$match->id;
+					$match_commentor->commentor_id        =$request->commentors[$i];
+					$match_commentor->save();
+					}
 		if($request->ajax())
 		{
 			return response(array('msg' => 'Adding Successfull'), 200)

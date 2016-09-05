@@ -68,26 +68,12 @@ class Managment_championshipController extends Controller {
 			 ->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	 }
 
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-
-=======
->>>>>>> d3330605109dc75005c06a50b37fd9a3855d36a5
->>>>>>> a3b0146cbd1a44c834cb9f68db8daf1cf860820b
 			/**
 			 * Display a listing of the resource.
 			 *
 			 * @return Response
 			 */
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> a3b0146cbd1a44c834cb9f68db8daf1cf860820b
-
-=======
->>>>>>> d3330605109dc75005c06a50b37fd9a3855d36a5
 
 	/**
 	 * Show the form for creating a new resource.

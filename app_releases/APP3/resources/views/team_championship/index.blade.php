@@ -1,117 +1,103 @@
 @extends('admin')
 @section('content')
-		<div class="content-wrapper">
-			<div class="container-fluid">
-
+<div class="content-wrapper">
+		<div class="container-fluid">
 				<div class="row">
-					<div class="col-md-12">
-<br>
-<ul class="alerts-list delete"></ul>
-<ul class="alerts-list" style="display:none;" id="show">
-  <li>
-     <div class="alert alert-success alert-dismissable">
-           <i class="icon-remove-sign"></i> Team_championship has been successfully added!.
-           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-       </div>
-   </li>
-</ul>
-<ul class="alerts-list" style="display:none;" id="showupdate">
-  <li>
-     <div class="alert alert-success alert-dismissable">
-           <i class="icon-remove-sign"></i> Team_championship has been successfully updated!.
-           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-       </div>
-   </li>
-</ul>
-<a class="btn btn-primary" data-toggle="modal" data-target="#addModal" style="margin-bottom:20px;" >
-		<i class="fa fa-plus-circle"  style="font-size: 18px;"></i> Add Team_championship
-</a>
-<div class="widget-content-white glossed">
-		<div class="padded">
-				<table id="matchs" class="table table-striped table-bordered table-hover datatable">
-						<thead>
-								<tr>
-										<th class="col-md-1">team </th>
-										<th class="col-md-1">championship </th>
-										<th class="col-md-1">coach</th>
-										<th class="col-md-1">no_goals</th>
-										<th class="col-md-1">no_points</th>
-										<th class="col-md-1">no_winnes</th>
-										<th class="col-md-1">no_loses</th>
-										<th class="col-md-1">no_draughts</th>
-
-
-										<th class="col-md-1">Actions</th>
-								</tr>
-						</thead>
-						<tbody>
-								@foreach ($tableData->getData()->data as $row)
-								<tr>
-										<td>{{ $row->team_name }}</td>
-										<td>{{ $row->championship_name }}</td>
-										<td>{!! $row->coach_name !!}</td>
-
-										<td>{!! $row->no_goals !!}</td>
-										<td>{{ $row->no_points }}</td>
-										<td>{{ $row->no_winnes }}</td>
-										<td>{{ $row->no_loses }}</td>
-										<td>{{ $row->no_draughts }}</td>
-
-										<td>{!!$row->actions !!}</td>
-								</tr>
-								@endforeach
-						</tbody>
-				</table>
-		</div>
-</div>
-
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!-- <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="addModalLabel"><i class="fa fa-plus-circle"></i> Add player_sponsor</h4>
-            </div> -->
-            <form role="form" method="POST" class="addForm" action="{{ url('/team_championship/store') }}" data-toggle="validator" enctype="multipart/form-data" >
-                <div class="modal-body">
-                    @include('team_championship.form')
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" id="submitForm" class="btn btn-primary">Submit</button>
-                    <button type="submit" class="btn btn-primary" id="addNew">Submit and Add New</button>
-
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="editgroupModal" tabindex="-1" role="dialog" aria-labelledby="editEmployeeModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="editEmployeeModalLabel"><i class="fa fa-pencil"></i> Update</h4>
-            </div>
-            <form role="form"  method="POST" class="editForm" data-id="" action="{{ url('/team_championship/update') }}" data-toggle="validator" enctype="multipart/form-data">
-                <div class="modal-body">
-@include('team_championship.form')                </div>
-                <div class="modal-footer">
-                    <button type="submit" id="submit" class="btn btn-primary">Update</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-					</div>
+						<div class="col-md-12">
+						<br>
+								<ul class="alerts-list delete"></ul>
+								<ul class="alerts-list" style="display:none;" id="show">
+  									<li>
+     										<div class="alert alert-success alert-dismissable">
+           										<i class="icon-remove-sign"></i> Team_championship has been successfully added!.
+           										<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+       									</div>
+   									</li>
+								</ul>
+								<ul class="alerts-list" style="display:none;" id="showupdate">
+  									<li>
+     										<div class="alert alert-success alert-dismissable">
+           									<i class="icon-remove-sign"></i> Team_championship has been successfully updated!.
+           									<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+       									</div>
+   									</li>
+								</ul>
+								<a class="btn btn-primary" data-toggle="modal" data-target="#addModal" style="margin-bottom:20px;" >
+										<i class="fa fa-plus-circle"  style="font-size: 18px;"></i> Add Team_championship
+								</a>
+								<div class="widget-content-white glossed">
+										<div class="padded">
+												<table id="matchs" class="table table-striped table-bordered table-hover datatable">
+															<thead>
+																		<tr>
+																					<th class="col-md-1">team </th>
+																					<th class="col-md-1">championship </th>
+																					<th class="col-md-1">coach</th>
+																					<th class="col-md-1">no_goals</th>
+																					<th class="col-md-1">no_points</th>
+																					<th class="col-md-1">no_winnes</th>
+																					<th class="col-md-1">no_loses</th>
+																					<th class="col-md-1">no_draughts</th>
+																					<th class="col-md-1">Actions</th>
+																			</tr>
+																	</thead>
+																	<tbody>
+																	@foreach ($tableData->getData()->data as $row)
+																			<tr>
+																					<td>{{ $row->team_name }}</td>
+																					<td>{{ $row->championship_name }}</td>
+																					<td>{!! $row->coach_name !!}</td>
+																					<td>{!! $row->no_goals !!}</td>
+																					<td>{{ $row->no_points }}</td>
+																					<td>{{ $row->no_winnes }}</td>
+																					<td>{{ $row->no_loses }}</td>
+																					<td>{{ $row->no_draughts }}</td>
+																					<td>{!!$row->actions !!}</td>
+																			</tr>
+																		@endforeach
+																	</tbody>
+															</table>
+													</div>
+											</div>
+											<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+    											<div class="modal-dialog">
+        											<div class="modal-content">
+            											<form role="form" method="POST" class="addForm" action="{{ url('/team_championship/store') }}" data-toggle="validator" enctype="multipart/form-data" >
+                												<div class="modal-body">
+                    												@include('team_championship.form')
+                												</div>
+                												<div class="modal-footer">
+                    												<button type="submit" id="submitForm" class="btn btn-primary">Submit</button>
+                    												<button type="submit" class="btn btn-primary" id="addNew">Submit and Add New</button>
+                												</div>
+            												</form>
+																</div>
+														</div>
+												</div>
+												<div class="modal fade" id="editgroupModal" tabindex="-1" role="dialog" aria-labelledby="editEmployeeModalLabel" aria-hidden="true">
+    												<div class="modal-dialog">
+        												<div class="modal-content">
+            												<div class="modal-header">
+                													<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                													<h4 class="modal-title" id="editEmployeeModalLabel"><i class="fa fa-pencil"></i> Update</h4>
+            												</div>
+            												<form role="form"  method="POST" class="editForm" data-id="" action="{{ url('/team_championship/update') }}" data-toggle="validator" enctype="multipart/form-data">
+                													<div class="modal-body">
+																								@include('team_championship.form')
+																					</div>
+                													<div class="modal-footer">
+                    														<button type="submit" id="submit" class="btn btn-primary">Update</button>
+                													</div>
+            												</form>
+        												</div>
+    												</div>
+												</div>
+										</div>
+								</div>
+						</div>
 				</div>
-			</div>
 		</div>
-	</div>
 	@endsection
-
 	@section('scripts')
 	  <script src="http://malsup.github.com/jquery.form.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
@@ -130,12 +116,12 @@
           fields: {
               from_date: {
                   validators: {
-                      notEmpty: {
-                          message: 'The date is required'
+                  notEmpty: {
+                  message: 'The date is required'
                       },
-                      from_date: {
-                      format: 'yyyy/mm/dd',
-                          message: 'The date is not a valid'
+                  from_date: {
+                  format: 'yyyy/mm/dd',
+                  message: 'The date is not a valid'
                       }
                   }
               }
@@ -158,12 +144,12 @@
 				fields: {
 						to_date: {
 								validators: {
-										notEmpty: {
-												message: 'The date is required'
+								notEmpty: {
+								message: 'The date is required'
 										},
-										to_date: {
-										format: 'yyyy/mm/dd',
-												message: 'The date is not a valid'
+								to_date: {
+								format: 'yyyy/mm/dd',
+								message: 'The date is not a valid'
 										}
 								}
 						}
@@ -329,10 +315,6 @@
 										$('.chosen-select-it', this).chosen({disable_search_threshold: 10});
 										$('.chosen-select-multiple', this).chosen({disable_search_threshold: 10}).trigger("chosen:updated");
 								});
-								// $('#groupModal').on('shown.bs.modal', function () {
-								//     $('.chosen-select-it', this).chosen({disable_search_threshold: 10});
-								//     $('.chosen-select-multiple', this).chosen({disable_search_threshold: 10});
-								// });
 								$('.group-search').chosen({disable_search_threshold: 10});
 });
 </script>

@@ -35,7 +35,7 @@ class RefereeController extends Controller {
 			->join('cities as city','city.id','=','referees.city_id')
 			->select(array('referees.id as refereeID',
 			    			'referees.name as refereename',
-				 			  'country.name as countryname',
+				 			'country.name as countryname',
 				 		  	'referees.job as referee_job',
 				 		  	'referees.birth_date as referees_birth_date',
 			     			'city.name as cityname',

@@ -312,7 +312,7 @@ class Matchnowcontroller extends Controller {
     	}
         else
         {
-<<<<<<< HEAD
+
 	        	$team1_championship = new Team_championship;
 	        	$team1_championship->team_id = $team1_id;
 	        	$team1_championship->championship_id =$championship_id->champion_id;
@@ -374,7 +374,6 @@ class Matchnowcontroller extends Controller {
 	        }
 	    }
 		return view('Editor.finish');
-=======
         	$team2_championship2 = new Team_championship;
         	$team2_championship2->team_id = $team2_id;
         	$team2_championship2->championship_id =$championship_id->champion_id;
@@ -487,7 +486,6 @@ class Matchnowcontroller extends Controller {
         }
 		 	return view('Editor.finish');
 
->>>>>>> a3b0146cbd1a44c834cb9f68db8daf1cf860820b
 	}
 		
 	

@@ -3,17 +3,17 @@
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Models\Match;
-use App\Models\Player_match;
-use App\Models\Team_player;
+use App\Models\Player_injured_history;
 use App\Models\Team;
 use App\Models\Player;
+use App\Models\Team_player;
 use yajra\Datatables\Datatables as Datatables;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Router as Route;
 use App\Services\DatatablePresenter;
 use Auth;
 
-class Player_matchController  extends Controller {
+class Player_injured_historyController  extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -24,55 +24,43 @@ class Player_matchController  extends Controller {
 	{
 	   $this->middleware('auth');
 	}
-	public function index(Player_injured_history $Player_injured_history , Request $request)
+	public function index(Player_injured_history $Player_injured , Request $request)
 	{
-		$Player_injured_history= new Player_injured_history;
-		$Player_injured_history = $Player_injured_history
-				->join('teams as T1', 'T1.id', '=', 'matches.team1_id')
-				->join('teams as T2', 'T2.id', '=', 'matches.team2_id')
-				->select(array('T1.name as T1name','T2.name as T2name',
-								'matches.id as match_id',
-								'matches.team1_goals as team1_goals',
-								'matches.team2_goals as team2_goals',
-								'matches.match_date as match_date',
-								'T1.flag as T1flag',
-								'T2.flag as T2flag',
-								'T1.id as T1ID',
-								'T2.id as T2ID'
+		$Player_injured = new Player_injured_history;
+		$Player_injureds = $Player_injured
+				->join('matches as M', 'M.id', '=', 'player_injured_histories.match_id')
+				->join('teams as T1', 'T1.id', '=', 'M.team1_id')
+				->join('teams as T2', 'T2.id', '=', 'M.team2_id')
+				->join('players as P', 'P.id', '=', 'player_injured_histories.player_id')
+				->select(array( 
+					            'T1.name as T1name',
+					            'T2.name as T2name',
+								'player_injured_histories.id as Player_injured_id',
+								'player_injured_histories.injured_name as Player_injured_name',
+								'player_injured_histories.from_date as Player_injured_from',
+								'player_injured_histories.to_date as Player_injured_to',
+								'P.name as P_name'
 				            ))
-				 ->where('date',date('Y-m-d'))->orderBy('match_id','desc')->get();
+				 ->where('M.date',date('Y-m-d'))->orderBy('Player_injured_id','asc')->get();
 
-	 	$player_matches = $player_match
-	  			->join('teams as T', 'T.id', '=', 'player_matches.team_id')
-				->join('matches as M', 'M.id', '=', 'player_matches.match_id')
-		  		->join('players as P', 'P.id', '=', 'player_matches.player_id')
-				->select(array('T.name as Tname',
-			 					'P.name as Pname',
-			  					'player_matches.id as PMID',
-								'player_matches.to_time as to_time',
-								'player_matches.from_time as from_time'))
-				->orderBy('PMID','desc')->get();
-
-	 	$tableData = Datatables::of($player_matches)
+	 	$tableData = Datatables::of($Player_injureds)
+	 			->editColumn('T1name', '{{$T1name}} - {{$T2name}}')
 				->addColumn('actions', function ($data)
 					{
-					return view('player_match/partial.actionBtns')->with('controller','player_match')->with('id', $data->PMID)->render(); });
+return view('partials.actionBtns')->with('controller','Player_injured_history')->with('id', $data->Player_injured_id)->render(); 
+                    });
 
 	 	if($request->ajax())
 				return DatatablePresenter::make($tableData, 'index');
-				$teams   =Team::lists('name','id');
-				$players =Player::lists('name','id');
-				$match= new Match;
-				$matches  = $match
-				->join('teams as team1', 'team1.id', '=', 'matches.team1_id')
-				->join('teams as team2', 'team2.id', '=', 'matches.team2_id')
-				->select(array('team1.name as team1_name','team2.name as team2_name','matches.id as matchid'))
-				->get();
-			  	return view('player_match.index')
-				->with('teams',$teams)
-				->with('Allmatch',$Allmatch)
-				->with('players',$players)
-				->with('matches',$matches)
+			$match= new Match;
+						$matches  = $match
+						->join('teams as team1', 'team1.id', '=', 'matches.team1_id')
+						->join('teams as team2', 'team2.id', '=', 'matches.team2_id')
+						->select(array('team1.name as team1_name','team2.name as team2_name','matches.id as matchid'))
+->where('matches.date',date('Y-m-d'))->orderBy('matchid','asc')->get();
+
+			return view('Player_injured_history.index')
+			    ->with('matches',$matches)
 				->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	}
 
@@ -91,6 +79,7 @@ class Player_matchController  extends Controller {
 			{
  				$team1_name=Team::where('id',$row->team1_id)->get(['name','id']);
  				$team2_name=Team::where('id',$row->team2_id)->get(['name','id']);
+ 				echo'<option selected> اختار النادى</option>';
  		foreach ($team1_name as $t1name)
 			{
  			 	echo'<option value='.$t1name->id.'> '. $t1name->name.' </option>';
@@ -107,36 +96,27 @@ class Player_matchController  extends Controller {
  	{
  		$team_id = $request->team_id;
  		$team_player = Team_player::where('team_id',$team_id)->get();
- 		$i=0;
- 		echo'<div class="checkbox">';
  		foreach($team_player as $row)
 			{
- 		 		$i++;
- 				$player_name=Player::where('id',$row->player_id)->get(['name']);
+ 				$player_name=Player::where('id',$row->player_id)->get();
  				foreach($player_name as $row2){
-  				echo '<label style="padding-right: 15px;"><input  type="checkbox" value='.$row->player_id.' name="player_id[]">'.$row2->name.'</label>';
-  				if($i == 4)
-  				{
- 	 				echo '<br>';
- 	 				$i=0;
-  				}
- 												}
+                     echo'<option value='.$row2->id.'> '.$row2->name.' </option>';
  			}
- 		echo '</div>';
+ 		}
  	}
 	public function store(Request $request)
-	{
-        $count = count($request->player_id);
-		for($i = 0 ; $i < $count ; $i++)
-		{
-			$player_match = new Player_match;
-			$player_match->team_id      = $request->team_id;
-			$player_match->player_id    = $request->player_id[$i];
-			$player_match->match_id     = $request->match_id;
-			$player_match->to_time      = $request->to_time;
-			$player_match->from_time    = $request->from_time;
-			$player_match->save();
-		}
+	{		
+			$Player_injured = new Player_injured_history;
+			$Player_injured->player_id      		= $request->player_id;
+			$Player_injured->match_id    			= $request->match_id;
+			$Player_injured->injured_name     		= $request->injured_name;
+			$Player_injured->from_date     			= $request->from_date;
+			$Player_injured->to_date    			= $request->to_date;
+			$Player_injured->nature_of_medicine    	= $request->nature_of_medicine;
+			$Player_injured->medicine_place    		= $request->medicine_place;
+			$Player_injured->addition_info    		= $request->addition_info;
+			$Player_injured->save();
+		
 		if($request->ajax())
 		{
 			return response(array('msg' => 'Adding Successfull'), 200)
@@ -153,10 +133,12 @@ class Player_matchController  extends Controller {
 	
 	public function edit(Request $request , $id)
 	{
-		$player_match 	= player_match::find($id);
+		$Player_injured = Player_injured_history::find($id);
+	 	session(['playerid'    => $Player_injured->player_id]);
+
 		if($request->ajax())
 		{
-			return response(array('msg' => 'Adding Successfull', 'data'=>$player_match->toJson() ), 200)
+			return response(array('msg' => 'Adding Successfull', 'data'=>$Player_injured->toJson() ), 200)
 			->header('Content-Type', 'application/json');
 		}
 	}
@@ -164,11 +146,26 @@ class Player_matchController  extends Controller {
 	
 	public function update(Request $request , $id)
  	{
-		$player_match =Player_match::find($id);
-		$player_match->team_id          =$request->team_id;
-		$player_match->to_time     		= $request->to_time;
-		$player_match->from_time        = $request->from_time;
-		$player_match->save();
+
+		$Player_injured =Player_injured_history::find($id);
+
+			$Player_injured->match_id    			= $request->match_id;
+			$Player_injured->injured_name     		= $request->injured_name;
+			$Player_injured->from_date     			= $request->from_date;
+			$Player_injured->to_date    			= $request->to_date;
+			$Player_injured->nature_of_medicine    	= $request->nature_of_medicine;
+			$Player_injured->medicine_place    		= $request->medicine_place;
+			$Player_injured->addition_info    		= $request->addition_info;
+
+          if($request->team_id == 0){
+                  $Player_injured->player_id      		= session('playerid');
+          }
+          else{
+                  $Player_injured->player_id      		= $request->player_id;
+          }			
+
+			$Player_injured->save();
+
  		if($request->ajax())
 		{
  			return response(array('msg' => 'Adding Successfull'), 200)
@@ -178,8 +175,8 @@ class Player_matchController  extends Controller {
 
 	public function destroy($id)
 	{
-	   	$player_match 	= Player_match::find($id);
-		$player_match->delete();
+	   	$Player_injured 	= Player_injured_history::find($id);
+		$Player_injured->delete();
 		if($request->ajax())
 		{
 			return response(array('msg' => 'Removing Successfull'), 200)

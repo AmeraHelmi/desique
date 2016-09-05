@@ -3,15 +3,9 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Models\Ball;
-use App\Models\Group;
 use App\Models\Team;
-use App\Models\Managment_championship;
-use App\Models\Player;
-use App\Models\Manager;
 use App\Models\Sponsor;
 use App\Models\Team_sponsor;
-use App\Models\Team_history_coach;
 use yajra\Datatables\Datatables as Datatables;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Router as Route;
@@ -38,32 +32,28 @@ class Team_sponsorController extends Controller {
 			 ->join('sponsors as sponsor','sponsor.id','=','team_sponsors.sponsor_id')
 
 			 ->select(array(
-				 'team_sponsors.id as t_sponsorID',
-			   'team.name as team_name',
-				 'sponsor.name as sponsor_name',
-				 'team_sponsors.from_date as from_date',
-				 'team_sponsors.to_date as to_date',
-				 'team_sponsors.amount as amount'
-			 ))
+						 	'team_sponsors.id as t_sponsorID',
+					   		'team.name as team_name',
+							'sponsor.name as sponsor_name'
+							))
 
 			 ->orderBy('team_sponsors.id','desc')->get();
 
 			 $tableData = Datatables::of($team_sponsors)
 
 				 ->addColumn('actions', function ($data)
-					 {return view('partials.actionBtns')->with('controller','team_sponsor')->with('id', $data->t_sponsorID)->render(); })
-				 ;
+					 {return view('partials.actionBtns')->with('controller','team_sponsor')->with('id', $data->t_sponsorID)->render(); }) ;
 
 			 if($request->ajax())
 				 return DatatablePresenter::make($tableData, 'index');
 				//  $championships=Championship::lists('name','id');
 
-				 $teams= Team::lists('name','id');
+				 $teams=Team::where('is_team','like','نادى%')->lists('name','id');
+
 			   $sponsors =Sponsor::lists('name','id');
-		 return view('team_sponsor.index')
+		 return view('team_sponsors.index')
 		   ->with('teams',$teams)
 			 ->with('sponsors',$sponsors)
-
 			 ->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	 }
 
@@ -85,17 +75,17 @@ class Team_sponsorController extends Controller {
 	 */
 	 public function store(Request $request)
  	{
-		$t_sponsor = new Team_sponsor;
-		$t_sponsor->team_id          =$request->team_id;
-		$t_sponsor->sponsor_id          =$request->sponsor_id;
-		$t_sponsor->from_date        =$request->from_date;
-		$t_sponsor->to_date        =$request->to_date;
-		$t_sponsor->amount        =$request->amount;
-
-		$t_sponsor->save();
+ 				$count = count($request->sponsor_id);
 
 
-			if($request->ajax()){
+			for($i = 0 ; $i < $count ; $i++){
+				$t_sponsor = new Team_sponsor;
+				$t_sponsor->sponsor_id          =$request->sponsor_id[$i];
+				$t_sponsor->team_id          =$request->team_id;
+				$t_sponsor->save();
+			}
+
+				if($request->ajax()){
 				return response(array('msg' => 'Adding Successfull'), 200)
 									->header('Content-Type', 'application/json');
 				}
@@ -137,14 +127,14 @@ class Team_sponsorController extends Controller {
 	 */
 	 public function update(Request $request,$id)
 	{
-		$t_sponsor 	= Team_sponsor::find($id);
-		$t_sponsor->team_id          =$request->team_id;
-		$t_sponsor->sponsor_id          =$request->sponsor_id;
-		$t_sponsor->from_date        =$request->from_date;
-		$t_sponsor->to_date        =$request->to_date;
-		$t_sponsor->amount        =$request->amount;
+ 		$count = count($request->sponsor_id);
+			for($i = 0 ; $i < $count ; $i++){
+				$t_sponsor = Team_sponsor::find($id);
+				$t_sponsor->sponsor_id       =$request->sponsor_id[$i];
+				$t_sponsor->team_id          =$request->team_id;
+				$t_sponsor->save();
+			}
 
-		$t_sponsor->save();
 
 
 			if($request->ajax()){

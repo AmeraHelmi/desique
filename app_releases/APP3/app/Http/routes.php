@@ -140,6 +140,9 @@ Route::POST    ('/minute/update'           ,'MinuteController@update');
 Route::resource('/minute' ,'MinuteController');
 
 
+//winner
+Route::POST    ('/winner/store'    , array('as' => 'addwinner','uses' => 'WinnerController@store'));
+Route::resource('/winner'          ,'WinnerController');
 
 
 //match
@@ -551,6 +554,12 @@ Route::resource('/v_album'                , 'V_albumController');
 Route::POST    ('/category/store'          , array('as' => 'addcategory','uses' => 'CategoryController@store'));
 Route::POST    ('/category/update'           ,'CategoryController@update');
 Route::resource('/category'                , 'CategoryController');
+
+//player -injured-history
+Route::POST    ('/player_injured_history/store' , array('as' => 'addplayer_injured_history','uses' => 'Player_injured_historyController@store'));
+Route::POST    ('/player_injured_history/getteams'          ,'Player_injured_historyController@getteams');
+Route::POST    ('/player_injured_history/getplayers'          ,'Player_injured_historyController@getplayers');
+Route::resource('/player_injured_history'                ,'Player_injured_historyController');
 
 //Front
 Route::resource('/front'  , 'FrontEndController');

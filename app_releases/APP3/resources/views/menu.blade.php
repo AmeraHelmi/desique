@@ -72,6 +72,8 @@
             <li><a href="{{ url('team') }}">اضافة نادى</a></li>
             <li><a href="{{ url('teamcloth') }}">ملابس الفريق</a></li>
             <li><a href="{{ url('team_group') }}">المجموعه</a></li>
+            <li><a href="{{ url('team_sponsor') }}">الرعاه</a></li>
+
         </ul>
     </li>
 
@@ -117,6 +119,9 @@
     <li>
 <a class="ajax-link" href="{{ url('post') }}"><i class="glyphicon glyphicon-arrow-left"></i><span> المدونه</span></a>
 </li>
+<li>
+<a class="ajax-link" href="{{ url('player_injured_history') }}"><i class="glyphicon glyphicon-arrow-left"></i><span> اصابات الاعبين</span></a>
+</li>
   <li>
 <a class="ajax-link" href="{{ url('minute') }}"><i class="glyphicon glyphicon-arrow-left"></i><span> لحظة بلحظة </span></a>
 </li>
@@ -156,4 +161,7 @@
 
     <li>
 <a class="ajax-link" href="{{ url('group') }}"><i class="glyphicon glyphicon-arrow-left"></i><span> المجموعات</span></a>
+</li>
+ <li>
+<a class="ajax-link" href="{{ url('winner') }}"><i class="glyphicon glyphicon-arrow-left"></i><span> الفائز بالبطوله</span></a>
 </li>

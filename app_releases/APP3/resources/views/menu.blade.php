@@ -69,7 +69,7 @@
     </ul>
 </li>
 
-<<<<<<< HEAD
+
                         <li class="accordion">
         <a href="#"><i class="glyphicon glyphicon-plus"></i><span> النادى</span></a>
         <ul class="nav nav-pills nav-stacked">
@@ -80,7 +80,7 @@
 
         </ul>
     </li>
-=======
+
 <li class="accordion">
     <a href="#">
         <i class="glyphicon glyphicon-plus"></i>
@@ -94,7 +94,6 @@
         <li><a href="{{ url('player_sponsor') }}">الرعاه للاعب</a></li>
     </ul>
 </li>
->>>>>>> 476edde1daffe7d48bbd262a1d310e5b8e0813c0
 
 <li class="accordion">
     <a href="#">
@@ -168,20 +167,18 @@
         <span> الحكم</span>
     </a>
 </li>
-<<<<<<< HEAD
 <li>
 <a class="ajax-link" href="{{ url('player_injured_history') }}"><i class="glyphicon glyphicon-arrow-left"></i><span> اصابات الاعبين</span></a>
 </li>
   <li>
 <a class="ajax-link" href="{{ url('minute') }}"><i class="glyphicon glyphicon-arrow-left"></i><span> لحظة بلحظة </span></a>
-=======
+
 
 <li>
     <a class="ajax-link" href="{{ url('blog') }}">
         <i class="glyphicon glyphicon-arrow-left"></i>
         <span> على الناصيه</span>
     </a>
->>>>>>> 476edde1daffe7d48bbd262a1d310e5b8e0813c0
 </li>
 
 <li>

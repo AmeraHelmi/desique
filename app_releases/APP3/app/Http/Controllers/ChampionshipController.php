@@ -17,7 +17,7 @@ use App\Services\DatatablePresenter;
 use Auth;
 use Input;
 
-class ChampionshipController extends Controller 
+class ChampionshipController extends Controller
 {
 
 			/**
@@ -31,11 +31,11 @@ class ChampionshipController extends Controller
  	}
 
 			/**
-			*@method [return view] [index]([[obj] [$championship],[obj] [$request]]) 
+			*@method [return view] [index]([[obj] [$championship],[obj] [$request]])
 			*[<to get data of championship [name,no_matches,addition_info,type]>]
-			*@param [obj] [$championship] 
-			*@param [obj] [$request] 
-			*@uses [Championship,Request Model] 
+			*@param [obj] [$championship]
+			*@param [obj] [$request]
+			*@uses [Championship,Request Model]
 			*@return [view] <'championship.index'>
 			*/
 	public function index(Championship $championship , Request $request)
@@ -78,10 +78,10 @@ class ChampionshipController extends Controller
 
 			/**
 			* Store a newly created resource in storage.
-			*@method [return response] [store]([[obj] [$request]]) 
+			*@method [return response] [store]([[obj] [$request]])
 			*[<to insert data in DB>]
-			*@param [obj] [$request] 
-			*@var [obj] [$championship] 
+			*@param [obj] [$request]
+			*@var [obj] [$championship]
 			*@uses [Championship,Request Model]
 			*@return [Response]
 			*/
@@ -93,8 +93,7 @@ class ChampionshipController extends Controller
 		$championship->no_matches    =$request->no_matches;
 		$championship->type          =$request->type;
 		$championship->addition_info =$request->addition_info;
-		$championship->start_date    =$request->start_date;
-		$championship->end_date      =$request->end_date;
+		$championship->year          =$request->year;
 		$championship->ball_id       =$request->ball_id;
 		$championship->continent     =$request->continent;
  		$championship->save();
@@ -112,7 +111,7 @@ class ChampionshipController extends Controller
 
 
 
-	
+
 	public function show($id)
 	{
 		//
@@ -121,12 +120,12 @@ class ChampionshipController extends Controller
 
 
 			/**
-			*@method [return response] [edit]([[obj] [$request],[int] [$id]]) 
+			*@method [return response] [edit]([[obj] [$request],[int] [$id]])
 			*[<to edit data >]
-			*@param [obj] [$request] 
-			*@param [int] [$id] 
+			*@param [obj] [$request]
+			*@param [int] [$id]
 			*@var [obj] [$championship]
-			*@uses [Championship,Request Model] 
+			*@uses [Championship,Request Model]
 			*@return [response]
 			*/
 	public function edit(Request $request , $id)
@@ -142,7 +141,7 @@ class ChampionshipController extends Controller
 
 			/**
 			 * Update the specified resource in storage.
-			 **@method [return response] [update]([obj] [$request]) 
+			 **@method [return response] [update]([obj] [$request])
 			 *[<to update data >]
 			 * @param  obj  $request
 			 * @return Response
@@ -155,8 +154,7 @@ class ChampionshipController extends Controller
 		$championship->no_matches    =$request->no_matches;
 		$championship->type          =$request->type;
 		$championship->addition_info =$request->addition_info;
-		$championship->start_date    =$request->start_date;
-		$championship->end_date      =$request->end_date;
+	  $championship->year          =$request->year;
 		$championship->ball_id       =$request->ball_id;
 		$championship->continent     =$request->continent;
 		$championship->save();
@@ -169,7 +167,7 @@ class ChampionshipController extends Controller
 
 			/**
 			 * Remove the specified resource from storage.
-			 *@method [return response] [destroy]([[int] [$id]]) 
+			 *@method [return response] [destroy]([[int] [$id]])
 			 *[<to delete data >]
 			 * @param  int  $id
 			 * @return Response

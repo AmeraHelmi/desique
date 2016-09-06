@@ -54,22 +54,6 @@ name="country_id">
 
 </div>
 </td>
-</tr>
-<tr>
-  <td style="width: 48%">
-    <div class="form-group">
-    <label class="control-label" style="display: block;">من</label>
-    <input id="datetime1" data-format="YYYY-MM-DD" data-template="YYYY / MM / DD" name="start_date" value="" type="text">
-    </div>
-  </td>
-  <td style="width: 48%; padding-left: 2%;">
-    <div class="form-group">
-    <label class="control-label" style="display: block;">االى</label>
-    <input id="datetime2" data-format="YYYY-MM-DD" data-template="YYYY / MM / DD" name="end_date" value="" type="text">
-    </div>
-  </td>
-
-</tr>
 <tr>
   <td style="width: 48%;">
     <div class="form-group">
@@ -99,6 +83,14 @@ name="ball_id">
 </div>
 </td>
 </tr>
+<tr>
+    <td >
+      <div class="form-group" style="float: right;">
+      <label class="control-label" style="display: block;">عام البطوله</label>
+      <input id="datetime2" data-format="YYYY" data-template="YYYY" name="year" value="" type="text">
+      </div>
+    </td>
+  </tr>
 </table>
 
 <div class="form-group">

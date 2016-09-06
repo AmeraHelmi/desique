@@ -120,8 +120,9 @@ li.active a, li.active a:hover
 												  </tbody>
 										</table>
 							</div>
+              <!-- data-backdrop="static" data-keyboard="false" -->
 				</div>
-				<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+				<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
     				<div class="modal-dialog">
         				<div class="modal-content">
             				<div class="modal-header">

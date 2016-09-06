@@ -62,12 +62,14 @@ class Player_matchController  extends Controller {
 				return DatatablePresenter::make($tableData, 'index');
 				$teams   =Team::lists('name','id');
 				$players =Player::lists('name','id');
+
 				$match= new Match;
 				$matches  = $match
 				->join('teams as team1', 'team1.id', '=', 'matches.team1_id')
 				->join('teams as team2', 'team2.id', '=', 'matches.team2_id')
 				->select(array('team1.name as team1_name','team2.name as team2_name','matches.id as matchid'))
-				->get();
+				 ->where('date',date('Y-m-d'))->orderBy('matchid','desc')->get();
+
 			  	return view('player_match.index')
 				->with('teams',$teams)
 				->with('Allmatch',$Allmatch)
@@ -76,13 +78,13 @@ class Player_matchController  extends Controller {
 				->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	}
 
-	
+
 	public function create()
 	{
 		//
 	}
 
-	
+
 	public function getteams(Request $request)
  	{
  		$match_id = $request->match_id;
@@ -144,13 +146,13 @@ class Player_matchController  extends Controller {
 		}
 	}
 
-	
+
 	public function show($id)
 	{
 		//
 	}
 
-	
+
 	public function edit(Request $request , $id)
 	{
 		$player_match 	= player_match::find($id);
@@ -161,7 +163,7 @@ class Player_matchController  extends Controller {
 		}
 	}
 
-	
+
 	public function update(Request $request , $id)
  	{
 		$player_match =Player_match::find($id);

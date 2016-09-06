@@ -7,18 +7,29 @@
           <option value="منتخب"><bdi>منتخب</bdi></option>
     </select>
 </div>
-<div class="form-group">
+
+<div class="form-group" >
+    <label for="exampleInputFile">نوع البطوله</label>
+    <select id="champ_type" name="champ_type"  class="form-control" onchange="select_type()">
+          <option value="0"><bdi>نوع البطوله</bdi></option>
+          <option value="كأس"><bdi>كأس</bdi></option>
+          <option value="دورى"><bdi>دورى</bdi></option>
+    </select>
+</div>
+
+<div class="form-group" id="group" style="display:none;">
     <label for="exampleInputFile">أختيار المجموعه</label>
     <select  class="form-control" name="group_id">
+          <option value="0">أختار المجموعه</option>
           @foreach($groups as $group_id => $group_name)
           <option value="{!! $group_id !!}">{!! $group_name !!}</option>
           @endforeach
     </select>
 </div>
-<div class="form-group">
+<div class="form-group" id="role" style="display:none;">
     <label for="exampleInputPassword1">الدور</label>
     <select  class="form-control" name="role">
-            <option value="1">دور المجموعات</option>
+            <option value="0">دور المجموعات</option>
             <option value="16">دور ال 16</option>
             <option value="8">دور ال 8</option>
             <option value="4">دور ال 4</option>

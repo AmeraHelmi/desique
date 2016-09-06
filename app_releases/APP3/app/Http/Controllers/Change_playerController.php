@@ -28,11 +28,11 @@ class Change_playerController  extends Controller
 
 
 			/**
-			*@method [return view] [index]([[obj] [$Change_player],[obj] [$request]]) 
+			*@method [return view] [index]([[obj] [$Change_player],[obj] [$request]])
 			*[<to get data of Change_player>]
-			*@param [obj] [$Change_player] 
-			*@param [obj] [$request] 
-			*@uses [Change_player,Request Model] 
+			*@param [obj] [$Change_player]
+			*@param [obj] [$request]
+			*@uses [Change_player,Request Model]
 			*@return [view] <'change_player.index'>
 			*/
 
@@ -82,22 +82,22 @@ class Change_playerController  extends Controller
 						->get();
 						return view('change_player.index')
 				  		->with('teams',$teams)
-						->with('Allmatch',$Allmatch)
-						->with('matches',$matches)
+						  ->with('Allmatch',$Allmatch)
+						  ->with('matches',$matches)
 				  		->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	}
 
-	
+
 	public function create()
 	{
 		//
 	}
 
 			/**
-			*@method [] [getteams]([[obj] [$request]]) 
+			*@method [] [getteams]([[obj] [$request]])
 			*[<to get data of getteams [team_id,team_name,match_id]>]
-			*@param [obj] [$request] 
-			*@uses [Team,Match,Request Model] 
+			*@param [obj] [$request]
+			*@uses [Team,Match,Request Model]
 			*/
 	public function getteams(Request $request)
 	{
@@ -116,13 +116,12 @@ class Change_playerController  extends Controller
 			   	echo'<option value='.$t2name->id.'> '. $t2name->name.' </option>';
 			}
 		}
-
 	}
 			/**
-			*@method [] [getplayers1]([[obj] [$request]]) 
+			*@method [] [getplayers1]([[obj] [$request]])
 			*[<to get data of getplayers1 [team_id,player_id]>]
-			*@param [obj] [$request] 
-			*@uses [Player_match,Player,Request Model] 
+			*@param [obj] [$request]
+			*@uses [Player_match,Player,Request Model]
 			*/
 	public function getplayers1(Request $request)
 	{
@@ -131,17 +130,17 @@ class Change_playerController  extends Controller
 		foreach($team_player as $row)
 		{
 				$player_name=Player::where('id',$row->player_id)->get(['name']);
-		foreach($player_name as $row2)
-			{
-				echo'<option value='.$row->player_id.'> '.$row2->name.' </option>';
-			}
+						foreach($player_name as $row2)
+							{
+								echo'<option value='.$row->player_id.'> '.$row2->name.' </option>';
+							}
 		}
 	}
 			/**
-			*@method [] [getplayers2]([[obj] [$request]]) 
+			*@method [] [getplayers2]([[obj] [$request]])
 			*[<to get data of getplayers2 [team_id,player_id]>]
-			*@param [obj] [$request] 
-			*@uses [Reserve_player,Player,Request Model] 
+			*@param [obj] [$request]
+			*@uses [Reserve_player,Player,Request Model]
 			*/
 	public function getplayers2(Request $request)
 	{
@@ -158,10 +157,10 @@ class Change_playerController  extends Controller
 	}
 			/**
 			* Store a newly created resource in storage.
-			*@method [return response] [store]([[obj] [$request]]) 
+			*@method [return response] [store]([[obj] [$request]])
 			*[<to insert data in DB>]
-			*@param [obj] [$request] 
-			*@var [obj] [$change_player] 
+			*@param [obj] [$request]
+			*@var [obj] [$change_player]
 			*@uses [change_player,Request Model]
 			*@return [Response]
 			*/
@@ -183,19 +182,19 @@ class Change_playerController  extends Controller
 			}
 	}
 
-	
+
 	public function show($id)
 	{
 		//
 	}
 
 			/**
-			*@method [return response] [edit]([[obj] [$request],[int] [$id]]) 
+			*@method [return response] [edit]([[obj] [$request],[int] [$id]])
 			*[<to edit data >]
-			*@param [obj] [$request] 
-			*@param [int] [$id] 
+			*@param [obj] [$request]
+			*@param [int] [$id]
 			*@var [obj] [$change_player]
-			*@uses [Change_player,Request Model] 
+			*@uses [Change_player,Request Model]
 			*@return [response]
 			*/
 	public function edit(Request $request , $id)
@@ -209,12 +208,12 @@ class Change_playerController  extends Controller
 
 			/**
 			 * Update the specified resource in storage.
-			 **@method [return response] [update]([obj] [$request],[int] [$id]) 
+			 **@method [return response] [update]([obj] [$request],[int] [$id])
 			 *[<to update data >]
 			 * @param  obj  $request
 			 * @param  int  $id
 			 * @return Response
-			*/	
+			*/
 	public function update(Request $request , $id)
  	{
 
@@ -227,18 +226,19 @@ class Change_playerController  extends Controller
  		if($request->ajax())
 			{
  				return response(array('msg' => 'Adding Successfull'), 200)
- 				->header('Content-Type', 'application/json');
+ 				       ->header('Content-Type', 'application/json');
  			}
- 	}
 
+ 	}
 
 			/**
 			 * Remove the specified resource from storage.
-			 *@method [return response] [destroy]([[int] [$id]]) 
+			 *@method [return response] [destroy]([[int] [$id]])
 			 *[<to delete data >]
 			 * @param  int  $id
 			 * @return Response
-			*/	
+			*/
+
 	public function destroy($id)
 	{
 		$change_player 	= Change_player::find($id);

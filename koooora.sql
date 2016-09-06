@@ -3,15 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
-<<<<<<< HEAD
--- Generation Time: Sep 05, 2016 at 05:49 PM
+-- Generation Time: Sep 06, 2016 at 05:56 PM
 -- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.23
-=======
--- Generation Time: Sep 05, 2016 at 02:35 PM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.20
->>>>>>> 476edde1daffe7d48bbd262a1d310e5b8e0813c0
+-- PHP Version: 5.6.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -100,7 +94,7 @@ CREATE TABLE `balls` (
 --
 
 INSERT INTO `balls` (`id`, `flag`, `brand`, `addition_info`, `updated_at`, `created_at`) VALUES
-(2, '13567192_1242939532405295_9041239049479101763_n.jpg', 'addiads', 'sss', '2016-08-24 07:04:16', '2016-08-24 07:03:25');
+(3, '13419168_1108812515858480_1169858009951459445_n.jpg', 'asd', 'dd', '2016-09-06 13:13:53', '2016-09-06 13:13:53');
 
 -- --------------------------------------------------------
 
@@ -225,8 +219,7 @@ CREATE TABLE `championships` (
   `country_id` int(11) DEFAULT NULL,
   `type` varchar(150) CHARACTER SET utf8 NOT NULL,
   `continent` text COLLATE utf8_unicode_ci NOT NULL,
-  `start_date` date DEFAULT NULL,
-  `end_date` date DEFAULT NULL,
+  `year` year(4) DEFAULT NULL,
   `ball_id` int(11) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
@@ -236,10 +229,8 @@ CREATE TABLE `championships` (
 -- Dumping data for table `championships`
 --
 
-INSERT INTO `championships` (`id`, `name`, `addition_info`, `no_matches`, `country_id`, `type`, `continent`, `start_date`, `end_date`, `ball_id`, `updated_at`, `created_at`) VALUES
-(5, 'دورى ابطال افريقيا', 'kkk', 44, 86, 'local', 'افريقيا', '2014-04-04', '2015-02-03', 2, '2016-08-24 07:11:50', '2016-08-24 07:11:50'),
-(6, 'alaa', 'jij', 4, 81, 'world', 'افريقيا', '2016-02-03', '2016-02-04', 2, '2016-08-24 07:12:39', '2016-08-24 07:12:31'),
-(7, 'ييي', 'ققق', 3, 81, 'local', 'أوربا', '2017-03-02', '2017-02-03', 2, '2016-09-04 10:31:33', '2016-09-04 10:31:33');
+INSERT INTO `championships` (`id`, `name`, `addition_info`, `no_matches`, `country_id`, `type`, `continent`, `year`, `ball_id`, `updated_at`, `created_at`) VALUES
+(10, 'a', 'ff', 0, 85, 'local', 'أفريقيا', 2003, 3, '2016-09-06 13:14:04', '2016-09-06 13:14:04');
 
 -- --------------------------------------------------------
 
@@ -254,14 +245,6 @@ CREATE TABLE `championship_sponsors` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `championship_sponsors`
---
-
-INSERT INTO `championship_sponsors` (`id`, `championship_id`, `sponsor_id`, `updated_at`, `created_at`) VALUES
-(1, 6, 3, '2016-09-05 13:43:56', '2016-09-05 13:43:45'),
-(2, 6, 3, '2016-09-05 13:43:46', '2016-09-05 13:43:46');
 
 -- --------------------------------------------------------
 
@@ -1348,11 +1331,11 @@ CREATE TABLE `errors` (
 
 CREATE TABLE `expections` (
   `id` int(11) NOT NULL,
-  `question_text` text NOT NULL,
-  `ans1` text NOT NULL,
-  `ans2` text NOT NULL,
-  `ans3` text,
-  `ans4` text,
+  `question_text` text CHARACTER SET latin1 NOT NULL,
+  `ans1` text CHARACTER SET latin1 NOT NULL,
+  `ans2` text CHARACTER SET latin1 NOT NULL,
+  `ans3` text CHARACTER SET latin1,
+  `ans4` text CHARACTER SET latin1,
   `count1` int(11) DEFAULT NULL,
   `count2` int(11) DEFAULT NULL,
   `count3` int(11) DEFAULT NULL,
@@ -1360,7 +1343,7 @@ CREATE TABLE `expections` (
   `date` date NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1405,7 +1388,7 @@ CREATE TABLE `groups` (
 --
 
 INSERT INTO `groups` (`id`, `name`, `championship_id`, `addition_info`, `no_matches`, `updated_at`, `created_at`) VALUES
-(1, 'B المجموعه', 5, 'hh', 55, '2016-09-05 12:17:38', '2016-09-05 12:17:38');
+(2, 'A المجموعه', 10, 'ssss', 10, '2016-09-06 13:24:04', '2016-09-06 13:24:04');
 
 -- --------------------------------------------------------
 
@@ -2808,12 +2791,22 @@ CREATE TABLE `team_championship_players` (
 CREATE TABLE `team_groups` (
   `id` int(11) NOT NULL,
   `team_id` int(11) DEFAULT NULL,
-  `group_id` int(11) NOT NULL,
-  `role` int(11) NOT NULL,
+  `group_id` int(11) DEFAULT NULL,
+  `role` int(11) DEFAULT NULL,
   `champion_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `team_groups`
+--
+
+INSERT INTO `team_groups` (`id`, `team_id`, `group_id`, `role`, `champion_id`, `created_at`, `updated_at`) VALUES
+(16, 33, 2, 16, 10, '2016-09-06 13:42:27', '2016-09-06 13:42:27'),
+(17, 36, NULL, NULL, 10, '2016-09-06 13:42:42', '2016-09-06 13:42:42'),
+(18, 33, NULL, NULL, 10, '2016-09-06 13:43:01', '2016-09-06 13:43:01'),
+(19, 33, 2, 16, 10, '2016-09-06 13:43:12', '2016-09-06 13:43:12');
 
 -- --------------------------------------------------------
 
@@ -3390,9 +3383,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `role`) VALUES
-(2, 'lames', 'lames@lames.com', '$2y$10$d8WHCeFB2GbdeVSABCHUr.IQmMt.v4tXzr32iOEUfh9NTdl0rReFO', 'mqEj5wUiD8hJrO2FjmjMKKDzQtx1llJ9woYZMy35mSj0Hqx2KKPAyJ0c9uDn', '2016-05-11 06:01:54', '2016-09-05 10:09:17', 'Editor'),
-(3, 'alaa', 'alaa@yahoo.com', '$2y$10$BKmcSsvjypRF/Xjm4LSaL./osSpNt/FbUYLu.Ik1AKC05VO2ldVue', 'gb8rfH2K6JwttTGF56MUzkOCZliNia5RcJTHlQ8dlEUaQJkCsloXpkfHcgyE', '2016-05-11 06:04:22', '2016-09-05 10:08:27', 'Admin'),
-(4, 'mohaned', 'm.fouad.developer@gmail.com', '$2y$10$BKmcSsvjypRF/Xjm4LSaL./osSpNt/FbUYLu.Ik1AKC05VO2ldVue', 'AFtDw748GdoVIzrQkQ8pO4p5Zq18qqAUawomI3NdFHqXMp2U777cc7GMbIYi', '2016-05-15 13:23:10', '2016-09-04 08:08:54', 'ِAnalyiser'),
+(2, 'lames', 'lames@lames.com', '$2y$10$d8WHCeFB2GbdeVSABCHUr.IQmMt.v4tXzr32iOEUfh9NTdl0rReFO', 'doocyD6qz9KYLbHdTz5YBcqJIEdDf4YBFJFLPT5bja38VNgmXRKPnH9UktGh', '2016-05-11 06:01:54', '2016-09-06 12:37:25', 'Editor'),
+(3, 'alaa', 'alaa@yahoo.com', '$2y$10$BKmcSsvjypRF/Xjm4LSaL./osSpNt/FbUYLu.Ik1AKC05VO2ldVue', 'rFfSK8OJh8WPwJ2m79uaEUmS5bBhgGtvv7BRbJx9udXtzwMuuujjtYjXucDa', '2016-05-11 06:04:22', '2016-09-06 12:36:08', 'Admin'),
+(4, 'mohaned', 'm.fouad.developer@gmail.com', '$2y$10$BKmcSsvjypRF/Xjm4LSaL./osSpNt/FbUYLu.Ik1AKC05VO2ldVue', 'AFtDw748GdoVIzrQkQ8pO4p5Zq18qqAUawomI3NdFHqXMp2U777cc7GMbIYi', '2016-05-15 13:23:10', '2016-09-04 08:08:54', 'Data Entry'),
 (5, 'amera', 'amera.elsayed6@gmail.com', '$2y$10$5Itr3pLJTdM4SI0GMeB.f.WWIoa2FOh1gPs1HCKRchuDIQdmJd9g.', '4cgjartVEo98RoSrvlqQwLfw9lE13f0N2zdty4CR7WEWsLLJ2dRTyquSEXjJ', '2016-05-16 06:25:55', '2016-05-16 08:57:47', 'Admin'),
 (6, 'reham mohamed', 'rehammohamed@brother-group.net', '$2y$10$BR2q0F5Ujf/g4AhHvVP1dOStRzgA1YSuAqWONQCoKQD1dnTErhb.G', 'zlBAVfXZ3xNFXkJtrSRhIyDSyXeO2FOpOaSFhao5gDsjFgGuB8ymifrT6miF', '2016-05-16 08:27:45', '2016-06-02 12:56:25', 'Data Entry'),
 (7, 'soaad elattar ', 'SOSO_MOSTAFA2012@HOTMAIL.COM', '$2y$10$5DNUW.mPGbC4jUA9qtd/MOly/hhkSQjz3H4xZ31Uuq7I9PDolPIYO', 'eOqwsPCynpxZZ7bK4wG8QcYO6N08vuMA4wRXvjGKcBhqa6gHLERYYJlR1RU3', '2016-05-17 12:03:04', '2016-05-29 14:48:07', 'Data Entry'),
@@ -3442,13 +3435,6 @@ CREATE TABLE `winners` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `winners`
---
-
-INSERT INTO `winners` (`id`, `team_id`, `championship_id`, `win_date`, `no_goals`, `no_points`, `additional_info`, `created_at`, `updated_at`) VALUES
-(1, 4, 5, '2017-01-02', 55, 125, 'تتت', '2016-09-05 13:05:54', '2016-09-05 13:05:54');
 
 --
 -- Indexes for dumped tables
@@ -3990,7 +3976,7 @@ ALTER TABLE `agent_histories`
 -- AUTO_INCREMENT for table `balls`
 --
 ALTER TABLE `balls`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `bcomments`
 --
@@ -4020,7 +4006,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `championships`
 --
 ALTER TABLE `championships`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `championship_sponsors`
 --
@@ -4085,7 +4071,7 @@ ALTER TABLE `goals`
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `g_albums`
 --
@@ -4255,7 +4241,7 @@ ALTER TABLE `team_championship_players`
 -- AUTO_INCREMENT for table `team_groups`
 --
 ALTER TABLE `team_groups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `team_players`
 --

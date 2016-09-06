@@ -15,8 +15,6 @@
 															<thead>
 																		<tr>
 																				<th class="col-md-2">الفريق</th>
-																				<th class="col-md-2">المجموعه</th>
-																				<th class="col-md-1">الدور</th>
 																				<th class="col-md-3">البطوله</th>
 																				<th class="col-md-2">خيارات</th>
 																			</tr>
@@ -25,8 +23,6 @@
 																		@foreach ($tableData->getData()->data as $row)
 																		<tr>
 																				<td>{{ $row->team_name }}</td>
-																				<td>{{ $row->group_name }}</td>
-																				<td>{{ $row->role }}</td>
 																				<td>{{ $row->Championship }}</td>
 																				<td>{!!$row->actions !!}</td>
 																			</tr>
@@ -91,6 +87,19 @@
     	$('.nations').hide();
 		}
 }
+
+function select_type(){
+$champ_type=$('#champ_type').val();
+if($champ_type === 'كأس'){
+	$('#group').show();
+	$('#role').show();
+}
+else{
+	$('#group').hide();
+	$('#role').hide();
+	}
+}
+
 $(document).ready(function() {
 		function populateForm(response, frm) {
         var i;
@@ -209,8 +218,6 @@ $(document).ready(function() {
 								"deferLoading": {{ $tableData->getData()->recordsFiltered }},
 								"columns": [
 										{data: 'team_name', name: 'team_name'},
-										{data: 'group_name', name: 'group_name'},
-										{data: 'role', name: 'role'},
 										{data: 'Championship', name: 'Championship'},
 										{data: 'actions', name: 'actions', orderable: false, searchable: false}
 								]

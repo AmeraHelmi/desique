@@ -24,6 +24,7 @@
      <div class="alert alert-success alert-dismissable">
            <i class="icon-remove-sign"></i> تم تحديث البيانات بنجـــــــاح!.
            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+
        </div>
    </li>
 </ul>

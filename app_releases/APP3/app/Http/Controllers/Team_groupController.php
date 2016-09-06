@@ -15,7 +15,7 @@ class Team_groupController extends Controller {
 	public function index(Team_group $tgroup , Request $request)
 	{
 		$team_groups = $tgroup
-		  ->join('teams as t', 't.id', '=', 'team_groups.team_id')		  ->join('groups as g', 'g.id', '=', 'team_groups.group_id')		  ->join('championships as c', 'c.id', '=', 'team_groups.champion_id')			->select(array(				 'team_groups.id as tgID',				 't.name as team_name',         'g.name as group_name',         'c.name as Championship',				 'team_groups.role'))			->orderBy('team_groups.id','desc')->get();
+		  ->join('teams as t', 't.id', '=', 'team_groups.team_id')		  ->join('championships as c', 'c.id', '=', 'team_groups.champion_id')			->select(array(				 'team_groups.id as tgID',				 't.name as team_name',         'c.name as Championship'			 ))			->orderBy('team_groups.id','desc')->get();
 			$tableData = Datatables::of($team_groups)				->addColumn('actions', function ($data)					{return view('team_group/partial.actionBtns')->with('controller','team_group')->with('id', $data->tgID)->render(); })				;			if($request->ajax())				return DatatablePresenter::make($tableData, 'index');				 $nations=Team::where('is_team','like','منتخب%')->lists('name','id');				 $teams=Team::where('is_team','like','نادى%')->lists('name','id');
          $championships = Championship::lists('name','id');
 			 	$groups=Group::lists('name','id');
@@ -36,8 +36,7 @@ class Team_groupController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request)
-	{$count = count($request->team_id);	for($i = 0 ; $i < $count ; $i++){		$tgroup = new Team_group;		$tgroup->group_id           =$request->group_id;		$tgroup->role               =$request->role;		$tgroup->champion_id        =$request->champion_id;		$tgroup->team_id            = $request->team_id[$i];	  $tgroup->save();	}			return response(array('msg' => 'Adding Successfull'), 200)								->header('Content-Type', 'application/json');
+	public function store(Request $request)	{$count = count($request->team_id);if($request->champ_type == 'دورى'){for($i = 0 ; $i < $count ; $i++){		$tgroup = new Team_group;		$tgroup->champion_id        =$request->champion_id;		$tgroup->team_id            = $request->team_id[$i];	  $tgroup->save();	}}else{			for($i = 0 ; $i < $count ; $i++){		$tgroup = new Team_group;		$tgroup->group_id           =$request->group_id;		$tgroup->role               =$request->role;		$tgroup->champion_id        =$request->champion_id;		$tgroup->team_id            = $request->team_id[$i];	  $tgroup->save();	}}			return response(array('msg' => 'Adding Successfull'), 200)								->header('Content-Type', 'application/json');
 	}	//
 	// public function select_team(Request $request)	//  {	//	// 		 $team_type = $request->team_type;	// 		 $teams = Team::where('is_team','like',$team_type)->get();	//	// 			foreach($teams as $row)	// 			{	// 				echo'<option value='.$row->id.'> '.$row->name.' </option>';	// 			}	//  }
 

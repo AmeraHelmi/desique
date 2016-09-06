@@ -34,24 +34,24 @@
                 <label class="control-label" style="display: block;">من</label>
                 <input id="datetime1" data-format="YYYY-MM-DD" data-template="YYYY / MM / DD" name="from_date" value="" type="text">
             </div>
+            <input type="checkbox" name="present" id="present" onclick="disable_todate()"> حتى الأن
+
         </td>
-        <td style="width: 48%; padding-left: 2%;">
+        <td style="width: 48%; padding-left: 2%;" id="td_to">
             <div class="form-group">
-                <label class="control-label" style="display: block;">االى</label>
+                <label class="control-label" style="display: block;">الى</label>
                 <input id="datetime2" data-format="YYYY-MM-DD" data-template="YYYY / MM / DD" name="to_date" value="" type="text">
             </div>
         </td>
     </tr>
-    <tr>
-      <td style="width: 48%">
-          <div class="form-group">
-              <label for="exampleInputPassword1">عقد</label>
-              <input type="number" name="contract" required placeholder="contract amount" class="form-control">
-              <span class="help-block with-errors errorName"></span>
-          </div>
-      </td>
-    </tr>
 </table>
+      <div class="form-group">
+          <label for="exampleInputPassword1">عقد</label>
+          <input type="number" name="contract" required placeholder="contract amount" class="form-control">
+          <span class="help-block with-errors errorName"></span>
+      </div>
+
+
 <div class="form-group">
     <label for="exampleInputPassword1">نبذه عن بطولات المدرب مع النادى</label>
     <textarea rows="2" cols="30"  name="addition_info" class="form-control" ></textarea>

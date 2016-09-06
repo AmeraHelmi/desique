@@ -124,6 +124,17 @@
       }
     });
 }
+
+function disable_todate()
+{
+	if (present.checked == 1){
+    $('#td_to').hide();
+}
+else{
+$('#td_to').show();
+}
+
+}
 //update
 function select_team2(){
 $team_type=$('#team_type2').val();
@@ -288,7 +299,7 @@ $.ajax({
 										$('.chosen-select-it', this).chosen({disable_search_threshold: 10});
 										$('.chosen-select-multiple', this).chosen({disable_search_threshold: 10}).trigger("chosen:updated");
 								});
-						
+
 								$('.group-search').chosen({disable_search_threshold: 10});
 });
 </script>

@@ -12,11 +12,11 @@
 <div class="form-group">
       <label for="exampleInputFile">اختار الدور</label>
       <select  class="form-control" name="role">
-              <option selected>غير نشط</option>
+              <option selected value="disactive">غير نشط</option>
               <option value="Editor">متابع مباراه</option>
               <option value="News">محرر اخبار</option>
               <option value="Data Entry">مدخل بيانات</option>
               <option value="Admin">مدير</option>
-              <option value="ِAnalyiser">محلل رياضى</option>
+              <option value="Analyiser">محلل رياضى</option>
       </select>
 </div>

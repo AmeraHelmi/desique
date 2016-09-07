@@ -149,13 +149,13 @@
                                 </li>
                                 @elseif(Auth::user()->role =='Data Entry')
                                 @include('menu')
-                                @else
-                                <li>
+                                @elseif(Auth::user()->role =='News')                                <li>
                                     <a class="ajax-link" href="{{ url('snew') }}">
                                         <i class="glyphicon glyphicon-arrow-left"></i>
                                         <span> الاخبار</span>
                                     </a>
                                 </li>
+                                @else
                                 @endif
                             </ul>
                         </div>

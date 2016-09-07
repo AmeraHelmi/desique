@@ -87,7 +87,7 @@ public function create()
 		$winner->save();
 		return response(array('msg' => 'Adding Successfull'), 200)
 		->header('Content-Type', 'application/json');}
-	
+
 
 	public function show($id)
 	{

@@ -1,15 +1,11 @@
 @extends('auth')
-
 @section('title')
 Complete registration
 @endsection
-
 @section('content')
-	    	
 <h3 class="form-title form-title-first"><i class="fa fa-lock"></i> Complete registration</h3>
-
 @if (count($errors) > 0)
-	<div class="alert alert-danger">
+<div class="alert alert-danger">
 		<strong>Whoops!</strong> There were some problems with your input.<br><br>
 		<ul>
 			@foreach ($errors->all() as $error)

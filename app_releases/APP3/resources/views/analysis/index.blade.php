@@ -2,94 +2,86 @@
 @section('styles')
 @endsection
 @section('content')
-		<div class="content-wrapper">
-			<div class="container-fluid">
-
+<div class="content-wrapper">
+		<div class="container-fluid">
 				<div class="row">
-					<div class="col-md-12">
-<br>
-<ul class="alerts-list delete">
-</ul>
-<a class="btn btn-primary" data-toggle="modal" data-target="#addModal" style="margin-bottom:20px;" >
-		<i class="fa fa-plus-circle"  style="font-size: 18px;"></i> أضافة تحليل
-</a>
-<div class="widget-content-white glossed">
-		<div class="padded">
-				<table id="analysis" class="table table-striped table-bordered table-hover datatable">
-						<thead>
-								<tr>
-										<th class="col-md-2">مباراه</th>
-										<th class="col-md-2">التحليل</th>
-										<th class="col-md-4">التاريخ</th>
-										<th class="col-md-2">المؤلف</th>
-										<th class="col-md-2">خيارات</th>
-								</tr>
-						</thead>
-						<tbody>
-								@foreach ($tableData->getData()->data as $row)
-								<tr>
-										<td>{{ $row->T1name }}</td>
-										<td>{{ $row->analysis }}</td>
-										<td>{{ $row->analysis_date }}</td>
-										<td>{{ $row->Author }}</td>
-										<td>{!!$row->actions !!}</td>
-								</tr>
-								@endforeach
-						</tbody>
-				</table>
-		</div>
-</div>
-
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="addModalLabel"><i class="fa fa-plus-circle"></i> أضافة تحليل</h4>
-            </div>
-            <form role="form" method="POST" class="addForm" action="{{ url('/analysis/store') }}" data-toggle="validator">
-                <div class="modal-body">
-                    @include('analysis.form')
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" id="submitForm" class="btn btn-primary">موافق</button>
-                    <button type="submit" class="btn btn-primary" id="addNew">موافق وأضافة جديد</button>
-
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="editanalysisModal" tabindex="-1" role="dialog" aria-labelledby="editEmployeeModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="editEmployeeModalLabel"><i class="fa fa-pencil"></i> تحديث</h4>
-            </div>
-            <form role="form" id="update_form" method="POST" class="editForm" data-id="" action="{{ url('/analysis/update') }}" data-toggle="validator">
-                <div class="modal-body">
-                    @include('analysis.formupdate')
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" id="submit" class="btn btn-primary">تحديث</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
+						<div class="col-md-12">
+						<br>
+								<ul class="alerts-list delete"></ul>
+										<a class="btn btn-primary" data-toggle="modal" data-target="#addModal" style="margin-bottom:20px;" >
+												<i class="fa fa-plus-circle"  style="font-size: 18px;"></i> أضافة تحليل
+										</a>
+										<div class="widget-content-white glossed">
+												<div class="padded">
+														<table id="analysis" class="table table-striped table-bordered table-hover datatable">
+																<thead>
+																		<tr>
+																				<th class="col-md-2">مباراه</th>
+																				<th class="col-md-2">التحليل</th>
+																				<th class="col-md-4">التاريخ</th>
+																				<th class="col-md-2">المؤلف</th>
+																				<th class="col-md-2">خيارات</th>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		@foreach ($tableData->getData()->data as $row)
+																			<tr>
+																					<td>{{ $row->T1name }}</td>
+																					<td>{{ $row->analysis }}</td>
+																					<td>{{ $row->analysis_date }}</td>
+																					<td>{{ $row->Author }}</td>
+																					<td>{!!$row->actions !!}</td>
+																			</tr>
+																		@endforeach
+																	</tbody>
+															</table>
+													</div>
+											</div>
+											<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+    											<div class="modal-dialog">
+        											<div class="modal-content">
+            											<div class="modal-header">
+                											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                											<h4 class="modal-title" id="addModalLabel"><i class="fa fa-plus-circle"></i> أضافة تحليل</h4>
+            											</div>
+            											<form role="form" method="POST" class="addForm" action="{{ url('/analysis/store') }}" data-toggle="validator">
+                											<div class="modal-body">
+                    											@include('analysis.form')
+                											</div>
+                											<div class="modal-footer">
+                    											<button type="submit" id="submitForm" class="btn btn-primary">موافق</button>
+                    											<button type="submit" class="btn btn-primary" id="addNew">موافق وأضافة جديد</button>
+                											</div>
+																	</form>
+        											</div>
+    										</div>
+										</div>
+										<div class="modal fade" id="editanalysisModal" tabindex="-1" role="dialog" aria-labelledby="editEmployeeModalLabel" aria-hidden="true">
+    										<div class="modal-dialog">
+        										<div class="modal-content">
+            										<div class="modal-header">
+                										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                										<h4 class="modal-title" id="editEmployeeModalLabel"><i class="fa fa-pencil"></i> تحديث</h4>
+            										</div>
+            										<form role="form" id="update_form" method="POST" class="editForm" data-id="" action="{{ url('/analysis/update') }}" data-toggle="validator">
+                											<div class="modal-body">
+                    											@include('analysis.formupdate')
+                											</div>
+                											<div class="modal-footer">
+                    												<button type="submit" id="submit" class="btn btn-primary">تحديث</button>
+                											</div>
+            										</form>
+        										</div>
+    									</div>
+									</div>
+							</div>
 					</div>
-				</div>
 			</div>
 		</div>
 	</div>
-	@endsection
-
-	@section('scripts')
-	<script>
+@endsection
+@section('scripts')
+<script>
 $(function(){
 		$('#datetime12').combodate();
 });
@@ -101,7 +93,7 @@ $championship_id=$('#championship_id').val();
 $.ajax({
 		url: '{{ url('analysis/get_match') }}',
 		type: "POST",
-	data:{
+		data:{
 			championship_id:$championship_id
 		},
 		success:function(res)
@@ -192,9 +184,8 @@ $.ajax({
 	         });
 	     });
 
-
-		 				 /* update Form Submission */
-		 		     $("#editanalysisModal form").validator().on('submit', function(e){
+	 /* update Form Submission */
+$("#editanalysisModal form").validator().on('submit', function(e){
 		 		         if (!e.isDefaultPrevented())
 		 		         {
 		 		             var self = $(this);
@@ -246,5 +237,4 @@ $.ajax({
 							});
 </script>
 <script src="{{ asset('/admin-ui/js/for_pages/table.js') }}"></script>
-
-	@endsection
+@endsection

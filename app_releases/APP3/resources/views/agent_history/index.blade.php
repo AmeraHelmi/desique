@@ -1,99 +1,91 @@
 @extends('admin')
 @section('content')
-		<div class="content-wrapper">
-			<div class="container-fluid">
-
+<div class="content-wrapper">
+		<div class="container-fluid">
 				<div class="row">
-					<div class="col-md-12">
-<br>
-<ul class="alerts-list">
-</ul>
-<a class="btn btn-primary" data-toggle="modal" data-target="#addModal" style="margin-bottom:20px;" >
-		<i class="fa fa-plus-circle"  style="font-size: 18px;"></i> أضافة تاريخ وكيل
-</a>
-<div class="widget-content-white glossed">
-		<div class="padded">
-				<table id="history" class="table table-striped table-bordered table-hover datatable">
-						<thead>
-								<tr>
-								   	<th class="col-md-2">الوكيل</th>
-								  	<th class="col-md-2">اللاعب</th>
-									<th class="col-md-2">من</th>
-									<th class="col-md-2">الى</th>
-									<th class="col-md-2">خيارات</th>
-								</tr>
-						</thead>
-						<tbody>
-								@foreach ($tableData->getData()->data as $row)
-								<tr>
-								  	<td>{{ $row->agent_name }}</td>
-								  	<td>{{ $row->player_name }}</td>
-									<td>{{ $row->from_date }}</td>
-									<td>{{ $row->to_date}}</td>
-									<td>{!!$row->actions !!}</td>
-								</tr>
-								@endforeach
-						</tbody>
-				</table>
-		</div>
-</div>
-
-<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="addModalLabel"><i class="fa fa-plus-circle"></i> أضافة تاريخ وكيل</h4>
-            </div>
-            <form role="form" method="POST" class="addForm" action="{{ url('/agent_history/store') }}" data-toggle="validator">
-                <div class="modal-body">
-                    @include('agent_history.form')
-                </div>
-                <div class="modal-footer">
-                   <button type="submit" id="submitForm" class="btn btn-primary">موافق</button>
-                    <button type="submit" class="btn btn-primary" id="addNew">موافق وأضافة جديد</button>
-
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="editAgenthistoryModal" tabindex="-1" role="dialog" aria-labelledby="editEmployeeModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="editEmployeeModalLabel"><i class="fa fa-pencil"></i> تحديث</h4>
-            </div>
-            <form role="form" id="update_form" method="POST" class="editForm" data-id="" action="{{ url('/agent_history/update') }}" data-toggle="validator">
-                <div class="modal-body">
-                    @include('agent_history.form')
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" id="submit" class="btn btn-primary">تحديث</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-					</div>
+						<div class="col-md-12">
+						<br>
+								<ul class="alerts-list"></ul>
+										<a class="btn btn-primary" data-toggle="modal" data-target="#addModal" style="margin-bottom:20px;" >
+												<i class="fa fa-plus-circle"  style="font-size: 18px;"></i> أضافة تاريخ وكيل
+										</a>
+										<div class="widget-content-white glossed">
+												<div class="padded">
+														<table id="history" class="table table-striped table-bordered table-hover datatable">
+																	<thead>
+																			<tr>
+								   												<th class="col-md-2">الوكيل</th>
+								  												<th class="col-md-2">اللاعب</th>
+																					<th class="col-md-2">من</th>
+																					<th class="col-md-2">الى</th>
+																					<th class="col-md-2">خيارات</th>
+																			</tr>
+																	 </thead>
+																	 <tbody>
+																		 @foreach ($tableData->getData()->data as $row)
+																		 			<tr>
+								  														<td>{{ $row->agent_name }}</td>
+								  														<td>{{ $row->player_name }}</td>
+																							<td>{{ $row->from_date }}</td>
+																							<td>{{ $row->to_date}}</td>
+																							<td>{!!$row->actions !!}</td>
+																					</tr>
+																			@endforeach
+																		</tbody>
+																</table>
+														</div>
+												</div>
+												<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+    												<div class="modal-dialog">
+        												<div class="modal-content">
+            												<div class="modal-header">
+                												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                												<h4 class="modal-title" id="addModalLabel"><i class="fa fa-plus-circle"></i> أضافة تاريخ وكيل</h4>
+            												</div>
+            												<form role="form" method="POST" class="addForm" action="{{ url('/agent_history/store') }}" data-toggle="validator">
+                												<div class="modal-body">
+                    												@include('agent_history.form')
+                												</div>
+                												<div class="modal-footer">
+                   														<button type="submit" id="submitForm" class="btn btn-primary">موافق</button>
+                    													<button type="submit" class="btn btn-primary" id="addNew">موافق وأضافة جديد</button>
+                												</div>
+																		</form>
+																</div>
+    												</div>
+												</div>
+												<div class="modal fade" id="editAgenthistoryModal" tabindex="-1" role="dialog" aria-labelledby="editEmployeeModalLabel" aria-hidden="true">
+    												<div class="modal-dialog">
+        												<div class="modal-content">
+            												<div class="modal-header">
+                												<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                												<h4 class="modal-title" id="editEmployeeModalLabel"><i class="fa fa-pencil"></i> تحديث</h4>
+            												</div>
+            												<form role="form" id="update_form" method="POST" class="editForm" data-id="" action="{{ url('/agent_history/update') }}" data-toggle="validator">
+                												<div class="modal-body">
+                    												@include('agent_history.form')
+                												</div>
+                												<div class="modal-footer">
+                    												 <button type="submit" id="submit" class="btn btn-primary">تحديث</button>
+                					 							</div>
+            												</form>
+																	</div>
+															</div>
+													</div>
+											</div>
+									</div>
+							</div>
+						</div>
 				</div>
-			</div>
-		</div>
-	</div>
-	@endsection
-
-	@section('scripts')
-	<script>
-$(function(){
-	$('#datetime12').combodate();
-    $('#datetime13').combodate();
+@endsection
+@section('scripts')
+<script>
+	$(function(){
+				$('#datetime12').combodate();
+    		$('#datetime13').combodate();
 });
 </script>
-	<script type="text/javascript">
+<script type="text/javascript">
 	$(document).ready(function() {
 		function populateForm(response, frm) {
         var i;
@@ -224,5 +216,4 @@ $(function(){
 });
 </script>
 <script src="{{ asset('/admin-ui/js/for_pages/table.js') }}"></script>
-
-	@endsection
+@endsection

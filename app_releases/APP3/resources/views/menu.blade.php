@@ -76,13 +76,15 @@
 </li>
 
 <li class="accordion">
-<a href="#"><i class="glyphicon glyphicon-plus"></i><span> النادى</span></a>
-<ul class="nav nav-pills nav-stacked">
-<li><a href="{{ url('team') }}">اضافة نادى</a></li>
-<li><a href="{{ url('teamcloth') }}">ملابس الفريق</a></li>
-<li><a href="{{ url('team_sponsor') }}">الرعاه</a></li>
-
-</ul>
+    <a href="#">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span> النادى</span>
+    </a>
+    <ul class="nav nav-pills nav-stacked">
+        <li><a href="{{ url('team') }}">اضافة نادى</a></li>
+        <li><a href="{{ url('teamcloth') }}">ملابس الفريق</a></li>
+        <li><a href="{{ url('team_sponsor') }}">الرعاه</a></li>
+    </ul>
 </li>
 
 <li class="accordion">
@@ -114,9 +116,10 @@
 </li>
 
 <li>
-<a class="ajax-link" href="{{ url('team_group') }}">
-  <i class="glyphicon glyphicon-arrow-left"></i>
-  <span> مجموعات البطوله</span></a>
+  <a class="ajax-link" href="{{ url('team_group') }}">
+    <i class="glyphicon glyphicon-arrow-left"></i>
+    <span> مجموعات البطوله</span>
+  </a>
 </li>
 
 <li>
@@ -153,7 +156,10 @@
 </li>
 
 <li>
-<a class="ajax-link" href="{{ url('player_injured_history') }}"><i class="glyphicon glyphicon-arrow-left"></i><span> اصابات الاعبين</span></a>
+    <a class="ajax-link" href="{{ url('player_injured_history') }}">
+        <i class="glyphicon glyphicon-arrow-left"></i>
+        <span> اصابات الاعبين</span>
+    </a>
 </li>
 
 
@@ -250,6 +256,9 @@
 </li>
 
 
- <li>
-<a class="ajax-link" href="{{ url('winner') }}"><i class="glyphicon glyphicon-arrow-left"></i><span> الفائز بالبطوله</span></a>
+<li>
+    <a class="ajax-link" href="{{ url('winner') }}">
+        <i class="glyphicon glyphicon-arrow-left"></i>
+        <span> الفائز بالبطوله</span>
+    </a>
 </li>

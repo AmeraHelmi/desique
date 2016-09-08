@@ -91,7 +91,14 @@ class Managment_championshipController extends Controller {
 		$m_champion->manager_id       =$request->manager_id;
 		$m_champion->team_id         =$request->team_id;
 		$m_champion->from_date        =$request->from_date;
-		$m_champion->to_date          =$request->to_date;
+
+		$present_checked = Input::get('present');
+		if(is_array($present_checked)){
+				$m_champion->to_date          =null;
+		}
+		else {
+				$m_champion->to_date          =$request->to_date;
+}
 		$m_champion->contract         =$request->contract;
 		$m_champion->addition_info    =$request->addition_info;
 

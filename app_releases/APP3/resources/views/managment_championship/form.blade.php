@@ -23,20 +23,22 @@
   </select>
   </div>
 </tr>
-<tr>
-  <td style="width: 48%">
-    <div class="form-group">
-    <label class="control-label" style="display: block;">من</label>
-    <input id="datetime1" data-format="YYYY-MM-DD" data-template="YYYY / MM / DD" name="from_date" value="" type="text">
-    </div>
-  </td>
 
-<td style="width: 48%; padding-left: 2%;">
-  <div class="form-group">
-  <label class="control-label" style="display: block;">االى</label>
-  <input id="datetime2" data-format="YYYY-MM-DD" data-template="YYYY / MM / DD" name="to_date" value="" type="text">
-  </div>
-</td>
+<tr>
+    <td style="width: 48%">
+        <div class="form-group">
+            <label class="control-label" style="display: block;">من</label>
+            <input id="datetime1" data-format="YYYY-MM-DD" data-template="YYYY / MM / DD" name="from_date" value="" type="text">
+        </div>
+        <input type="checkbox" name="present[]" id="present" value="asd" onclick="toggle_todate()"> حتى الأن
+
+    </td>
+    <td style="width: 48%; padding-left: 2%;" >
+        <div class="form-group" id="td_to">
+            <label class="control-label" style="display: block;">الى</label>
+            <input id="datetime2" data-format="YYYY-MM-DD" data-template="YYYY / MM / DD" name="to_date" value="" type="text">
+        </div>
+    </td>
 </tr>
 <tr>
   <td style="width: 48%">
@@ -44,7 +46,7 @@
     <label for="exampleInputPassword1">عقد</label>
     <input type="number"
      name="contract"
-     required
+
      placeholder="contract amount"
      class="form-control"
     >

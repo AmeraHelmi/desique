@@ -82,8 +82,15 @@ public function store(Request $request)
 		$t_coach = new Team_history_coach;
 		$t_coach->team_id          =$request->team_id;
 		$t_coach->coach_id         =$request->coach_id;
+		$present_checked = Input::get('present');
+		if(is_array($present_checked)){
+				$t_coach->to_date          =null;		
+		}
+		else {
+				$t_coach->to_date          =$request->to_date;
+}
 		$t_coach->from_date        =$request->from_date;
-		$t_coach->to_date          =$request->to_date;
+
 		$t_coach->contract         =$request->contract;
 		$t_coach->addition_info    =$request->addition_info;
 		$t_coach->save();

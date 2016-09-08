@@ -24,7 +24,7 @@
             <span class="fileupload-new"> الزى 1th</span>
             <i class="fa fa-folder-open-o" aria-hidden="true"></i>
             <span class="fileupload-exists">تغير</span>
-            <input type="file" name="principal"/></span>
+            <input type="file" name="principal" required/></span>
             <span class="fileupload-preview"></span>
             <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
         </div>
@@ -33,7 +33,7 @@
             <span class="fileupload-new"> الزى 2th</span>
             <i class="fa fa-folder-open-o" aria-hidden="true"></i>
             <span class="fileupload-exists">تغير</span>
-            <input type="file" name="reserve" /></span>
+            <input type="file" name="reserve" required/></span>
             <span class="fileupload-preview"></span>
             <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
         </div>

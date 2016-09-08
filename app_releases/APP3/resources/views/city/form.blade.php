@@ -17,6 +17,7 @@
 <label for="exampleInputFile">اختيار الدوله</label>
 <select  class="form-control"
  name="country_id">
+ <option selected>اختار دوله </option>
  @foreach($countries as $country_id => $country_name)
   <option value="{!! $country_id !!}">{!! $country_name !!}</option>
   @endforeach

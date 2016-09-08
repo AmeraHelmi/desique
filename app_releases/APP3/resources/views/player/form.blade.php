@@ -199,7 +199,7 @@
 
  name="country_id">
 
- <option selected>select country</option>
+ <option selected>اختار دوله</option>
 
  @foreach($countries as $country_id => $country_name)
 

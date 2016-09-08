@@ -29,11 +29,11 @@ class BranchController extends Controller {
 	}
 
 			/**
-			*@method [return view] [index]([[obj] [$branch],[obj] [$request]]) 
+			*@method [return view] [index]([[obj] [$branch],[obj] [$request]])
 			*[<to get data from 3 tables [countries,cities,teams] in DB to get[countryname,teamname,cityname] >]
-			*@param [obj] [$branch] 
-			*@param [obj] [$request] 
-			*@uses [Branch,Request Model] 
+			*@param [obj] [$branch]
+			*@param [obj] [$request]
+			*@uses [Branch,Request Model]
 			*@return [view] <'branch.index'>
 			*/
 	public function index(Branch $branch , Request $request)
@@ -81,10 +81,10 @@ class BranchController extends Controller {
 
 			/**
 			* Store a newly created resource in storage.
-			**@method [return response] [store]([[obj] [$request]]) 
+			**@method [return response] [store]([[obj] [$request]])
 			*[<to store data >]
-			*@param [obj] [$request] 
-			*@var [obj] [$branch] 
+			*@param [obj] [$request]
+			*@var [obj] [$branch]
 			*@uses [Request Model]
 			* @return Response
 			*/
@@ -117,26 +117,27 @@ class BranchController extends Controller {
  	}
 
 
-	
+
 	public function show($id)
 	{
 		//
 	}
 
 			/**
-			**@method [return rows of city data] [selectCity]([[obj] [$request]]) 
+			**@method [return rows of city data] [selectCity]([[obj] [$request]])
 			*[<to get all cities >]
-			*@param [obj] [$request] 
-			*@var [int] [$country_id] 
-			*@var [obj] [$city] 
+			*@param [obj] [$request]
+			*@var [int] [$country_id]
+			*@var [obj] [$city]
 			*@uses [Request,City Model]
-			*@return rows of city data 
+			*@return rows of city data
 			*/
 	public function selectCity(Request $request)
 	{
 				$country_id = $request->country_id;
 				echo $country_id;
 				$city = City::where('country_id',$country_id)->get();
+		  	echo'<option selected> اختار مدينه </option>';
 		foreach($city as $row)
 		{
 				echo'<option value='.$row->id.'> '.$row->name.' </option>';
@@ -145,11 +146,11 @@ class BranchController extends Controller {
 
 	}
 			/**
-			*@method [return response] [edit]([[obj] [$request],[int][$id]]) 
+			*@method [return response] [edit]([[obj] [$request],[int][$id]])
 			*[<show data to edit  >]
 			*@param [int] [$id]
 			*@param [obj] [$request]
-			*@uses [Request Model] 
+			*@uses [Request Model]
 			*@return response
 			*/
 	public function edit(Request $request , $id)
@@ -167,7 +168,7 @@ class BranchController extends Controller {
 
 			/**
 			* Update the specified resource in storage.
-			*@method [return response] [update]([[obj] [$request]]) 
+			*@method [return response] [update]([[obj] [$request]])
 			*[<to update data >]
 			* @param  obj  $request
 			* @return Response
@@ -221,11 +222,11 @@ class BranchController extends Controller {
 		}
 	}
 
-	
+
 
 			/**
 			* Remove the specified resource from storage.
-			*@method [return response] [destroy]([[int] [$id]]) 
+			*@method [return response] [destroy]([[int] [$id]])
 			*[<to delete data >]
 			* @param  int  $id
 			* @return Response

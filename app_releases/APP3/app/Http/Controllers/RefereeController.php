@@ -133,6 +133,7 @@ class RefereeController extends Controller {
 	 		$country_id = $request->country_id;
 	 		echo $country_id;
 	 		$city = City::where('country_id',$country_id)->get();
+				echo'<option selected> اختار مدينه </option>';
 	 		foreach($city as $row){
 	 			echo'<option value='.$row->id.'> '.$row->name.' </option>';
 	 			}

@@ -16,18 +16,18 @@ use Input;
 
 class CoachController extends Controller {
 
-	
+
 	public function __construct()
  	{
  		$this->middleware('auth');
  	}
 
 			/**
-			*@method [return view] [index]([[obj] [$coach],[obj] [$request]]) 
+			*@method [return view] [index]([[obj] [$coach],[obj] [$request]])
 			*[<to get data of Coach>]
-			*@param [obj] [$coach] 
-			*@param [obj] [$request] 
-			*@uses [Coach,Request Model] 
+			*@param [obj] [$coach]
+			*@param [obj] [$request]
+			*@uses [Coach,Request Model]
 			*@return [view] <'coach.index'>
 			*/
 	public function index(Coach $coach , Request $request)
@@ -61,21 +61,21 @@ class CoachController extends Controller {
 	 }
 
 
-	
+
 	public function create()
 	{
 		//
 	}
 			/**
 			* Store a newly created resource in storage.
-			*@method [return response] [store]([[obj] [$request]]) 
+			*@method [return response] [store]([[obj] [$request]])
 			*[<to insert data in DB>]
-			*@param [obj] [$request] 
-			*@var [obj] [$coach] 
+			*@param [obj] [$request]
+			*@var [obj] [$coach]
 			*@uses [Coach,Request Model]
 			*@return [Response]
 			*/
-	
+
 	public function store(Request $request)
  	{
  		if(Input::hasFile('flag'))
@@ -105,18 +105,19 @@ class CoachController extends Controller {
  	}
 
 
-	
+
 	public function show($id)
 	{
 		//
 	}
 
-//get all city *@method [] [selectCity]([obj] [$request]) 
+//get all city *@method [] [selectCity]([obj] [$request])
 	public function selectCity(Request $request)
 	{
 		$country_id = $request->country_id;
 		echo $country_id;
 		$city = City::where('country_id',$country_id)->get();
+		echo'<option selected> اختار مدينه </option>';
 		foreach($city as $row)
 			{
 				echo'<option value='.$row->id.'> '.$row->name.' </option>';
@@ -125,14 +126,14 @@ class CoachController extends Controller {
 
 	}
 			/**
-			*@method [return response] [edit]([[obj] [$request],[int] [$id]]) 
+			*@method [return response] [edit]([[obj] [$request],[int] [$id]])
 			*[<to edit data >]
-			*@param [obj] [$request] 
-			*@param [int] [$id] 
+			*@param [obj] [$request]
+			*@param [int] [$id]
 			*@var [obj] [$coach]
-			*@uses [Coach,Request Model] 
+			*@uses [Coach,Request Model]
 			*@return [response]
-			*/	
+			*/
 	public function edit(Request $request , $id)
  	{
  		$coach 	= Coach::find($id);
@@ -148,11 +149,11 @@ class CoachController extends Controller {
 
 			/**
 			 * Update the specified resource in storage.
-			 **@method [return response] [update]([obj] [$request]) 
+			 **@method [return response] [update]([obj] [$request])
 			 *[<to update data >]
 			 * @param  obj  $request
 			 * @return Response
-			*/	
+			*/
 	 public function update(Request $request)
 	{
 		$coach 	= Coach::find(session('coachid'));
@@ -207,10 +208,10 @@ class CoachController extends Controller {
 			}
 	}
 
-	
+
 			/**
 			 * Remove the specified resource from storage.
-			 *@method [return response] [destroy]([[int] [$id]]) 
+			 *@method [return response] [destroy]([[int] [$id]])
 			 *[<to delete data >]
 			 * @param  int  $id
 			 * @return Response

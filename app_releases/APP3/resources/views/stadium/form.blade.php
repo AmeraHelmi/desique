@@ -40,6 +40,7 @@
 <div class="form-group" id="showCity" style="display:none;">
     <label for="exampleInputFile">أختيار المدينه</label>
     <select  class="form-control" name="city_id" id="cityID" >
+      
     </select>
 </div>
 <div class="form-group">

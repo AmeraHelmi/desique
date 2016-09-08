@@ -17,18 +17,18 @@ use Input;
 
 class CommentorController extends Controller {
 
-	
+
 	public function __construct()
 	{
 		$this->middleware('auth');
 	}
 
 			/**
-			*@method [return view] [index]([[obj] [$commentor],[obj] [$request]]) 
+			*@method [return view] [index]([[obj] [$commentor],[obj] [$request]])
 			*[<to get data of commentor>]
-			*@param [obj] [$commentor] 
-			*@param [obj] [$request] 
-			*@uses [Commentor,Request Model] 
+			*@param [obj] [$commentor]
+			*@param [obj] [$request]
+			*@uses [Commentor,Request Model]
 			*@return [view] <'commentor.index'>
 			*/
 	public function index(Commentor $commentor , Request $request)
@@ -62,7 +62,7 @@ class CommentorController extends Controller {
 	 }
 
 
-	
+
 	public function create()
 	{
 		//
@@ -70,13 +70,13 @@ class CommentorController extends Controller {
 
 			/**
 			* Store a newly created resource in storage.
-			*@method [return response] [store]([[obj] [$request]]) 
+			*@method [return response] [store]([[obj] [$request]])
 			*[<to insert data in DB>]
-			*@param [obj] [$request] 
-			*@var [obj] [$commentor] 
+			*@param [obj] [$request]
+			*@var [obj] [$commentor]
 			*@uses [Commentor,Request Model]
 			*@return [Response]
-			*/	
+			*/
 	 public function store(Request $request)
  	{
 		if(Input::hasFile('flag'))
@@ -107,18 +107,19 @@ class CommentorController extends Controller {
  	}
 
 
-	
+
 	public function show($id)
 	{
 		//
 	}
 
-//get all city *@method [] [selectCity]([obj] [$request]) 
+//get all city *@method [] [selectCity]([obj] [$request])
 	public function selectCity(Request $request)
 	{
 		$country_id = $request->country_id;
 		echo $country_id;
 		$city = City::where('country_id',$country_id)->get();
+					echo'<option selected> اختار مدينه </option>';
 		foreach($city as $row)
 		{
 			echo'<option value='.$row->id.'> '.$row->name.' </option>';
@@ -127,14 +128,14 @@ class CommentorController extends Controller {
 
 	}
 			/**
-			*@method [return response] [edit]([[obj] [$request],[int] [$id]]) 
+			*@method [return response] [edit]([[obj] [$request],[int] [$id]])
 			*[<to edit data >]
-			*@param [obj] [$request] 
-			*@param [int] [$id] 
+			*@param [obj] [$request]
+			*@param [int] [$id]
 			*@var [obj] [$commentor]
-			*@uses [Commentor,Request Model] 
+			*@uses [Commentor,Request Model]
 			*@return [response]
-			*/	
+			*/
 	public function edit(Request $request , $id)
  	{
  		$commentor 	= Commentor::find($id);
@@ -150,11 +151,11 @@ class CommentorController extends Controller {
 
 			/**
 			 * Update the specified resource in storage.
-			 **@method [return response] [update]([obj] [$request]) 
+			 **@method [return response] [update]([obj] [$request])
 			 *[<to update data >]
 			 * @param  obj  $request
 			 * @return Response
-			*/	
+			*/
 	 public function update(Request $request)
 	{
 		$commentor 	= Commentor::find(session('commentorid'));
@@ -205,12 +206,12 @@ class CommentorController extends Controller {
 					}
 	}
 
-	
 
-	
+
+
 			/**
 			 * Remove the specified resource from storage.
-			 *@method [return response] [destroy]([[int] [$id]]) 
+			 *@method [return response] [destroy]([[int] [$id]])
 			 *[<to delete data >]
 			 * @param  int  $id
 			 * @return Response

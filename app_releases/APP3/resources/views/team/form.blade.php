@@ -109,7 +109,7 @@
         <div class="fileupload fileupload-new" data-provides="fileupload">
             <span class="btn btn-primary btn-file"><span class="fileupload-new">صورة للفريق</span>
             <span class="fileupload-exists">تغير</span>
-            <input type="file" name="flag2" /></span>
+            <input type="file" name="flag2" required /></span>
             <span class="fileupload-preview"></span>
             <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
         </div>

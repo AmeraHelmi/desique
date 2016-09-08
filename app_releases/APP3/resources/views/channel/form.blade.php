@@ -20,7 +20,7 @@
 <label for="exampleInputPassword1">IP</label>
 <input type="number"
  name="frequency"
- 
+
  placeholder="Channel Frequency"
  class="form-control">
 <span class="help-block with-errors errorName"></span>
@@ -31,7 +31,7 @@
   <div class="fileupload fileupload-new" data-provides="fileupload">
     <span class="btn btn-primary btn-file"><span class="fileupload-new">الصوره</span>
     <span class="fileupload-exists">تغير</span>
-            <input type="file" name="flag" /></span>
+            <input type="file" name="flag" required /></span>
     <span class="fileupload-preview"></span>
     <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
   </div>

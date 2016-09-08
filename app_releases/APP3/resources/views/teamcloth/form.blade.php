@@ -25,10 +25,7 @@
             <i class="fa fa-folder-open-o" aria-hidden="true"></i>
             <span class="fileupload-exists">تغير</span>
             <input type="file" name="principal" required/></span>
-<<<<<<< HEAD
-=======
 
->>>>>>> 03030f001cbe3cef9cfc59e65eaf2b124f5e90dc
             <span class="fileupload-preview"></span>
             <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
         </div>
@@ -38,10 +35,7 @@
             <i class="fa fa-folder-open-o" aria-hidden="true"></i>
             <span class="fileupload-exists">تغير</span>
             <input type="file" name="reserve" required/></span>
-<<<<<<< HEAD
-=======
 
->>>>>>> 03030f001cbe3cef9cfc59e65eaf2b124f5e90dc
             <span class="fileupload-preview"></span>
             <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
         </div>

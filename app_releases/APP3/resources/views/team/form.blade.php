@@ -110,10 +110,7 @@
             <span class="btn btn-primary btn-file"><span class="fileupload-new">صورة للفريق</span>
             <span class="fileupload-exists">تغير</span>
             <input type="file" name="flag2" required /></span>
-<<<<<<< HEAD
-=======
 
->>>>>>> 03030f001cbe3cef9cfc59e65eaf2b124f5e90dc
             <span class="fileupload-preview"></span>
             <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
         </div>

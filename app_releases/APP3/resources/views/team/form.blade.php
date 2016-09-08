@@ -102,14 +102,18 @@
         <div class="fileupload fileupload-new" data-provides="fileupload">
             <span class="btn btn-primary btn-file"><span class="fileupload-new">صورة النادى</span>
             <span class="fileupload-exists">تغير</span>
-            <input type="file" name="flag" /></span>
+            <input type="file" name="flag" required/></span>
             <span class="fileupload-preview"></span>
             <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
         </div>
         <div class="fileupload fileupload-new" data-provides="fileupload">
             <span class="btn btn-primary btn-file"><span class="fileupload-new">صورة للفريق</span>
             <span class="fileupload-exists">تغير</span>
+<<<<<<< HEAD
             <input type="file" name="flag2" required /></span>
+=======
+            <input type="file" name="flag2" required/></span>
+>>>>>>> 8c478a08d9798e1b89abf3ccaac41c7914da12ee
             <span class="fileupload-preview"></span>
             <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
         </div>

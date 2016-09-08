@@ -18,5 +18,5 @@
 </div>
 <div class="form-group" style="display:none;">
     <label for="exampleInputFile">pic path</label>
-    <input type="text" name="flagcountry" id="flag">
+    <input type="text" name="flagcountry" id="flag" required >
 </div>

@@ -25,13 +25,13 @@
 
 <div class="form-group" style="display:none;">
     <label for="exampleInputFile">pic path</label>
-    <input type="text" name="flag" id="flag">
+    <input type="text" name="flag" id="flag" required>
 </div>
 
 <div class="fileupload fileupload-new" data-provides="fileupload">
     <span class="btn btn-primary btn-file"><span class="fileupload-new">الصوره</span>
     <span class="fileupload-exists">Change</span>
-    <input type="file" name="flag" /></span>
+    <input type="file" name="flag" required /></span>
     <span class="fileupload-preview"></span>
     <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
 </div>

@@ -31,7 +31,7 @@
 
 <div class="form-group" style="display:none;">
     <label for="exampleInputFile">pic path</label>
-    <input type="text" name="flag" id="flag">
+    <input type="text" name="flag" id="flag" required>
 </div>
 
 <div class="fileupload fileupload-new" data-provides="fileupload">

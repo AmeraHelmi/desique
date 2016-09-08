@@ -437,7 +437,7 @@
 
   <span class="fileupload-exists">تغير</span>
 
-          <input type="file" name="flag" /></span>
+          <input type="file" name="flag" required /></span>
 
   <span class="fileupload-preview"></span>
 

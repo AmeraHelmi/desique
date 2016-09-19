@@ -5,7 +5,6 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Country;
 use App\Models\City;
-use App\Models\Player;
 use App\Models\Commentor;
 use yajra\Datatables\Datatables as Datatables;
 use Illuminate\Http\Request;
@@ -229,3 +228,4 @@ class CommentorController extends Controller {
 
 
 }
+/**@copyright 2016 The PHP Group [Amera Helmi ,Alaa Ragab,Lamess Said]*/

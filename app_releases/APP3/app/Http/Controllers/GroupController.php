@@ -13,50 +13,58 @@ use App\Models\Championship;
 
 class GroupController extends Controller {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+			/**
+			 * Display a listing of the resource.
+			 *
+			 * @return Response
+			 */
 	public function __construct()
 	{
 				$this->middleware('auth');
 	}
+			/**
+			*@method [return view] [index]([[obj] [$group],[obj] [$request]]) 
+			*[<to get data of Group>]
+			*@param [obj] [$group] 
+			*@param [obj] [$request] 
+			*@uses [Group,Request Model] 
+			*@return [view] <'group.index'>
+			*/
 	public function index(Group $group , Request $request)
 	{
 				$groups = $group
-								->join('championships as championship', 'championship.id', '=', 'groups.championship_id')
-								->select(array('groups.id as groupID', 'groups.name as group_name','championship.name as championship_name','groups.addition_info as addition_info','groups.no_matches as no_matches'))
-								->orderBy('championship.name')->get();
+						->join('championships as championship', 'championship.id', '=', 'groups.championship_id')
+						->select(array('groups.id as groupID', 'groups.name as group_name','championship.name as championship_name','groups.addition_info as addition_info','groups.no_matches as no_matches'))
+						->orderBy('championship.name')->get();
 
 				$tableData = Datatables::of($groups)
-								->addColumn('actions', function ($data)
-								{
-									return view('partials.actionBtns')->with('controller','group')->with('id', $data->groupID)->render(); }) ;
+						->addColumn('actions', function ($data)
+							{
+						return view('partials.actionBtns')->with('controller','group')->with('id', $data->groupID)->render(); }) ;
 
 		if($request->ajax())
 			return DatatablePresenter::make($tableData, 'index');
 			$championships=Championship::lists('name','id');
 		 	return view('group.index')
-								->with('championships',$championships)
-								->with('tableData', DatatablePresenter::make($tableData, 'index'));
+						->with('championships',$championships)
+						->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	 }
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
+	
 	public function create()
 	{
 		//
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
+			/**
+			* Store a newly created resource in storage.
+			*@method [return response] [store]([[obj] [$request]]) 
+			*[<to insert data in DB>]
+			*@param [obj] [$request] 
+			*@var [obj] [$group] 
+			*@uses [Group,Request Model]
+			*@return [Response]
+			*/
 	public function store(Request $request)
  	{
 
@@ -71,38 +79,37 @@ class GroupController extends Controller {
  	}
 
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+
 	public function show($id)
 	{
 		//
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+			/**
+			*@method [return response] [edit]([[obj] [$request],[int] [$id]]) 
+			*[<to edit data >]
+			*@param [obj] [$request] 
+			*@param [int] [$id] 
+			*@var [obj] [$group]
+			*@uses [Group,Request Model] 
+			*@return [response]
+			*/
 	public function edit(Request $request , $id)
  	{
  			$group= Group::find($id);
  			if($request->ajax()){
  			return response(array('msg' => 'Adding Successfull', 'data'=> $group->toJson() ), 200)
- 							->header('Content-Type', 'application/json');
+ 			->header('Content-Type', 'application/json');
  			}
  	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+			/**
+			 * Update the specified resource in storage.
+			 **@method [return response] [update]([obj] [$request],[int] [$id]) 
+			 *[<to update data >]
+			 * @param  obj  $request
+			 * @param  int  $id
+			 * @return Response
+			*/
 	public function update(Request $request , $id)
   	{
 	   		$group= Group::find($id);
@@ -116,13 +123,13 @@ class GroupController extends Controller {
 	 							->header('Content-Type', 'application/json');
  		 	}
  	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+			/**
+			 * Remove the specified resource from storage.
+			 *@method [return response] [destroy]([[int] [$id]]) 
+			 *[<to delete data >]
+			 * @param  int  $id
+			 * @return Response
+			*/
 	public function destroy($id)
  	{
 	 		$group= Group::find($id);
@@ -135,3 +142,4 @@ class GroupController extends Controller {
 	 	}
 
 }
+/**@copyright 2016 The PHP Group [Amera Helmi ,Alaa Ragab,Lamess Said]*/

@@ -24,6 +24,14 @@ class ManagerController extends Controller {
 	{
 		$this->middleware('auth');
 	}
+			/**
+			*@method [return view] [index]([[obj] [$manager],[obj] [$request]]) 
+			*[<to get data of manager>]
+			*@param [obj] [$manager] 
+			*@param [obj] [$request] 
+			*@uses [Manager,Request Model] 
+			*@return [view] <'manager.index'>
+			*/
 	public function index(Manager $manager , Request $request)
 	{
 		$managers = $manager
@@ -60,21 +68,21 @@ class ManagerController extends Controller {
 	 }
 
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
+	
 	public function create()
 	{
 		//
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
+		/**
+			* Store a newly created resource in storage.
+			*@method [return response] [store]([[obj] [$request]]) 
+			*[<to insert data in DB>]
+			*@param [obj] [$request] 
+			*@var [obj] [$manager] 
+			*@uses [Manager,Request Model]
+			*@return [Response]
+			*/
 	public function store(Request $request)
  	{
 		if(Input::hasFile('flag'))
@@ -100,7 +108,7 @@ class ManagerController extends Controller {
 
 		if($request->ajax()){
 			return response(array('msg' => 'Adding Successfull'), 200)
-									->header('Content-Type', 'application/json');
+			->header('Content-Type', 'application/json');
 							}
 		}
 	else{
@@ -110,17 +118,17 @@ class ManagerController extends Controller {
  	}
 
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+	
 	public function show($id)
 	{
 		//
 	}
-
+			/**
+			*@method [] [selectCity]([[obj] [$request]]) 
+			*[<to get data of city>] 
+			*@param [obj] [$request] 
+			*@uses [City,Request Model] 
+			*/
 //get all city
 	public function selectCity(Request $request)
 	{
@@ -134,15 +142,18 @@ class ManagerController extends Controller {
 
 
 	}
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+			/**
+			*@method [return response] [edit]([[obj] [$request],[int] [$id]]) 
+			*[<to edit data >]
+			*@param [obj] [$request] 
+			*@param [int] [$id] 
+			*@var [obj] [$manager]
+			*@uses [Manager,Request Model] 
+			*@return [response]
+			*/
 	public function edit(Request $request , $id)
  	{
- 		$manager 	= Manager::find($id);
+ 		$manager = Manager::find($id);
 		session(['managerid'     => $manager->id]);
 		session(['managerimage'  => $manager->flag]);
  		if($request->ajax()){
@@ -151,12 +162,14 @@ class ManagerController extends Controller {
  			}
  	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+		/**
+			 * Update the specified resource in storage.
+			 **@method [return response] [update]([obj] [$request]) 
+			 *[<to update data >]
+			 * @param  obj  $request
+			 * @param  int  $id
+			 * @return Response
+			*/
 	public function update(Request $request)
 	{
 		$manager 	= Manager::find(session('managerid'));
@@ -199,12 +212,13 @@ class ManagerController extends Controller {
 			}
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+		/**
+			 * Remove the specified resource from storage.
+			 *@method [return response] [destroy]([[int] [$id]]) 
+			 *[<to delete data >]
+			 * @param  int  $id
+			 * @return Response
+			*/
 
 
 	public function destroy($id)
@@ -220,3 +234,4 @@ class ManagerController extends Controller {
 
 
 }
+/**@copyright 2016 The PHP Group [Amera Helmi ,Alaa Ragab,Lamess Said]*/

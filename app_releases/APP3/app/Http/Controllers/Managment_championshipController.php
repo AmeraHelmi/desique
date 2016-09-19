@@ -22,11 +22,11 @@ use Input;
 
 class Managment_championshipController extends Controller {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+			/**
+			 * Display a listing of the resource.
+			 *
+			 * @return Response
+			 */
 	 public function __construct()
 	 {
 		 $this->middleware('auth');
@@ -88,19 +88,19 @@ class Managment_championshipController extends Controller {
 	public function store(Request $request)
  	{
 		$m_champion = new Managment_championship;
-		$m_champion->manager_id       =$request->manager_id;
-		$m_champion->team_id         =$request->team_id;
-		$m_champion->from_date        =$request->from_date;
+		$m_champion->manager_id       	=$request->manager_id;
+		$m_champion->team_id         	=$request->team_id;
+		$m_champion->from_date       	=$request->from_date;
 
 		$present_checked = Input::get('present');
 		if(is_array($present_checked)){
-				$m_champion->to_date          =null;
+				$m_champion->to_date    =null;
 		}
 		else {
-				$m_champion->to_date          =$request->to_date;
+				$m_champion->to_date    =$request->to_date;
 }
-		$m_champion->contract         =$request->contract;
-		$m_champion->addition_info    =$request->addition_info;
+		$m_champion->contract         	=$request->contract;
+		$m_champion->addition_info    	=$request->addition_info;
 
 		$m_champion->save();
 
@@ -149,7 +149,7 @@ class Managment_championshipController extends Controller {
 	{
 		$m_champion 	= Managment_championship::find($id);
 		$m_champion->manager_id       =$request->manager_id;
-		$m_champion->team_id         =$request->team_id;
+		$m_champion->team_id          =$request->team_id;
 		$m_champion->from_date        =$request->from_date;
 		$m_champion->to_date          =$request->to_date;
 		$m_champion->contract         =$request->contract;

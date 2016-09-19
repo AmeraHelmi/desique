@@ -7,7 +7,6 @@ use App\Models\Country;
 use App\Models\City;
 use App\Models\Ball;
 use App\Models\Player;
-use App\Models\Branch;
 use App\Models\Championship;
 use App\Models\Championship_sponsor;
 use yajra\Datatables\Datatables as Datatables;
@@ -154,7 +153,7 @@ class ChampionshipController extends Controller
 		$championship->no_matches    =$request->no_matches;
 		$championship->type          =$request->type;
 		$championship->addition_info =$request->addition_info;
-	  $championship->year          =$request->year;
+	    $championship->year          =$request->year;
 		$championship->ball_id       =$request->ball_id;
 		$championship->continent     =$request->continent;
 		$championship->save();
@@ -184,3 +183,4 @@ class ChampionshipController extends Controller
  							return redirect()->back();
  	}
 }
+/**@copyright 2016 The PHP Group [Amera Helmi ,Alaa Ragab,Lamess Said]*/

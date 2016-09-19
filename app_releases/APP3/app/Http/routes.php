@@ -118,7 +118,7 @@ Route::resource('/coach'                  ,'CoachController');
 //champion sponsors
 Route::POST    ('/champsponsors'       , array('as' => 'addchampionsponsors','uses' => 'ChampsponsorsController@store'));
 Route::resource('/champsponsors'       , 'ChampsponsorsController');
-//managment
+//manager
 Route::POST    ('/manager/store'            ,'ManagerController@store');
 Route::POST    ('/manager/update'           ,'ManagerController@update');
 Route::POST    ('/manager/getCities'        ,'ManagerController@selectCity');
@@ -139,30 +139,18 @@ Route::POST    ('/minute/finish'          , array('as' => 'finish_match','uses' 
 Route::POST    ('/minute/update'           ,'MinuteController@update');
 Route::resource('/minute' ,'MinuteController');
 
-
 //winner
 Route::POST    ('/winner/store'    , array('as' => 'addwinner','uses' => 'WinnerController@store'));
 Route::resource('/winner'          ,'WinnerController');
 
-
 //match
-
 
 //  ودى
 Route::POST    ('/match/store'          , array('as' => 'addmatch','uses' => 'MatchController@store'));
 Route::POST    ('/match/get_teams'      ,'MatchController@select_team');
 Route::POST    ('/match/select2'      ,'MatchController@select_team2');
 Route::resource('/match'                ,'MatchController');
-
-
-
-
-
-
-
 //pession
-
-
 
 Route::POST    ('/psession/store'          , array('as' => 'addpsession','uses' => 'PsessionController@store'));
 Route::resource('/psession'                ,'PsessionController');
@@ -173,36 +161,12 @@ Route::POST    ('/teamcloth/get_teams'          ,'TeamclothController@select_tea
 Route::resource('/teamcloth'                    ,'TeamclothController');
 //nationcloth
 Route::POST    ('/nationcloth/store'              ,'NationclothController@store');
-
-
-
 Route::POST    ('/nationcloth/update'             ,'NationclothController@update');
-
-
-
 Route::resource('/nationcloth'                    ,'NationclothController');
-
-
-
-
-
-
-
 //corner
-
-
-
 Route::POST    ('/corner/store'             , array('as' => 'addcorner','uses' => 'CornerController@store'));
-
-
-
 Route::resource('/corner'                    , 'CornerController');
-
-
-
 //error
-
-
 
     ROUTE::POST    ('/ERROR/STORE'             , ARRAY('AS' => 'ADDERROR','USES' => 'ERRORCONTROLLER@STORE'));
 

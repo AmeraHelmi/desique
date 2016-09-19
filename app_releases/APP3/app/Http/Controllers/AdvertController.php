@@ -32,11 +32,12 @@ class AdvertController extends Controller {
 	public function index(Advert $advert , Request $request)
 	{
 		$adverts = $advert
-			->select(array('id', 'name', 'flag','url'))
+			->select(array('id', 'name', 'flag','url','page_name','place','height','width'))
 			->orderBy('id','desc')->get();
 
 		$tableData = Datatables::of($adverts)
-			->editColumn('flag', '<div class="image"><img src="images/uploads/{{ $flag }}"  width="50px" height="50px">')
+	  	->editColumn('flag', '<div class="image"><img src="images/uploads/{{ $flag }}"  width="50px" height="50px">')
+			->editColumn('height', '{{ $height }}*{{ $width }}')
 			->addColumn('actions', function ($data)
 					{
 						return view('partials.actionBtns')->with('controller','advert')->with('id', $data->id)->render();
@@ -75,8 +76,12 @@ class AdvertController extends Controller {
 				if($request->name)
 				{
 					$advert->name    =$request->name;
-			  	$advert->url    =$request->url;
+					$advert->url    =$request->url;
 			  	$advert->flag    =$filename;
+					$advert->page_name    =$request->page_name;
+					$advert->place    =$request->place;
+					$advert->height    =$request->height;
+					$advert->width    =$request->width;
 			  	$advert->save();
 					if($request->ajax())
 					{
@@ -141,6 +146,10 @@ class AdvertController extends Controller {
 			 		$advert->name    =$request->name;
 					$advert->url    =$request->url;
 			 		$advert->flag    =$filename;
+					$advert->page_name    =$request->page_name;
+					$advert->place    =$request->place;
+					$advert->height    =$request->height;
+					$advert->width    =$request->width;
        	}
    		}
 			else
@@ -148,6 +157,10 @@ class AdvertController extends Controller {
 					$advert->name    =$request->name;
 					$advert->url    =$request->url;
 					$advert->flag    =session('advertflag');
+					$advert->page_name    =$request->page_name;
+					$advert->place    =$request->place;
+					$advert->height    =$request->height;
+					$advert->width    =$request->width;
 			}
 			$advert->save();
 	 		if($request->ajax())

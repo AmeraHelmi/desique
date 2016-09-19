@@ -49,7 +49,7 @@
 </div>
 <div class="form-group" style="display:none;">
     <label for="exampleInputFile">pic path</label>
-    <input type="text" name="flagcountry" id="flag" required >
+    <input type="text" name="flagcountry" id="flag" >
 </div>
 <div class="form-group">
     <label for="exampleInputPassword1">معلومات أضافيه</label>

@@ -5,7 +5,6 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Country;
 use App\Models\City;
-use App\Models\Player;
 use App\Models\Branch;
 use App\Models\Team;
 use yajra\Datatables\Datatables as Datatables;
@@ -244,3 +243,4 @@ class BranchController extends Controller {
 	 			return redirect()->back();
  	}
 }
+/**@copyright 2016 The PHP Group [Amera Helmi ,Alaa Ragab,Lamess Said]*/

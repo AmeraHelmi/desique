@@ -14,15 +14,22 @@ use Input;
 
 class G_albumController extends Controller {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
+			/**
+			 * Display a listing of the resource.
+			 * @return Response
+			 */
 	public function __construct()
 	{
         $this->middleware('auth');
 	}
+			/**
+			*@method [return view] [index]([[obj] [$album],[obj] [$request]]) 
+			*[<to get data of G_album>]
+			*@param [obj] [$album] 
+			*@param [obj] [$request] 
+			*@uses [G_album,Request Model] 
+			*@return [view] <'g_album.index'>
+			*/
 	public function index(G_album $album , Request $request)
 	{
       	$g_albums = $album
@@ -47,20 +54,18 @@ class G_albumController extends Controller {
 		->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
 	public function create()
 	{
 	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
+			/**
+			* Store a newly created resource in storage.
+			*@method [return response] [store]([[obj] [$request]]) 
+			*[<to insert data in DB>]
+			*@param [obj] [$request] 
+			*@var [obj] [$g_album] 
+			*@uses [G_album,Request Model]
+			*@return [Response]
+			*/
 	public function store(Request $request)
 	{
 
@@ -77,22 +82,20 @@ class G_albumController extends Controller {
 	}
 
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+	
 	public function show()
 	{
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+			/**
+			*@method [return response] [edit]([[obj] [$request],[int] [$id]]) 
+			*[<to edit data >]
+			*@param [obj] [$request] 
+			*@param [int] [$id] 
+			*@var [obj] [$g_album]
+			*@uses [G_album,Request Model] 
+			*@return [response]
+			*/
 	public function edit(Request $request , $id)
 	{
             $g_album = G_album::find($id);
@@ -103,12 +106,15 @@ class G_albumController extends Controller {
 				}
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+	
+			/**
+			 * Update the specified resource in storage.
+			 **@method [return response] [update]([obj] [$request],[int] [$id]) 
+			 *[<to update data >]
+			 * @param  obj  $request
+			 * @param  int  $id
+			 * @return Response
+			*/
 	public function update(Request $request , $id)
 	{
 
@@ -122,12 +128,13 @@ class G_albumController extends Controller {
 		->header('Content-Type', 'application/json');
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+			/**
+			 * Remove the specified resource from storage.
+			 *@method [return response] [destroy]([[int] [$id]]) 
+			 *[<to delete data >]
+			 * @param  int  $id
+			 * @return Response
+			*/
 	public function destroy($id)
 	{
 		$g_album 	= G_album::find($id);
@@ -140,3 +147,4 @@ class G_albumController extends Controller {
 	}
 
 }
+/**@copyright 2016 The PHP Group [Amera Helmi ,Alaa Ragab,Lamess Said]*/

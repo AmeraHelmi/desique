@@ -73,6 +73,7 @@ class ChampsponsorsController extends Controller {
 			*@uses [Championship_sponsor,Request Model]
 			*@return [Response]
 			*/
+		
 	public function store(Request $request)
 	{
 		$count = count($request->sponsor_id);
@@ -155,3 +156,4 @@ class ChampsponsorsController extends Controller {
 	}
 
 }
+/**@copyright 2016 The PHP Group [Amera Helmi ,Alaa Ragab,Lamess Said]*/

@@ -252,3 +252,4 @@ class Change_playerController  extends Controller
 				return redirect()->back();
 	}
 }
+/**@copyright 2016 The PHP Group [Amera Helmi ,Alaa Ragab,Lamess Said]*/

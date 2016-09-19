@@ -54,7 +54,6 @@ li.active a, li.active a:hover
 {
       display:block;
 }
-<style>
 .image {
     width: 100%;
     height: 100%;
@@ -95,7 +94,6 @@ li.active a, li.active a:hover
 .control-group.success .fileupload .uneditable-input{color:#468847;border-color:#468847;}
 .control-group.success .fileupload .fileupload-preview{color:#468847;}
 .control-group.success .fileupload .thumbnail{border-color:#468847;}
-</style>
 </style>
 @endsection
 @section('content')

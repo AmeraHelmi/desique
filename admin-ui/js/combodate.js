@@ -475,7 +475,7 @@
         //initial value, can be `new Date()`
         value: null,
         minYear: 1850,
-        maxYear: 2018,
+        maxYear: 2017,
         yearDescending: true,
         minuteStep: 5,
         secondStep: 1,

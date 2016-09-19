@@ -71,7 +71,7 @@
                 </a>
                 <div class="widget-content-white glossed">
 		                <div class="padded">
-				                  <table id="news" class="table table-striped table-bordered table-hover datatable">
+	 <table id="news" class="table table-striped table-bordered table-hover datatable">
 						                      <thead>
 								                          <tr>
                                             <th class="col-md-1">العنوان</th>

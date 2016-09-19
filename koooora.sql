@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 08, 2016 at 12:18 PM
+-- Generation Time: Sep 19, 2016 at 02:14 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.21
 
@@ -28,20 +28,24 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `adverts` (
   `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `flag` varchar(255) DEFAULT NULL,
-  `url` text,
-  `addition_info` text,
+  `name` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `flag` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `url` text CHARACTER SET latin1,
+  `page_name` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `place` int(11) NOT NULL,
+  `height` text CHARACTER SET latin1 NOT NULL,
+  `width` text CHARACTER SET latin1 NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `adverts`
 --
 
-INSERT INTO `adverts` (`id`, `name`, `flag`, `url`, `addition_info`, `created_at`, `updated_at`) VALUES
-(3, 'aaa', '1464880344', NULL, NULL, '2016-06-02 14:12:24', '2016-06-02 14:12:24');
+INSERT INTO `adverts` (`id`, `name`, `flag`, `url`, `page_name`, `place`, `height`, `width`, `created_at`, `updated_at`) VALUES
+(5, 'alaa', '1474286397', 'https://www.youtube.com/', 'Home', 1, '250px', '728px', '2016-09-19 11:59:57', '2016-09-19 09:59:57'),
+(6, 'ييي', '1474287253', 'https://www.youtube.com/', 'Home', 5, '90px', '728px', '2016-09-19 10:14:13', '2016-09-19 10:14:13');
 
 -- --------------------------------------------------------
 
@@ -111,7 +115,7 @@ CREATE TABLE `bcomments` (
   `date` date NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -193,7 +197,7 @@ CREATE TABLE `categories` (
   `name` text CHARACTER SET utf32 NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `categories`
@@ -1108,10 +1112,10 @@ INSERT INTO `cities` (`id`, `name`, `country_id`, `updated_at`, `created_at`) VA
 CREATE TABLE `cnews` (
   `id` int(11) NOT NULL,
   `news_id` int(11) NOT NULL,
-  `words` text NOT NULL,
+  `words` text CHARACTER SET utf8 NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1297,12 +1301,12 @@ INSERT INTO `countries` (`id`, `name`, `flag`, `updated_at`, `created_at`) VALUE
 CREATE TABLE `discussions` (
   `id` int(11) NOT NULL,
   `match_id` int(11) NOT NULL,
-  `analysis` varchar(2000) NOT NULL,
-  `Author` varchar(100) NOT NULL,
+  `analysis` varchar(2000) CHARACTER SET utf8 NOT NULL,
+  `Author` varchar(100) CHARACTER SET utf8 NOT NULL,
   `analysis_date` datetime NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1396,11 +1400,11 @@ INSERT INTO `groups` (`id`, `name`, `championship_id`, `addition_info`, `no_matc
 
 CREATE TABLE `g_albums` (
   `id` int(11) NOT NULL,
-  `title` text NOT NULL,
+  `title` text CHARACTER SET utf8 NOT NULL,
   `category_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `g_albums`
@@ -1420,11 +1424,11 @@ INSERT INTO `g_albums` (`id`, `title`, `category_id`, `created_at`, `updated_at`
 CREATE TABLE `g_album_photos` (
   `id` int(11) NOT NULL,
   `g_album_id` int(11) NOT NULL,
-  `flag` text NOT NULL,
-  `alt` text,
+  `flag` text CHARACTER SET latin1 NOT NULL,
+  `alt` text CHARACTER SET utf8,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `g_album_photos`
@@ -1445,11 +1449,11 @@ INSERT INTO `g_album_photos` (`id`, `g_album_id`, `flag`, `alt`, `created_at`, `
 CREATE TABLE `jminutes` (
   `id` int(11) NOT NULL,
   `match_id` int(11) NOT NULL,
-  `body` text NOT NULL,
-  `min` text NOT NULL,
+  `body` text CHARACTER SET utf8 NOT NULL,
+  `min` text COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `jminutes`
@@ -1683,11 +1687,11 @@ INSERT INTO `migrations` (`migration`, `batch`) VALUES
 CREATE TABLE `minutes` (
   `id` int(11) NOT NULL,
   `match_id` int(11) NOT NULL,
-  `body` text NOT NULL,
+  `body` text CHARACTER SET utf8 NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `minute` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -2795,7 +2799,7 @@ CREATE TABLE `team_groups` (
   `champion_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `team_groups`
@@ -3960,7 +3964,7 @@ ALTER TABLE `winners`
 -- AUTO_INCREMENT for table `adverts`
 --
 ALTER TABLE `adverts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `agents`
 --

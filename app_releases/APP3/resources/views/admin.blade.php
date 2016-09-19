@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
         <meta name="author" content="Muhammad Usman">
-      <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/midan-normal" type="text/css"/> 
+      <!-- <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/midan-normal" type="text/css"/>  -->
         <link id="bs-css" href="{{ asset('/admin-ui/admin_css/bootstrap-cerulean.min.css')}}" rel="stylesheet">
         <link href="{{ asset('/admin-ui/admin_css/charisma-app.css')}}" rel="stylesheet">
         <link href='{{ asset("/admin-ui/admin_bower/bower_components/chosen/chosen.min.css")}}' rel='stylesheet'>

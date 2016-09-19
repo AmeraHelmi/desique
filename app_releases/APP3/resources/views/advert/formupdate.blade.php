@@ -16,14 +16,14 @@
 <div class="fileupload fileupload-new" data-provides="fileupload">
   <span class="btn btn-primary btn-file"><span class="fileupload-new">الصوره</span>
   <span class="fileupload-exists">تغير</span>
-  <input type="file" name="flag" required /></span>
+  <input type="file" name="flag"/></span>
   <span class="fileupload-preview"></span>
   <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
 </div>
 
 <div class="form-group">
 <label for="exampleInputFile">اختيار الصفحه</label>
-<select  class="form-control" name="page_name" id="page_name" onchange="advert_place()">
+<select  class="form-control" name="page_name" id="page_name2" onchange="advert_place2()">
  <option selected>اختار الصفحه</option>
  <option value="Home">الرئيسيه</option>
  <option value="player">اللاعب</option>
@@ -42,7 +42,7 @@
 </select>
 </div>
 
-<div class="form-group" id="remain_page" style="display:none;">
+<div class="form-group" id="remain_page2" style="display:none;">
       <label for="exampleInputFile">مكان الأعلان</label>
 <select  class="form-control" name="place">
    <option value="1">1</option>
@@ -50,7 +50,7 @@
 </select>
 </div>
 
-<div class="form-group" id="home_page" style="display:none;">
+<div class="form-group" id="home_page2" style="display:none;">
       <label for="exampleInputFile">مكان الأعلان</label>
 <select  class="form-control" name="place">
    <option value="1">1</option>
@@ -70,7 +70,6 @@
   <tr>
     <td>
 <select  class="form-control" name="height">
-   <option selected>الطول</option>
    <option value="90px">90px</option>
    <option value="250px">250px</option>
 </select>
@@ -78,7 +77,6 @@
 <td>x</td>
 <td>
 <select  class="form-control" name="width">
-   <option selected>العرض</option>
    <option value="728px">728px</option>
    <option value="300px">300px</option>
 </select>

@@ -7,22 +7,22 @@
 			<meta name="description" content="Pro Soccer - Football Club Template. It is built using bootstrap 3.3.2 framework, works totally responsive, easy to customise, well commented codes and seo friendly.">
 			<meta name="keywords" content="prosoccer, football, club, soccer, bootstrap">
 			<meta name="author" content="rudhisasmito.com">
-			<link rel="shortcut icon" href="{{ asset('/admin-ui/main_images/favicon.ico')}}">
-			<link rel="apple-touch-icon" href="{{ asset('/admin-ui/main_images/apple-touch-icon.png') }}">
-			<link rel="apple-touch-icon" sizes="72x72" href="{{ asset('/admin-ui/main_images/apple-touch-icon-72x72.png')}}">
-			<link rel="apple-touch-icon" sizes="114x114" href="{{ asset('/admin-ui/main_images/apple-touch-icon-114x114.png')}}">
-			<link rel="stylesheet" href="{{ asset('/admin-ui/css/main.css') }}" />
-			<link rel="stylesheet" href="{{ asset('/admin-ui/css/demo.css') }}" />
-			<link rel="stylesheet" href="{{ asset('/admin-ui/css/custom.css') }}" />
-			<link rel="stylesheet" href="{{ asset('/admin-ui/css/force-custom.css') }}" />
-			<link rel="stylesheet" href="{{ asset('/admin-ui/css/mashable-menu.min.css') }}" />
-			<link rel="stylesheet" href="{{ asset('/admin-ui/css/preset17035.css') }}" />
-			<link rel="stylesheet" href="{{ asset('/admin-ui/main_css/bootstrap.css') }}" />
-			<link rel="stylesheet" href="{{ asset('/admin-ui/main_css/font-awesome.min.css') }}">
-			<link rel="stylesheet" href="{{ asset('/admin-ui/main_css/owl.carousel.css') }}">
-			<link rel="stylesheet" href="{{ asset('/admin-ui/main_css/owl.theme.css') }}">
-			<link rel="stylesheet" href="{{ asset('/admin-ui/main_css/magnific-popup.css') }}">
-			<link rel="stylesheet" href="{{ asset('/admin-ui/main_css/style.css') }}" />
+			<link rel="shortcut icon" href="{{ asset('/admin-ui/front/main_images/favicon.ico')}}">
+			<link rel="apple-touch-icon" href="{{ asset('/admin-ui/front/main_images/apple-touch-icon.png') }}">
+			<link rel="apple-touch-icon" sizes="72x72" href="{{ asset('/admin-ui/front/main_images/apple-touch-icon-72x72.png')}}">
+			<link rel="apple-touch-icon" sizes="114x114" href="{{ asset('/admin-ui/front/main_images/apple-touch-icon-114x114.png')}}">
+			<link rel="stylesheet" href="{{ asset('/admin-ui/front/main_css/main.css') }}" />
+			<link rel="stylesheet" href="{{ asset('/admin-ui/front/main_css/demo.css') }}" />
+			<link rel="stylesheet" href="{{ asset('/admin-ui/front/main_css/custom.css') }}" />
+			<link rel="stylesheet" href="{{ asset('/admin-ui/front/main_css/force-custom.css') }}" />
+			<link rel="stylesheet" href="{{ asset('/admin-ui/front/main_css/mashable-menu.min.css') }}" />
+			<link rel="stylesheet" href="{{ asset('/admin-ui/front/main_css/preset17035.css') }}" />
+			<link rel="stylesheet" href="{{ asset('/admin-ui/front/main_css/bootstrap.css') }}" />
+			<link rel="stylesheet" href="{{ asset('/admin-ui/front/main_css/font-awesome.min.css') }}">
+			<link rel="stylesheet" href="{{ asset('/admin-ui/front/main_css/owl.carousel.css') }}">
+			<link rel="stylesheet" href="{{ asset('/admin-ui/front/main_css/owl.theme.css') }}">
+			<link rel="stylesheet" href="{{ asset('/admin-ui/front/main_css/magnific-popup.css') }}">
+			<link rel="stylesheet" href="{{ asset('/admin-ui/front/main_css/style.css') }}" />
 			<link rel='stylesheet' href="{{ asset('/admin-ui/css/bootstrap.min.css') }}">
 			<link rel='stylesheet' href="{{ asset('/bower_components/fontawesome/css/font-awesome.min.css') }}">
 			<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -158,21 +158,21 @@
 																	</div>
 														</div>
 														<script type='text/javascript' src='https://maps.google.com/maps/api/js?sensor=false&amp;ver=4.1.5'></script>
-														<script type="text/javascript" src="{{ asset('/admin-ui/main_js/bootstrap.min.js') }}"></script>
-														<script type="text/javascript" src="{{ asset('/admin-ui/main_js/owl.carousel.min.js') }}"></script>
-														<script type="text/javascript" src="{{ asset('/admin-ui/main_js/bootstrap-hover-dropdown.min.js') }}"></script>
-														<script type="text/javascript" src="{{ asset('/admin-ui/main_js/jquery.magnific-popup.min.js') }}"></script>
-														<script type="text/javascript" src="{{ asset('/admin-ui/main_js/script.js') }}"></script>
-														<script type="text/javascript" src="{{ asset('/admin-ui/main_js/jquery.min.js') }}"></script>
-														<script type="text/javascript" src="{{ asset('/admin-ui/main_js/modernizr.min.js') }}"></script>
-														<script type="text/javascript" src="{{ asset('/admin-ui/main_js/owl.carousel.min.js')}}"></script>
-														<script type="text/javascript" src="{{ asset('/admin-ui/main_js/jqBootstrapValidation.js') }}"></script>
+														<script type="text/javascript" src="{{ asset('/admin-ui/front/main_js/bootstrap.min.js') }}"></script>
+														<script type="text/javascript" src="{{ asset('/admin-ui/front/main_js/owl.carousel.min.js') }}"></script>
+														<script type="text/javascript" src="{{ asset('/admin-ui/front/main_js/bootstrap-hover-dropdown.min.js') }}"></script>
+														<script type="text/javascript" src="{{ asset('/admin-ui/front/main_js/jquery.magnific-popup.min.js') }}"></script>
+														<script type="text/javascript" src="{{ asset('/admin-ui/front/main_js/script.js') }}"></script>
+														<script type="text/javascript" src="{{ asset('/admin-ui/front/main_js/jquery.min.js') }}"></script>
+														<script type="text/javascript" src="{{ asset('/admin-ui/front/main_js/modernizr.min.js') }}"></script>
+														<script type="text/javascript" src="{{ asset('/admin-ui/front/main_js/owl.carousel.min.js')}}"></script>
+														<script type="text/javascript" src="{{ asset('/admin-ui/front/main_js/jqBootstrapValidation.js') }}"></script>
 														<script type="text/javascript" src="{{ asset('/admin-ui/js/jquery.1.7.2.js') }}"></script>
 														<script type="text/javascript" src="{{ asset('/admin-ui/js/jquery.syotimer.js') }}"></script>
-														<script type="text/javascript" src="{{ asset('/admin-ui/js/demo.js') }}"></script>
-														<script type="text/javascript" src="{{ asset('/admin-ui/js/matchMedia.addListener.min.js') }}"></script>
-														<script type="text/javascript" src="{{ asset('/admin-ui/js/material.min.js') }}"></script>
-														<script type="text/javascript" src="{{ asset('/admin-ui/js/mashable-menu.min.js') }}"></script>
+														<script type="text/javascript" src="{{ asset('/admin-ui/front/main_js/demo.js') }}"></script>
+														<script type="text/javascript" src="{{ asset('/admin-ui/front/main_js/matchMedia.addListener.min.js') }}"></script>
+														<script type="text/javascript" src="{{ asset('/admin-ui/front/main_js/material.min.js') }}"></script>
+														<script type="text/javascript" src="{{ asset('/admin-ui/front/main_js/mashable-menu.min.js') }}"></script>
 														@yield('scripts')
 												</div>
 										</div>

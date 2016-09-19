@@ -1,5 +1,11 @@
-@import url(https://fonts.googleapis.com/css?family=Shojumaru);
 
+/*body {
+
+  font-family: 'MidanRegular' !important;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 22px !important;
+}*/
 select {
     background-color: #fff;
 }
@@ -35,7 +41,6 @@ select {
 .top-block span {
     clear: both;
 }
-
 .top-block i {
     font-size: 25px;
 }
@@ -724,4 +729,3 @@ ul.github-buttons li {
 .mc_embed_signup #mce-error-response {display:none;}
 .mc_embed_signup #mce-success-response {color:#529214; display:none;}
 .mc_embed_signup label.error {display:block; float:none; width:auto; margin-left:1.05em; text-align:left; padding:.5em 0;}
-

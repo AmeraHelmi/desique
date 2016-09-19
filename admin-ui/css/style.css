@@ -1,5 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900,100italic,300italic,400italic);
-@import url(https://fonts.googleapis.com/css?family=Oswald:700,400,300);
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900,100italic,300italic,400italic);@import url(https://fonts.googleapis.com/css?family=Oswald:700,400,300);
 /****************************
 *   FOR RESPONSIVENESS      *
 ****************************/
@@ -37,8 +36,7 @@ html {
 *      BODY DEFAULTS        *
 ****************************/
 body {
-  font-size: 1em;
-  /*background-image: url(../../images/back.jpg);
+  font-size: 1em;  /*background-image: url(../../images/back.jpg);
   background-size: 100% 112%;
   background-repeat: no-repeat;;*/
 
@@ -435,7 +433,7 @@ a:hover {
   background: #fff;
   border: 1px solid #ededed;
   color: #666;
-  
+
   font-size: .9em;
   line-height: 1.714285714;
   margin: 24px 0;

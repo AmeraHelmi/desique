@@ -206,7 +206,7 @@ width: 16px;
 
 height: 16px;
 
-background: url('{{ asset('/admin-ui/main_images/b05.png')}}') no-repeat;
+background: url('{{ asset('/admin-ui/front/main_images/b05.png')}}') no-repeat;
 
 overflow: hidden;
 
@@ -256,7 +256,7 @@ height: 58px;
 
 cursor: pointer;
 
-background: url('{{ asset('/admin-ui/main_images/a22.png')}}') center center no-repeat;
+background: url('{{ asset('/admin-ui/front/main_images/a22.png')}}') center center no-repeat;
 
 overflow: hidden;
 
@@ -288,13 +288,13 @@ color:#00aeef;
 
 @endsection
 
-@section('content') 
+@section('content')
 
 <!-- BANNER -->
 
 <div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 1300px; height:
 
-500px; overflow: hidden; visibility: hidden;"> 
+500px; overflow: hidden; visibility: hidden;">
 
   <!-- Loading Screen -->
 
@@ -306,7 +306,8 @@ color:#00aeef;
 
   </div>
 
-  <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 1300px; height: 500px; overflow: hidden;"> @foreach($news as $new)
+  <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 1300px; height: 500px; overflow: hidden;">
+     @foreach($news as $new)
 
     <div data-p="225.00" style="display: none;"> <img data-u="image" src="images/uploads/{{ $new->flag }}" />
 
@@ -314,7 +315,7 @@ color:#00aeef;
 
 background-color: rgba(0, 0, 0, 0.8); line-height: 32px;
 
-width: 526px; height: 166px; 
+width: 526px; height: 166px;
 
 padding-bottom: 15px; padding-left: 28px;padding-top: 12px;font-size: 30px;" class="article--wrap"
 
@@ -342,7 +343,7 @@ padding-bottom: 15px; padding-left: 28px;padding-top: 12px;font-size: 30px;" cla
 
   <!-- Bullet Navigator -->
 
-  <div data-u="navigator" class="jssorb05" style="bottom:16px;right:16px;" data-autocenter="1"> 
+  <div data-u="navigator" class="jssorb05" style="bottom:16px;right:16px;" data-autocenter="1">
 
     <!-- bullet navigator item prototype -->
 
@@ -350,9 +351,9 @@ padding-bottom: 15px; padding-left: 28px;padding-top: 12px;font-size: 30px;" cla
 
   </div>
 
-  
 
-  <!-- Arrow Navigator --> 
+
+  <!-- Arrow Navigator -->
 
   <span data-u="arrowleft" class="jssora22l" style="top:0px;leaft:12px;width:40px;height:58px;" data-autocenter="2"></span> <span data-u="arrowright" class="jssora22r" style="top:0px;right:12px;width:40px;height:58px;" data-autocenter="2"></span> </div>
 
@@ -446,9 +447,9 @@ padding-bottom: 15px; padding-left: 28px;padding-top: 12px;font-size: 30px;" cla
 
             </div>
 
-            <div class="col-sm-12 text-center live"> <a  class="btn btn-success" href="" data-toggle="modal" data-target="#vid-box">بث مباشر</a> <a  class="btn btn-success" 
+            <div class="col-sm-12 text-center live"> <a  class="btn btn-success" href="" data-toggle="modal" data-target="#vid-box">بث مباشر</a> <a  class="btn btn-success"
 
-href="{{ url('/plan',$matchdetail->match_id) }}">تفاصيل</a> <a  class="btn btn-success" 
+href="{{ url('/plan',$matchdetail->match_id) }}">تفاصيل</a> <a  class="btn btn-success"
 
 href="{{ url('/statistics',$matchdetail->match_id) }}">أحصائيات</a> </div>
 
@@ -704,7 +705,7 @@ echo'</div><div class="item">';
 
                         <!-- <div class="item">
 
-</div> --> 
+</div> -->
 
                       </div>
 
@@ -726,9 +727,9 @@ echo'</div><div class="item">';
 
         </div>
 
-        <!-- /example --> 
+        <!-- /example -->
 
-        
+
 
       </div>
 
@@ -846,7 +847,7 @@ echo'</div><div class="item">';
 
 
 
-@section('scripts') 
+@section('scripts')
 
 <script>
 
@@ -868,7 +869,7 @@ echo'</div><div class="item">';
 
 
 
- 
+
 
 
 
@@ -880,21 +881,21 @@ echo'</div><div class="item">';
 
 
 
- 
 
 
 
-</script> 
 
-<script src="{{ asset('/admin-ui/js/countdown.js') }}"></script> 
+</script>
 
-<script src="{{ asset('/admin-ui/js/custom.js') }}"></script> 
+<script src="{{ asset('/admin-ui/js/countdown.js') }}"></script>
 
-<script src="{{ asset('/admin-ui/js/jquery-1.11.3.min.js') }}"></script> 
+<script src="{{ asset('/admin-ui/js/custom.js') }}"></script>
 
-<script src="{{ asset('/admin-ui/js/jssor.slider.mini.js') }}"></script> 
+<script src="{{ asset('/admin-ui/js/jquery-1.11.3.min.js') }}"></script>
 
-<script src="{{ asset('/admin-ui/js/swfobject.js') }}"></script> 
+<script src="{{ asset('/admin-ui/js/jssor.slider.mini.js') }}"></script>
+
+<script src="{{ asset('/admin-ui/js/swfobject.js') }}"></script>
 
 <!-- <script type="text/javascript">
 
@@ -912,7 +913,7 @@ document.write("<a href='http://www.adobe.com/go/getflashplayer'><img src='"
 
 
 
-</noscript> --> 
+</noscript> -->
 
 <script language="javascript">
 
@@ -1184,7 +1185,7 @@ initialise();
 
 
 
-</script> 
+</script>
 
 <script>
 
@@ -1286,6 +1287,6 @@ $(window).bind("orientationchange", ScaleSlider);
 
 });
 
-</script> 
+</script>
 
 @endsection

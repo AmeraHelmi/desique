@@ -20,3 +20,46 @@
   <span class="fileupload-preview"></span>
   <a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
 </div>
+
+<div class="form-group">
+<label for="exampleInputFile">اختيار الصفحه</label>
+<select  class="form-control"
+ name="page">
+ <option selected>اختار الصفحه</option>
+ <option value="Home">الرئيسيه</option>
+ <option value="player">اللاعب</option>
+ <option value="coach">المدربين</option>
+ <option value="referee">الحكام</option>
+ <option value="manager">المديرين</option>
+ <option value="news">الاخبار</option>
+ <option value="videos">الفيديوهات</option>
+ <option value="news_details">تفاصيل الخبر</option>
+ <option value="videos_details">تفاصيل الفيديو</option>
+ <option value="search_results">نتائج البحث</option>
+ <option value="min_By_min">لحظه بلحظه</option>
+ <option value="matches">المباريات</option>
+ <option value="championships">البطولات</option>
+ <option value="blog">على الناصيه</option>
+</select>
+</div>
+<table>
+  <tr>
+    <label for="exampleInputFile">مقاس الأعلان</label>
+
+</tr>
+  <tr>
+    <td>
+<select  class="form-control" name="height">
+   <option value="90px">90px</option>
+   <option value="250px">250px</option>
+</select>
+</td>
+<td>x</td>
+<td>
+<select  class="form-control" name="width">
+   <option value="728px">728px</option>
+   <option value="300px">300px</option>
+</select>
+</td>
+</tr>
+</table>

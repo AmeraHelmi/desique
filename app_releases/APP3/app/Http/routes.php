@@ -338,6 +338,7 @@ Route::resource('/player_injured_history'                ,'Player_injured_histor
 
 //Front
 Route::resource('/front'  , 'FrontEndController');
+Route::get('/post'  , 'FrontEndController@post');
 Route::controllers([
 	'auth'      => 'Auth\AuthController',
 	'password'  => 'Auth\PasswordController'

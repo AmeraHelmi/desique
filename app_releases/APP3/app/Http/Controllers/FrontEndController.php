@@ -27,6 +27,16 @@ class FrontEndController extends Controller {
 	{
 		return view ('Front.index');
 	}
+	//post 
+	public function post()
+	{
+		return view ('Front.post');
+	}
+	//postdetails
+	public function post_details($id)
+	{
+		return view ('Front.post-details');
+	}
 
 	/**
 	 * Show the form for creating a new resource.

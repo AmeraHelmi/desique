@@ -7,12 +7,15 @@
         <meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
         <meta name="author" content="Muhammad Usman">
       <!-- <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/midan-normal" type="text/css"/>  -->
+
+
         <link id="bs-css" href="{{ asset('/admin-ui/admin_css/bootstrap-cerulean.min.css')}}" rel="stylesheet">
+
         <link href="{{ asset('/admin-ui/admin_css/charisma-app.css')}}" rel="stylesheet">
-        <link href='{{ asset("/admin-ui/admin_bower/bower_components/chosen/chosen.min.css")}}' rel='stylesheet'>
+<!--           <link href='{{ asset("/admin-ui/admin_css/bootstrap-rtl.css")}}' rel='stylesheet'>
+ -->        <link href='{{ asset("/admin-ui/admin_bower/bower_components/chosen/chosen.min.css")}}' rel='stylesheet'>
         <link href='{{ asset("/admin-ui/admin_bower/bower_components/colorbox/example3/colorbox.css")}}' rel='stylesheet'>
         <link href='{{ asset("/admin-ui/admin_bower/bower_components/responsive-tables/responsive-tables.css")}}' rel='stylesheet'>
-        <link href='{{ asset("/admin-ui/admin_css/bootstrap-rtl.css")}}' rel='stylesheet'>
         <link href='{{ asset("/admin-ui/admin_bower/bower_components/bootstrap-tour/build/css/bootstrap-tour.min.css")}}' rel='stylesheet'>
         <link rel='stylesheet' href="{{ asset('/bower_components/datatables/media/css/jquery.dataTables.min.css') }}">
         <link rel='stylesheet' href="{{ asset('/bower_components/chosen/chosen.min.css') }}">
@@ -76,10 +79,10 @@
         </div>
         <div class="ch-container">
             <div class="row">
-                <div class="col-sm-2 col-lg-2">
-                    <div class="sidebar-nav">
-                        <div class="nav-canvas">
-                            <ul class="nav nav-pills nav-stacked main-menu">
+                <div class="col-sm-2 col-lg-2" style="float: right;">
+                    <div class="sidebar-nav" style="float: right;">
+                        <div class="nav-canvas" style="float: right;">
+ <ul class="nav nav-pills nav-stacked main-menu" style="padding-right: 12px;width: 200px;padding-left: 5px;">
                                 <li class="nav-header">Main</li>
                                 <li>
                                     <a class="ajax-link" href="{{ url('/adminpanel') }}">

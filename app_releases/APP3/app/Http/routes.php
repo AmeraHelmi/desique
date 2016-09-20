@@ -30,18 +30,22 @@ Route::POST ('/stadium_champion'  , array('as' => 'loadmorestadium','uses' => 'K
 //Analyzing
 Route::get     ('/anlyzing',            'KoralifeController@anlyzing');
 
-
 Route::get     ('/main_team',           'KoralifeController@team');
 //News pages
 Route::get     ('/news',         'KoralifeController@news');
 Route::POST    ('/news'             , array('as' => 'loadmore','uses' => 'KoralifeController@loadmore'));
 Route::get     ('/Newdetails/{id?}',         'KoralifeController@getnew');
-//
+
+//player
 Route::get     ('/Tplayers/{id}','KoralifeController@displayplayers');
 Route::get     ('/plan/{id}' ,   'KoralifeController@displayplan');
 Route::get     ('/statistics/{id}' ,   'KoralifeController@displaystatistics');
-//advert
 
+//videos
+Route::get     ('/videos','KoralifeController@displayplayers');
+
+//Admin panel
+//advert
 Route::POST    ('/advert/store'             , array('as' => 'addadvert','uses' => 'AdvertController@store'));
 Route::POST    ('/advert/update'         ,'AdvertController@update');
 Route::resource('/advert'                , 'AdvertController');
@@ -519,7 +523,6 @@ Route::POST    ('/player_injured_history/getplayers'          ,'Player_injured_h
 Route::resource('/player_injured_history'                ,'Player_injured_historyController');
 
 //Front
-Route::resource('/front'  , 'FrontEndController');
 Route::controllers([
 	'auth'      => 'Auth\AuthController',
 	'password'  => 'Auth\PasswordController'

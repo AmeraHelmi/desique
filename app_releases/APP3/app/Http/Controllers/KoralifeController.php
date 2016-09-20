@@ -7,6 +7,7 @@ use App\Models\Player;
 use App\Models\Team;
 use App\Models\Match;
 use App\Models\Coach;
+use App\Models\V_album;
 use App\Models\Player_match;
 use App\Models\Reserve_player;
 use App\Models\Snew;
@@ -143,7 +144,7 @@ $Allmatch= new Match;
 		->with('Allmatch',$Allmatch)
 		->with('Allmatch2',$Allmatch2);
 	}
-	
+
 	public function team()
 	{
 		return view('koralife.team');
@@ -353,7 +354,7 @@ public function displayplayers(Team_player $team_players , $id)
 	}
 	//stadiums
 	public function stadiums(Stadium $stadium)
-	{	
+	{
 		$stadiums = $stadium->take(6)->orderBy('id','desc')->get();
 		return view('koralife.stadium')
 		->with('stadiums',$stadiums);
@@ -492,12 +493,20 @@ public function displayplayers(Team_player $team_players , $id)
 	{
 		return view('koralife.analyzing');
     }
-	//post 
+	//post
 	public function post()
 	{
 		$posts=Post::get();
 		return view ('Front.post')
 		->with('posts',$posts);
+	}
+
+	//vedio
+	public function vedio()
+	{
+		$vedios=V_album::get();
+		return view ('Front.videos')
+		->with('vedios',$vedios);
 	}
 
 	//postdetails
@@ -524,6 +533,29 @@ public function displayplayers(Team_player $team_players , $id)
 		->with('previous_post_id',$previous_post_id)
 		->with('next_post_id',$next_post_id)
 		->with('num_comments',$num_comments);
+	}
+
+//vedio_detail
+	public function vedio_details($id)
+	{
+		$vedio = new V_album();
+		$v_detail = $vedio
+								 ->join('categories as c','c.id','=','v_albums.category_id')
+								 ->select(array('v_albums.id as id',
+															'c.name as Cname',
+															'v_albums.title as title',
+															'v_albums.flag as flag',
+															'v_albums.description as description',
+															'v_albums.created_at as date'))
+								 ->where('v_albums.id',$id)->get();
+
+		$previous_vedio_id = $vedio->where('id','<',$id)->first();
+		$next_vedio_id     = $vedio->where('id','>',$id)->first();
+
+		return view ('Front.video-details')
+		->with('v_details',$v_detail)
+		->with('previous_vedio_id',$previous_vedio_id)
+		->with('next_vedio_id',$next_vedio_id);
 	}
 
 }

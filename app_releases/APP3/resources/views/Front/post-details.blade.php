@@ -10,13 +10,13 @@
 <!-- Data
 ================================================== -->
      @foreach($p_details as $p_detail)
-<main class="container "> 
+<main class="container ">
   <!--start of middle sec-->
 
   <div class="row data">
     <div class="col-sm-8 ">
       <div class="row">
-  
+
         <div class="col-sm-12">
           <ol class="breadcrumb">
             <li><a href="{{url('/')}}">الصفحة الرئيسية</a></li>
@@ -24,20 +24,20 @@
             <li class="active">{{$p_detail->title}}</li>
           </ol>
         </div>
-         
+
         <div class="blog-post-body col-sm-12">
           <h3 class="text-primary">
-          <a href="post-details.html">{{$p_detail->title}}</a></h3>
+          <a href="{{url('/posts/{{$p_detail->id}}')}}">{{$p_detail->title}}</a></h3>
           <p class="text-muted"><span>{{$p_detail->date}} / بواسطة:
-          <a href="{{ url('/Allposts',$p_detail->author)}}">{{$p_detail->author}}</a> / القسم: 
+          <a href="{{ url('/Allposts',$p_detail->author)}}">{{$p_detail->author}}</a> / القسم:
            <a href="#">{{ $p_detail->Cname}}</a> /{{ $num_comments }} تعليقات</span></p>
-          <figure><img alt="{{$p_detail->alt}}" src="../images/uploads/{{$p_detail->flag}}" 
+          <figure><img alt="{{$p_detail->alt}}" src="../images/uploads/{{$p_detail->flag}}"
           class="img-responsive"></figure>
             <p>{{$p_detail->body}}</p>
         </div>
-       
+
         <!--start of share box & tags-->
-        
+
         <div class="col-sm-12 post-tags clearfix">
           <div class="title">
             <p>كلمات دلالية</p>
@@ -58,9 +58,9 @@
           </div>
           <hr>
         </div>
-        
-        <!--end of share box & tags--> 
-        
+
+        <!--end of share box & tags-->
+
         <!--start of comment box-->
         <div class="col-sm-12 comment-box">
           <div class="title">
@@ -85,8 +85,8 @@
               </div>
             </div>
           </article>
-          
-          
+
+
           <!-- Third Comment -->
           <article class="row">
             <div class="col-md-10 col-sm-10">
@@ -109,20 +109,20 @@
           </article>
           <hr>
         </div>
-        <!--end of comment box--> 
-        
+        <!--end of comment box-->
+
         <!--start of post shuffle-->
         <div class="col-sm-12 post-shuffle">
           <ul class="list-inline no-padding clearfix">
           @if(count($previous_post_id) > 0)
-            <li class="col-sm-6 btn btn-sm btn-primary hvr-underline-from-center-primary "> 
+            <li class="col-sm-6 btn btn-sm btn-primary hvr-underline-from-center-primary ">
             <a href="{{url('/prevpost',$previous_post_id)}}"> <i class="icofont icofont-long-arrow-right pull-right shuffle-prev"></i>
               <div class="pull-left text-left"> الموضوع السابق
                 <h5>مثال لنص يمكن أن يستبدل</h5>
               </div>
               </a> </li>
               @else
-            <li disabled="true" class="col-sm-6 btn btn-sm btn-primary hvr-underline-from-center-primary "> 
+            <li disabled="true" class="col-sm-6 btn btn-sm btn-primary hvr-underline-from-center-primary ">
               <div class="pull-left text-left"> الموضوع السابق
                 <h5>لا يوجد مدونات سابقه</h5>
               </div>
@@ -135,7 +135,7 @@
               </a> </li>
           </ul>
         </div>
-        <!--end of post shuffle--> 
+        <!--end of post shuffle-->
         <!--start of add comment-->
         <div class="col-sm-12 add-comment">
           <form method="post" id="comment-form" action="#" accept-charset="UTF-8">
@@ -153,7 +153,7 @@
             </div>
           </form>
         </div>
-        <!--end of add comment--> 
+        <!--end of add comment-->
       </div>
     </div>
     <aside class="col-sm-4">
@@ -202,8 +202,8 @@
       </div>
     </aside>
   </div>
-  
-  <!--end of middle sec--> 
+
+  <!--end of middle sec-->
 </main>
  @endforeach
 @endsection

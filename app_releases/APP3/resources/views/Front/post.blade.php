@@ -8,7 +8,7 @@
 <!-- Data
 ================================================== -->
 <main class="container ">
-  <div class="data row"> 
+  <div class="data row">
     <!-- Breadcrumb
 ================================================== -->
     <div class="col-sm-12">
@@ -40,7 +40,7 @@
               </div>
               <p>{{$post->body}}</p>
               <hr>
-              <a class="btn btn-primary btn-block hvr-sweep-to-right-primary" href="../post-details.html">استكمل القراءة...</a> </div>           
+              <a class="btn btn-primary btn-block hvr-sweep-to-right-primary" href="{{ url('/posts',$post->id) }}">استكمل القراءة...</a> </div>
           </div>
           <?php if($count == 3 ){
               echo '</div><div>';

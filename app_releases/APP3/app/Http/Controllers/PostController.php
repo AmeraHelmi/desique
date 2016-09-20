@@ -2,6 +2,7 @@
 
 use App\Http\Requests;
 use App\Models\Post;
+use App\Models\Category;
 use App\Http\Controllers\Controller;
 use yajra\Datatables\Datatables as Datatables;
 use Illuminate\Http\Request;
@@ -31,10 +32,11 @@ class PostController extends Controller {
 			->editColumn('flag', '<div class="image"><img src="images/uploads/{{ $flag }}"  width="50px" height="50px">')
 			->addColumn('actions', function ($data)
 			{return view('partials.actionBtns')->with('controller','post')->with('id', $data->id)->render(); });
-
+$categories=Category::lists('id','name');
 		if($request->ajax())
 			return DatatablePresenter::make($tableData, 'index');
 			return view('post.index')
+			->with('categories',$categories)
 			->with('tableData', DatatablePresenter::make($tableData, 'index'));
 	}
 
@@ -63,9 +65,11 @@ class PostController extends Controller {
 			$post = new Post;
 			$post->title             =$request->title;
 			$post->flag              =$filename;
+			$post->alt              =$request->alt;
 			$post->body              =$request->body;
 			$post->author            =Auth::user()->name;
 			$post->date              =$request->date;
+			$post->cat_id              =$request->cat_id;
 			$post->save();
 		if($request->ajax()){
 			return response(array('msg' => 'Adding Successfull'), 200)
@@ -124,8 +128,10 @@ class PostController extends Controller {
 			$file->move('images/uploads', $filename);
 			$post->title             =$request->title;
 			$post->flag              =$filename;
+		    $post->alt              =$request->alt;
 			$post->body              =$request->body;
 			$post->date              =$request->date;
+			$post->cat_id              =$request->cat_id;
        	}
    		}
 		else
@@ -133,7 +139,9 @@ class PostController extends Controller {
 			$post->title             =$request->title;
 			$post->body              =$request->body;
 			$post->date              =$request->date;
-		    $post->flag              =session('blogflag');
+			$post->alt              =$request->alt;
+			$post->cat_id              =$request->cat_id;
+		    $post->flag              =session('postflag');
 		}
 			$post->save();
 	 		if($request->ajax()){

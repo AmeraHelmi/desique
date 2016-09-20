@@ -4,6 +4,6 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
 
 class Post extends Eloquent {
 
-		protected $fillable= ['title','body','flag','author','date'];
+		protected $fillable= ['title','body','flag','alt','author','cat_id','date'];
 
 }

@@ -9,6 +9,17 @@
 select {
     background-color: #fff;
 }
+.nav-canvas li ul li{
+  margin-right: -12px;
+}
+
+.table-striped tr td{
+  text-align: center;
+}
+
+.table-striped tr th{
+  text-align: center;
+}
 
 .ch-container {
     padding: 0 15px;

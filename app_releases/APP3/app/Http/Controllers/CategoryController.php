@@ -33,12 +33,13 @@ class CategoryController extends Controller {
 	{
         $categories = $cat
 						->select(array('id', 'name'))
-                        ->orderBy('name')->get();
+                        ->orderBy('id')->get();
         $tableData = Datatables::of($categories)
-                        ->addColumn('actions', function ($data)
-            			{
-                		return view('partials.actionBtns')->with('controller','Category')->with('id', $data->id)->render();
-						});
+     	->addColumn('actions', function ($data)
+								{
+								  return view('partials.actionBtns')->with('controller','category')
+								       ->with('id', $data->id)->render();
+								});
 
         if($request->ajax())
 				        return DatatablePresenter::make($tableData, 'index');
@@ -128,11 +129,12 @@ class CategoryController extends Controller {
 	{
 		$cat 	= Category::find($id);
 		$cat->delete();
-		if($request->ajax()){
-					return response(array('msg' => 'Removing Successfull'), 200)
-					->header('Content-Type', 'application/json');
-							}
-		            return redirect()->back();
+		if($request->ajax())
+		{
+			return response(array('msg' => 'Removing Successfull'), 200)
+								->header('Content-Type', 'application/json');
+		}
+		return redirect()->back();
 	}
 
 }

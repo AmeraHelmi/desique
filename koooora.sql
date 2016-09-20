@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2016 at 02:14 PM
+-- Generation Time: Sep 20, 2016 at 06:03 PM
 -- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.21
+-- PHP Version: 5.6.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -204,10 +204,7 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'مصر', '2016-08-10 15:14:25', '0000-00-00 00:00:00'),
-(2, 'العالم العربى', '2016-08-10 15:14:25', '0000-00-00 00:00:00'),
-(3, 'aajj', '2016-08-10 15:17:38', '2016-08-10 13:17:38'),
-(4, 'sssasd', '2016-08-10 15:18:01', '2016-08-10 13:18:01');
+(8, 'شسسسس', '2016-09-20 15:33:53', '2016-09-20 13:33:53');
 
 -- --------------------------------------------------------
 
@@ -1117,6 +1114,15 @@ CREATE TABLE `cnews` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `cnews`
+--
+
+INSERT INTO `cnews` (`id`, `news_id`, `words`, `created_at`, `updated_at`) VALUES
+(3, 13, '1', '2016-09-20 12:19:12', '2016-09-20 12:19:12'),
+(4, 13, '2', '2016-09-20 12:19:12', '2016-09-20 12:19:12'),
+(5, 13, '3', '2016-09-20 12:19:12', '2016-09-20 12:19:12');
+
 -- --------------------------------------------------------
 
 --
@@ -1406,15 +1412,6 @@ CREATE TABLE `g_albums` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `g_albums`
---
-
-INSERT INTO `g_albums` (`id`, `title`, `category_id`, `created_at`, `updated_at`) VALUES
-(1, 'asd', 3, '2016-08-11 08:39:11', '0000-00-00 00:00:00'),
-(2, 'ss', 4, '2016-08-11 08:39:30', '0000-00-00 00:00:00'),
-(3, 'aa', 1, '2016-08-14 11:27:44', '2016-08-14 09:27:44');
-
 -- --------------------------------------------------------
 
 --
@@ -1429,16 +1426,6 @@ CREATE TABLE `g_album_photos` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `g_album_photos`
---
-
-INSERT INTO `g_album_photos` (`id`, `g_album_id`, `flag`, `alt`, `created_at`, `updated_at`) VALUES
-(1, 1, '1471174517', '1470913204', '2016-08-14 11:35:17', '2016-08-14 09:35:17'),
-(2, 1, '1470913205', '1470913205', '2016-08-11 09:00:03', '2016-08-11 09:00:03'),
-(3, 2, '1471174505', '1471174505', '2016-08-14 09:35:04', '2016-08-14 09:35:04'),
-(4, 2, '1471174506', '1471174506', '2016-08-14 09:35:04', '2016-08-14 09:35:04');
 
 -- --------------------------------------------------------
 
@@ -2456,9 +2443,12 @@ CREATE TABLE `posts` (
   `title` text CHARACTER SET utf8 NOT NULL,
   `body` text CHARACTER SET utf8 NOT NULL,
   `flag` text CHARACTER SET utf8,
+  `alt` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `date` date NOT NULL,
   `likes` int(11) DEFAULT '0',
+  `comments` int(11) NOT NULL,
   `author` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `cat_id` int(11) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -2467,8 +2457,10 @@ CREATE TABLE `posts` (
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`id`, `title`, `body`, `flag`, `date`, `likes`, `author`, `updated_at`, `created_at`) VALUES
-(2, 'bbb', 'ddd', '1470659652', '2016-02-02', 0, 'alaa', '2016-08-08 11:30:16', '2016-08-08 11:28:35');
+INSERT INTO `posts` (`id`, `title`, `body`, `flag`, `alt`, `date`, `likes`, `comments`, `author`, `cat_id`, `updated_at`, `created_at`) VALUES
+(4, 'messi', 'هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق.', '1474384771', 'aaaaaaa', '1983-03-18', 0, 0, 'alaa', 8, '2016-09-20 13:19:31', '2016-09-20 13:19:31'),
+(5, 'now', 'now', '1474386527', 'dddd', '2000-02-17', 0, 0, 'alaa', 8, '2016-09-20 13:48:47', '2016-09-20 13:45:42'),
+(6, 'next', 'next', '1474386447', 'dddd', '1999-03-18', 0, 0, 'alaa', 8, '2016-09-20 13:47:27', '2016-09-20 13:47:27');
 
 -- --------------------------------------------------------
 
@@ -2586,7 +2578,10 @@ INSERT INTO `snews` (`id`, `title`, `flag`, `date`, `additional_info`, `user_id`
 (7, 'عنوان الخبر', '1464770473', '2006-04-15 04:20:00', 'إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم الموقع.', 0, NULL, '2016-06-02 11:42:21', '2016-06-02 10:42:21'),
 (8, 'عنوان الخبر', '1464770887', '2004-03-17 04:10:00', 'إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم الموقع.', 0, NULL, '2016-06-02 11:35:32', '2016-06-02 10:35:32'),
 (9, 'عنوان الخبر', '1464870689', '2002-03-16 03:10:00', 'إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص ', 0, NULL, '2016-06-02 12:31:29', '2016-06-02 11:31:29'),
-(10, 'عنوان الخبر', '1464870598', '2003-03-18 04:10:00', 'إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص ', 0, NULL, '2016-06-02 12:29:58', '2016-06-02 11:29:58');
+(10, 'عنوان الخبر', '1464870598', '2003-03-18 04:10:00', 'إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص ', 0, NULL, '2016-06-02 12:29:58', '2016-06-02 11:29:58'),
+(11, 'photo', '1474380746', '2002-04-16 02:05:00', 'ujju', 0, NULL, '2016-09-20 12:12:26', '2016-09-20 12:12:26'),
+(12, 'hgyh', '1474381035', '0000-00-00 00:00:00', 'ytujyu', 0, NULL, '2016-09-20 12:17:15', '2016-09-20 12:17:15'),
+(13, 'photo', '1474381152', '0000-00-00 00:00:00', 'hh', 0, NULL, '2016-09-20 12:19:12', '2016-09-20 12:19:12');
 
 -- --------------------------------------------------------
 
@@ -2664,7 +2659,6 @@ INSERT INTO `stadia` (`id`, `country_id`, `city_id`, `name`, `capacity`, `flag`,
 (34, 97, 301, ' أولمبيكو', 73000, '1463665063', 'عشب طبيعي', 'ملعب الأولمبيكو(إستاديو أوليمبيكو)، هو أكبر وأهم المنشئات الرياضية في العاصمة الإيطالية روما، يقع الإستاد ضمن مجمع الـ"فورو إيتاليكو" الرياضي شمال العاصمة الإيطالية وهو ملك للجمعية الإيطالية الوطنية الأولمبية وهو مخصص بشكلٍ رئيسي لكرة القدم. الملعب هو مقر لناديي لاتسيو وروما الناشطين في دوري الدرجة الأولى الإيطالية في كرة القدم(السيري آ)، ويخاض عليه سنوياً نهائي كأس إيطاليا(كوبا إيتاليا). تم إعادة بناء الملعب ليكون أحد الملاعب المستضيفة لكأس العالم 1990 حيث لعبت عليه المباراة النهائية. يحمل الملعب حالياً تصنيف "ملعب خمس نجوم" من قبل الإتحاد الأوروبي لكرة القدم وقد استضاف أربع نهائيات لدوري أبطال أوروبا كان آخرها عام 2009.[2][3]\r\nبعيداً عن كرة القدم يتم استخدام الإستاد من قبل المنتخب الإيطالي الوطني للرغبي وهو أيضاً مقر للفريق الإيطالي لألعاب القوى، كما يستضيف أحياناً العديد من الحفلات والأحداث المختلفة\r\n', '2016-05-19 08:38:06', '2016-05-19 08:37:43'),
 (35, 104, 307, 'بوزيلستاديون ', 17000, '1463666536', 'عشب طبيعي', 'الافتتاح	1923', '2016-05-19 09:02:16', '2016-05-19 09:02:16'),
 (36, 108, 310, 'إرنست هابل', 68500, '1463666876', 'عشب طبيعي', '', '2016-05-19 09:07:56', '2016-05-19 09:07:56'),
-(37, 107, 311, ' أفيفا ', 51000, '1463666979', 'عشب طبيعي', '', '2016-05-24 08:15:03', '2016-05-19 09:09:39'),
 (38, 109, 312, ' ألغارفي', 30000, '1463667095', 'عشب طبيعي', '', '2016-05-19 09:11:35', '2016-05-19 09:11:35'),
 (40, 111, 315, 'لاوغاردالسفولور', 9800, '1463667440', 'عشب طبيعي', '', '2016-05-19 09:17:20', '2016-05-19 09:17:20'),
 (41, 96, 667, 'ملعب ماكسيمير', 39000, '1464256142', 'عشب طبيعي', 'عب ماكسيمير هو ملعب متعدد الاستخدام يقع في زغرب عاصمة كرواتيا. غالبا ما يتم استخدامه لمباريات كرة القدم. يسع الملعب لجلوس 38،923 متفرج. يعتبر الملعب الرسمي الذي يخوض فيه منتخب كرواتيا مبارياته الدولية. تم افتتاح الملعب في سنة 1912', '2016-05-26 07:49:02', '2016-05-26 07:49:02'),
@@ -3412,15 +3406,6 @@ CREATE TABLE `v_albums` (
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `v_albums`
---
-
-INSERT INTO `v_albums` (`id`, `vedio_url`, `title`, `category_id`, `flag`, `description`, `created_at`, `updated_at`) VALUES
-(13, 'https://www.youtube.com/watch?v=aiXbwl2RBhc', 'dd', 2, '1470908733', 'ddd', '2016-08-11 07:45:33', '2016-08-11 07:45:33'),
-(14, 'https://www.youtube.com/watch?v=aiXbwl2RBhc', 'dd', 1, '1470908948', 'wsww', '2016-08-14 11:36:10', '2016-08-14 09:36:10'),
-(15, 'https://www.youtube.com/watch?v=aiXbwl2RBhc', 'gggg', 2, '1470913641', 'aa', '2016-08-11 11:07:21', '2016-08-11 09:07:21');
-
 -- --------------------------------------------------------
 
 --
@@ -3816,7 +3801,8 @@ ALTER TABLE `player_sponsors`
 -- Indexes for table `posts`
 --
 ALTER TABLE `posts`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `cat_id` (`cat_id`);
 
 --
 -- Indexes for table `psessions`
@@ -4004,7 +3990,7 @@ ALTER TABLE `cards`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `championships`
 --
@@ -4029,12 +4015,12 @@ ALTER TABLE `channels`
 -- AUTO_INCREMENT for table `cities`
 --
 ALTER TABLE `cities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1056;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1055;
 --
 -- AUTO_INCREMENT for table `cnews`
 --
 ALTER TABLE `cnews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `coaches`
 --
@@ -4079,7 +4065,7 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `g_albums`
 --
 ALTER TABLE `g_albums`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `g_album_photos`
 --
@@ -4144,7 +4130,7 @@ ALTER TABLE `offsides`
 -- AUTO_INCREMENT for table `pcomments`
 --
 ALTER TABLE `pcomments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `penlties`
 --
@@ -4184,7 +4170,7 @@ ALTER TABLE `player_sponsors`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `psessions`
 --
@@ -4209,7 +4195,7 @@ ALTER TABLE `shoes`
 -- AUTO_INCREMENT for table `snews`
 --
 ALTER TABLE `snews`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `sponsors`
 --
@@ -4394,7 +4380,7 @@ ALTER TABLE `groups`
 -- Constraints for table `g_albums`
 --
 ALTER TABLE `g_albums`
-  ADD CONSTRAINT `g_albums_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
+  ADD CONSTRAINT `g_albums_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `g_album_photos`
@@ -4491,8 +4477,8 @@ ALTER TABLE `offsides`
 -- Constraints for table `pcomments`
 --
 ALTER TABLE `pcomments`
-  ADD CONSTRAINT `pcomments_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`),
-  ADD CONSTRAINT `pcomments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `pcomments_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pcomments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `penlties`
@@ -4544,6 +4530,12 @@ ALTER TABLE `player_matches`
 ALTER TABLE `player_sponsors`
   ADD CONSTRAINT `player_sponsors_ibfk_1` FOREIGN KEY (`player_id`) REFERENCES `players` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `player_sponsors_ibfk_2` FOREIGN KEY (`sponsor_id`) REFERENCES `sponsors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `posts`
+--
+ALTER TABLE `posts`
+  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`cat_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `psessions`
@@ -4634,7 +4626,7 @@ ALTER TABLE `team_sponsors`
 -- Constraints for table `v_albums`
 --
 ALTER TABLE `v_albums`
-  ADD CONSTRAINT `v_albums_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
+  ADD CONSTRAINT `v_albums_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `winners`

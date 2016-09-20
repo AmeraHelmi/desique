@@ -66,7 +66,7 @@ public function store(Request $request)
 			  $filename=time();
 		    $file->move('images/uploads', $filename);
 
-				$snew = new Snew;
+			  $snew = new Snew;
 			  $snew->title              =$request->title;
 			  $snew->flag               =$filename;
 				$snew->date               =$request->date;
@@ -74,16 +74,15 @@ public function store(Request $request)
 				$snew->save();
 
 				$count = count($request->metas);
-				$new_meta = new Cnew;
-				$new_meta->news_id        =$snew->id;
-				$data = [];
 				for($i = 0 ; $i < $count ; $i++)
 				{
-
-						$data[]      =$request->metas[$i];
+					$new_meta = new Cnew;
+                        $new_meta->news_id    =$snew->id;
+						$new_meta->words      =$request->metas[$i];
+						$new_meta->save();
 				}
-				$new_meta->words=json_encode($data,true);
-				$new_meta->save();
+				// $new_meta->words=json_encode($data,true);
+				
 
 				if($request->ajax()){
 					return response(array('msg' => 'Adding Successfull'), 200)

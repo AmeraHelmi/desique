@@ -18,21 +18,21 @@ class Post_commentController extends Controller {
 	 *
 	 * @return Response
 	 */
-    public function __construct()
+	public function __construct()
 	{
- 		$this->middleware('auth');
- 	}
+		$this->middleware('auth');
+	}
 	public function index(Pcomment $pcomment , Request $request)
 	{
 		$pcomments = $pcomment
-		    ->join('users as u','u.id','=','pcomments.user_id')
-		    ->join('posts as p','p.id','=','pcomments.post_id')
+			->join('users as u','u.id','=','pcomments.user_id')
+			->join('posts as p','p.id','=','pcomments.post_id')
 			->select(array('pcomments.id as pcomments_id',
-			 				'p.title as Post_title',
-			 				'u.name as user_name',
-			 				'pcomments.comment as comment',
-			 				'pcomments.time as time',
-			 				'pcomments.date as date'))
+							'p.title as Post_title',
+							'u.name as user_name',
+							'pcomments.comment as comment',
+							'pcomments.time as time',
+							'pcomments.date as date'))
 			->orderBy('pcomments_id','desc')->get();
 
 		$tableData = Datatables::of($pcomments)
@@ -105,14 +105,14 @@ class Post_commentController extends Controller {
 	 * @return Response
 	 */
 	 public function destroy($id)
- 	{
- 		$pcomment	= Pcomment::find($id);
- 		$pcomment->delete();
- 		if($request->ajax()){
- 			return response(array('msg' => 'Removing Successfull'), 200)
- 			->header('Content-Type', 'application/json');
- 			}
- 		return redirect()->back();
- 	}
+	{
+		$pcomment	= Pcomment::find($id);
+		$pcomment->delete();
+		if($request->ajax()){
+			return response(array('msg' => 'Removing Successfull'), 200)
+			->header('Content-Type', 'application/json');
+			}
+		return redirect()->back();
+	}
 
 }

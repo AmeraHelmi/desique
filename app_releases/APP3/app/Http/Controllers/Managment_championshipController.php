@@ -27,64 +27,71 @@ class Managment_championshipController extends Controller {
 			 *
 			 * @return Response
 			 */
-	 public function __construct()
-	 {
-		 $this->middleware('auth');
-	 }
-	 public function index(Managment_championship $m_champion , Request $request)
-	 {
-		 $managment_championships = $m_champion
-			 ->join('managers as manager','manager.id','=','managment_championships.manager_id')
-			 ->join('teams as team','team.id','=','managment_championships.team_id')
+	public function __construct()
+	{
+		$this->middleware('auth');
+	}
+	 		/**
+			*@method [return view] [index]([[obj] [$m_champion],[obj] [$request]]) 
+			*[<to get data of Managment_championship>]
+			*@param [obj] [$m_champion] 
+			*@param [obj] [$request] 
+			*@uses [Managment_championship,Request Model] 
+			*@return [view] <'managment_championship.index'>
+			*/
+	public function index(Managment_championship $m_champion , Request $request)
+	{
+		$managment_championships = $m_champion
+			->join('managers as manager','manager.id','=','managment_championships.manager_id')
+			->join('teams as team','team.id','=','managment_championships.team_id')
 
-			 ->select(array(
-				 'managment_championships.id as tmanagerID',
-				 'team.name as team_name',
-				 'manager.name as manager_name',
-				 'managment_championships.from_date as from_date',
-				 'managment_championships.to_date as to_date',
-				 'managment_championships.contract as contract',
-				 'managment_championships.addition_info as addition_info'
+			->select(array(
+				'managment_championships.id as tmanagerID',
+				'team.name as team_name',
+				'manager.name as manager_name',
+				'managment_championships.from_date as from_date',
+				'managment_championships.to_date as to_date',
+				'managment_championships.contract as contract',
+				'managment_championships.addition_info as addition_info'
 			 ))
 
-			 ->orderBy('tmanagerID','desc')->get();
+			->orderBy('tmanagerID','desc')->get();
 
-			 $tableData = Datatables::of($managment_championships)
+		$tableData = Datatables::of($managment_championships)
 
-				 ->addColumn('actions', function ($data)
-					 {return view('partials.actionBtns')->with('controller','managment_championship')->with('id', $data->tmanagerID)->render(); })
-				 ;
+			->addColumn('actions', function ($data)
+				{return view('partials.actionBtns')->with('controller','managment_championship')->with('id', $data->tmanagerID)->render(); });
 
-			 if($request->ajax())
-				 return DatatablePresenter::make($tableData, 'index');
-				//  $championships=Championship::lists('name','id');
+			if($request->ajax())
+			return DatatablePresenter::make($tableData, 'index');
+			//  $championships=Championship::lists('name','id');
 
-				$managers= Manager::lists('name','id');
-				$teams=Team::where('is_team','like','نادى%')->lists('name','id');
+			$managers= Manager::lists('name','id');
+			$teams=Team::where('is_team','like','نادى%')->lists('name','id');
 
-		 return view('managment_championship.index')
-		   ->with('managers',$managers)
-			 ->with('teams',$teams)
-			 ->with('tableData', DatatablePresenter::make($tableData, 'index'));
-	 }
-
+		 	return view('managment_championship.index')
+		   	->with('managers',$managers)
+			->with('teams',$teams)
+			->with('tableData', DatatablePresenter::make($tableData, 'index'));
+	}
 
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
+
+			
 	public function create()
 	{
 		//
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
+			/**
+			* Store a newly created resource in storage.
+			*@method [return response] [store]([[obj] [$request]]) 
+			*[<to insert data in DB>]
+			*@param [obj] [$request] 
+			*@var [obj] [$m_champion] 
+			*@uses [Managment_championship,Request Model]
+			*@return [Response]
+			*/
 	public function store(Request $request)
  	{
 		$m_champion = new Managment_championship;
@@ -113,23 +120,21 @@ class Managment_championshipController extends Controller {
 
 
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+	
 	public function show($id)
 	{
 		//
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+		/**
+			*@method [return response] [edit]([[obj] [$request],[int] [$id]]) 
+			*[<to edit data >]
+			*@param [obj] [$request] 
+			*@param [int] [$id] 
+			*@var [obj] [$m_champion]
+			*@uses [Managment_championship,Request Model] 
+			*@return [response]
+			*/
 	 public function edit(Request $request , $id)
  	{
  		$m_champion = Managment_championship::find($id);
@@ -139,15 +144,17 @@ class Managment_championshipController extends Controller {
  			}
  	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+			/**
+			 * Update the specified resource in storage.
+			 **@method [return response] [update]([obj] [$request],[obj] [$id]) 
+			 *[<to update data >]
+			 * @param  obj  $request
+			 * @param  int  $id
+			 * @return Response
+			*/
 	 public function update(Request $request,$id)
 	{
-		$m_champion 	= Managment_championship::find($id);
+		$m_champion = Managment_championship::find($id);
 		$m_champion->manager_id       =$request->manager_id;
 		$m_champion->team_id          =$request->team_id;
 		$m_champion->from_date        =$request->from_date;
@@ -163,13 +170,13 @@ class Managment_championshipController extends Controller {
 
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-
+			/**
+			 * Remove the specified resource from storage.
+			 *@method [return response] [destroy]([[int] [$id]]) 
+			 *[<to delete data >]
+			 * @param  int  $id
+			 * @return Response
+			*/
 
 	 public function destroy($id)
  	{
@@ -184,3 +191,4 @@ class Managment_championshipController extends Controller {
 
 
 }
+/**@copyright 2016 The PHP Group [Amera Helmi ,Alaa Ragab,Lamess Said]*/

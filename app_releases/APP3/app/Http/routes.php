@@ -167,162 +167,40 @@ Route::resource('/nationcloth'                    ,'NationclothController');
 Route::POST    ('/corner/store'             , array('as' => 'addcorner','uses' => 'CornerController@store'));
 Route::resource('/corner'                    , 'CornerController');
 //error
-
-    ROUTE::POST    ('/ERROR/STORE'             , ARRAY('AS' => 'ADDERROR','USES' => 'ERRORCONTROLLER@STORE'));
-
-
-
-    ROUTE::RESOURCE('/ERROR'                    , 'ERRORCONTROLLER');
-
-
-
-
-
-
-
-
-
-
-
+ROUTE::POST    ('/ERROR/STORE'             , ARRAY('AS' => 'ADDERROR','USES' => 'ERRORCONTROLLER@STORE'));
+ROUTE::RESOURCE('/ERROR'                    , 'ERRORCONTROLLER');
 //offside
-
-
-
 Route::POST    ('/offside/store'             , array('as' => 'addoffside','uses' => 'OffsideController@store'));
-
-
-
 Route::resource('/offside'                    , 'OffsideController');
 
-
-
-
-
-
-
-
-
-
-
 //penlty
-
-
-
 Route::POST    ('/penlty/store'             , array('as' => 'addpenlty','uses' => 'PenltyController@store'));
-
-
-
 Route::resource('/penlty'                    , 'PenltyController');
 
-
-
-
-
-
-
 //match sponsors
-
-
-
 Route::POST    ('/msponsors/store'          , array('as' => 'addmsponsors','uses' => 'MatchsponsorController@store'));
-
-
-
 Route::resource('/msponsors'                , 'MatchsponsorController');
-
-
-
-
-
-
-
 //player shoes
-
-
-
 Route::POST    ('/playershoes/store'             , array('as' => 'addplayershoes','uses' => 'PlayershoesController@store'));
-
-
-
 Route::POST    ('/playershoes/getplayers'        ,'PlayershoesController@getplayers');
-
-
-
 Route::resource('/playershoes'                   ,'PlayershoesController');
 
-
-
-
-
-
-
 //players team
-
-
-
 Route::POST    ('/playersteam/store'              , array('as' => 'addplayersteam','uses' => 'TeamplayerController@store'));
-
-
-
 Route::resource('/playersteam'                    , 'TeamplayerController');
-
-
-
-
-
-
-
 //test
-
-
-
 Route::GET('/players_team/{id}'                     , 'TestController@show');
-
-
-
 Route::GET('/player_detail/{id}'                    , 'TestController@playerDetail');
-
-
-
 Route::resource('/test'                             , 'TestController');
 
-
-
-
-
-
-
 //player history
-
-
-
 Route::POST    ('/playerhistory/store'              , array('as' => 'addplayerhistory','uses' => 'PlayerhistoryController@store'));
-
-
-
 Route::resource('/playerhistory'                    , 'PlayerhistoryController');
 
-
-
-
-
-
-
 //agent history
-
-
-
 Route::POST    ('/agent_history/store'              , array('as' => 'addagent_history','uses' => 'Agent_historyController@store'));
 
-
-
 Route::resource('/agent_history'                    , 'Agent_historyController');
-
-
-
-
-
-
 
 //team_history_coach
 Route::POST    ('/team_history_coach/store'          , array('as' => 'addteam_history_coach','uses' => 'Team_history_coachController@store'));
@@ -331,85 +209,25 @@ Route::resource('/team_history_coach'                ,'Team_history_coachControl
 
 //managment_championship
 
-
-
-Route::POST    ('/managment_championship/store'          , array('as' => 'addmanagment_championship','uses' => 'Managment_championshipController@store'));
-
-
-
-Route::resource('/managment_championship'                ,'Managment_championshipController');
-
-
-
-
-
-
+Route::POST('/managment_championship/store',array('as'=>'addmanagment_championship','uses' =>'Managment_championshipController@store'));
+Route::resource('/managment_championship' ,'Managment_championshipController');
 
 //player_sponsor
-
-
-
-Route::POST    ('/player_sponsor/store'          , array('as' => 'addplayer_sponsor','uses' => 'Player_sponsorController@store'));
-
-
-
+Route::POST    ('/player_sponsor/store',array('as' => 'addplayer_sponsor','uses' => 'Player_sponsorController@store'));
 Route::resource('/player_sponsor'                ,'Player_sponsorController');
 
-
-
-
-
-
-
-
-
-
-
 //team_sponsor
-
-
-
 Route::POST    ('/team_sponsor/store'          , array('as' => 'addteam_sponsor','uses' => 'Team_sponsorController@store'));
-
-
-
 Route::resource('/team_sponsor'                ,'Team_sponsorController');
-
-
-
-
-
-
 
 //team_championship
 
-
-
-Route::POST    ('/team_championship/store'          , array('as' => 'addteam_championship','uses' => 'Team_championshipController@store'));
-
-
-
-Route::resource('/team_championship'                ,'Team_championshipController');
-
-
-
-
-
-
-
+Route::POST    ('/team_championship/store' , array('as' => 'addteam_championship','uses' => 'Team_championshipController@store'));
+Route::resource('/team_championship'       ,'Team_championshipController');
 //News
-
-
-
 Route::POST    ('/snew/store'          ,array('as' => 'addsnew','uses' => 'SnewController@store'));
 Route::POST    ('/snew/update'         ,'SnewController@update');
 Route::resource('/snew'                , 'SnewController');
-
-
-
-
-
-
 
 //template
 

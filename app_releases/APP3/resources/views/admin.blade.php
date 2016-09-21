@@ -2,18 +2,13 @@
     <html dir="rtl" lang="ar">
     <head>
         <meta charset="utf-8">
-        <title>koralive</title>
+        <title>Desique</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
-        <meta name="author" content="Muhammad Usman">
-      <!-- <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/midan-normal" type="text/css"/>  -->
-
-
+        <meta name="author" content="Amera Helmi">
         <link id="bs-css" href="{{ asset('/admin-ui/admin_css/bootstrap-cerulean.min.css')}}" rel="stylesheet">
-
         <link href="{{ asset('/admin-ui/admin_css/charisma-app.css')}}" rel="stylesheet">
-<!--           <link href='{{ asset("/admin-ui/admin_css/bootstrap-rtl.css")}}' rel='stylesheet'>
- -->        <link href='{{ asset("/admin-ui/admin_bower/bower_components/chosen/chosen.min.css")}}' rel='stylesheet'>
+        <link href='{{ asset("/admin-ui/admin_bower/bower_components/chosen/chosen.min.css")}}' rel='stylesheet'>
         <link href='{{ asset("/admin-ui/admin_bower/bower_components/colorbox/example3/colorbox.css")}}' rel='stylesheet'>
         <link href='{{ asset("/admin-ui/admin_bower/bower_components/responsive-tables/responsive-tables.css")}}' rel='stylesheet'>
         <link href='{{ asset("/admin-ui/admin_bower/bower_components/bootstrap-tour/build/css/bootstrap-tour.min.css")}}' rel='stylesheet'>
@@ -40,9 +35,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ url('/') }}" style="float: left;">
+                <a class="navbar-brand" href="{{ url('/') }}" style="float: left;" target="_blank">
                     <img alt="Charisma Logo" src="{{ asset('/admin-ui/admin_images/logo20.png')}}" class="hidden-xs"/>
-                    <span>Koralife</span>
+                    <span>DeSiqUe</span>
                 </a>
                 <div class="btn-group pull-right">
                     <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -73,7 +68,7 @@
                     </ul>
                 </div>
                 <ul class="collapse navbar-collapse nav navbar-nav top-menu" style="float: left;">
-                    <li><a href="{{ url('/front') }}"><i class="glyphicon glyphicon-globe"></i> زيارة الموقع</a></li>
+                    <li><a href="{{ url('/') }}" target="_blank"><i class="glyphicon glyphicon-globe"></i> زيارة الموقع</a></li>
                 </ul>
             </div>
         </div>
@@ -82,7 +77,7 @@
                 <div class="col-sm-2 col-lg-2" style="float: right;">
                     <div class="sidebar-nav" style="float: right;">
                         <div class="nav-canvas" style="float: right;">
- <ul class="nav nav-pills nav-stacked main-menu" style="padding-right: 12px;width: 200px;padding-left: 5px;">
+                            <ul class="nav nav-pills nav-stacked main-menu" style="padding-right: 12px;width: 200px;padding-left: 5px;">
                                 <li class="nav-header">Main</li>
                                 <li>
                                     <a class="ajax-link" href="{{ url('/adminpanel') }}">

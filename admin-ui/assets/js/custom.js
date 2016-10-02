@@ -1,17 +1,5 @@
-/*=============================================================
-    Authour URL: www.designbootstrap.com
-    
-    http://www.designbootstrap.com/
 
-    License: MIT
 
-    http://opensource.org/licenses/MIT
-
-    100% Free To use For Personal And Commercial Use.
-
-    IN EXCHANGE JUST TELL PEOPLE ABOUT THIS WEBSITE
-   
-========================================================  */
 
 $(document).ready(function () {
 
@@ -43,12 +31,12 @@ VAGAS SLIDESHOW SCRIPTS
 ======================================*/
 $.vegas('slideshow', {
 backgrounds: [
-{ src: 'assets/img/1.jpg', fade: 1000, delay: 9000 },
-{ src: 'assets/img/2.jpg', fade: 1000, delay: 9000 },
+{ src: 'admin-ui/assets/img/11.jpg', fade: 1000, delay: 9000 },
+{ src: 'admin-ui/assets/img/12.jpg', fade: 1000, delay: 9000 },
 ]
 })('overlay', {
 /** SLIDESHOW OVERLAY IMAGE **/
-src: 'assets/js/vegas/overlays/06.png' // THERE ARE TOTAL 01 TO 15 .png IMAGES AT THE PATH GIVEN, WHICH YOU CAN USE HERE
+src: 'admin-ui/assets/js/vegas/overlays/06.png' // THERE ARE TOTAL 01 TO 15 .png IMAGES AT THE PATH GIVEN, WHICH YOU CAN USE HERE
 });
 
 

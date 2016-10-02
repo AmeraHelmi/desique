@@ -1,16 +1,5 @@
 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-<div class="form-group">
-<label for="exampleInputFile"> اختيار الالبوم</label>
-<select  class="form-control"
- name="g_album_id"
- id="g_album_id">
- <option selected value="">اختر الالبوم</option>
- @foreach($albums as $g_album_id => $title)
-  <option value="{!! $title !!}">{!! $g_album_id !!}</option>
-  @endforeach
-</select>
-</div>
 
   <div class="form-group">
     <label for="exampleInputFile">الوصف</label>

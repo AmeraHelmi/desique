@@ -17,15 +17,7 @@
     <label for="exampleInputFile">pic path</label>
     <input type="text" name="flag" id="flag" required>
 </div>
-<div class="form-group">
-    <label for="exampleInputFile">اختر الفئة</label>
-    <select id="category"  class="form-control" name="cat_id">
-          <option selected value="">اختر الفئة</option>
-          @foreach($categories as $category_id => $category_name)
-          <option value="{!! $category_name !!}">{!! $category_id !!}</option>
-          @endforeach
-    </select>
-</div>
+
 <div class="fileupload fileupload-new" data-provides="fileupload">
     <span class="btn btn-primary btn-file"><span class="fileupload-new">الصوره</span>
     <span class="fileupload-exists">Change</span>

@@ -92,68 +92,10 @@
                                         <span> المستخدمين</span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a class="ajax-link" href="{{ url('/blog-comments') }}">
-                                        <i class="glyphicon glyphicon-eye-open"></i>
-                                        <span> تعليقات على الناصيه</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="ajax-link" href="{{ url('/post-comments') }}">
-                                        <i class="glyphicon glyphicon-eye-open"></i>
-                                        <span> تعليقات على المدونه</span>
-                                    </a>
-                                </li>
+
+
                                 @include('menu')
-                                @elseif(Auth::user()->role =='Editor')
-                                <li class="accordion">
-                                    <a href="#">
-                                        <i class="glyphicon glyphicon-plus"></i>
-                                        <span> المباراه</span>
-                                    </a>
-                                    <ul class="nav nav-pills nav-stacked">
-                                        <li>
-                                            <a href="{{ url('reserve_player') }}">اللاعبون الاحتياط</a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ url('player_match') }}">اللاعبون الاساسيون</a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ url('change_player') }}">التبديلات</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="accordion">
-                                    <a href="#">
-                                        <i class="glyphicon glyphicon-plus"></i>
-                                        <span> مباريات اليوم</span>
-                                    </a>
-                                    <ul class="nav nav-pills nav-stacked">
-                                    @foreach($Allmatch as $matchdetail)
-                                        <li>
-                                            <a href="{{ url('now',$matchdetail->match_id) }}">
-                                            {{ $matchdetail->T1name }} - {{ $matchdetail->T2name }}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                    </ul>
-                                </li>
-                                @elseif(Auth::user()->role =='Analyiser')
-                                <li>
-                                    <a class="ajax-link" href="{{ url('analysis') }}">
-                                        <i class="glyphicon glyphicon-arrow-left"></i>
-                                        <span> التحليل</span>
-                                    </a>
-                                </li>
-                                @elseif(Auth::user()->role =='Data Entry')
-                                @include('menu')
-                                @elseif(Auth::user()->role =='News')                                <li>
-                                    <a class="ajax-link" href="{{ url('snew') }}">
-                                        <i class="glyphicon glyphicon-arrow-left"></i>
-                                        <span> الاخبار</span>
-                                    </a>
-                                </li>
-                                @else
+
                                 @endif
                             </ul>
                         </div>
@@ -189,7 +131,7 @@
                   </div>
                   <footer class="row">
                           <p class="col-md-9 col-sm-9 col-xs-12 copyright">&copy;
-                              <a href="http://usman.it" target="_blank">BG</a> 2016
+                              <a href="https://www.linkedin.com/in/ameraelsayed" target="_blank">AmeraHelmi</a> 
                           </p>
                   </footer>
                 </div>

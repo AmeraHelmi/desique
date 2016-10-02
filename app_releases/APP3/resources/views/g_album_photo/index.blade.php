@@ -154,7 +154,6 @@
 
 								<tr>
 
-										<th class="col-md-4">اسم الالبوم</th>
                     <th class="col-md-3">الصوره</th>
                     <th class="col-md-3">الوصف</th>
 										<th class="col-md-2">خيارات</th>
@@ -169,7 +168,6 @@
 
 								<tr>
 
-										<td>{{ $row->title }}</td>
                     <td>{!! $row->flag !!}</td>
                     <td>{{ $row->alt }}</td>
 										<td>{!! $row->actions !!}</td>
@@ -398,7 +396,6 @@
 		"responsive": true,
 		"deferLoading": {{ $tableData->getData()->recordsFiltered }},
 		"columns": [
-        {data: 'title', name: 'title'},
         {data: 'flag', name: 'flag'},
 				{data: 'alt', name: 'alt'},
 				{data: 'actions', name: 'actions', orderable: false, searchable: false}

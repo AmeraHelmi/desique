@@ -1,21 +1,10 @@
 <?php
 
-Route::get('facebook', 'AccountController@facebook_redirect');
-// Get back to redirect url
-
-Route::get('account/facebook', 'AccountController@facebook');
-
 Route::get     ('/adminpanel', 'HomeController@index');
 
-//koralife
+//Desqiue
 Route::get     ('/',            'DesiqueController@index');
-
-//championship page
-Route::get     ('/about_champion',      'KoralifeController@about');
-
-//coach page
-Route::get     ('/coaches_champion',    'KoralifeController@coaches');
-Route::get     ('/coach_profile/{id}',    'KoralifeController@coache_profile');
+Route::get     ('/desique',            'DesiqueController@desique');
 
 
 //News pages
@@ -29,30 +18,45 @@ Route::get('/posts/{id?}'  , 'KoralifeController@post_details');
 Route::get('/prevpost/{id?}'  , 'KoralifeController@post_details');
 Route::get('/nextpost/{id?}'  , 'KoralifeController@post_details');
 
-
-//advert
-Route::POST    ('/advert/store'             , array('as' => 'addadvert','uses' => 'AdvertController@store'));
-Route::POST    ('/advert/update'         ,'AdvertController@update');
-Route::resource('/advert'                , 'AdvertController');
-
 //News
 Route::POST    ('/snew/store'          ,array('as' => 'addsnew','uses' => 'SnewController@store'));
 Route::POST    ('/snew/update'         ,'SnewController@update');
 Route::resource('/snew'                , 'SnewController');
 
+//members
+Route::POST    ('/member/store'          ,array('as' => 'addmember','uses' => 'MemberController@store'));
+Route::POST    ('/member/update'         ,'MemberController@update');
+Route::resource('/member'                , 'MemberController');
+
 //admin users
 Route::resource('/users/update_admin' ,'AdminController@update_admin');
 Route::resource('/users' ,'AdminController');
 
+//about
+Route::POST    ('/about/store'          ,array('as' => 'addabout','uses' => 'AboutController@store'));
+Route::POST    ('/about/update'         ,'AboutController@update');
+Route::resource('/about'                , 'AboutController');
+
+
+//services
+Route::POST    ('/service/store'            ,array('as' => 'addservice','uses' => 'ServiceController@store'));
+Route::POST    ('/service/update'           ,'ServiceController@update');
+Route::resource('service', 'ServiceController');
+
+//products
+Route::POST    ('/product/store'            ,array('as' => 'addproduct','uses' => 'ProductController@store'));
+Route::POST    ('/product/update'           ,'ProductController@update');
+Route::resource('product', 'ProductController');
 
 //post
 Route::POST    ('/post/store'            ,'PostController@store');
 Route::POST    ('/post/update'           ,'PostController@update');
 Route::resource('post', 'PostController');
 
-//Post comments
-Route::resource('post-comments', 'Post_commentController');
-
+//Photos
+Route::POST    ('/g_album_photo/store'          ,array('as' => 'addg_album_photo','uses' => 'G_album_photoController@store'));
+Route::POST    ('/g_album_photo/update'         ,'G_album_photoController@update');
+Route::resource('/g_album_photo'                , 'G_album_photoController');
 
 //Front
 Route::resource('/front'  , 'FrontEndController');

@@ -8,20 +8,22 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="index.html">
-                Desique
+            <a class="navbar-brand" href="{{ url('/')}}">
+                <!-- <img src="{{ asset('/admin-ui/assets/img/desique.jpg') }}" style="width: 114;height: 42;"/> -->
+                DeZique
             </a>
         </div>
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav" style="float:right">
-                <li><a href="#home">HOME</a></li>
-                <li><a href="#services">SERVICES</a></li>
-                <li><a href="#pricing">PRICING</a></li>
-                <li><a href="#work">WORK</a></li>
-                <li><a href="#team">TEAM</a></li>
-                <li><a href="#grid">GRID</a></li>
-                <li><a href="#contact">CONTACT</a></li>
-                <li><a href="ar-index.html"><i class="fa fa-language" aria-hidden="true"></i></a></li>
+            <ul class="nav navbar-nav" style="float:left">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#services">الخدمات</a></li>
+                <li><a href="#pricing">باقات الدفع</a></li>
+                <li><a href="#work">الاعمال</a></li>
+                <li><a href="#team">الفريق</a></li>
+                <li><a href="#grid">المدونة</a></li>
+                <li><a href="#contact">اتصل بنا</a></li>
+                <li><a href="{{ url('desique')}}">الانجليزية</a></li>
+                <!-- <li><a href="ar-index.html"><i class="fa fa-language" aria-hidden="true"></i></a></li> -->
             </ul>
         </div>
     </div>
@@ -34,28 +36,17 @@
             <div class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2 ">
                 <div id="carousel-slider" data-ride="carousel" class="carousel slide  animate-in" data-anim-type="fade-in-up">
                     <div class="carousel-inner">
+
+                        @foreach($news as $new)
                         <div class="item active">
                             <h3>
-                                Consectetur adipiscing elit felis dolor felis dolor vitae
+                                  {{ $new->title }}
                             </h3>
                             <p>
-                              Lorem ipsumdolor sitamet, consect adipiscing elit
-                              Lorem ipsumdolor sitamet, consect adipiscing elit.
-                              Lorem ipsumdolor sitamet, consect adipiscing elit
-                              Lorem ipsumdolor sitamet, consect adipiscing elit.
+                              {{ $new->additional_info }}.
                             </p>
                         </div>
-                        <div class="item">
-                            <h3>
-                                  Lorem ipsumdolor sitamet, consect adipiscing elit
-                            </h3>
-                            <p>
-                              Lorem ipsumdolor sitamet, consect adipiscing elit
-                              Lorem ipsumdolor sitamet, consect adipiscing elit.
-                              Lorem ipsumdolor sitamet, consect adipiscing elit
-                              Lorem ipsumdolor sitamet, consect adipiscing elit.
-                            </p>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -70,10 +61,7 @@
                     <a href="#" class="btn button-custom btn-custom-one" ><i class="fa fa-twitter"></i></a>
                     <a href="#" class="btn button-custom btn-custom-one" ><i class="fa fa-google-plus "></i></a>
                     <a href="#" class="btn button-custom btn-custom-one" ><i class="fa fa-linkedin "></i></a>
-                    <a href="#" class="btn button-custom btn-custom-one" ><i class="fa fa-pinterest "></i></a>
-                    <a href="#" class="btn button-custom btn-custom-one" ><i class="fa fa-github "></i></a>
                 </div>
-                <a href="#services" class=" btn button-custom btn-custom-two">See Service List </a>
             </div>
         </div>
     </div>
@@ -85,83 +73,20 @@
     <div class="container">
         <div class="row text-center header">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 animate-in" data-anim-type="fade-in-up">
-                <h3>Our Services</h3>
+                <h3>خدماتنا</h3>
                 <hr />
             </div>
         </div>
         <div class="row animate-in" data-anim-type="fade-in-up">
+          @foreach($services as $service)
             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                 <div class="services-wrapper">
                     <i class="ion-document"></i>
-                    <h3>Consectetur tellus nec</h3>
-                        Morbi mollis lectus et ipsum sollicitudin varius.
-                        Aliquam tempus ante placerat, consectetur tellus nec, porttitor nulla.
+                    <h3>{{ $service->name }}</h3>
+                        {{ $service->description }}
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <div class="services-wrapper">
-                    <i class="ion-scissors"></i>
-                    <h3>Consectetur tellus nec</h3>
-                        Morbi mollis lectus et ipsum sollicitudin varius.
-                        Aliquam tempus ante placerat, consectetur tellus nec, porttitor nulla.
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <div class="services-wrapper">
-                    <i class="ion-clipboard"></i>
-                    <h3>Consectetur tellus nec</h3>
-                        Morbi mollis lectus et ipsum sollicitudin varius.
-                        Aliquam tempus ante placerat, consectetur tellus nec, porttitor nulla.
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <div class="services-wrapper">
-                    <i class="ion-calendar"></i>
-                    <h3>Consectetur tellus nec</h3>
-                        Morbi mollis lectus et ipsum sollicitudin varius.
-                        Aliquam tempus ante placerat, consectetur tellus nec, porttitor nulla.
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <div class="services-wrapper">
-                    <i class="ion-erlenmeyer-flask"></i>
-                    <h3>Consectetur tellus nec</h3>
-                        Morbi mollis lectus et ipsum sollicitudin varius.
-                        Aliquam tempus ante placerat, consectetur tellus nec, porttitor nulla.
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <div class="services-wrapper">
-                    <i class="ion-monitor"></i>
-                    <h3>Consectetur tellus nec</h3>
-                        Morbi mollis lectus et ipsum sollicitudin varius.
-                        Aliquam tempus ante placerat, consectetur tellus nec, porttitor nulla.
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <div class="services-wrapper">
-                    <i class="ion-pinpoint"></i>
-                    <h3>Consectetur tellus nec</h3>
-                        Morbi mollis lectus et ipsum sollicitudin varius.
-                        Aliquam tempus ante placerat, consectetur tellus nec, porttitor nulla.
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <div class="services-wrapper">
-                    <i class="ion-tshirt-outline"></i>
-                    <h3>Consectetur tellus nec</h3>
-                        Morbi mollis lectus et ipsum sollicitudin varius.
-                        Aliquam tempus ante placerat, consectetur tellus nec, porttitor nulla.
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                <div class="services-wrapper">
-                    <i class="ion-speedometer"></i>
-                    <h3>Consectetur tellus nec</h3>
-                        Morbi mollis lectus et ipsum sollicitudin varius.
-                        Aliquam tempus ante placerat, consectetur tellus nec, porttitor nulla.
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -172,7 +97,7 @@
     <div class="container">
         <div class="row text-center header animate-in" data-anim-type="fade-in-up">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <h3>Pricing Options</h3>
+                <h3>باقات الدفع</h3>
                 <hr />
             </div>
         </div>
@@ -330,70 +255,24 @@
                 <div class="container">
                     <div class="row text-center header animate-in" data-anim-type="fade-in-up">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <h3>Our Works</h3>
+                            <h3>أعمـــــــــــالنا</h3>
                             <hr />
                         </div>
                     </div>
-                    <div class="row text-center animate-in" data-anim-type="fade-in-up" >
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 pad-bottom">
-                            <div class="caegories">
-                                <a href="#" data-filter="*" class="active btn btn-custom btn-custom-two btn-sm">All</a>
-                                <a href="#" data-filter=".html" class="btn btn-custom btn-custom-two btn-sm">HTML</a>
-                                <a href="#" data-filter=".css" class="btn btn-custom btn-custom-two btn-sm">CSS</a>
-                                <a href="#" data-filter=".code" class="btn btn-custom btn-custom-two btn-sm" >CODE</a>
-                                <a href="#" data-filter=".script" class="btn btn-custom btn-custom-two btn-sm" >SCRIPT</a>
-                              </div>
-                          </div>
-                      </div>
+
                       <div class="row text-center animate-in" data-anim-type="fade-in-up" id="work-div">
+                        @foreach($products as $product)
                           <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 html">
                               <div class="work-wrapper">
                                   <a class="fancybox-media" title="Image Title Goes Here" href="assets/img/portfolio/1.jpg">
                                       <img src="{{ asset('/admin-ui/assets/img/portfolio/1.jpg') }}" class="img-responsive img-rounded" alt="" />
                                   </a>
-                                  <h4>Morbi mollis lectus et ipsum</h4>
+                                  <h4>{{ $product->name }}</h4>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 html css">
-                                <div class="work-wrapper">
-                                    <a class="fancybox-media" title="Image Title Goes Here" href="assets/img/portfolio/2.jpg">
-                                        <img src="{{ asset('/admin-ui/assets/img/portfolio/2.jpg') }}" class="img-responsive img-rounded" alt="" />
-                                    </a>
-                                    <h4>Morbi mollis lectus et ipsum</h4>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 code script">
-                                <div class="work-wrapper">
-                                    <a class="fancybox-media" title="Image Title Goes Here" href="assets/img/portfolio/3.jpg">
-                                        <img src="{{ asset('/admin-ui/assets/img/portfolio/3.jpg') }}" class="img-responsive img-rounded" alt="" />
-                                    </a>
-                                    <h4>Morbi mollis lectus et ipsum</h4>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 html script">
-                                <div class="work-wrapper">
-                                    <a class="fancybox-media" title="Image Title Goes Here" href="assets/img/portfolio/4.jpg">
-                                        <img src="{{ asset('/admin-ui/assets/img/portfolio/4.jpg') }}" class="img-responsive img-rounded" alt="" />
-                                    </a>
-                                    <h4>Morbi mollis lectus et ipsum</h4>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 html code">
-                                <div class="work-wrapper">
-                                    <a class="fancybox-media" title="Image Title Goes Here" href="assets/img/portfolio/5.jpg">
-                                        <img src="{{ asset('/admin-ui/assets/img/portfolio/5.jpg') }}" class="img-responsive img-rounded" alt="" />
-                                    </a>
-                                    <h4>Morbi mollis lectus et ipsum</h4>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 script">
-                                <div class="work-wrapper">
-                                    <a class="fancybox-media" title="Image Title Goes Here" href="assets/img/portfolio/6.jpg">
-                                        <img src="{{ asset('/admin-ui/assets/img/portfolio/6.jpg') }}" class="img-responsive img-rounded" alt="" />
-                                    </a>
-                                    <h4>Morbi mollis lectus et ipsum</h4>
-                                </div>
-                            </div>
+                            @endforeach
+
+
                         </div>
                     </div>
                 </section>
@@ -404,71 +283,27 @@
                     <div class="container">
                         <div class="row text-center header animate-in" data-anim-type="fade-in-up">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <h3>Team Members </h3>
+                                <h3>الفريق </h3>
                                 <hr />
                             </div>
                         </div>
                         <div class="row animate-in" data-anim-type="fade-in-up">
+                          @foreach($members as $member)
                             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
                                 <div class="team-wrapper">
-                                    <div class="team-inner" style="background-image: url('assets/img/team/1.jpg')" >
-                                        <a href="#" target="_blank" > <i class="fa fa-twitter" ></i></a>
+                                    <div class="team-inner" style="background-image: url('images/uploads/{{ $member->flag }}')" >
+                                        <a href="{{ $member->facebook}}" target="_blank" > <i class="fa fa-facebook" ></i></a>
                                     </div>
                                     <div class="description">
-                                        <h3> Leomarid Jona</h3>
-                                        <h5> <strong> Developer & Designer </strong></h5>
+                                        <h3> {{ $member->name }}</h3>
+                                        <h5> <strong> {{ $member->job }} </strong></h5>
                                         <p>
-                                          Pellentesque elementum dapibus convallis.
-                                          Vivamus eget finibus massa.
+                                          {{ $member->email }}
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                                <div class="team-wrapper">
-                                    <div class="team-inner" style="background-image: url('assets/img/team/2.jpg')" >
-                                        <a href="#" target="_blank" > <i class="fa fa-twitter" ></i></a>
-                                    </div>
-                                    <div class="description">
-                                        <h3> Leomarid Jona</h3>
-                                        <h5> <strong> Developer & Designer </strong></h5>
-                                        <p>
-                                            Pellentesque elementum dapibus convallis.
-                                            Vivamus eget finibus massa.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                                <div class="team-wrapper">
-                                    <div class="team-inner" style="background-image: url('assets/img/team/3.jpg')" >
-                                        <a href="#" target="_blank" > <i class="fa fa-twitter" ></i></a>
-                                    </div>
-                                    <div class="description">
-                                        <h3> Leomarid Jona</h3>
-                                        <h5> <strong> Developer & Designer </strong></h5>
-                                        <p>
-                                          Pellentesque elementum dapibus convallis.
-                                          Vivamus eget finibus massa.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                                <div class="team-wrapper">
-                                    <div class="team-inner" style="background-image: url('assets/img/team/4.jpg')" >
-                                        <a href="#" target="_blank" > <i class="fa fa-twitter" ></i></a>
-                                    </div>
-                                    <div class="description">
-                                        <h3> Leomarid Jona</h3>
-                                        <h5> <strong> Developer & Designer </strong></h5>
-                                        <p>
-                                          Pellentesque elementum dapibus convallis.
-                                          Vivamus eget finibus massa.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </section>
@@ -479,98 +314,23 @@
                     <div class="container">
                         <div class="row text-center header animate-in" data-anim-type="fade-in-up">
                             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                <h3>Grid Overview </h3>
+                                <h3>المدونة</h3>
                                 <hr />
                             </div>
                         </div>
-                        <div class="row pad-bottom animate-in" data-anim-type="fade-in-up">
-                            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                                <h2>1/4 Section</h2>
-                                <p>
-                                  Morbi mollis lectus et ipsum sollicitudin varius.
-                                  Aliquam tempus ante placerat,
-                                  consectetur tellus nec, porttitor nulla.
-                                </p>
-                            </div>
-                            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                              <h2>1/4 Section</h2>
-                              <p>
-                                Morbi mollis lectus et ipsum sollicitudin varius.
-                                Aliquam tempus ante placerat,
-                                consectetur tellus nec, porttitor nulla.
-                              </p>
-                            </div>
-                            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                              <h2>1/4 Section</h2>
-                              <p>
-                                Morbi mollis lectus et ipsum sollicitudin varius.
-                                Aliquam tempus ante placerat,
-                                consectetur tellus nec, porttitor nulla.
-                              </p>
-                            </div>
-                            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-                              <h2>1/4 Section</h2>
-                              <p>
-                                Morbi mollis lectus et ipsum sollicitudin varius.
-                                Aliquam tempus ante placerat,
-                                consectetur tellus nec, porttitor nulla.
-                              </p>
-                            </div>
+                        <div class="row text-center animate-in" data-anim-type="fade-in-up" id="work-div">
+                          @foreach($posts as $post)
+                              <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 html">
+                                  <div class="work-wrapper">
+                                      <a class="fancybox-media" title="Image Title Goes Here" href="#">
+                                          <img src="{{ asset('/admin-ui/assets/img/portfolio/1.jpg') }}" class="img-responsive img-rounded" alt="" />
+                                      </a>
+                                      <h4>{{ $post->title }}</h4>
+                                   </div>
+                                </div>
+                            @endforeach
                         </div>
-                        <div class="row pad-bottom animate-in" data-anim-type="fade-in-up">
-                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                <h2>1/3 Section</h2>
-                                <p>
-                                  Morbi mollis lectus et ipsum sollicitudin varius.
-                                  Aliquam tempus ante placerat,
-                                  consectetur tellus nec, porttitor nulla.
-                                </p>
-                            </div>
-                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                                <h2>1/3 Section</h2>
-                                <p>
-                                  Morbi mollis lectus et ipsum sollicitudin varius.
-                                  Aliquam tempus ante placerat,
-                                  consectetur tellus nec, porttitor nulla.
-                                </p>
-                            </div>
-                            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                              <h2>1/3 Section</h2>
-                              <p>
-                                Morbi mollis lectus et ipsum sollicitudin varius.
-                                Aliquam tempus ante placerat,
-                                consectetur tellus nec, porttitor nulla.
-                              </p>
-                            </div>
-                          </div>
-                          <div class="row pad-bottom animate-in" data-anim-type="fade-in-up">
-                              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                  <h2>1/2 Section</h2>
-                                  <p>
-                                    Morbi mollis lectus et ipsum sollicitudin varius.
-                                    Aliquam tempus ante placerat,
-                                    consectetur tellus nec, porttitor nulla.
-                                  </p>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-                                    <h2>1/2 Section</h2>
-                                    <p>
-                                      Morbi mollis lectus et ipsum sollicitudin varius.
-                                      Aliquam tempus ante placerat,
-                                      consectetur tellus nec, porttitor nulla.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="row animate-in" data-anim-type="fade-in-up">
-                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                    <h2>Full Section</h2>
-                                    <p>
-                                      Morbi mollis lectus et ipsum sollicitudin varius.
-                                      Aliquam tempus ante placerat,
-                                      consectetur tellus nec, porttitor nulla.
-                                    </p>
-                                </div>
-                            </div>
+
                         </div>
                     </section>
                     <!--GRID SECTION END-->
@@ -580,18 +340,15 @@
                           <div class="container">
                               <div class="row text-center header animate-in" data-anim-type="fade-in-up">
                                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                      <h3>Contact Details </h3>
+                                      <h3>اتصل بــــنا</h3>
                                       <hr />
                                   </div>
                               </div>
                               <div class="row animate-in" data-anim-type="fade-in-up">
                                   <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                                       <div class="contact-wrapper">
-                                          <h3>We Are Social</h3>
-                                          <p>
-                                            Aliquam tempus ante placerat,
-                                            consectetur tellus nec, porttitor nulla.
-                                          </p>
+                                          <h3>سوف تجدنا</h3>
+
                                           <div class="social-below">
                                               <a href="#" class="btn button-custom btn-custom-two" > Facebook</a>
                                               <a href="#" class="btn button-custom btn-custom-two" > Twitter</a>
@@ -601,24 +358,21 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                                         <div class="contact-wrapper">
-                                            <h3>Quick Contact</h3>
-                                            <h4><strong>Email : </strong> info@yuordomain.com </h4>
-                                            <h4><strong>Call : </strong> +09-88-99-77-55 </h4>
-                                            <h4><strong>Skype : </strong> Yujhaeu78 </h4>
+                                            <h3>الاتصال السريع</h3>
+                                            <h4><strong>الايميل : </strong> info@yuordomain.com </h4>
+                                            <h4><strong>الرقم : </strong> +09-88-99-77-55 </h4>
                                           </div>
                                       </div>
                                       <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
                                           <div class="contact-wrapper">
-                                              <h3>Address : </h3>
-                                              <h4>230/45 , New way Lane , </h4>
-                                              <h4>United States</h4>
-                                              <div class="footer-div" >
-                                                  &copy; 2015 YourDomain | <a href="http://www.designbootstrap.com/" target="_blank" >by DesignBootstrp</a>
-                                              </div>
+                                              <h3>العنوان </h3>
+                                              <h4>مدينة نصر بجوار النادى الاهلى </h4>
+                                              <h4>جمهورية مصر العربية</h4>
+
                                           </div>
                                       </div>
                                   </div>
                               </div>
                           </section>
-    
+
 @endsection
